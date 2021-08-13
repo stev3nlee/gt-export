@@ -17,66 +17,68 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-default">
+                @if(isset($data))
+                    <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/invoice/update') }}">
+                @else
+                    <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/invoice/insert') }}">
+                @endif
                 <div class="box-header with-border">
-                    Create Invoice <div style="float: right;"><input type="text" name="invoice_number"></div>
+                    Create Invoice <div style="float: right;"><input type="text" name="invoice_number" value="{{ isset($data) ? $data->invoice_number : $invoice_number }}">
+                    @if($errors->has('invoice_number')) <span class="help-block">{{ $errors->first('invoice_number') }}</span>  @endif</div>
                 </div>
 
                 <div class="box-body">
-                    @if(isset($data))
-                    <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/invoice/update') }}">
-                    @else
-                    <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/invoice/insert') }}">
-                    @endif
                       {!! csrf_field() !!}
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Quotation</label>
+                            <label for="exampleInputEmail1">Quotation <span class="required">*</span></label>
                             <select name="quotation_id" class="form-control select2 select-quotation" @if(isset($data)) disabled="disabled" @endif>
                               <option value="0">Select Quotation</option>
                               @foreach($quotations as $quotation)
                               <option value="{{ $quotation->id }}" @if(isset($data)) @if($data->quotation_id == $quotation->id) selected @endif @endif>{{ $quotation->quotation_number }}</option>
                               @endforeach
                             </select>
+                            @if($errors->has('quotation_id')) <span class="help-block">{{ $errors->first('quotation_id') }}</span>  @endif
                           </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="fname">Consignee Adress</label>
-                                        <input id="fname" required type="text" name="consignee_address" class="form-control" value="{{ isset($data) ? $data->consignee_address : old('consignee_address') }}"/>
-                                        @if($errors->has('consignee_address')) <span class="help-block">{{ $errors->first('fname') }}</span>  @endif
+                                        <label for="fname">Consignee Adress <span class="required">*</span></label>
+                                        <input type="text" name="consignee_address" class="form-control" value="{{ isset($data) ? $data->consignee_address : old('consignee_address') }}"/>
+                                        @if($errors->has('consignee_address')) <span class="help-block">{{ $errors->first('consignee_address') }}</span>  @endif
                                     </div>
                                     <div class="form-group">
-                                        <label for="lname">Contact No</label>
-                                        <input id="lname" required name="contact_no" type="text" class="form-control" value="{{ isset($data) ? $data->contact_no : old('contact_no') }}"/>
-                                        @if($errors->has('contact_no')) <span class="help-block">{{ $errors->first('lname') }}</span>  @endif
+                                        <label for="lname">Contact No <span class="required">*</span></label>
+                                        <input name="contact_no" type="text" class="form-control" value="{{ isset($data) ? $data->contact_no : old('contact_no') }}"/>
+                                        @if($errors->has('contact_no')) <span class="help-block">{{ $errors->first('contact_no') }}</span>  @endif
                                     </div>
                                     <div class="form-group">
-                                        <label for="lname">Email</label>
-                                        <input id="lname" required name="email" type="email" class="form-control" value="{{ isset($data) ? $data->email : old('email') }}"/>
-                                        @if($errors->has('email')) <span class="help-block">{{ $errors->first('lname') }}</span>  @endif
+                                        <label for="lname">Email <span class="required">*</span></label>
+                                        <input name="email" type="email" class="form-control" value="{{ isset($data) ? $data->email : old('email') }}"/>
+                                        @if($errors->has('email')) <span class="help-block">{{ $errors->first('email') }}</span>  @endif
                                     </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="fname">Date</label>
-                                    <input id="lname" required name="date" type="date" class="form-control" value="{{ isset($data) ? $data->date : old('date') }}"/>
+                                    <label for="fname">Date <span class="required">*</span></label>
+                                    <input name="date" type="date" class="form-control" value="{{ isset($data) ? $data->date : old('date') }}"/>
                                     @if($errors->has('date')) <span class="help-block">{{ $errors->first('date') }}</span>  @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="lname">Payment Terms</label>
-                                    <input id="lname" required name="payment_terms" type="text" class="form-control" value="{{ isset($data) ? $data->payment_terms : old('payment_terms') }}"/>
+                                    <label for="lname">Payment Terms <span class="required">*</span></label>
+                                    <input name="payment_terms" type="text" class="form-control" value="{{ isset($data) ? $data->payment_terms : old('payment_terms') }}"/>
                                     @if($errors->has('payment_terms')) <span class="help-block">{{ $errors->first('payment_terms') }}</span>  @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="lname">Type</label>
-                                    <input id="lname" required name="type" type="text" class="form-control" value="{{ isset($data) ? $data->type : old('type') }}"/>
+                                    <label for="lname">Type <span class="required">*</span></label>
+                                    <input name="type" type="text" class="form-control" value="{{ isset($data) ? $data->type : old('type') }}"/>
                                     @if($errors->has('type')) <span class="help-block">{{ $errors->first('type') }}</span>  @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="lname">Port of Destination</label>
-                                    <input id="lname" required name="port_of_destination" type="text" class="form-control" value="{{ isset($data) ? $data->port_of_destination : old('port_of_destination') }}"/>
+                                    <label for="lname">Port of Destination <span class="required">*</span></label>
+                                    <input name="port_of_destination" type="text" class="form-control" value="{{ isset($data) ? $data->port_of_destination : old('port_of_destination') }}"/>
                                     @if($errors->has('port_of_destination')) <span class="help-block">{{ $errors->first('port_of_destination') }}</span>  @endif
                                 </div>
                             </div>
@@ -84,7 +86,7 @@
                         </div>
                       </div>
                       @if(isset($data))
-                      <input type="hidden" name="member" value="{{ $data->member_id }}">
+                      <input type="hidden" name="quotation_id" value="{{ $data->quotation_id }}">
                       <input type="hidden" name="id" value="{{ $data->id }}">
                       @endif
                       
@@ -107,26 +109,23 @@
                                     </tr>
                                 </thead>
                                 @if(isset($data))
-                                @foreach($data->order_details as $item)
+                                @foreach($data->invoice_details as $item)
                                 <tr>
                                     <input type="hidden" name="detail[detail_id][]" value="{{ $item->id }}">
-                                    <td><select class="form-control select2 product_select">
-                                            <option value="0">Select Product</option>
-                                            @foreach($products as $product)
-                                              <option value="{{ $product->id }}|@if($product->discount_price > 0){{ $product->discount_price }}@else{{ $product->price }}@endif" @if($item->product_id == $product->id) selected @endif>{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                        
-                                    <td><input type="hidden" class="form-control product_id" name="detail[product_id][]" value="{{ $item->product_id }}">
-                                        <input type="text" class="form-control product_price" name="detail[product_price][]" value="{{ $item->product_price }}"></td>
-                                    <td><input type="number" class="form-control product_quantity" name="detail[product_quantity][]" value="{{ $item->product_quantity }}"></td>
-                                    <td><input type="text" class="form-control amount" name="detail[amount][]" readonly="readonly" value="{{ $item->product_quantity * $item->product_price }}"></td>
-                                    <td id="delete-row"><i class="fa fa-trash fa-fw" style="color: red; cursor: pointer;"></i></td>
+                                    <td><input type="text" class="form-control vehicle_no" name="detail[vehicle_number][]" value="{{ $item->vehicle_number }}"></td>
+                                    <td><input type="hidden" class="form-control product_id" name="detail[product_id][]" value="{{ $item->product_id }}"><input type="text" class="form-control make_model" name="detail[make_model][]" value="{{ $item->make_model }}"></td>
+                                    <td><input type="text" class="form-control colour" name="detail[colour][]" value="{{ $item->colour }}"></td>
+                                    <td><input type="text" class="form-control ord" name="detail[ord][]" value="{{ $item->ord }}"></td>
+                                    <td><input type="text" class="form-control engine_cap" name="detail[engine_cap][]" value="{{ $item->engine_cap }}"></td>
+                                    <td><input type="text" class="form-control mileage" name="detail[mileage][]" value="{{ $item->mileage }}"></td>
+                                    <td><input type="text" class="form-control chassis_no" name="detail[chassis_no][]" value="{{ $item->chassis_no }}"></td>
+                                    <td><input type="text" class="form-control engine_no" name="detail[engine_no][]" value="{{ $item->engine_no }}"></td>
+                                    <td><input type="number" step=0.01 class="form-control amount" name="detail[amount][]" value="{{ $item->amount }}"></td>
                                 </tr>
                                 @endforeach
                                 @else
                                 <tbody id="element-order">
+                                    <?php /* ?>
                                     <tr>
                                         <input type="hidden" name="detail[detail_id][]" value="0">
                                         <td><select class="form-control select2 product_select">
@@ -147,21 +146,27 @@
                                         <td><input type="text" class="form-control amount" name="detail[amount][]"></td>
                                         <td id="delete-row"><i class="fa fa-trash fa-fw" style="color: red; cursor: pointer;"></i></td>
                                     </tr>
+                                    <?php */ ?>
                                 </tbody>
                                 @endif
-                                <tfoot>
+                                <!-- <tfoot>
                                 <tr>
                                     <td colspan="10" class="text-center bg-slate" id="add-row"><span><i class="fa fa-plus fa-fw" style="cursor: pointer;"></i> Add another row</span></td>
                                 </tr>
-                            </tfoot>
+                                </tfoot> -->
                             </table>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Remarks</label>
+                                <textarea name="remarks" class="form-control" >{{ isset($data) ? $data->remarks : old('remarks') }}</textarea>
+                            </div>
                         </div>
-                        <div class="col-md-1"></div>
+                        <div class="col-md-1">
+                        </div>
                         <div class="col-md-7">
                             <div class="row">
                                 <div class="form-group">
@@ -204,11 +209,11 @@
         
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="col-sm-7 control-label text-right">
-                                        <select name="shipping" class="form-control" id="shipping" required>
+                                    <!-- <label class="col-sm-7 control-label text-right">
+                                        <select name="shipping" class="form-control" id="shipping" >
                                             <option value=""  selected disabled>@lang('yum.please_select') Shipping</option>
                                           </select>
-                                    </label>
+                                    </label> -->
                                     <div class="col-sm-5">
                                         <input type="hidden" name="shipping_fee" id="input_shipping">
                                         <input type="hidden" name="shipping_type" id="input_shipping_type">
@@ -222,7 +227,7 @@
                             <div class="row">
                                 <div class="form-group">
                                     <label class="col-sm-7 control-label text-right">
-                                        <h4>Grand Total (<span id="currency_name">Rp.</span>)</h4>
+                                        <h4>Payment Due (<span id="currency_name">USD</span>)</h4>
                                     </label>
                                     <div class="col-sm-5">
                                         <input type="hidden" name="value" id="input_total">
@@ -237,8 +242,8 @@
                       </div>
                   
                       <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -362,7 +367,7 @@
     function addRow(id) {
         var html = '<tr id="row'+id+'">' +
             '<input type="hidden" name="detail[detail_id][]" value="0">'+
-            '<td><input type="text" class="form-control vehicle_no vehicle-no-row-'+id+'" name="detail[vehicle_no][]"></td>' +
+            '<td><input type="text" class="form-control vehicle_no vehicle-no-row-'+id+'" name="detail[vehicle_number][]"></td>' +
             '<td><input type="hidden" class="form-control product_id product-id-row-'+id+'" name="detail[product_id][]"><input type="text" class="form-control make_model make-model-row-'+id+'" name="detail[make_model][]"></td>' +
             '<td><input type="text" class="form-control colour colour-row-'+id+'" name="detail[colour][]"></td>' +
             '<td><input type="text" class="form-control ord ord-row-'+id+'" name="detail[ord][]"></td>' +
@@ -370,8 +375,7 @@
             '<td><input type="text" class="form-control mileage mileage-row-'+id+'" name="detail[mileage][]"></td>' +
             '<td><input type="text" class="form-control chassis_no chassis-no-row-'+id+'" name="detail[chassis_no][]"></td>' +
             '<td><input type="text" class="form-control engine_no angine-no-row-'+id+'" name="detail[engine_no][]"></td>' +
-            '<td><input type="text" class="form-control amount amount-row-'+id+'" name="detail[amount][]"></td>' +
-            '<td id="delete-row" width="30px" class="text-center"><a href="javacsript:void(0)"><i class="fa fa-trash fa-fw" style="color: red; cursor: pointer;"></i></a></td>' +
+            '<td><input type="number" step=0.01 class="form-control amount amount-row-'+id+'" name="detail[amount][]"></td>' +
             '</tr>';
                                         
 

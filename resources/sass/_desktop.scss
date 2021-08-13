@@ -1,0 +1,68 @@
+@media (max-width: 1199px) {
+	.box-wa {
+	    right: 45px;
+	}
+	.box-wa2 {
+		&.active {
+	    	right: 45px;
+		}
+	}
+	header {
+		.bg-menu {
+            ul.l-menu {
+                li {
+                    margin-right: 60px;
+                }
+            }
+        }
+		.logo {
+			a {
+				img {
+					width: 220px;
+				}
+			}
+		}
+	}
+	#main {
+		.css-home {
+	        .bg-about {
+	            .abs {
+	                padding-right: 70px;
+	                .t {
+	                    margin-bottom: 50px;
+	                }
+	                .link {
+	                    width: 360px;
+	                }
+	            }
+	            .abs2 {
+	                padding: 0 50px;
+	                .t2 {
+	                    margin-bottom: 20px;
+	                }
+	            }
+	        }
+	    }
+		.css-procurement {
+	        ul.nav-tabs {
+	            li {
+	                margin-right: 115px;
+	            }
+	        }
+	    }
+		.css-account {
+	        .right-account {
+	            padding: 90px 30px;
+	            .table-order-account { 
+	            	.tbl {
+	            		.cell {
+	            			&.w150 {
+	            				width: 120px;
+	            			}
+	            		}
+	            	}
+	            }
+	        }
+	    }
+	}
+}

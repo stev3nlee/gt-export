@@ -325,7 +325,7 @@ class LoginController extends BaseController
 
                 $data_email = array(
                         'email'=>$email,
-                        'subject' => 'PrepBox - You’re Now on Our Mailing List!',
+                        'subject' => 'GT Export - You’re Now on Our Mailing List!',
                         'email_to' => $email,
                         'email_view' => 'email.email_newsletter',
                         'label' => 'newsletter',

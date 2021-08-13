@@ -1,0 +1,818 @@
+@media (max-width: 991px) {
+	.box-wa {
+	    right: 35px;
+	    bottom: 50px;
+	}
+	.box-wa2 {
+		bottom: 115px;
+		&.active {
+	    	right: 35px;
+		}
+	}
+	header {
+		.logo {
+			margin-right: 10px;
+			a {
+				img {
+					width: 170px;
+				}
+			}
+		}
+		.link-account {
+	        a {
+	            padding: 4px 8px;
+	            .tbl {
+	                .cell {
+	                    &.img {
+	                    	padding-right: 10px;
+	                        width: 35px;
+	                        img {
+	                            width: 25px;
+	                            height: 25px;
+	                        }
+	                    }
+	                    &.nm {
+	                        font-size: 11px;
+	                        line-height: 14px;
+	                    }
+	                }
+	            }
+	        }
+	    }
+		.bg-menu {
+            padding: 15px 20px;
+            ul.l-menu {
+                li {
+                    margin-right: 35px;
+                    a {
+                        font-size: 12px;
+                        line-height: 15px;
+                        &:before {
+                            bottom: -5px;
+                            height: 2px;
+                        }
+                    }
+                }
+            }
+        }
+	}
+	footer {
+	    padding: 20px 0;
+	    ul.l-footer {
+	        li {
+	            margin-right: 40px;
+	        }
+	    }
+	    ul.l-soc {
+	        li {
+	            margin-right: 15px;
+	            a {
+	                font-size: 20px;
+	            }
+	        }
+	    }
+	}
+	#main {
+		.css-home {
+			.banner-home {
+				height: 500px;
+	            .abs-banner {
+	                top: 160px;
+	                .t-banner {
+	                    font-size: 26px;
+	                    line-height: 32px;
+	                }
+	                .search {
+	                    width: 300px;
+	                    button {
+	                        right: 10px;
+	                        img {
+	                        	width: 18px;
+	                        }
+	                    }
+	                    input {
+	                        padding: 12px 45px 12px 15px;
+	                        font-size: 15px;
+	                    }
+	                }
+	            }
+	        }
+	        .bg-find {
+	            padding: 35px 0;
+	            .form-group {
+	            	label {
+	            		font-size: 13px;
+	            	}
+	            	button.hvr-button {
+	            		padding: 17px 15px;
+	            		font-size: 13px;
+	            		line-height: 15px;
+	            	}
+	            }
+	            .row {
+	            	margin-left: -5px;
+	            	margin-right: -5px;
+	            	> div {
+	            		padding-left: 5px;
+	            		padding-right: 5px;
+	            	}
+	            }
+	            .t-find {
+	                font-size: 24px;
+	                line-height: 30px;
+	                margin-bottom: 30px;
+	            }
+	        }
+			.bg-inventory {
+	            margin: 40px 0;
+	            padding: 15px 0;
+	            .t {
+	                font-size: 24px;
+	                line-height: 30px;
+	            }
+	        }
+			.t-brand {
+	            border-bottom: 2px solid #A0AEB3;
+	            font-size: 18px;
+	            line-height: 26px;
+	        }
+	        ul.l-brand {
+	            li {
+	                a {
+	                    font-size: 15px;
+	                    line-height: 20px;
+	                    padding: 13px 20px;
+	                }
+	            }
+	        }
+	        .bg-about {
+	        	margin-top: 40px;
+	            .abs {
+	                padding-right: 40px;
+	                .t {
+	                    width: 250px;
+	                    font-size: 23px;
+	                    line-height: 30px;
+	                    margin-bottom: 40px;
+	                }
+	                .link {
+	                    width: 300px;
+	                }
+	            }
+	            .abs2 {
+	                padding: 0 30px;
+	                .t2 {
+	                    font-size: 23px;
+	                    line-height: 30px;
+	                    margin-bottom: 10px;
+	                }
+	                .desc {
+	                    p {
+	                        font-size: 15px;
+	                        line-height: 20px;
+	                    }
+	                }
+	            }
+	            .img {
+	                img {
+	                    height: 400px;
+	                }
+	            }
+	        }
+	    }
+		.pad-content {
+	        padding: 40px 0 70px;
+	    }
+	    .css-detail {
+	        .pr40 {
+	            padding-right: 0;
+	        }
+	        .mb70 {
+	            margin-bottom: 60px;
+	        }
+	        .merk {
+	            font-size: 14px;
+	            line-height: 19px;
+	        }
+	        .nm {
+	            font-size: 20px;
+	            line-height: 26px;
+	            margin: 10px 0 20px;
+	        }
+	        .buy {
+	            font-size: 14px;
+	        }
+	        .price {
+	            margin: 10px 0 30px;
+	            font-size: 22px;
+	            line-height: 28px;
+	        }
+	        .box-desc {
+	            padding: 15px 0;
+	            margin-top: 30px;
+	        }
+	        .t-desc {
+	            margin-bottom: 15px;
+	            padding-top: 15px;
+	            font-size: 14px;
+	        }
+	        .desc {
+	            p {
+	                margin: 0 0 15px;
+	                font-size: 14px;
+	            }
+	        }
+	        .t1 {
+	            font-size: 22px;
+	            line-height: 30px;
+	            padding-bottom: 15px;
+	            margin-bottom: 30px;
+	        }
+	        .t2 {
+	            font-size: 17px;
+	            line-height: 24px;
+	            margin-bottom: 25px;
+	        }
+	        .bdr {
+	            margin: 20px 0 30px;
+	        }
+	        .mb15 {
+	            margin-bottom: 10px;
+	        }
+	        .text1 {
+	            font-size: 15px;
+	            line-height: 20px;
+	        }
+	        .text2 {
+	            .abs {
+	                top: -3px;
+	                img {
+	                    width: 12px;
+	                }
+	            }
+	            .t {
+	                padding: 0 30px 0 20px;
+	                font-size: 14px;
+	                line-height: 20px;
+	            }
+	        }
+	        .text3 {
+	            font-size: 15px;
+	            line-height: 20px;
+	        }
+	        .banner {
+	            padding: 130px 0;
+	            .t-banner {
+	                font-size: 24px;
+	                line-height: 30px;
+	            }
+	            .bdy-banner {
+	                margin: 10px 0 30px;
+	                p {
+	                	font-size: 16px;
+	                	line-height: 22px;
+
+	                }
+	            }
+	        }
+	    }
+	    .css-faq {
+	        .box-store {
+	            margin-top: 30px;
+	            .box-accordion {
+	                .pad-accordion {
+	                    padding: 30px 50px 0;
+	                    &.active {
+	                        margin-bottom: 20px;
+	                    }
+	                    .title-accordion {
+	                        padding-right: 30px;
+	                        font-size: 15px;
+	                        line-height: 20px;
+	                        padding-bottom: 30px;
+	                    }
+	                    .abs {
+	                    	top: -2px;
+	                        img {
+	                            width: 14px;
+	                        }
+	                    }
+	                    .bdy-accordion {
+	                        padding: 0 30px 30px 0;
+	                        p {
+	                            font-size: 14px;
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	        .controls {
+	        	.row {
+	        		margin-left: -10px;
+	        		margin-right: -10px;
+	        		> div {
+	        			padding-left: 10px;
+	        			padding-right: 10px;
+	        		}
+	        	}
+	            button.control {
+	                padding: 14px 10px;
+	                font-size: 13px;
+	                line-height: 15px;
+	            }
+	        }
+	        .title {
+	            font-size: 30px;
+	            line-height: 40px;
+	        }
+	        .bdy {
+	            margin-bottom: 40px;
+	            p {
+	                font-size: 14px;
+	            }
+	        }
+	    }
+	    .css-product {
+	        .title {
+	            margin-bottom: 40px;
+	            font-size: 30px;
+	            line-height: 40px;
+	        }
+	        .t2 {
+	            font-size: 16px;
+	            line-height: 22px;
+	            margin-bottom: 30px;
+	        }
+	        .box-search {
+            	margin-bottom: 30px;
+	            .t2 {
+	                margin-bottom: 5px;
+	            }
+	            .t-search {
+	                font-size: 14px;
+	                line-height: 20px;
+	            }
+	            .search {
+	                button {
+	                	img {
+	                		width: 15px;
+	                	}
+	                    right: 10px;
+	                }
+	                input {
+	                    padding: 10px 40px 10px 15px;
+	                    font-size: 13px;
+	                    line-height: 17px;
+	                }
+	            }
+	        }
+	        .t-empty {
+	            font-size: 17px;
+	            line-height: 22px;
+	            margin-bottom: 40px;
+	        }
+	        .item {
+	            a {
+	                .abs {
+	                    font-size: 10px;
+	                }
+	                .pad {
+	                    padding: 15px 10px;
+	                    .year {
+	                        font-size: 13px;
+	                        line-height: 15px;
+	                    }
+	                    .nm {
+	                        font-size: 12px;
+	                        line-height: 15px;
+	                        margin-bottom: 10px;
+	                    }
+	                    .merk {
+	                        font-size: 11px;
+	                        line-height: 13px;
+	                    }
+	                    .price {
+	                        font-size: 15px;
+	                        line-height: 20px;
+	                        margin-bottom: 20px;
+	                    }
+	                    .stock {
+	                        font-size: 11px;
+	                        line-height: 13px;
+	                    }
+	                }
+	            }
+	        }
+	        ul.l-pagination {
+	            margin: 20px 0 40px;
+	        }
+	        .banner {
+	            padding: 70px 0;
+	            .t-banner {
+	                font-size: 24px;
+	                line-height: 30px;
+	                margin-bottom: 30px;
+	            }
+	        }
+	    }
+	    .css-procurement {
+	        .title {
+	            margin-bottom: 50px;
+	            font-size: 30px;
+                line-height: 40px;
+	        }
+	        .t1 {
+	            font-size: 20px;
+	            line-height: 30px;
+	            margin-bottom: 15px;
+	        }
+	        .bdy {
+	            margin-bottom: 50px;
+	            p {
+	                font-size: 14px;
+	            }
+	        }
+	        ul.nav-tabs {
+	            padding-bottom: 30px;
+	            margin-bottom: 30px;
+	            li {
+	                margin-right: 75px;
+	                a {
+	                    width: 170px;
+	                    .bdr {
+	                        top: -20px;
+	                        width: 20px;
+	                        height: 20px;
+	                    }
+	                    .num {
+	                        margin: 0 0 20px;
+	                        font-size: 24px;
+	                        line-height: 30px;
+	                    }
+	                    .img {
+	                        margin-bottom: 15px;
+	                        img {
+	                            width: 80px;
+	                        }
+	                    }
+	                    .nm {
+	                        font-size: 15px;
+	                        line-height: 20px;
+	                    }
+	                }
+	            }
+	        }
+	        .tab-content {
+	            .t {
+	                font-size: 22px;
+	                line-height: 30px;
+	                margin-bottom: 30px;
+	            }
+	            .t2 {
+	                font-size: 15px;
+	                line-height: 20px;
+	                margin-bottom: 15px;
+	            }
+	            .desc {
+	                margin-bottom: 80px;
+	                p {
+	                    margin: 0 0 10px;
+	                    font-size: 14px;
+	                    line-height: 20px;
+	                }
+	            }
+	            .link-step {
+	                &.left {
+	                    a {
+	                        .text1 {
+	                            i {
+	                                right: inherit;
+	                                left: -15px;
+	                            }
+	                        }
+	                    }
+	                }
+	                a {
+	                    .text1 {
+	                        margin-bottom: 3px;
+	                        font-size: 16px;
+	                        line-height: 22px;
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    .css-account {
+	    	.left-account {
+	            .img-profile {
+	                img {
+	                    width: 70px;
+	                    height: 70px;
+	                }
+	            }
+	            .name {
+	                margin: 15px 0 30px;
+	                font-size: 16px;
+	                line-height: 22px;
+	            }
+	            ul.l-account {
+	                li {
+	                    a {
+	                        font-size: 12px;
+	                        line-height: 15px;
+	                        padding: 10px 10px;
+	                        border-left: 2px solid transparent;
+	                        &.active {
+	                            border-left: 2px solid #A0AEB3;
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	        .right-account {
+	            padding: 70px 15px;
+	            .title {
+	                font-size: 22px;
+	                line-height: 30px;
+	                margin-bottom: 45px;
+	            }
+	            .t1 {
+	                font-size: 14px;
+	            }
+	            .t2 {
+	                font-size: 12px;
+	                line-height: 15px;
+	            }
+	            .link {
+	                top: -8px;
+	                a {
+	                    font-size: 12px;
+	                    line-height: 15px;
+	                }
+	            }
+	            .bdr {
+	                margin-top: 20px;
+	            }
+	            .link-account {
+	                margin: 10px 0 30px;
+	                padding: 30px 0;
+	                .t3 {
+	                    font-size: 14px;
+	                    line-height: 19px;
+	                    margin-bottom: 5px;
+	                }
+	                .t4 {
+	                    margin-bottom: 20px;
+	                    font-size: 13px;
+	                    line-height: 15px;
+	                }
+	                ul.link {
+	                    li {
+	                        margin-right: 12px;
+	                        font-size: 13px;
+	                        line-height: 15px;
+	                    }
+	                }
+	            }
+	            .bdr-upload {
+	                margin-bottom: 30px;
+	                padding-bottom: 30px;
+	            }
+	            .tbl-upload {
+	                .img-profile {
+	                    img {
+	                        width: 60px;
+	                        height: 60px;
+	                    }
+	                }
+	                .cell {
+	                    &.w120 {
+	                        padding-right: 30px;
+	                        width: 90px;
+	                    }
+	                }
+	            }
+	            .table-order-account {
+	            	&.table-trans {
+	            		.tbl {
+	            			.cell {
+	            				&.w130 {
+	            					width: 90px;
+	            				}
+	            			}
+	            		}
+	            	}
+	                .tbl {
+	                    .cell {
+	                        &.w130 {
+	                            width: 120px;
+	                        }
+	                        &.w110 {
+	                            width: 80px;
+	                        }
+	                        &.w90 {
+	                            width: 60px;
+	                        }
+	                        &.w150 {
+	            				width: 100px;
+	            			}
+	            			&.w100 {
+	            				width: 90px;
+	            			}
+	                    }
+	                }
+	                .tbl-hdr {
+	                    font-size: 13px;
+	                    line-height: 15px;
+	                    padding: 15px 0;
+	                }
+	                .tbl-bdy {
+	                    padding: 15px 0;
+	                    font-size: 13px;
+	                    line-height: 15px;
+	                    ul.link {
+	                    	position: relative;
+	                    	top: -1px;
+	                        li {
+	                            margin-right: 10px;
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    .css-contact {
+	        .pad80 {
+	            padding: 50px 0 70px;
+	        }
+	        .banner {
+	            height: 500px;
+	            .title {
+	                font-size: 30px;
+	                line-height: 40px;
+	            }
+	        }
+	        .title2 {
+	            font-size: 22px;
+	            line-height: 30px;
+	            margin-bottom: 30px;
+	        }
+	        .item {
+	            margin-bottom: 40px;
+	            .t1 {
+	                font-size: 17px;
+	                line-height: 24px;
+	                margin-bottom: 10px;
+	            }
+	            .t2 {
+	                &.mb10 {
+	                    margin-bottom: 7px;
+	                }
+	                a {
+	                    font-size: 15px;
+	                    line-height: 22px;
+	                }
+	                p {
+	                    font-size: 15px;
+	                    line-height: 22px;
+	                }
+	                &.lh20 {
+	                    p {
+	                        line-height: 20px;
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    .css-auth {
+	        .title {
+	            font-size: 19px;
+	            line-height: 25px;
+	            margin-bottom: 30px;
+	        }
+	        .text-auth {
+	            margin: 15px 0 30px;
+	            font-size: 13px;
+	            line-height: 15px;
+	        }
+	        .box-text {
+	            margin-bottom: 30px;
+	            &.mt40 {
+	            	margin-top: 30px;
+	            }
+	        }
+	        ul.l-auth {
+	            li {
+	                margin-right: 25px;
+	            }
+	        }
+	        .banner {
+	            background-size: cover !important;
+	            padding: 70px 0;
+	        }
+	        .box {
+	            padding: 50px 100px;
+	        }
+	    }
+	    .css-about {
+	        .row {
+	            &.row30 {
+	                margin-left: -15px;
+	                margin-right: -15px;
+	                > div {
+	                    padding-left: 15px;
+	                    padding-right: 15px;
+	                }
+	            }
+	        }
+	        .title {
+	            font-size: 30px;
+	            line-height: 40px;
+	        }
+	        .bdy {
+	            margin-bottom: 50px;
+	            p {
+	                font-size: 14px;
+	                line-height: 19px;
+	            }
+	        }
+	        .t1 {
+	            font-size: 17px;
+	            line-height: 22px;
+	            margin-bottom: 10px;
+	        }
+	        .mb150 {
+	            margin-bottom: 100px;
+	        }
+	        .desc {
+	            p {
+	                font-size: 14px;
+	                line-height: 19px;
+	            }
+	        }
+	    }
+	    .css-regulation {
+	        .title {
+	            font-size: 30px;
+	            line-height: 40px;
+	        }
+	        .bdy {
+	            margin-bottom: 40px;
+	            p {
+	                font-size: 14px;
+	                line-height: 19px;
+	            }
+	        }
+	        .text {
+	        	bottom: 10px;
+	        	left: 10px;
+	            font-size: 17px;
+	            line-height: 22px;
+	        }
+	        .item {
+	            .desc {
+	                p {
+	                    margin: 0 0 7px;
+	                    font-size: 14px;
+	                    line-height: 19px;
+	                }
+	            }
+	        }
+	    }
+	}
+	.modal {
+	    &.modal-global {
+	    	.pad-header {
+	            padding: 30px 40px;
+	        }
+	        .pad-bdy {
+	            padding: 60px 40px 80px;
+	        }
+	        .img-pop {
+	            img {
+	                width: 200px;
+	            }
+	        }
+	        .t-pop {
+	            font-size: 22px;
+	            line-height: 28px; 
+	            margin-bottom: 40px;
+	        }
+	        .img-success {
+	            margin: 0 auto 40px;
+	            img {
+	            	width: 60px;
+	            }
+	        }
+	        .t-pop2 {
+	            font-size: 17px;
+	            line-height: 22px; 
+	            margin-bottom: 40px;
+	        }
+	    }
+	    .modal-dialog {
+	        width: 700px;
+	        max-width: 700px;
+	    }
+	}
+}

@@ -29,6 +29,7 @@ class CreateInvoiceTable extends Migration
             $table->float('shipping_cost',12,2)->nullable();
             $table->float('total',12,2)->nullable();
             $table->enum('status',['draft', 'paid', 'cancel']);
+            $table->text('remarks')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->unique('invoice_number');

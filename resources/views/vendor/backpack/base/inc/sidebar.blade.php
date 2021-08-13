@@ -4,15 +4,7 @@
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
         <!-- Sidebar user panel -->
-        <div class="user-panel">
-          <div class="pull-left image">
-          <br>
-          </div>
-          <div class="pull-left info">
-            <p>Super Admin</p>
-            <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
-          </div>
-        </div>
+
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu tree" data-widget="tree">
           <li class="header"></li>
@@ -69,7 +61,7 @@
               <li class="treeview">
                 <a href="#">
                   <i class="fa fa-car"></i>
-                  <span>Commerce</span>
+                  <span>Quote</span>
                   <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                   </span>

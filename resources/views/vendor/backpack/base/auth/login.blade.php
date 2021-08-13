@@ -5,10 +5,10 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="text-center m-b-30">
                 
-                <img src="{{ asset('images/logo.png') }}" width="150">
+                <img src="{{ asset('images/logo.png') }}" width="200">
             </div>
             <div class="box" style="border-radius: 25px;">
-                <div class="box-body" style="background-color: #009D72;border-radius: 25px;">
+                <div class="box-body" style="border-radius: 25px;">
                     <h4 class="text-center">Welcome to Admin Panel</h4>
 
                     <form class="col-md-12 p-t-10" role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/auth/login') }}">
@@ -46,7 +46,7 @@
 
                         <div class="form-group">
                             <div>
-                                <button type="submit" class="btn btn-block btn-primary" style="background-color: #F7B830;">
+                                <button type="submit" class="btn btn-block btn-primary" style="background-color: #003F5A;">
                                     Sign In
                                 </button>
                             </div>

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Metadata;
+//use App\Models\Metadata;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $metadata = Metadata::where('link',url()->current())->first();
-        view()->share('metadata', $metadata);
+        //$metadata = Metadata::where('link',url()->current())->first();
+        //view()->share('metadata', $metadata);
     }
 }

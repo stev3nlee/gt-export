@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/ico" href="https://dilenium.com/administratoronly/assets/images/favicon (2).ico "/>
 
     <title>
-      Cars - Admin Panel
+      GT Export - Admin Panel
     </title>
 
     @yield('before_styles')

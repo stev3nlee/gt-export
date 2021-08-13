@@ -13,108 +13,90 @@ use App\Http\Controllers\WebhookController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/phpinfo', function () {
-     phpinfo();
+Route::get('/', function () {
+    return view('index');
 });
-Route::get('email', function () {
-        return view('email.email_test');
-    });
-Route::get('email-order', function () {
-        return view('email.email_test_order');
-    });
-Route::get('/emaill', 'CheckoutController@email');
-Route::get('/', 'PageController@home');
-Route::get('/pricing', 'PageController@pricing');
 
-Route::get('/review', 'PageController@review');
+/* PRODUCT */
+Route::get('/product-listing', function () {
+    return view('product/product-listing');
+});
 
-Route::get('/review2', 'PageController@review2');
+Route::get('/product-listing-detail', function () {
+    return view('product/product-listing-detail');
+});
 
-Route::get('/menu', 'MenuController@menu');
-Route::post('open-menu', 'MenuController@openMenu');
+Route::get('/search', function () {
+    return view('product/search');
+});
 
-// INFORMATION //
-Route::get('/contact-us', 'PageController@contactUs');
-Route::post('/submit-contact', 'PageController@submitContact');
+Route::get('/search-empty', function () {
+    return view('product/search-empty');
+});
 
-Route::get('/enquiry', 'PageController@enquiry');
-Route::post('/submit-enquiry', 'PageController@submitEnquiry');
+/* INFORMATION */
+Route::get('/contact-us', function () {
+    return view('information/contact-us');
+});
 
-Route::get('/faq', 'PageController@faq');
-Route::get('/blog', 'PageController@blog');
-Route::post('load-blog', 'PageController@loadBlog');
-Route::get('/blog-detail/{slug}', 'PageController@blogDetail');
+Route::get('/about-us', function () {
+    return view('information/about-us');
+});
 
-Route::get('/about-us', 'PageController@aboutUs');
-Route::get('/privacy-policy', 'PageController@privacyPolicy');
-Route::get('/terms-and-conditions', 'PageController@terms');
-// END INFORMATION //
+Route::get('/faq', function () {
+    return view('information/faq');
+});
 
+Route::get('/privacy', function () {
+    return view('information/privacy');
+});
 
-// AUTH //
-Route::get('/login', 'LoginController@getViewLogin');
-Route::get('/register', 'LoginController@getViewRegister');
-Route::get('/facebook-login', 'LoginController@facebookLogin');
-Route::get('/facebook-callback', 'LoginController@facebookCallback');
-Route::get('/google-login', 'LoginController@googleLogin');
-Route::get('/google-callback', 'LoginController@googleCallback');
+Route::get('/disclaimers', function () {
+    return view('information/disclaimers');
+});
 
-Route::post('/submit-register', 'LoginController@submitRegister');
-Route::post('/signin', 'LoginController@signin');
-Route::get('/member-verified/{code}', 'LoginController@verified');
+Route::get('/faq', function () {
+    return view('information/faq');
+});
 
-Route::get('/forgot-password', 'LoginController@getViewForgot');
-Route::post('/submit-forgot', 'LoginController@submitForgot');
+Route::get('/regulation-details', function () {
+    return view('information/regulation-details');
+});
 
-Route::get('/recovery', 'LoginController@recovery');
-Route::post('/submit-recovery', 'LoginController@submitRecovery');
+Route::get('/procurement-flow', function () {
+    return view('information/procurement-flow');
+});
 
-Route::get('/logout', 'LoginController@logout');
-Route::post('/submit-subscribe', 'LoginController@submitNewsletter');
-// END AUTH//
+/* AUTH */
+Route::get('/login', function () {
+    return view('auth/login');
+});
+Route::get('/register', function () {
+    return view('auth/register');
+});
+Route::get('/guest', function () {
+    return view('auth/guest');
+});
 
+/* MEMBER AREA */
+Route::get('/personal-info', function () {
+    return view('member/personal-info');
+});
 
-// CHECKOUT //
-Route::post('/submit-plan', 'CartController@choosePlan');
-Route::post('addtocart', 'CartController@insert');
-Route::post('load-cart', 'CartController@loadCart');
-Route::post('remove-cart', 'CartController@removeCart');
-Route::post('surprise-me', 'CartController@surpriseMe');
+Route::get('/transaction-history', function () {
+    return view('member/transaction-history');
+});
 
-//belum
-Route::get('/checkout', 'CheckoutController@checkout');
-Route::post('/coupon', 'CartController@coupon');
-Route::get('/remove-coupon', 'CartController@removeCoupon');
-Route::get('/shipping', 'CheckoutController@shipping');
-Route::post('/submit-shipping', 'CheckoutController@submitShipping');
+Route::get('/quotation-history', function () {
+    return view('member/quotation-history');
+});
 
-Route::get('/payment', 'CheckoutController@payment');
-Route::post('/submit-payment', 'CheckoutController@submitOrder');
-Route::post('/submit-order', 'CheckoutController@submitOrder');
+Route::get('/shipment-documentation', function () {
+    return view('member/shipment-documentation');
+});
 
-Route::get('/success', 'CheckoutController@success')->name('success');
-// END CHECKOUT //
-
-// ACCOUNT //
-Route::group(['middleware' => ['membersession']], function () {
-    Route::get('/profile', 'MemberController@index');
-    Route::get('/edit-profile', 'MemberController@editProfile');
-    Route::post('/update-account', 'MemberController@updateAccount');
-    Route::post('/update-card', 'MemberController@updateCard');
-    Route::get('/change-password', 'MemberController@changePassword');
-    Route::post('/submit-change-password', 'MemberController@submitChangePassword');
-    Route::post('/update-delivery', 'MemberController@updateDelivery');
-    
-    Route::get('/order-detail/{inv}', 'MemberController@orderDetail');
-    Route::get('/choose-plan', 'MemberController@choosePlan');
-    Route::get('/order', 'MemberController@order');
-    Route::get('/cancel-plan', 'MemberController@cancelPlan');
-    Route::get('/reselect-meal', 'MemberController@reselectMeal');
-    Route::post('select-meal', 'MemberController@selectMeal');
-    Route::post('remove-meal', 'MemberController@removeMeal');
-    Route::get('surprise-meal', 'MemberController@surpriseMeal');
-    Route::post('open-menu-reselect', 'MenuController@openMenu');
-
+Route::get('/invoice', function () {
+    return view('member/invoice');
 });
 // END ACCOUNT //
 Route::group(['prefix' => 'gtexport-admin'], function () {
@@ -298,18 +280,13 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('invoice/create', 'Admin\InvoiceController@create');
         Route::get('invoice/detail/{id}', 'Admin\InvoiceController@detail');
         Route::post('invoice/update', 'Admin\InvoiceController@update');
+        Route::post('invoice/insert', 'Admin\InvoiceController@insert');
         Route::patch('invoice/update/shipping_status', 'Admin\InvoiceController@updateShippingStatus');
-        Route::post('invoice/exportToCsv', 'Admin\InvoiceController@exportCstarOrderToCsv');
-        Route::post('invoice/id/{id}/export/billing', 'Admin\InvoiceController@exportBillingOrder');
+        Route::post('invoice/id/{id}/export/invoice', 'Admin\InvoiceController@exportInvoice');
         Route::post('invoice/id/{id}/export/shipping', 'Admin\InvoiceController@exportShippingOrder');
         Route::get('invoice/delete/{id}', 'Admin\InvoiceController@delete');
         Route::post('invoice/exportShipping', 'Admin\InvoiceController@exportShipping');
         Route::get('invoice/id/{id}/export/shipping', 'Admin\InvoiceController@exportShippingOrder');
-        Route::get('invoice/cancel/{id}', 'Admin\InvoiceController@cancel');
-        Route::get('invoice/resume/{id}', 'Admin\InvoiceController@resume');
-        Route::get('invoice/invoices/{id}/{id2}', 'Admin\InvoiceController@invoices');
-        Route::get('invoice/address_edit/{id}', 'Admin\InvoiceController@AddressEdit');
-        Route::post('invoice/address_update', 'Admin\InvoiceController@AddressUpdate');
 
         Route::get('change-password', 'Admin\AuthController@changePassword')->name('change_password_view');
         Route::post('auth/update', 'Admin\AuthController@updatePassword');

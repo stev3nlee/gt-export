@@ -37,7 +37,14 @@
     <!-- BackPack Base CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/base/backpack.base.css') }}">
     @yield('after_styles')
-
+    <style>
+      .help-block{
+        color: #dd4b39;
+      }
+      .required{
+        color: #dd4b39;
+      }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -60,14 +67,14 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="{{ url('/gtexport-admin') }}" class="logo" >
+        <a href="{{ url('/gtexport-admin') }}" class="logo" style="background-color: white;">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><img src="{{ asset('images/logo.png') }}" width="50"></span>
+          <span class="logo-mini"><img src="{{ asset('images/logo.png') }}" width="100%"></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b><img src="{{ asset('images/logo.png') }}" width="70"></b></span>
+          <span class="logo-lg"><b><img src="{{ asset('images/logo.png') }}" width="100%"></b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top css-header" role="navigation" style="background-color: #009D72">
+        <nav class="navbar navbar-static-top css-header" role="navigation" style="background-color: #003F5A">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="color: black;">
             <span class="sr-only">{{ trans('vendor.backpack.base.toggle_navigation') }}</span>

@@ -1,0 +1,23 @@
+@media (max-width: 570px) {
+	footer {
+	    padding: 15px 0;
+	    ul.l-footer {
+	        li {
+	        	img {
+	        		width: 90px;
+	        	}
+	            margin-right: 20px;
+	        }
+	    }
+	    ul.l-soc {
+	    	margin: 0 0 5px;
+	    	text-align: left;
+	        li {
+	            margin-right: 10px;
+	            a {
+	                font-size: 18px;
+	            }
+	        }
+	    }
+	}
+}
