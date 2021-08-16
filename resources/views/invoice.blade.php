@@ -14,7 +14,7 @@
         <tbody>
             <tr>
                 <td width="400" style="vertical-align:top;"> <img src="http://167.71.212.250/images/logo.svg" alt="Logo" style="height: 30px; margin-top: 10px;"> </td>
-                <td style="vertical-align:top; text-align: right; font-size: 8pt; line-height: 26px; color: #494949; font-family: 'Quicksand-Bold';">Invoice</td>
+                <td style="vertical-align:top; text-align: right; font-size: 8pt; line-height: 26px; color: #494949; font-family: 'Quicksand-Bold';">Proforma Invoice</td>
             </tr>
         </tbody>
     </table>
