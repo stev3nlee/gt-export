@@ -268,6 +268,7 @@
                             <li><a>6</a></li>
                             <li><a>Next <i class="fas fa-chevron-right"></i></a></li>
                         </ul>
+                        <!--
                         <div class="banner" style="background: url('images/banner-product.jpg') no-repeat center;">
                             <div class="t-banner">Lorem ipsum dolor sit amet conseactetur</div>
                             <div class="link">
@@ -276,6 +277,7 @@
                                 </a>
                             </div>
                         </div>
+                        -->
                     </div>
                 </div>
             </div>

@@ -69,7 +69,7 @@
                         <div class="buy">Buy it at</div>
                         <div class="price">$ 500,000</div>
                         <div class="add">
-                            <a href="{{ URL::to('/contact-us') }}">
+                            <a href="">
                                 <button type="button" class="hvr-button full100">Ask for Quote</button>
                             </a>
                         </div>
