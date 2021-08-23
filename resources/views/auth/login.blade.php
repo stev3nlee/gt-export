@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                                 <button class="hvr-button full100" type="button" data-toggle="modal" data-target="#modal-success">Login</button>
-                                <div class="text-auth">New to this site? <a class="click-register">Sign Up</a></div>
+                                <div class="text-auth">New to this site? <a class="click-register">Sign Up</a>. Or you <a href="{{ URL::to('/forgot-password') }}">Forgot Password</a>?</div>
                                 <div class="box-text">
                                     <div class="text">or login with</div>
                                 </div>
