@@ -32,7 +32,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="date">Date of Birth:</label>
-                                            <input class="form-control date" id="date" name="date" type="text" required="" value="07-03-1980"/>
+                                            <input class="form-control date" name="date-of-birth" type="text" required=""/>
                                         </div>     
                                     </div>
                                     <div class="col-md-6">

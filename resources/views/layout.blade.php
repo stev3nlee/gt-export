@@ -229,7 +229,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Date of Birth:</label>
-                                    <input class="form-control date" name="date" type="text" required="" />
+                                    <input class="form-control date" name="date-of-birth" type="text" required=""/>
                                 </div>     
                             </div>
                             <div class="col-md-6">
