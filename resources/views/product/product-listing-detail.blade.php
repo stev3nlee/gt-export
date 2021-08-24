@@ -287,7 +287,7 @@
                     <p>Get in touch with our sales partner for more information.</p>
                 </div>
                 <div class="link">
-                    <a href="{{ URL::to('/contact-us') }}">
+                    <a href="">
                         <button type="button" class="hvr-button">Get Quote</button>
                     </a>
                 </div>
