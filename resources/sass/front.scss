@@ -11,6 +11,7 @@ $fa-font-path: "../webfonts";
 $blue: #003F5A;
 $black: #212121;
 
+
 * {
     scroll-behavior: inherit !important;
 }
@@ -57,6 +58,10 @@ a {
         font-family: 'Quicksand-Bold';
         margin-bottom: 7px;
     }
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background: #A0AEB3;
 }
 
 textarea.form-control {
@@ -109,15 +114,22 @@ textarea.form-control {
         background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
         background-repeat: no-repeat;
     }
+    select::-ms-expand {
+        display: none;
+    }
+    select {
+        -webkit-appearance: none;
+        appearance: none;
+    }
 }
 
-select::-ms-expand {
-    display: none;
-}
-select {
-    -webkit-appearance: none;
-    appearance: none;
-}
+// select::-ms-expand {
+//     display: none;
+// }
+// select {
+//     -webkit-appearance: none;
+//     appearance: none;
+// }
 
 .tbl {
     width: 100%;
@@ -1078,29 +1090,54 @@ footer {
         }
         .item {
             margin-bottom: 15px;
+            border: 1px solid #DADADA;
+            .pos-rel {
+                overflow: hidden;
+                &:hover {
+                    .abs-get {
+                        bottom: 0;
+                    }
+                }
+            }
+            .img {
+                img {
+                    width: 100%;
+                }
+            }
+            .abs {
+                background: $blue;
+                color: white;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 5px 10px;
+                position: absolute;
+                top: 10px;
+                right: 5px;
+                font-size: 11px;
+            }
+            .abs-get {
+                position: absolute;
+                bottom: -100%;
+                @include transition(all 0.3s);
+                left: 0;
+                width: 100%;
+                background-color: $blue;
+                color: white;
+                text-align: center;
+                font-size: 13px;
+                line-height: 18px;
+                a {
+                    display: block;
+                    padding: 12px;
+                    color: white;
+                }
+            }
             a {
                 display: block;
-                border: 1px solid #DADADA;
                 border-radius: 1px;
                 @include transition(all 0.3s);
                 &:hover {
                     opacity: 0.7;
-                }
-                .img {
-                    img {
-                        width: 100%;
-                    }
-                }
-                .abs {
-                    background: $blue;
-                    color: white;
-                    text-align: center;
-                    text-transform: uppercase;
-                    padding: 5px 10px;
-                    position: absolute;
-                    top: 10px;
-                    right: 5px;
-                    font-size: 11px;
                 }
                 .pad {
                     padding: 15px 10px;
@@ -1220,6 +1257,9 @@ footer {
             line-height: 30px;
             font-family: 'Quicksand-Bold';
             margin-bottom: 50px;
+            &.mb20 {
+                margin-bottom: 20px;
+            }
         }
         .text-auth {
             margin: 15px 0 35px;
@@ -1238,6 +1278,13 @@ footer {
                 }
 
             }
+        }
+        .t-forgot {
+            color: #494949;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            margin-bottom: 20px;
         }
         .box-text {
             &.mt40 {

@@ -17406,20 +17406,18 @@ footer .cp {
 }
 #main .css-product .item {
   margin-bottom: 15px;
-}
-#main .css-product .item a {
-  display: block;
   border: 1px solid #DADADA;
-  border-radius: 1px;
-  transition: all 0.3s;
 }
-#main .css-product .item a:hover {
-  opacity: 0.7;
+#main .css-product .item .pos-rel {
+  overflow: hidden;
 }
-#main .css-product .item a .img img {
+#main .css-product .item .pos-rel:hover .abs-get {
+  bottom: 0;
+}
+#main .css-product .item .img img {
   width: 100%;
 }
-#main .css-product .item a .abs {
+#main .css-product .item .abs {
   background: #003F5A;
   color: white;
   text-align: center;
@@ -17429,6 +17427,31 @@ footer .cp {
   top: 10px;
   right: 5px;
   font-size: 11px;
+}
+#main .css-product .item .abs-get {
+  position: absolute;
+  bottom: -100%;
+  transition: all 0.3s;
+  left: 0;
+  width: 100%;
+  background-color: #003F5A;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  line-height: 18px;
+}
+#main .css-product .item .abs-get a {
+  display: block;
+  padding: 12px;
+  color: white;
+}
+#main .css-product .item a {
+  display: block;
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+#main .css-product .item a:hover {
+  opacity: 0.7;
 }
 #main .css-product .item a .pad {
   padding: 15px 10px;
@@ -19088,7 +19111,13 @@ input[type=file] {
     line-height: 22px;
     margin-bottom: 40px;
   }
-  #main .css-product .item a .abs {
+  #main .css-product .item .abs-get {
+    font-size: 12px;
+  }
+  #main .css-product .item .abs-get a {
+    padding: 10px;
+  }
+  #main .css-product .item .abs {
     font-size: 10px;
   }
   #main .css-product .item a .pad {

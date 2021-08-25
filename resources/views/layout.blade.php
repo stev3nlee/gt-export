@@ -16,7 +16,7 @@
     @yield('css')
     <link href="{{ asset('js/jquery-ui/jquery-ui.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/front.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/front.css?v.1') }}" rel="stylesheet"/>
 
 </head>
 <body>

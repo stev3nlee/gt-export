@@ -550,6 +550,13 @@
 	            font-size: 18px;
 	            line-height: 24px;
 	            margin-bottom: 15px;
+	            &.mb20 {
+	            	margin-bottom: 15px;
+	            }
+	        }
+	        .t-forgot {
+	        	margin-bottom: 15px;
+	        	font-size: 13px;
 	        }
 	        .text-auth {
 	            margin: 15px 0 20px;

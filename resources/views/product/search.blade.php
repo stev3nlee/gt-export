@@ -77,11 +77,14 @@
                         <div class="row row-15">
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -99,11 +102,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -121,11 +127,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -143,11 +152,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -165,11 +177,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -187,11 +202,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -209,11 +227,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -231,11 +252,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
@@ -253,11 +277,14 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pos-rel">
-                                            <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
+                                    <div class="pos-rel">                                        
+                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
                                             <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
                                         </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail') }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">

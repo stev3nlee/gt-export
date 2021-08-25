@@ -372,10 +372,16 @@
 	            margin-bottom: 40px;
 	        }
 	        .item {
+	        	.abs-get {
+	        		a {
+	        			padding: 10px;
+	        		}
+	        		font-size: 12px;
+	        	}
+                .abs {
+                    font-size: 10px;
+                }
 	            a {
-	                .abs {
-	                    font-size: 10px;
-	                }
 	                .pad {
 	                    padding: 15px 10px;
 	                    .year {
