@@ -459,4 +459,22 @@ class DashboardController extends Controller
         return redirect()->route('shipping_fee_view');
     }
 
+    public function disclaimers(){
+        $data = Terms::first();
+        return view('vendor.backpack.base.disclaimers', ['data'=>$data]);
+    }
+
+    public function disclaimers_update(Request $request)
+    {
+        $company_profile = Terms::first();
+        if (empty($company_profile)) {
+            $company_profile = new Terms;
+        }
+        $company_profile->disclaimers = $request->input('disclaimers');
+        $company_profile->save();
+
+        $request->session()->flash('update', 'Success');
+        return redirect()->route('disclaimers_view');
+    }
+
 }

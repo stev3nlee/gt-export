@@ -1,5 +1,9 @@
 <div class="img-profile">
-	<img src="{{ asset('images/profile.jpg') }}" alt="" title=""/>
+	@if($member->image)
+        <img src="{{ asset('upload/profile/'.$member->image) }}" alt="" title=""/>
+    @else
+        <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>
+    @endif 
 </div>
 <div class="name">Dennis Tan</div>
 <ul class="l-account">

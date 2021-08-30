@@ -14,66 +14,81 @@
                         <div class="right-account">
                             <div class="title">Personal Information</div>
                             <div class="t1">Avatar</div>
-                            <form>
                                 <div class="bdr-upload">
                                     <div class="tbl tbl-upload">
                                         <div class="cell w120">
                                             <input type="hidden" name="_token" value="">
                                             <div class="img-profile no-profile">
-                                                <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>   
+                                                @if($member->image)
+                                                    <img src="{{ asset('upload/profile/'.$member->image) }}" alt="" title=""/>
+                                                @else
+                                                    <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>
+                                                @endif   
                                             </div>
                                             <div class="img-profile" id="list"></div>
                                         </div>
                                         <div class="cell">
+                                            <form method="POST" action="{{ URL::to('/upload-profile') }}" id="uploadProfile" enctype="multipart/form-data">
+                                            @csrf
                                             <ul class="l-upload">
                                                 <li>
                                                     <div class="css-upload btn-upload">
-                                                        <input type="file" id="files" name="files[]">
+                                                        <input type="file" id="files" accept="image/*"  name="file">
+                                                        @if($errors->has('file')) <span class="help-block">{{ $errors->first('file') }}</span>  @endif
                                                          <label for="files">Upload</label>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <button type="button" class="btn-remove">Remove</button>
+                                                    <a type="button" class="btn-remove" href="{{ URL::to('/remove-photo') }}">Remove</a>
                                                 </li>
                                             </ul>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                                <form method="POST" action="{{ URL::to('/update-account') }}">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="fname">First Name:</label>
-                                            <input class="form-control" id="fname" name="fname" type="text" required=""/>
+                                            <input class="form-control" id="fname" name="first_name" type="text" value="{{ $member->first_name }}"/>
+                                            @if($errors->has('first_name')) <span class="help-block">{{ $errors->first('first_name') }}</span>  @endif
                                         </div>     
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="lname">Last Name:</label>
-                                            <input class="form-control" id="lname" name="lname" type="text" required=""/>
+                                            <input class="form-control" id="lname" name="last_name" type="text" value="{{ $member->last_name }}"/>
+                                            @if($errors->has('member')) <span class="help-block">{{ $errors->first('member') }}</span>  @endif
                                         </div>     
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="phone">Contact Number:</label>
-                                            <input class="form-control only-number" id="phone" name="phone" type="text" required=""/>
+                                            <input class="form-control only-number" id="phone" name="phone" type="text" value="{{ $member->phone }}"/>
+                                            @if($errors->has('phone')) <span class="help-block">{{ $errors->first('phone') }}</span>  @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Date of Birth:</label>
-                                            <input class="form-control date" name="date-of-birth" type="text" required="" readonly="" />
+                                            <input class="form-control date" name="dob" type="text" value="{{ $member->dob }}" readonly="" />
+                                            @if($errors->has('dob')) <span class="help-block">{{ $errors->first('dob') }}</span>  @endif
                                         </div>     
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="email">Email:</label>
-                                            <input class="form-control" id="email" name="email" type="text" required="" />
+                                            <input class="form-control" id="email" name="email" type="text" readonly value="{{ $member->email }}" />
+                                            @if($errors->has('email')) <span class="help-block">{{ $errors->first('email') }}</span>  @endif
                                         </div>     
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="password">Password:</label>
-                                            <input class="form-control" id="password" name="password" type="password" required="" />
+                                            <input class="form-control" id="password" name="password" type="password" />
+                                            @if($errors->has('password')) <span class="help-block">{{ $errors->first('password') }}</span>  @endif
                                         </div>     
                                     </div>
                                 </div>
@@ -98,7 +113,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-right">
-                                        <button class="hvr-button btnfull" type="button" data-toggle="modal" data-target="#modal-success">Save Changes</button>
+                                        <button class="hvr-button btnfull" type="submit">Save Changes</button>
                                     </div>
                                 </div>
                             </form>
@@ -145,6 +160,7 @@
             }
             $('.no-profile').hide();
             $('.btn-upload').hide();
+            $('#uploadProfile').submit();
         }
         document.getElementById('files').addEventListener('change', handleFileSelect, false);
     });

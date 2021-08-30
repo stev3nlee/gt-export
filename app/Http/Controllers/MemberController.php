@@ -33,9 +33,8 @@ class MemberController extends BaseController
         try{
             $id = session()->get('id');
             $data['member'] = Member::find($id);
-            
-            $data['orders'] = Order::where('member_id', '=', $id)->orderby('id','desc')->limit(4)->get();
-            return view('/member/profile', $data);
+
+            return view('/member/personal-info', $data);
         } catch (\Exception $e) {
             return redirect('logout');
         }
@@ -52,6 +51,62 @@ class MemberController extends BaseController
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
             return redirect('logout');
+        }
+        
+    }
+
+    public function uploadPhoto(Request $request){
+        try{
+            $this->validate($request,[
+                "file" =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $id = session()->get('id');
+            $member = Member::find($id);
+
+            if ($request->hasFile('file')) {
+                if ($member->image != null) {
+                    $oldimage = base_path() . '/public/upload/profile/' . $member->image;
+                    if (file_exists($oldimage)) {
+                        unlink($oldimage);
+                    }
+                }
+
+                $imageName = $member->first_name .'-'. $member->last_name .'-'. rand(1,100) . '.' . $request->file('file')->getClientOriginalExtension();
+                $path = base_path() . '/public/upload/profile';
+                $request->file('file')->move($path, $imageName);
+
+                $member->image = $imageName;
+                $member->save();
+            }
+            
+            return redirect('personal-info');
+        } catch (\Exception $e) {
+            //$response = $e->getResponse();
+            //$responseBodyAsString = $response->getBody()->getContents();
+            return redirect('personal-info');
+        }
+        
+    }
+
+    public function removePhoto(Request $request){
+        try{
+            $id = session()->get('id');
+            $member = Member::find($id);
+
+            if ($member->image != null) {
+                $oldimage = base_path() . '/public/upload/profile/' . $member->image;
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+                $member->image = null;
+                $member->save();
+            }
+            
+            return redirect('personal-info');
+        } catch (\Exception $e) {
+            //$response = $e->getResponse();
+            //$responseBodyAsString = $response->getBody()->getContents();
+            return redirect('personal-info');
         }
         
     }
@@ -80,7 +135,7 @@ class MemberController extends BaseController
             $table->first_name = $request->first_name;
             $table->last_name = $request->last_name;
             $table->dob = date('Y-m-d',strtotime($request->dob));
-            $table->phone = $phone;
+            $table->phone = $request->phone;
 
             if($table->email == null){
                $table->email = $request->email; 
@@ -94,7 +149,7 @@ class MemberController extends BaseController
             );
 
             \Session::flash('register_success', 'The account detail has been updated.');
-            return redirect('/profile');
+            return redirect('/personal-info');
 
         // } catch (\Exception $e) {
         //    // dd($e);

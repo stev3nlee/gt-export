@@ -21,30 +21,21 @@
                                     <div class="item">
                                         <div class="t1">Address</div>
                                         <div class="t2">
-                                            <p>25 Ubi Avenue 3 #04-990 </p>
-                                            <p>Paya Ubi Industrial Park</p>
-                                            <p>Singapore 485603</p>
+                                            {!! $company_data->address !!}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="item">
                                         <div class="t1">Opening Hours</div>
-                                        <div class="t2 lh20 mb10">
-                                            <p>Monday - Friday</p>
-                                            <p><b>9:00 am - 7:00 pm</b></p>
-                                        </div>
-                                        <div class="t2 lh20">
-                                            <p>Saturday</p>
-                                            <p><b>9:00am - 4:00 pm</b></p>
-                                        </div>
+                                        {!! $company_data->hours !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="item">
                                         <div class="t1">Contact</div>
                                         <div class="t2">
-                                            <a href="tel:67757998">6775 7998</a>
+                                            {!! $company_data->telephone !!}
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +43,7 @@
                                     <div class="item">
                                         <div class="t1">Email</div>
                                         <div class="t2">
-                                            <a href="mailto:email@gtexport.com">email@gtexport.com</a>
+                                            {!! $company_data->email !!}
                                         </div>
                                     </div>
                                 </div>
@@ -61,30 +52,35 @@
                     </div>
                     <div class="col-md-7 col-lg-6">
                         <div class="title2">Contact Form</div>
-                        <form>
+                        <form method="POST" action="{{ URL::to('/submit-contact') }}">
+                         @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label id="name">Name:</label>
-                                        <input class="form-control" id="name" name="name" type="text" required=""/>
+                                        <input class="form-control" id="name" name="name" type="text" />
+                                        @if($errors->has('name')) <span class="help-block">{{ $errors->first('name') }}</span>  @endif
                                     </div>     
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label id="email">Email:</label>
-                                        <input class="form-control" id="email" name="email" type="text" required="" />
+                                        <input class="form-control" id="email" name="email" type="text" />
+                                        @if($errors->has('email')) <span class="help-block">{{ $errors->first('email') }}</span>  @endif
                                     </div>     
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label id="phone">Phone:</label>
-                                <input class="form-control only-number" id="phone" name="phone" type="text" required=""/>
+                                <input class="form-control only-number" id="phone" name="phone" type="text" />
+                                @if($errors->has('phone')) <span class="help-block">{{ $errors->first('phone') }}</span>  @endif
                             </div> 
                             <div class="form-group">
                                 <label id="message">Message:</label>
-                                <textarea class="form-control" id="message" name="message" type="text" required=""></textarea>
+                                <textarea class="form-control" id="message" name="message" type="text"></textarea>
+                                @if($errors->has('message')) <span class="help-block">{{ $errors->first('message') }}</span>  @endif
                             </div>
-                            <button class="hvr-button btnfull" type="button" data-toggle="modal" data-target="#modal-contact">Submit</button>
+                            <button class="hvr-button btnfull" type="submit">Submit</button>
                         </form>
                     </div>
                 </div>

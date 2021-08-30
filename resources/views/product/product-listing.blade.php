@@ -8,6 +8,7 @@
                 <div class="title">Find Your Vehicle</div>
                 <div class="row">
                     <div class="col-md-4 col-lg-3 xs30">
+                    <form>
                         <div class="t3">Price Range</div>
                         <div class="row">
                             <div class="col-6 my-auto">
@@ -17,6 +18,8 @@
                                 <input class="bdr-range" type="text" id="amount-2" readonly name="">
                             </div>
                         </div>
+                        <input type="hidden" name="range_min" id="range-min">
+                        <input type="hidden" name="range_max" id="range-max">
                         <div class="pad-range">
                             <div id="slider-range"></div>
                         </div>
@@ -25,276 +28,136 @@
                             <div class="css-select">
                                 <select name="brand" class="form-control" id="brand" required="">
                                     <option selected="" disabled="">All Brands</option>
-                                    <option value="BMW">BMW</option>
-                                    <option value="Honda">Honda</option>
+                                    @foreach($brands as $brand)
+                                        <option value="{{ $brand->slug }}" @if($brand_select == $brand->slug) selected @endif>{{ $brand->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="brand">Select Model:</label>
                             <div class="css-select">
-                                <select name="brand" class="form-control" id="brand" required="">
+                                <select name="model" class="form-control" id="brand" required="">
                                     <option selected="" disabled="">All Models</option>
-                                    <option value="Class CLA180">Class CLA180</option>
-                                    <option value="Class 123">Class 123</option>
+                                    @foreach($models as $model)
+                                        <option value="{{ $model->slug }}" @if($model_select == $model->slug) selected @endif>{{ $model->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="brand">Select Transmission Type:</label>
                             <div class="css-select">
-                                <select name="brand" class="form-control" id="brand" required="">
+                                <select name="transmission" class="form-control" id="brand" required="">
                                     <option selected="" disabled="">All Types</option>
-                                    <option value="AT">AT</option>
-                                    <option value="MT">MT</option>
+                                    @foreach($transmissions as $transmission)
+                                        <option value="{{ $transmission->slug }}" @if($transmission_select == $transmission->slug) selected @endif>{{ $transmission->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="mb10">
-                            <button type="button" class="hvr-button full100">Search Inventory</button>
+                            <button type="submit" class="hvr-button full100">Search Inventory</button>
                         </div>
                         <div class="click-reset">
                             <button type="button" class="hvr-button full100">Clear Filters</button>
                         </div>
+                        </form>
                     </div>
                     <div class="col-md-8 col-lg-9">
-                        <div class="t2">25 Matches</div>
-                        <div class="row row-15">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                        <div class="box-search">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-7">
+                                    <div class="t2">{{ $products->total() }} Matches</div>
+                                    @if($search)
+                                    <div class="t-search">Search : <span class="bold">Mercedes-Benz"</span></div>
+                                    @endif
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
+                                <div class="col-md-6 col-lg-5">
+                                    <div class="search">
+                                        <form action="{{ url('product-listing') }}{{(Request::getQueryString() != null)? "?".Request::getQueryString() : ""}}">
+                                            <input class="form-control" name="search" type="text" placeholder="Looking for something?" />
+                                            <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
+                                        </form>
                                     </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"><img src="{{ asset('images/product.jpg') }}" alt="" title=""/></div>
-                                            <div class="abs">Reserved</div>
-                                        <div class="abs-get">
-                                            <a href="#">Get Quote</a>
-                                        </div>
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail') }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <div class="price">$30,000</div>
-                                                    <div class="stock">Stock # 48595896</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
                                 </div>
                             </div>
                         </div>
+                        @if(count($products)>0)
+                        <div class="row row-15">
+                            @foreach($products as $product)
+                            <div class="col-md-6 col-lg-4">
+                                <div class="item">
+                                    <div class="pos-rel">                                        
+                                        <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
+                                            <div class="abs">Reserved</div>
+                                        <div class="abs-get">
+                                            <a href="#">Get Quote</a>
+                                        </div>
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
+                                        <div class="pad">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="year">2015</div>
+                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    @if($product->price)
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
+                                                    <div class="stock">Stock # 48595896</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        
+                        @if ($products->hasPages())
                         <ul class="l-pagination">
-                            <li><a><i class="fas fa-chevron-left"></i> Prev</a></li>
-                            <li><a>1</a></li>
-                            <li><a class="active">2</a></li>
-                            <li><a>3</a></li>
-                            <li><a>...</a></li>
-                            <li><a>6</a></li>
-                            <li><a>Next <i class="fas fa-chevron-right"></i></a></li>
+                            {{-- Previous Page Link --}}
+                            @if ($products->onFirstPage())
+                                <li class="disabled"><a><i class="fas fa-chevron-left"></i> Prev</a></li>
+                            @else
+                                <li><a href="{{ $products->previousPageUrl() }}" ><i class="fas fa-chevron-left"></i> Prev</a></li>
+                            @endif
+
+                            @if($products->currentPage() > 3)
+                                <li><a href="{{ $products->url(1) }}">1</a></li>
+                            @endif
+                            @if($products->currentPage() > 4)
+                                <li><a>...</a></li>
+                            @endif
+                            @foreach(range(1, $products->lastPage()) as $i)
+                                @if($i >= $products->currentPage() - 2 && $i <= $products->currentPage() + 2)
+                                    @if ($i == $products->currentPage())
+                                        <li><a class="active">{{ $i }}</a></li>
+                                    @else
+                                        <li><a href="{{ $products->url($i) }}">{{ $i }}</a></li>
+                                    @endif
+                                @endif
+                            @endforeach
+                            @if($products->currentPage() < $products->lastPage() - 3)
+                                <li><a>...</a></li>
+                            @endif
+                            @if($products->currentPage() < $products->lastPage() - 2)
+                                <li><a href="{{ $products->url($products->lastPage()) }}">{{ $products->lastPage() }}</a></li>
+                            @endif
+
+                            {{-- Next Page Link --}}
+                            @if ($products->hasMorePages())
+                                <li><a href="{{ $products->nextPageUrl() }}">Next <i class="fas fa-chevron-right"></i></a></li>
+                            @else
+                                <li class="disabled"><a>Next <i class="fas fa-chevron-right"></i></a></li>
+                            @endif
                         </ul>
+                        @endif
+                        @else
+                        <div class="t-empty">There's no product in this category.</div>
+                        @endif
                         <div class="banner" style="background: url('images/banner-product.jpg') no-repeat center;">
                             <div class="t-banner">Lorem ipsum dolor sit amet conseactetur</div>
                             <div class="link">
@@ -321,10 +184,12 @@
             min: 30000,
             max: 200000,
             step: 10000,
-            values: [ 30000, 100000 ],
+            values: [ {{ $range_min }}, {{ $range_max }} ],
             slide: function( event, ui ) {
                 $( "#amount-1" ).val( "$ " + numberThousand(ui.values[ 0 ]));
-                $( "#amount-2" ).val( "$ " + numberThousand(ui.values[ 1 ]))
+                $( "#amount-2" ).val( "$ " + numberThousand(ui.values[ 1 ]));
+                $( "#range-min" ).val( ui.values[ 0 ]);
+                $( "#range-max" ).val( ui.values[ 1 ]);
             }
         });
 
@@ -332,8 +197,10 @@
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
 
-        $( "#amount-1" ).val( "$ " + numberThousand($( "#slider-range" ).slider( "values", 0 )));
-        $( "#amount-2" ).val( "$ " + numberThousand($( "#slider-range" ).slider( "values", 1 )));
+        $( "#amount-1" ).val( "$ " + numberThousand({{ $range_min }}));
+        $( "#amount-2" ).val( "$ " + numberThousand({{ $range_max }}));
+        $( "#range-min" ).val( $( "#slider-range" ).slider( "values", 0 ));
+        $( "#range-max" ).val( $( "#slider-range" ).slider( "values", 1 ));
 
         $(".click-reset").on("click", function () {
             $('.css-select select option').prop('selected', function() {

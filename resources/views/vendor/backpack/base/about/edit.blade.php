@@ -30,7 +30,7 @@
                               <input type="text" name="title" value="{{ $data->title }}" class="form-control">
                               @if($errors->has('title')) <span class="help-block">{{ $errors->first('title') }}</span>  @endif
                             </div>
-                            
+                            @if($data->id != 1)
                             <div class="form-group @if($errors->has('image')) has-error @endif">
                               <label for="exampleInputEmail1">Image</label>
                               <input type="file" name="image" class="form-control">
@@ -38,7 +38,7 @@
                               @if($errors->has('image')) <span class="help-block">{{ $errors->first('image') }}</span>  @endif
                               <input type="hidden" name="old_image" value="{{ $data->image }}">
                             </div>
-
+                            @endif
                             <div class="form-group @if($errors->has('content')) has-error  @endif">
                               <label for="exampleInputEmail1">Content</label>
                               <textarea name="content" class="form-control my-editor">{{ $data->content }}</textarea>

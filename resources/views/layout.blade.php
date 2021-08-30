@@ -116,9 +116,9 @@
                 </div>
                 <div class="col-sm-6 my-auto order-1 order-md-2">
                     <ul class="l-soc">
-                        <li><a href="#" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
-                        <li><a href="#" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="{{ $company_data->facebook }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
+                        <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -336,11 +336,11 @@
                     <div class="text-pop">You deserve quality & reliability.</div>
                 </div>
                 <div class="pad-bdy">
-                    <div class="img-success">
+                    <div class="img-success" id="success-icon">
                         <img src="{{ asset('images/success.png') }}" alt="" title=""/>
                     </div>
                     <div class="t-pop2">
-                        <div>Thank you for your interest! We will send your quotation to your registered email address within x working days.</div>
+                        <div id="message-success">Thank you for your interest! We will send your quotation to your registered email address within x working days.</div>
                     </div>
                     <div class="btn-pop">
                         <a href="{{ URL::to('/') }}">
@@ -544,6 +544,30 @@
             }
         });
     }); 
+  @if(Session::has('register_success'))
+  $('#message-success').html('{{Session::get('register_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('register_failed'))
+  $('#message-failed').html('{{Session::get('register_failed')}}');
+  $('#success-icon').html('');
+  $('#modal-failed').modal('show');
+  @endif
+  @if(Session::has('verify_success'))
+  $('#message-success').html('{{Session::get('verify_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('forgot_success'))
+  $('#message-success').html('{{Session::get('forgot_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('recovery_success'))
+  $('#message-success').html('{{Session::get('recovery_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('contact_success'))
+  $('#modal-contact').modal('show');
+  @endif
 </script>
 
 </body>

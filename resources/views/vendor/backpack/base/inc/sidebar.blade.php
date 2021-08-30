@@ -40,6 +40,7 @@
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/company_data') }}"><i class="fa fa-phone"></i> <span>Company Data</span></a></li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/privacy_policy') }}"><i class="fa fa-exclamation"></i> <span>Privacy Policy</span></a></li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/terms') }}"><i class="fa fa-info-circle"></i> <span>Terms & Conditions</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/disclaimers') }}"><i class="fa fa-info-circle"></i> <span>Disclaimers</span></a></li>
 
                   <li class="treeview">
                     <a href="#">
