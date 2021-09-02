@@ -80,7 +80,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="email">Email:</label>
-                                            <input class="form-control" id="email" name="email" type="text" readonly value="{{ $member->email }}" />
+                                            <input class="form-control" id="email" name="email" type="text" @if($member->email) readonly @endif value="{{ $member->email }}" />
                                             @if($errors->has('email')) <span class="help-block">{{ $errors->first('email') }}</span>  @endif
                                         </div>     
                                     </div>

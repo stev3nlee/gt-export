@@ -70,12 +70,12 @@
                                 <div class="col-md-6 col-lg-7">
                                     <div class="t2">{{ $products->total() }} Matches</div>
                                     @if($search)
-                                    <div class="t-search">Search : <span class="bold">Mercedes-Benz"</span></div>
+                                    <div class="t-search">Search : <span class="bold">{{ $search }}</span></div>
                                     @endif
                                 </div>
                                 <div class="col-md-6 col-lg-5">
                                     <div class="search">
-                                        <form action="{{ url('product-listing') }}{{(Request::getQueryString() != null)? "?".Request::getQueryString() : ""}}">
+                                        <form action="{{ url('product-listing') }}">
                                             <input class="form-control" name="search" type="text" placeholder="Looking for something?" />
                                             <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
                                         </form>
@@ -90,7 +90,9 @@
                                 <div class="item">
                                     <div class="pos-rel">                                        
                                         <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
+                                        @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
+                                        @endif
                                         <div class="abs-get">
                                             <a href="#">Get Quote</a>
                                         </div>
@@ -206,6 +208,7 @@
             $('.css-select select option').prop('selected', function() {
                 return this.defaultSelected;
             });
+            window.location = "{{ url('product-listing') }}";
         });
 	});
 </script>

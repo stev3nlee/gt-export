@@ -58,7 +58,7 @@
                 <div class="col-md-4 my-auto text-right">
                     <!-- NO ACCOUNT-->
                     <div class="link">
-                        <a data-toggle="modal" data-target="#modal-login">
+                        <a href="{{ url('login') }}" >
                             <button class="hvr-button">Login / Sign Up</button>
                         </a>
                     </div>
@@ -146,6 +146,43 @@
         </div>
     </div>
 
+    <div id="modal-submit-quote" class="modal fade modal-global" role="dialog">
+        <div class="modal-dialog">
+            <form action="{{ url('submit-quote') }}" method="post">
+            @csrf
+            <div class="modal-content">
+                <div class="close-pop" data-dismiss="modal">
+                    <img src="{{ asset('images/close-pop.png') }}" alt="" title=""/>
+                </div>
+                <div class="pad-header">
+                    <div class="img-pop">
+                        <img src="{{ asset('images/logo.svg') }}" alt="" title=""/>
+                    </div>
+                    <div class="text-pop">You deserve quality & reliability.</div>
+                </div>
+                <div class="pad-bdy">
+                    <div class="t2-pop">Let’s get started!</div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="bdy-pop">
+                                <p>Do you want to submit quote?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="l-pop">
+                        <li class="active"><a>Yes</a></li>
+                        <li class="click-quote-no"><a>No</a></li>
+                    </ul>
+                    <input type="hidden" name="product" id="product-quote">
+                    <div class="btn-pop">
+                        <button class="hvr-button" type="submit">Submit Quote</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
     <div id="modal-login" class="modal fade modal-global" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -180,7 +217,7 @@
             </div>
         </div>
     </div>
-
+    <?php /* ?>
     <div id="modal-register" class="modal fade modal-global" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -251,6 +288,7 @@
             </div>
         </div>
     </div>
+    <?php */ ?>
 
     <div id="modal-guest" class="modal fade modal-global" role="dialog">
         <div class="modal-dialog">
@@ -277,7 +315,8 @@
                         <li class="click-login" data-toggle="modal"><a>I have an account</a></li>
                         <li class="active"><a>I do not have an account</a></li>
                     </ul>
-                    <form>
+                    <form action="{{ url('submit-quote-guest') }}" method="post" id="submit-quote-guest">
+                    @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -300,23 +339,24 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Date of Birth:</label>
-                                    <input class="form-control date" name="date-of-birth-guest" readonly="" type="text" required="" value=""/>
+                                    <input class="form-control date" name="dob_guest" readonly="" type="text" required="" value=""/>
                                 </div>     
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label id="email">Email:</label>
-                                    <input class="form-control" id="email" name="email" type="text" required="" />
+                                    <input class="form-control" id="email" name="email" type="email" required="" />
                                 </div>     
                             </div>
+                            <input type="hidden" name="product" id="product-quote-guest">
                         </div>
                         <div class="btn-pop mt30">
-                            <button class="hvr-button click-success" type="button" data-toggle="modal" data-target="#modal-success">Proceed as guest</button>
+                            <button class="hvr-button" type="submit">Proceed as guest</button>
                         </div>
                     </form>                    
                     <div class="or">or</div>
                     <div class="link-pop">
-                        <a class="click-register">Register</a>
+                        <a href="{{ url('register') }}" >Register</a>
                     </div>
                 </div>
             </div>
@@ -433,8 +473,8 @@
         
         $('.click-register').click(function() {
             $('#modal-login').modal('hide');
-            $('#modal-guest').modal('hide');
-            $('#modal-register').modal('toggle');
+            $('#modal-guest').modal('toggle');
+            //$('#modal-register').modal('toggle');
             $('body').addClass('no-scroll');
             $('.modal').addClass('scroll');
         });
@@ -459,6 +499,32 @@
             $('#modal-guest').modal('hide');
             $('#modal-login').modal('hide');
             $('#modal-register').modal('hide');
+        });
+
+        $('.click-quote-no').click(function() {
+            $('#modal-submit-quote').modal('hide');
+            $('body').addClass('scroll');
+            $('.modal').addClass('scroll');
+        });
+
+        $('.click-submit-quote').click(function() {
+            product_quote = $(this).data('product'); 
+            $('#modal-submit-quote').modal('toggle');
+            $('#modal-register').modal('hide');
+            $('#modal-guest').modal('hide');
+            $('#product-quote').val(product_quote);
+            $('body').addClass('scroll');
+            $('.modal').addClass('scroll');
+        });
+
+        $('.click-submit-quote-guest').click(function() {
+            product_quote = $(this).data('product'); 
+            $('#modal-login').modal('toggle');
+            $('#modal-register').modal('hide');
+            $('#modal-guest').modal('hide');
+            $('body').addClass('no-scroll');
+            $('.modal').addClass('scroll');
+            $('#product-quote-guest').val(product_quote);
         });
 
         $('.close-pop').click(function(event) {
@@ -567,6 +633,9 @@
   @endif
   @if(Session::has('contact_success'))
   $('#modal-contact').modal('show');
+  @endif
+  @if(Session::has('quotation_success'))
+  $('#modal-success').modal('show');
   @endif
 </script>
 

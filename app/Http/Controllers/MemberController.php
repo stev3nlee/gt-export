@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use App\Http\Controllers\BaseController;
 use App\Models\Member;
+use App\Models\Quotation;
 use View;
 use App\Helper\HelperFunction;
 use Session;
@@ -36,20 +37,6 @@ class MemberController extends BaseController
 
             return view('/member/personal-info', $data);
         } catch (\Exception $e) {
-            return redirect('logout');
-        }
-        
-    }
-
-    public function editProfile(){
-        try{
-            $id = session()->get('id');
-            $data['member'] = $member = Member::find($id);
-
-            return view('/member/edit-profile', $data);
-        } catch (\Exception $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
             return redirect('logout');
         }
         
@@ -132,6 +119,12 @@ class MemberController extends BaseController
                     "email" => "required|email|unique:member",
                   ]);
             }
+
+            if($request->password){
+                $this->validate($request,[
+                    "password" => "required|min:6",
+                ]);
+            }
             $table->first_name = $request->first_name;
             $table->last_name = $request->last_name;
             $table->dob = date('Y-m-d',strtotime($request->dob));
@@ -139,6 +132,11 @@ class MemberController extends BaseController
 
             if($table->email == null){
                $table->email = $request->email; 
+            }
+
+            if($request->password){
+                $table->password = md5($request->password); 
+                $table->last_change_password = date('Y-m-d H:i:s');
             }
             $table->save();
 
@@ -211,7 +209,7 @@ class MemberController extends BaseController
         
     }
 
-    public function order(Request $request){
+    public function transactionHistory(Request $request){
         try {
             $member_id = session()->get('id');
             $whereParams[] = ['member_id', '=', $member_id];
@@ -219,8 +217,26 @@ class MemberController extends BaseController
                 $whereParams[] = ['invoice_number', 'LIKE', '%' .$request->input('search'). '%'];
             }
             $data['member'] = Member::find($member_id);
-            $data['orders'] = Order::where($whereParams)->orderby('id','desc')->paginate(15);
-            return view('member/order',$data);
+            $data['orders'] = Quotation::where($whereParams)->orderby('id','desc')->paginate(15);
+            return view('member/transaction-history',$data);
+        } catch (Exception $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            return redirect('/');
+        }
+        
+    }
+
+    public function quotationHistory(Request $request){
+        try {
+            $member_id = session()->get('id');
+            $whereParams[] = ['member_id', '=', $member_id];
+            if($request->input('search')){
+                $whereParams[] = ['invoice_number', 'LIKE', '%' .$request->input('search'). '%'];
+            }
+            $data['member'] = Member::find($member_id);
+            $data['orders'] = Quotation::where($whereParams)->orderby('id','desc')->paginate(15);
+            return view('member/quotation-history',$data);
         } catch (Exception $e) {
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();

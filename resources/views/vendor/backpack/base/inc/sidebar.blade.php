@@ -87,7 +87,8 @@
                     </ul>
                   </li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/shipping_cost') }}"><i class="fa fa-truck"></i> <span>Shipping Cost</span></a></li>
-                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-shopping-cart"></i> <span>Invoice</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation') }}"><i class="fa fa-shopping-cart"></i> <span>Transaction</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-shopping-cart"></i> <span>Quotation</span></a></li>
 
                 </ul>
               </li>

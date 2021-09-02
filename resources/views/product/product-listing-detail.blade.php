@@ -10,69 +10,40 @@
                     <div class="col-md-7 col-lg-8">
                         <div class="pr40">
                             <div class="slider-product">
+                                @foreach($product->product_image as $image)
                                 <div class="item">
-                                    <a href="{{ asset('images/detail1.jpg') }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset('images/detail1.jpg') }}" alt="" title=""/>
+                                    <a href="{{ asset($image->image) }}" data-fancybox="fancy-product">
+                                        <img src="{{ asset($image->image) }}" alt="" title=""/>
                                     </a>
                                 </div>
-                                <div class="item">
-                                    <a href="{{ asset('images/detail2.jpg') }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset('images/detail2.jpg') }}" alt="" title=""/>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="{{ asset('images/detail3.jpg') }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset('images/detail3.jpg') }}" alt="" title=""/>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="{{ asset('images/detail4.jpg') }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset('images/detail4.jpg') }}" alt="" title=""/>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="{{ asset('images/detail5.jpg') }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset('images/detail5.jpg') }}" alt="" title=""/>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="{{ asset('images/detail1.jpg') }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset('images/detail1.jpg') }}" alt="" title=""/>
-                                    </a>
-                                </div>
+                                @endforeach
+                                
                             </div>
                             <div class="slider-thumb">
+                                @foreach($product->product_image as $image)
                                 <div class="item">
-                                    <img src="{{ asset('images/thumb1.jpg') }}" alt="" title=""/>
+                                    <img src="{{ asset($image->image) }}" alt="" title=""/>
                                 </div>
-                                <div class="item">
-                                    <img src="{{ asset('images/thumb2.jpg') }}" alt="" title=""/>
-                                </div>
-                                <div class="item">
-                                    <img src="{{ asset('images/thumb3.jpg') }}" alt="" title=""/>
-                                </div>
-                                <div class="item">
-                                    <img src="{{ asset('images/thumb4.jpg') }}" alt="" title=""/>
-                                </div>
-                                <div class="item">
-                                    <img src="{{ asset('images/thumb5.jpg') }}" alt="" title=""/>
-                                </div>
-                                <div class="item">
-                                    <img src="{{ asset('images/thumb1.jpg') }}" alt="" title=""/>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4">
                         <div class="merk">Porsche</div>
-                        <div class="nm">Macan GTS</div>
+                        <div class="nm">{{ $product->name }}</div>
                         <div class="buy">Buy it at</div>
-                        <div class="price">$ 500,000</div>
+                        <div class="price">$ {{ number_format($product->price, 2, '.', ',') }}</div>
+                        @if($product->reserve == 0)
                         <div class="add">
-                            <a href="">
-                                <button type="button" class="hvr-button full100">Ask for Quote</button>
+                            <a>
+                                @if(session()->has('email'))
+                                    <button type="button" class="hvr-button full100 click-submit-quote" data-product="{{ $product->slug }}">Ask for Quote</button>
+                                @else
+                                    <button type="button" class="hvr-button full100 click-submit-quote-guest" data-product="{{ $product->slug }}">Ask for Quote</button>
+                                @endif
                             </a>
                         </div>
+                        @endif
                         <div class="box-desc">
                             <div class="t-desc">What we love about this car</div>
                             <div class="desc">

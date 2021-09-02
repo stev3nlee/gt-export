@@ -2,32 +2,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ORDER CONFIRMATION</title>
+<title>Quotation</title>
 </head>
 <body style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #000000;line-height: 24px;">
 <?php if(isset($url)){ $url = $url; }else{ $url = url('/'); } ?>
 	<div style="width:600px;margin:0 auto;background-color:transparent; text-align:center;">
 		<div style="text-align: center;padding: 10px 0;">
 			<a href="{{ $url }}">
-				<img src="{{ $url }}/images/email/header.png" />
+				<img src="{{ $url }}/images/logo.png" />
 			</a>
 		</div>
 		<div style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
 			<p>Dear {{ $email }}</p>
 		</div>
 		<div style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
-			<?php if($status == 'order_confirmation'){ ?>
-				<p>We have received your order and will be processing it as soon as we receive your payment. Your order details are below:</p>
+			<?php if($status == 'confirmation'){ ?>
+				<p>We have received your quotation and will be processing it as soon as possible. Your quotation details are below:</p>
 			<?php }else if($status == 'payment_received'){ ?>
 				<p>'We have received your payment. Your items will be sent soon.</p>
-			<?php }else if($status == 'order_expired'){ ?>
+			<?php }else if($status == 'expired'){ ?>
 				<p>Your order has expired and automatically cancelled. Please try to re-order.</p>
 			<?php }else if($status == 'failed'){ ?>
 				<p>Your payment failed. Please try to re-order again.</p>
-			<?php }else if($status == 'refund'){ ?>
-				<p>We have refund your order and will be processing it. Your order details are below:</p>
 			<?php }else{ ?>
-				<p>We couldn't reach to you. Please do contact us through this email <a href="mailto:hello@thefinard.com">hello@thefinard.com</a> or contact us a <a href="{{ $url }}/contact-us">here</a>.</p>
+				<p>We couldn't reach to you. Please do contact us through this email <a href="mailto:email@gtexport.com">email@gtexport.com</a> or contact us a <a href="{{ $url }}/contact-us">here</a>.</p>
 			<?php } ?>
 			
 		</div>
@@ -35,25 +33,25 @@
 			<table style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word; border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; margin-bottom: 25px;">
 				<thead>
 					<tr>
-						<td style="font-size: 13px; font-weight: bold; text-align: center; padding: 5px 10px; border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD;" colspan="2">Your Order Details</td>
+						<td style="font-size: 13px; font-weight: bold; text-align: center; padding: 5px 10px; border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD;" colspan="2">Your Quotation Details</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px; width:50%;">Receipt:</td>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;">{{ $order->invoice_number }}</td>
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px; width:50%;">Quotation Number:</td>
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;">{{ $quotation->quotation_number }}</td>
 					</tr>
 					<tr>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px; width:50%;">Order Date:</td>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;"><?php echo date('d F Y H:i:s', strtotime($order->created_at)); ?></td>
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px; width:50%;">Date:</td>
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;"><?php echo date('d F Y H:i:s', strtotime($quotation->created_at)); ?></td>
 					</tr>
 					<tr>
 						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px; width:50%;">Amount:</td>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;">IDR {{ number_format($order->total_price,0,",",".") }}</td>
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;">IDR {{ number_format($quotation->price, 2, '.', ',') }}</td>
 					</tr>
 				</tbody>
 			</table>
-
+			<?php /* ?>
 			<table style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word; border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; margin-bottom: 25px;">
 				<thead>
 					<tr>
@@ -100,12 +98,12 @@
 					</tr>
 				</tbody>
 			</table>
-
+			<?php */ ?>
 			<div style="margin-bottom: 5px;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
 				<p style="font-weight:bold;">
-				Receipt for Your Order
+				Receipt for Your Quotation
 				<br />
-				Order No #{{ $order->invoice_number }} </p>
+				Quotation No #{{ $quotation->quotation_number }} </p>
 			</div>
 
 			<table style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word; border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD;">
@@ -114,23 +112,16 @@
 					Product
 					</td>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 10px 20px 10px 10px;" colspan="3">Quantity</td>
-					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 10px;"> Total </td>
+					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 10px;"> Amount </td>
 				</tr>
-				@foreach($order->order_details as $order_detail)
 					<tr>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding:5px 10px;" colspan="3"> {{ $order_detail->product_name }} <br>
-												Metal: {{ $order_detail->product_color }}</br>
-												Size: {{ $order_detail->product_size}}</br>
-												Stones: {{ $order_detail->product_stone }}</br>
-												@if($order_detail->product_engraving == 'Yes')
-												Engraving: “{{ $order_detail->product_engraving_text }}” </br>
-												@endif
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding:5px 10px;" colspan="3"> {{ $quotation->product->name }}
 						</td>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding:5px 10px;;" colspan="3">x {{ $order_detail->product_quantity }}</td>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding:5px 10px;">{{ number_format($order->product_price * $order->product_quantity,0,",",".") }}
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding:5px 10px;;" colspan="3">x 1</td>
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding:5px 10px;">{{ number_format($quotation->price, 2, '.', ',') }}
 						</td>
 					</tr>
-				@endforeach
+				<?php /* ?>
 				<tr>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3"></td>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3">Subtotal</td>
@@ -148,6 +139,7 @@
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;">IDR {{ number_format($order->discount_price,0,",",".") }} </td>
 				</tr>
 				@endif
+				<?php */ ?>
 				<tr>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px;" colspan="3"></td>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3"><b> Total</b></td>
@@ -157,13 +149,8 @@
 		</div>
 		<div style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
 			<div style="margin-bottom: 5px;">
-				<p> As usual, if you have any questions, you may visit our <a href="{{ $url }}/faq">FAQ page</a>, or contact us at <a href="mailto:hello@thefinard.com">hello@thefinard.com</a> </p>
+				<p> As usual, if you have any questions, you may visit our <a href="{{ $url }}/faq">FAQ page</a>, or contact us at <a href="mailto:email@gtexport.com">email@gtexport.com</a> </p>
 			</div>
-		</div>
-		<div style="text-align:center; padding:5px 0;">
-			<a href="{{ $url }}">
-				<img src="{{ $url }}/images/email/footer.png" />
-			</a>
 		</div>
 	</div>
 </body>

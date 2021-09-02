@@ -16,10 +16,7 @@ Route::get('/', 'HomeController@home');
 
 /* PRODUCT */
 Route::get('/product-listing', 'ProductController@product');
-
-Route::get('/product-listing-detail', function () {
-    return view('product/product-listing-detail');
-});
+Route::get('/product-listing-detail/{slug}', 'ProductController@productDetail');
 
 // Route::get('/search', function () {
 //     return view('product/search');
@@ -32,17 +29,11 @@ Route::get('/product-listing-detail', function () {
 /* INFORMATION */
 Route::get('/contact-us', 'PageController@contactUs');
 Route::post('/submit-contact', 'PageController@submitContact');
-
 Route::get('/about-us', 'PageController@aboutUs');
-
 Route::get('/faq', 'PageController@faq');
-
 Route::get('/privacy', 'PageController@privacyPolicy');
-
 Route::get('/disclaimers', 'PageController@disclaimers');
-
 Route::get('/regulation-details', 'PageController@regulation');
-
 Route::get('/procurement-flow', 'PageController@procurement');
 
 /* AUTH */
@@ -68,6 +59,7 @@ Route::get('/recovery', 'LoginController@recovery');
 Route::post('/submit-recovery', 'LoginController@submitRecovery');
 
 Route::get('/logout', 'LoginController@logout');
+Route::post('/submit-quote-guest', 'QuoteController@submitQuoteGuest');
 
 /* MEMBER AREA */
 Route::group(['middleware' => ['membersession']], function () {
@@ -75,14 +67,9 @@ Route::group(['middleware' => ['membersession']], function () {
     Route::post('/upload-profile', 'MemberController@uploadPhoto');
     Route::post('/update-account', 'MemberController@updateAccount');
     Route::get('/remove-photo', 'MemberController@removePhoto');
-
-    Route::get('/transaction-history', function () {
-        return view('member/transaction-history');
-    });
-
-    Route::get('/quotation-history', function () {
-        return view('member/quotation-history');
-    });
+    Route::post('/submit-quote', 'QuoteController@submitQuote');
+    Route::get('/transaction-history', 'MemberController@transactionHistory');
+    Route::get('/quotation-history', 'MemberController@quotationHistory');
 
     Route::get('/shipment-documentation', function () {
         return view('member/shipment-documentation');
@@ -271,12 +258,17 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('member/detail/{id}', 'Admin\MemberController@detail');
 
         Route::post('quotation/data', 'Admin\QuotationController@data');
+        Route::get('quotation', 'Admin\QuotationController@view')
+        ->name('quotation_view');
+        Route::post('quotation/exportToExcel', 'Admin\QuotationController@exportToExcel');
+        
 
         Route::get('invoice', 'Admin\InvoiceController@view')
         ->name('invoice_view');
         Route::post('invoice/exportToExcel', 'Admin\InvoiceController@exportOrderToExcel');
         Route::get('invoice/create', 'Admin\InvoiceController@create');
         Route::get('invoice/detail/{id}', 'Admin\InvoiceController@detail');
+        Route::post('invoice/insert', 'Admin\InvoiceController@insert');
         Route::post('invoice/update', 'Admin\InvoiceController@update');
         Route::patch('invoice/update/shipping_status', 'Admin\InvoiceController@updateShippingStatus');
         Route::post('invoice/exportToCsv', 'Admin\InvoiceController@exportCstarOrderToCsv');

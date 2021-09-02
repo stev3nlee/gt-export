@@ -65,7 +65,13 @@ class ProductController extends BaseController
             });
         }
 
-        $products = $products->whereBetween('price', [$range_min, $range_max]);
+        if($request->search){
+            $products = $products->where('name', 'like', '%'.$request->search.'%');
+        }
+
+        if($request->range_max && $request->range_min){
+            $products = $products->whereBetween('price', [$range_min, $range_max]);
+        }
 
         $products = $products->orderby('id','desc')->paginate(12)->withQueryString();
        // dd($products);
@@ -90,6 +96,6 @@ class ProductController extends BaseController
         }
 
         $data['product'] = $product;
-        return view('/index', $data);  
+        return view('/product/product-listing-detail', $data);  
     }
 }

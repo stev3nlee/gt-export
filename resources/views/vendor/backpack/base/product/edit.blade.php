@@ -56,7 +56,7 @@
                               <select class="form-control" name="model[]" required="required" id="model" data-placeholder="Select Model" style="width: 100%;">
                                 <option>Select Model</option>
                                 @foreach($models as $model)
-                                  <option value="{{$model->id}}" @if($data->model[0]->id == $brand->id) selected @endif>{{ $model->name }}</option>
+                                  <option value="{{$model->id}}" @if($data->model[0]->id == $model->id) selected @endif>{{ $model->name }}</option>
                                 @endforeach
                               </select>
                         </div>
@@ -66,7 +66,7 @@
                               <select class="form-control" name="transmission[]" required="required" id="transmission" data-placeholder="Select Transmission" style="width: 100%;">
                                 <option>Select Transmission</option>
                                 @foreach($transmissions as $transmission)
-                                  <option value="{{$transmission->id}}" @if($data->transmission[0]->id == $brand->id) selected @endif>{{ $transmission->name }}</option>
+                                  <option value="{{$transmission->id}}" @if($data->transmission[0]->id == $transmission->id) selected @endif>{{ $transmission->name }}</option>
                                 @endforeach
                               </select>
                         </div>

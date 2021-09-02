@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        Quotation
+        Invoice
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">Quotation</li>
+        <li class="active">Invoice</li>
       </ol>
     </section>
 @endsection
@@ -23,7 +23,7 @@
                     <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/invoice/insert') }}">
                 @endif
                 <div class="box-header with-border">
-                    Create Quotation <div style="float: right;"><input type="text" name="invoice_number" value="{{ isset($data) ? $data->invoice_number : $invoice_number }}">
+                    Create Invoice <div style="float: right;"><input type="text" name="invoice_number" value="{{ isset($data) ? $data->invoice_number : $invoice_number }}">
                     @if($errors->has('invoice_number')) <span class="help-block">{{ $errors->first('invoice_number') }}</span>  @endif</div>
                 </div>
 
@@ -36,7 +36,7 @@
                             <select name="quotation_id" class="form-control select2 select-quotation" @if(isset($data)) disabled="disabled" @endif>
                               <option value="0">Select Quotation</option>
                               @foreach($quotations as $quotation)
-                              <option value="{{ $quotation->id }}" @if(isset($data)) @if($data->quotation_id == $quotation->id) selected @endif @endif>#{{ $quotation->quotation_number }}</option>
+                              <option value="{{ $quotation->id }}" @if(isset($data)) @if($data->quotation_id == $quotation->id) selected @endif @endif>{{ $quotation->quotation_number }}</option>
                               @endforeach
                             </select>
                             @if($errors->has('quotation_id')) <span class="help-block">{{ $errors->first('quotation_id') }}</span>  @endif

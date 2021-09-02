@@ -13,8 +13,8 @@
                         </div>
                     </div>
                     <div class="search">
-                        <form action="{{ URL::to('/search') }}">
-                            <input class="form-control" type="text" placeholder="Looking for something?" />
+                        <form action="{{ URL::to('/product-listing') }}">
+                            <input class="form-control" type="text" name="search" placeholder="Looking for something?" />
                             <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
                         </form>
                     </div>
@@ -120,7 +120,7 @@
                                 <?php $i=1 ?>
                                 @foreach($brands as $brand)
                                 <li>
-                                    <a href="#" @if($i==1) class="active" @endif>
+                                    <a href="{{ url('/?brand='.$brand->slug) }}" @if($brand_id == $brand->id) class="active" @endif>
                                         <div>{{ $brand->name }}</div>
                                         <div class="img"><img src="{{ asset('images/arrow-brand.png') }}" alt="" title=""/></div>
                                     </a>
@@ -130,14 +130,16 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-8 col-lg-9">
+                    <div class="col-md-8 col-lg-9"  id="car-list">
                         <div class="row row-15">
                             @foreach($products as $product)
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
                                     <div class="pos-rel">                                        
                                         <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
+                                        @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
+                                        @endif
                                         <div class="abs-get">
                                             <a href="#">Get Quote</a>
                                         </div>
@@ -231,6 +233,17 @@
         $( "#amount-2" ).val( "$ " + numberThousand($( "#slider-range" ).slider( "values", 1 )));
         $( "#range-min" ).val( $( "#slider-range" ).slider( "values", 0 ));
         $( "#range-max" ).val( $( "#slider-range" ).slider( "values", 1 ));
+
+        var field = 'brand';
+        var url = window.location.href;
+        if(url.indexOf('?' + field + '=') != -1)
+            $('html,body').animate({
+                scrollTop: $('#car-list').offset().top -30
+            });
+        else if(url.indexOf('&' + field + '=') != -1)
+            $('html,body').animate({
+                scrollTop: $('#car-list').offset().top -30
+            });
 	});
 </script>
 @endsection
