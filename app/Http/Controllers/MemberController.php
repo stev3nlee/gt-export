@@ -213,15 +213,12 @@ class MemberController extends BaseController
         try {
             $member_id = session()->get('id');
             $whereParams[] = ['member_id', '=', $member_id];
-            if($request->input('search')){
-                $whereParams[] = ['invoice_number', 'LIKE', '%' .$request->input('search'). '%'];
-            }
             $data['member'] = Member::find($member_id);
-            $data['orders'] = Quotation::where($whereParams)->orderby('id','desc')->paginate(15);
+            $data['orders'] = Quotation::where($whereParams)->orderby('id','desc')->skip(0)->take(10)->get();
+            $data['next_orders'] = Quotation::where($whereParams)->orderby('id','desc')->skip(10)->take(100)->get();
             return view('member/transaction-history',$data);
         } catch (Exception $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
+            dd($e);
             return redirect('/');
         }
         

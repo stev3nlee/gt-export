@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px; width:50%;">Amount:</td>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;">IDR {{ number_format($quotation->price, 2, '.', ',') }}</td>
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px; width:50%;">USD {{ number_format($quotation->price, 2, '.', ',') }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -115,7 +115,7 @@
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 10px;"> Amount </td>
 				</tr>
 					<tr>
-						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding:5px 10px;" colspan="3"> {{ $quotation->product->name }}
+						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding:5px 10px;" colspan="3"> {{ $quotation->product_name }}
 						</td>
 						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding:5px 10px;;" colspan="3">x 1</td>
 						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding:5px 10px;">{{ number_format($quotation->price, 2, '.', ',') }}
@@ -143,7 +143,7 @@
 				<tr>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px;" colspan="3"></td>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3"><b> Total</b></td>
-					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;"><b>IDR {{ number_format($quotation->price, 2, '.', ',') }}</b></td>
+					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;"><b>USD {{ number_format($quotation->price, 2, '.', ',') }}</b></td>
 				</tr>
 			</table>
 		</div>

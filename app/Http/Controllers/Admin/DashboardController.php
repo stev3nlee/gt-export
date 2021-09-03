@@ -15,6 +15,7 @@ use App\Models\Order_detail;
 use App\Models\Newsletter;
 use App\Models\Contact;
 use App\Models\Shipping_fee;
+use App\Models\Reservation_time;
 use App\Exports\NewsletterExport;
 use DB;
 use Excel;
@@ -475,6 +476,24 @@ class DashboardController extends Controller
 
         $request->session()->flash('update', 'Success');
         return redirect()->route('disclaimers_view');
+    }
+
+    public function reservationTime(){
+        $data = Reservation_time::first();
+        return view('vendor.backpack.base.reservation_time', ['data'=>$data]);
+    }
+
+    public function reservationTimeUpdate(Request $request)
+    {
+        $company_profile = Reservation_time::first();
+        if (empty($company_profile)) {
+            $company_profile = new Reservation_time;
+        }
+        $company_profile->hours = $request->input('hours');
+        $company_profile->save();
+
+        $request->session()->flash('update', 'Success');
+        return redirect()->route('reservation_time_view');
     }
 
 }

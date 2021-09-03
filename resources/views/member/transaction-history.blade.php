@@ -16,11 +16,13 @@
                                 <div class="col-md-6">
                                     <div class="title mb40">Transaction History</div>
                                 </div>
+                                @if(count($next_orders) > 0)
                                 <div class="col-md-6 text-right resp-text-right">
                                     <div class="link">
                                         <a class="click-view">View All</a>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             <div class="table-order-account table-trans">
                                 <div>
@@ -32,134 +34,48 @@
                                         <div class="cell text-center w100 pr0">Status</div>
                                     </div>
                                 </div>
+                                @foreach($orders as $order)
                                 <div class="xs30">
                                     <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
+                                        <div class="cell text-center w130"><span class="show-title">Date:</span>{{ date('d-m-Y', strtotime($order->created_at)) }}</div>
+                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># {{ $order->quotation_number }}</div>
                                         <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="blue">Pending</span></div>
+                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ {{ number_format($order->price, 2, '.', ',') }}</div>
+                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span>
+                                        @if($order->status == 1)
+                                        <span class="blue">Pending</span>
+                                        @elseif($order->status == 2)
+                                        <span class="green">Fulfilled</span>
+                                        @else
+                                        <span class="red">Unsuccessful</span>
+                                        @endif
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="red">Unsuccessful</span></div>
-                                    </div>
-                                </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="green">Fulfilled</span></div>
-                                    </div>
-                                </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="blue">Pending</span></div>
-                                    </div>
-                                </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="red">Unsuccessful</span></div>
-                                    </div>
-                                </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="green">Fulfilled</span></div>
-                                    </div>
-                                </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="blue">Pending</span></div>
-                                    </div>
-                                </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="red">Unsuccessful</span></div>
-                                    </div>
-                                </div>
-                                <div class="xs30">
-                                    <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                        <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                        <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                        <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="green">Fulfilled</span></div>
-                                    </div>
-                                </div>
+                                @endforeach
+                                @if(count($next_orders) > 0)
                                 <div class="box-hide">
+                                    @foreach($next_orders as $next_order)
                                     <div class="xs30">
                                         <div class="tbl tbl-bdy">
-                                            <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                            <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
+                                            <div class="cell text-center w130"><span class="show-title">Date:</span>{{ date('d-m-Y', strtotime($next_order->created_at)) }}</div>
+                                            <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># {{ $next_order->quotation_number }}</div>
                                             <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                            <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                            <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="red">Unsuccessful</span></div>
+                                            <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ {{ number_format($next_order->price, 2, '.', ',') }}</div>
+                                            <div class="cell text-center w100 pr0"><span class="show-title">Status:</span>
+                                            @if($next_order->status == 1)
+                                            <span class="blue">Pending</span>
+                                            @elseif($next_order->status == 2)
+                                            <span class="green">Fulfilled</span>
+                                            @else
+                                            <span class="red">Unsuccessful</span>
+                                            @endif
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="xs30">
-                                        <div class="tbl tbl-bdy">
-                                            <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                            <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                            <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                            <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                            <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="green">Fulfilled</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="xs30">
-                                        <div class="tbl tbl-bdy">
-                                            <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                            <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                            <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                            <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                            <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="blue">Pending</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="xs30">
-                                        <div class="tbl tbl-bdy">
-                                            <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                            <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                            <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                            <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                            <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="red">Unsuccessful</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="xs30">
-                                        <div class="tbl tbl-bdy">
-                                            <div class="cell text-center w130"><span class="show-title">Date:</span>02-01-2020</div>
-                                            <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># 459903</div>
-                                            <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
-                                            <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ 500,000</div>
-                                            <div class="cell text-center w100 pr0"><span class="show-title">Status:</span><span class="green">Fulfilled</span></div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

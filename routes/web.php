@@ -233,6 +233,10 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
             ->name('disclaimers_view');
         Route::post('disclaimers/update', 'Admin\DashboardController@disclaimers_update');
 
+        Route::get('reservation_time', 'Admin\DashboardController@reservationTime')
+            ->name('reservation_time_view');
+        Route::post('reservation_time/update', 'Admin\DashboardController@reservationTimeUpdate');
+
         Route::get('contact', 'Admin\DashboardController@enquiry')
             ->name('contact_view');
         Route::get('contact/detail/{id}', 'Admin\DashboardController@enquiryDetail');
