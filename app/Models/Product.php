@@ -45,4 +45,9 @@ class Product extends Model
         return $this->hasMany('App\Models\Product_image');
     }
 
+    public function accessories()
+    {
+        return $this->belongsToMany('App\Models\Accessories', 'product_accessories', 'product_id', 'accessories_id');
+    }
+
 }

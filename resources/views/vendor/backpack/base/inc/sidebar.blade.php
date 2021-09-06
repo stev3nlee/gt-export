@@ -83,6 +83,7 @@
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/brand') }}"><i class="fa fa-bars"></i> <span>Brand</span></a></li>
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/model') }}"><i class="fa fa-bars"></i> <span>Model</span></a></li>
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/transmission') }}"><i class="fa fa-bars"></i> <span>Transmission</span></a></li>
+                      <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/accessories') }}"><i class="fa fa-bars"></i> <span>Accessories</span></a></li>
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product') }}"><i class="fa fa-car"></i> <span>Cars</span></a></li>
                     </ul>
                   </li>

@@ -70,10 +70,7 @@ Route::group(['middleware' => ['membersession']], function () {
     Route::post('/submit-quote', 'QuoteController@submitQuote');
     Route::get('/transaction-history', 'MemberController@transactionHistory');
     Route::get('/quotation-history', 'MemberController@quotationHistory');
-
-    Route::get('/shipment-documentation', function () {
-        return view('member/shipment-documentation');
-    });
+    Route::get('/shipment-documentation', 'MemberController@shipmentDocumentation');
 
     Route::get('/invoice', function () {
         return view('invoice');
@@ -301,6 +298,16 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
             ->name('newsletter_view');
         Route::get('newsletter/export', 'Admin\DashboardController@exportNewsletter');
         Route::get('newsletter/delete/{id}', 'Admin\DashboardController@deleteNewsletter');
+
+        Route::get('accessories', 'Admin\AccessoriesController@view')
+            ->name('accessories_view');
+        Route::get('accessories/create', 'Admin\AccessoriesController@create');
+        Route::get('accessories/edit/{id}', 'Admin\AccessoriesController@edit');
+        Route::post('accessories/insert', 'Admin\AccessoriesController@insert');
+        Route::post('accessories/update', 'Admin\AccessoriesController@update');
+        Route::get('accessories/delete/{id}', 'Admin\AccessoriesController@delete');
+        Route::get('accessories/status/{id}/{status}', 'Admin\AccessoriesController@status');
+        Route::post('accessories/update_sort', 'Admin\AccessoriesController@update_sort');
 
 
     });

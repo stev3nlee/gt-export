@@ -242,6 +242,24 @@ class MemberController extends BaseController
         
     }
 
+    public function shipmentDocumentation(Request $request){
+        try {
+            $member_id = session()->get('id');
+            $whereParams[] = ['member_id', '=', $member_id];
+            if($request->input('search')){
+                $whereParams[] = ['invoice_number', 'LIKE', '%' .$request->input('search'). '%'];
+            }
+            $data['member'] = Member::find($member_id);
+            $data['orders'] = Quotation::where($whereParams)->orderby('id','desc')->paginate(15);
+            return view('member/shipment-documentation',$data);
+        } catch (Exception $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            return redirect('/');
+        }
+        
+    }
+
     public function orderDetail($invoice_number){
         try {
             $member_id = session()->get('id');

@@ -13,6 +13,7 @@ use App\Models\Brand;
 use App\Models\Models;
 use App\Models\Transmission;
 use App\Models\Member;
+use App\Models\Reservation_time;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -37,6 +38,7 @@ class QuoteController extends BaseController
 
     public function submitQuote(Request $request){
         DB::transaction(function () use($request) {
+            $reservation_time = Reservation_time::first();
             $slug = $request->product;
             $id = session()->get('id');
             $product = Product::where('slug', $slug)->where('reserve', 0)->where('status', 1)->first();
@@ -56,7 +58,7 @@ class QuoteController extends BaseController
             $quote->product_name = $product->name;
             $quote->price = $product->price;
             $quote->ip_address = Request()->ip();
-            $quote->expired_date = date('Y-m-d H:i:s', strtotime('48 hour'));
+            $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
 
             $product->reserve = 1;
@@ -109,7 +111,7 @@ class QuoteController extends BaseController
             $quote->product_name = $product->name;
             $quote->dob = date('Y-m-d', strtotime($request->dob_guest));
             $quote->ip_address = Request()->ip();
-            $quote->expired_date = date('Y-m-d H:i:s', strtotime('48 hour'));
+            $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
 
             $product->reserve = 1;
