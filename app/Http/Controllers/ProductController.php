@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Models;
 use App\Models\Transmission;
+use App\Models\Accessories;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -96,6 +97,7 @@ class ProductController extends BaseController
         }
 
         $data['product'] = $product;
+        $data['accessories'] = Accessories::get();
         return view('/product/product-listing-detail', $data);  
     }
 }

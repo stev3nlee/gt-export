@@ -136,20 +136,24 @@
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
                                     <div class="pos-rel">                                        
-                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @endif
                                         <div class="abs-get">
-                                            <a href="#">Get Quote</a>
+                                        @if(session()->has('email'))
+                                            <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @else
+                                            <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @endif
                                         </div>
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
+                                                    <div class="year">{{ $product->registration_year }}</div>
+                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     @if($product->price)

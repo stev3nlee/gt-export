@@ -95,7 +95,11 @@
                                         @endif
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
-                                            <a href="#">Get Quote</a>
+                                        @if(session()->has('email'))
+                                            <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @else
+                                            <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @endif
                                         </div>
                                         @endif
                                     </div>

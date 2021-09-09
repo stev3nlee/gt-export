@@ -68,12 +68,12 @@
                     <div class="l-detail-t2">Engine</div>
                 </li>
                 <li>
-                    <div class="l-detail-t1">Automatic</div>
+                    <div class="l-detail-t1">@if(isset($product->transmission[0])) {{ $product->transmission[0]->name }} @endif</div>
                     <div class="l-detail-t2">Transmission</div>
                 </li>
                 <li>
-                    <div class="l-detail-t1">Petrol</div>
-                    <div class="l-detail-t2">Fue</div>
+                    <div class="l-detail-t1">{{ $product->fuel }}</div>
+                    <div class="l-detail-t2">Fuel</div>
                 </li>
             </ul>
             <div class="text1">
@@ -81,8 +81,104 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
+                                <div class="col-4 my-auto left">Registeration Year/Month</div>
+                                <div class="col-8 my-auto right">{{$product->registeration_year  ?? '-'}}/{{$product->registeration_month  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Manufacture Year/Month</div>
+                                <div class="col-8 my-auto right">{{$product->manufacture_year  ?? '-'}}/{{$product->manufacture_month  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Engine No</div>
+                                <div class="col-8 my-auto right">{{$product->engine_no  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Steering</div>
+                                <div class="col-8 my-auto right">{{$product->steering  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Drive Type Ability</div>
+                                <div class="col-8 my-auto right">{{$product->drive_type  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Color</div>
+                                <div class="col-8 my-auto right">{{$product->color  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Engine Code</div>
+                                <div class="col-8 my-auto right">{{$product->engine_code  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Number of Doors</div>
+                                <div class="col-8 my-auto right">{{$product->number_of_doors  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Seats</div>
+                                <div class="col-8 my-auto right">{{$product->seats  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Total Seats</div>
+                                <div class="col-8 my-auto right">{{$product->total_seats  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Weight(kg)</div>
+                                <div class="col-8 my-auto right">{{$product->weight  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Total weight(kg)</div>
+                                <div class="col-8 my-auto right">{{$product->total_weight  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                   <!--  <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
                                 <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
+                                <div class="col-8 my-auto right"></div>
                             </div>
                         </div>
                     </div>
@@ -141,148 +237,16 @@
                                 <div class="col-8 my-auto right">Category1</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="bdr"></div>
             <div class="t2">Exterior Features</div>
             <div class="text2">
                 <div class="text2-row">
-                    @foreach($product->accessories as $acc)
-                    {{ $acc->name }}
+                    @foreach($accessories as $accs)
+                    <div class="text2-col"><div class="text2-bdr @foreach($product->accessories as $acc) @if($acc->id == $accs->id) active @endif @endforeach">{{ $accs->name }}</div></div>
                     @endforeach
-                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
-                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
                 </div>
             </div>
             <div class="bdr"></div>

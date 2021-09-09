@@ -522,7 +522,7 @@
             $('#modal-login').modal('toggle');
             $('#modal-register').modal('hide');
             $('#modal-guest').modal('hide');
-            $('body').addClass('no-scroll');
+            $('body').addClass('scroll');
             $('.modal').addClass('scroll');
             $('#product-quote-guest').val(product_quote);
         });
