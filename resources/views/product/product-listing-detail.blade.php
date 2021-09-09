@@ -69,7 +69,7 @@
                         <div class="buy">Buy it at</div>
                         <div class="price">$ 500,000</div>
                         <div class="add">
-                            <a href="">
+                            <a href="{{ URL::to('/contact-us') }}">
                                 <button type="button" class="hvr-button full100">Ask for Quote</button>
                             </a>
                         </div>
@@ -85,199 +85,237 @@
             </div>
             <div class="t1">Car Details</div>
             <div class="t2">Economy & Performance</div>
-            <div class="row text1">
-                <div class="col-md-6">
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+            <ul class="l-detail">
+                <li>
+                    <div class="l-detail-t1">100,000 km</div>
+                    <div class="l-detail-t2">Mileage</div>
+                </li>
+                <li>
+                    <div class="l-detail-t1">2014</div>
+                    <div class="l-detail-t2">Year</div>
+                </li>
+                <li>
+                    <div class="l-detail-t1">2,000cc</div>
+                    <div class="l-detail-t2">Engine</div>
+                </li>
+                <li>
+                    <div class="l-detail-t1">Automatic</div>
+                    <div class="l-detail-t2">Transmission</div>
+                </li>
+                <li>
+                    <div class="l-detail-t1">Petrol</div>
+                    <div class="l-detail-t2">Fue</div>
+                </li>
+            </ul>
+            <div class="text1">
+                <div class="text1-row">
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb15">
-                        <div class="row">
-                            <div class="col-6 my-auto"><div class="bold">Engine Power</div></div>
-                            <div class="col-6 my-auto">190 bhp</div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Category1</div>
+                                <div class="col-8 my-auto right">Category1</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="bdr"></div>
             <div class="t2">Exterior Features</div>
-            <div class="row text2">
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
+            <div class="text2">
+                <div class="text2-row">
+                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr active">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
+                    <div class="text2-col"><div class="text2-bdr">360 Degree Camera</div></div>
                 </div>
             </div>
             <div class="bdr"></div>
             <div class="t2">Technical</div>
-            <div class="text3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb15">Power Steering</div>
-                    </div>
-                </div>
-            </div>
+            <div class="text3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. A gravida tempor tristique dignissim velit. Ut ante ultrices lectus arcu id leo.</div>
             <div class="bdr"></div>
         </div>
         <div class="banner" style="background: url('images/banner-detail.jpg') no-repeat center;">
@@ -287,7 +325,7 @@
                     <p>Get in touch with our sales partner for more information.</p>
                 </div>
                 <div class="link">
-                    <a href="">
+                    <a href="{{ URL::to('/contact-us') }}">
                         <button type="button" class="hvr-button">Get Quote</button>
                     </a>
                 </div>
