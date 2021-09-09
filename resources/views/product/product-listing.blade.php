@@ -89,20 +89,22 @@
                             <div class="col-md-6 col-lg-4">
                                 <div class="item">
                                     <div class="pos-rel">                                        
-                                        <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
+                                        <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @endif
+                                        @if($product->reserve == 0)
                                         <div class="abs-get">
                                             <a href="#">Get Quote</a>
                                         </div>
+                                        @endif
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <div class="year">2015</div>
-                                                    <div class="nm">Mercedes-Benz</div> <div class="merk">Class CLA180</div>
+                                                    <div class="year">{{ $product->registration_year }}</div>
+                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     @if($product->price)

@@ -17242,25 +17242,91 @@ footer .cp {
 #main .css-detail .mb15 {
   margin-bottom: 15px;
 }
-#main .css-detail .text1 {
-  font-size: 17px;
-  line-height: 21px;
+#main .css-detail ul.l-detail {
+  margin: 0 0 40px;
+  padding: 0;
+  text-align: center;
 }
-#main .css-detail .text1 .bold {
+#main .css-detail ul.l-detail li {
+  display: inline-block;
+  border-right: 1px solid #bababa;
+  padding-right: 40px;
+  margin-right: 40px;
+}
+#main .css-detail ul.l-detail li:last-child {
+  border-right: 0;
+  padding-right: 0;
+  margin-right: 0;
+}
+#main .css-detail ul.l-detail li .l-detail-t1 {
+  color: #000000;
+  font-size: 32px;
+  margin-bottom: 25px;
+  line-height: 37px;
+}
+#main .css-detail ul.l-detail li .l-detail-t2 {
+  color: #000000;
   font-family: "Quicksand-Bold";
-}
-#main .css-detail .text2 .abs {
-  position: absolute;
-  top: -2px;
-  left: 0;
-}
-#main .css-detail .text2 .abs img {
-  width: 15px;
-}
-#main .css-detail .text2 .t {
-  padding: 0 40px 0 25px;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 21px;
+}
+#main .css-detail .text1 .text1-row {
+  border: 1px solid #ADADAD;
+  border-right: 0;
+  border-top: 0;
+  display: flex;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+#main .css-detail .text1 .text1-row .text1-col {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+#main .css-detail .text1 .text1-row .text1-col .text1-bdr {
+  color: #8a8a8a;
+  padding: 0 15px;
+  font-size: 14px;
+  height: 100%;
+  line-height: 20px;
+}
+#main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
+  border-top: 1px solid #ADADAD;
+  border-right: 1px solid #adadad;
+  padding: 10px 20px;
+  font-family: "Quicksand-Bold";
+  background-color: #f5f5f5;
+}
+#main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
+  border-right: 1px solid #adadad;
+  border-top: 1px solid #ADADAD;
+  padding: 10px 20px;
+}
+#main .css-detail .text2 .text2-row {
+  display: flex;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+#main .css-detail .text2 .text2-row .text2-col {
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-bottom: 10px;
+  flex: 0 0 16.6666666667%;
+  max-width: 16.6666666667%;
+}
+#main .css-detail .text2 .text2-row .text2-col .text2-bdr {
+  color: #8a8a8a;
+  padding: 15px 15px;
+  border: 1px solid #ADADAD;
+  text-align: center;
+  font-size: 15px;
+  height: 100%;
+  line-height: 22px;
+}
+#main .css-detail .text2 .text2-row .text2-col .text2-bdr.active {
+  background: #F8FB81;
+  filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
 }
 #main .css-detail .text3 {
   font-size: 17px;
@@ -18992,20 +19058,26 @@ input[type=file] {
   #main .css-detail .mb15 {
     margin-bottom: 10px;
   }
-  #main .css-detail .text1 {
-    font-size: 15px;
-    line-height: 20px;
+  #main .css-detail ul.l-detail {
+    margin: 0 0 30px;
   }
-  #main .css-detail .text2 .abs {
-    top: -3px;
+  #main .css-detail ul.l-detail li {
+    padding-right: 20px;
+    margin-right: 20px;
   }
-  #main .css-detail .text2 .abs img {
-    width: 12px;
+  #main .css-detail ul.l-detail li .l-detail-t1 {
+    font-size: 23px;
+    margin-bottom: 15px;
+    line-height: 30px;
   }
-  #main .css-detail .text2 .t {
-    padding: 0 30px 0 20px;
+  #main .css-detail ul.l-detail li .l-detail-t2 {
     font-size: 14px;
-    line-height: 20px;
+    line-height: 19px;
+  }
+  #main .css-detail .text2 .text2-row .text2-col .text2-bdr {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 19px;
   }
   #main .css-detail .text3 {
     font-size: 15px;
@@ -19802,19 +19874,44 @@ input[type=file] {
   #main .css-detail .bdr {
     margin: 10px 0 20px;
   }
-  #main .css-detail .text1 {
-    font-size: 14px;
+  #main .css-detail ul.l-detail li {
+    padding-right: 15px;
+    margin-right: 15px;
   }
-  #main .css-detail .text2 .abs {
-    top: -5px;
+  #main .css-detail ul.l-detail li .l-detail-t1 {
+    font-size: 17px;
+    margin-bottom: 10px;
+    line-height: 25px;
   }
-  #main .css-detail .text2 .abs img {
-    width: 10px;
-  }
-  #main .css-detail .text2 .t {
-    padding: 0 0 0 18px;
+  #main .css-detail ul.l-detail li .l-detail-t2 {
     font-size: 13px;
-    line-height: 18px;
+    line-height: 17px;
+  }
+  #main .css-detail .text1 .text1-row {
+    display: block;
+    margin-bottom: 30px;
+  }
+  #main .css-detail .text1 .text1-row .text1-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  #main .css-detail .text1 .text1-row .text1-col .text1-bdr {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  #main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
+    padding: 10px 15px;
+  }
+  #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
+    padding: 10px 15px;
+  }
+  #main .css-detail .text2 .text2-row .text2-col {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+  #main .css-detail .text2 .text2-row .text2-col .text2-bdr {
+    font-size: 12px;
+    line-height: 15px;
   }
   #main .css-detail .text3 {
     font-size: 14px;
@@ -20293,5 +20390,24 @@ input[type=file] {
   }
   footer ul.l-soc li a {
     font-size: 18px;
+  }
+}
+@media (max-width: 500px) {
+  #main .css-detail ul.l-detail {
+    margin: 0 0 10px;
+  }
+  #main .css-detail ul.l-detail li {
+    padding-right: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+  }
+  #main .css-detail ul.l-detail li .l-detail-t1 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    line-height: 22px;
+  }
+  #main .css-detail ul.l-detail li .l-detail-t2 {
+    font-size: 12px;
+    line-height: 15px;
   }
 }

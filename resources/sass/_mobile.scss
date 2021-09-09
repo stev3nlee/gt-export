@@ -334,20 +334,51 @@
 	        .bdr {
 	            margin: 10px 0 20px;
 	        }
-	        .text1 {
-	            font-size: 14px;
-	        }
-	        .text2 {
-	            .abs {
-	                top: -5px;
-	                img {
-	                    width: 10px;
+	        ul.l-detail {
+	            li {
+	                padding-right: 15px;
+	                margin-right: 15px;
+	                .l-detail-t1 {
+	                    font-size: 17px;
+	                    margin-bottom: 10px;
+	                    line-height: 25px;
+	                }
+	                .l-detail-t2 {
+	                    font-size: 13px;
+	                    line-height: 17px;
 	                }
 	            }
-	            .t {
-	                padding: 0 0 0 18px;
-	                font-size: 13px;
-	                line-height: 18px;
+	        }
+	        .text1 {
+	            .text1-row {
+	                display: block;
+	                margin-bottom: 30px;
+	                .text1-col {
+	                    flex: 0 0 100%;
+	                    max-width: 100%;
+	                    .text1-bdr {
+	                        font-size: 12px;
+	                        line-height: 15px;
+	                        .left {
+	                            padding: 10px 15px;
+	                        }
+	                        .right {
+	                            padding: 10px 15px;
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	        .text2 {
+	            .text2-row {
+	                .text2-col {
+	                    flex: 0 0 33.333%;
+	                    max-width: 33.333%;
+	                    .text2-bdr {
+	                        font-size: 12px;
+	                        line-height: 15px;
+	                    }
+	                }
 	            }
 	        }
 	        .text3 {

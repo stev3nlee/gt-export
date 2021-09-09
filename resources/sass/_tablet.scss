@@ -239,21 +239,31 @@
 	        .mb15 {
 	            margin-bottom: 10px;
 	        }
-	        .text1 {
-	            font-size: 15px;
-	            line-height: 20px;
-	        }
-	        .text2 {
-	            .abs {
-	                top: -3px;
-	                img {
-	                    width: 12px;
+	        ul.l-detail {
+	            margin: 0 0 30px;
+	            li {
+	                padding-right: 20px;
+	                margin-right: 20px;
+	                .l-detail-t1 {
+	                    font-size: 23px;
+	                    margin-bottom: 15px;
+	                    line-height: 30px;
+	                }
+	                .l-detail-t2 {
+	                    font-size: 14px;
+	                    line-height: 19px;
 	                }
 	            }
-	            .t {
-	                padding: 0 30px 0 20px;
-	                font-size: 14px;
-	                line-height: 20px;
+	        }
+	        .text2 {
+	            .text2-row {
+	                .text2-col {
+	                    .text2-bdr {
+	                        padding: 10px;
+	                        font-size: 14px;
+	                        line-height: 19px;
+	                    }
+	                }
 	            }
 	        }
 	        .text3 {

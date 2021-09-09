@@ -278,6 +278,10 @@
                               <label for="exampleInputEmail1">Remarks</label>
                               <textarea name="remarks" class="form-control my-editor">{{ isset($data) ? $data->remarks : old('remarks') }}</textarea>
                             </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Description</label>
+                              <textarea name="description" class="form-control my-editor">{{ isset($data) ? $data->description : old('description') }}</textarea>
+                            </div>
                           </div>
                         </div>
                         <div class="box">
