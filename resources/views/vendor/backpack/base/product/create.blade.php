@@ -14,7 +14,11 @@
 
 @section('content')
     <div class="row">
+      @if(isset($data))
+      <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/product/update') }}" enctype="multipart/form-data">
+      @else
       <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/product/insert') }}" enctype="multipart/form-data">
+      @endif
                       {!! csrf_field() !!}
         <div class="col-md-12">
             <div class="box box-default">
@@ -77,14 +81,22 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                     <select class="form-control" name="registration_year" required="required" id="registration_year" data-placeholder="Select Registration Year" style="width: 100%;">
-                                      <option>Select Registration Year</option>           
+                                      <option>Select Registration Year</option>   
+                                      {{ $last= date('Y')-20 }}
+                                      {{ $now = date('Y') }}
+
+                                      @for ($i = $now; $i >= $last; $i--)
+                                          <option value="{{ $i }}" @if(isset($data)) @if($data->registration_year == $i) selected @endif @else @if(old('registration_year') == $i) selected @endif @endif>{{ $i }}</option>
+                                      @endfor        
                                     </select>
                                     @if($errors->has('registration_year')) <span class="help-block">{{ $errors->first('registration_year') }}</span>  @endif
                                   </div>
                                   <div class="col-md-6">
                                     <select class="form-control" name="registration_month" required="required" id="registration_month" data-placeholder="Select Registration Month" style="width: 100%;">
                                       <option>Select Registration Month</option>
-                                                  
+                                      <?php for($i=1; $i<=12; $i++){ $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
+                                          <option value="{{ $month }}"  @if(isset($data)) @if($data->registration_month == $month) selected @endif @else @if(old('registration_month') == $month) selected @endif @endif>{{ $month }}</option>
+                                      <?php } ?>
                                     </select>
                                     @if($errors->has('registration_month')) <span class="help-block">{{ $errors->first('registration_month') }}</span>  @endif
                                   </div>
@@ -96,13 +108,21 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                     <select class="form-control" name="manufacture_year" required="required" id="manufacture_year" data-placeholder="Select Manufacture Year" style="width: 100%;">
-                                      <option>Select Manufacture Year</option>           
+                                      <option>Select Manufacture Year</option>     
+                                      {{ $last= date('Y')-20 }}
+                                      {{ $now = date('Y') }}
+
+                                      @for ($i = $now; $i >= $last; $i--)
+                                          <option value="{{ $i }}" @if(isset($data)) @if($data->manufacture_year == $i) selected @endif @else @if(old('manufacture_year') == $i) selected @endif @endif>{{ $i }}</option>
+                                      @endfor         
                                     </select>
                                   </div>
                                   <div class="col-md-6">
                                     <select class="form-control" name="manufacture_month" required="required" id="manufacture_month" data-placeholder="Select Manufacture Month" style="width: 100%;">
                                       <option>Select Manufacture Month</option>
-                                                  
+                                      <?php for($i=1; $i<=12; $i++){ $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
+                                          <option value="{{ $month }}" @if(isset($data)) @if($data->manufacture_month == $month) selected @endif @else @if(old('manufacture_month') == $month) selected @endif @endif>{{ $month }}</option>
+                                      <?php } ?>
                                     </select>
                                   </div>
                                 </div>
@@ -112,13 +132,13 @@
                                 <label for="exampleInputEmail1">Mileage  <span style="color: red">*</span></label>
                                 <div class="row">
                                   <div class="col-md-6">
-                                    <input type="number" step=0.01 name="mileage" class="form-control">
+                                    <input type="number" step=0.01 name="mileage" required class="form-control" value="{{ isset($data) ? $data->mileage : old('mileage') }}">
                                     @if($errors->has('mileage')) <span class="help-block">{{ $errors->first('mileage') }}</span>  @endif
                                   </div>
                                   <div class="col-md-6">
                                     <select class="form-control" name="mileage_km" required="required" id="mileage_km" style="width: 100%;">
-                                      <option>KM</option>
-                                      <option>Miles</option>          
+                                      <option value="KM" @if(isset($data)) @if($data->mileage_km == 'KM') selected @endif @else @if(old('mileage_km') == 'KM') selected @endif @endif>KM</option>
+                                      <option value="Miles" @if(isset($data)) @if($data->mileage_km == 'Miles') selected @endif @else @if(old('mileage_km') == 'Miles') selected @endif @endif>Miles</option>          
                                     </select>
                                     @if($errors->has('mileage_km')) <span class="help-block">{{ $errors->first('mileage_km') }}</span>  @endif
                                   </div>
@@ -127,26 +147,23 @@
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Engine Capacity (cc) <span style="color: red">*</span></label>
-                              <input type="text" name="engine_capacity" class="form-control">
+                              <input type="text" name="engine_capacity" required class="form-control" value="{{ isset($data) ? $data->engine_capacity : old('engine_capacity') }}">
                               @if($errors->has('engine_capacity')) <span class="help-block">{{ $errors->first('engine_capacity') }}</span>  @endif
                             </div>
 
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Engine No</label>
-                              <input type="text" name="engine_no" class="form-control">
+                              <label for="exampleInputEmail1">Engine No</label> 
+                              <input type="text" name="engine_no" class="form-control" value="{{ isset($data) ? $data->engine_no : old('engine_no') }}">
                             </div>
 
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Fuel  <span style="color: red">*</span></label>
+                              <label for="exampleInputEmail1">Fuel <span style="color: red">*</span></label>
                               <select class="form-control" name="fuel" required="required" id="fuel" data-placeholder="Select Fuel" style="width: 100%;">
-                                <option>Select Fuel</option>
-                                <option>CNG</option>
-                                <option>Diesel</option>
-                                <option>Electric</option>
-                                <option>Hybrid (Diesel)</option>
-                                <option>Hybrid (Petrol)</option>
-                                <option>LPG</option>
-                                <option>Other Petro</option>
+                                <?php $fuels = array('CNG','Diesel','Electric','Hybrid (Diesel)','Hybrid (Petrol)','LPG','Other Petro') ?>
+                                <option value="">Select Fuel</option>
+                                @foreach($fuels as $fuel)
+                                <option value="{{ $fuel }}" @if(isset($data)) @if($data->fuel == $fuel) selected @endif @else @if(old('fuel') == $fuel) selected @endif @endif>{{ $fuel }}</option>
+                                @endforeach
                               </select>
                               @if($errors->has('fuel')) <span class="help-block">{{ $errors->first('fuel') }}</span>  @endif
                             </div>
@@ -154,9 +171,9 @@
                             <div class="form-group">
                               <label for="exampleInputEmail1">Steering  <span style="color: red">*</span></label>
                               <select class="form-control" name="steering" required="required" id="steering" data-placeholder="Select Steering" style="width: 100%;">
-                                <option>Left</option>
-                                <option>Center</option>
-                                <option>Right</option>
+                                <option value="Left" @if(isset($data)) @if($data->steering == 'Left') selected @endif @else @if(old('steering') == 'Left') selected @endif @endif>Left</option>
+                                <option value="Center" @if(isset($data)) @if($data->steering == 'Center') selected @endif @else @if(old('steering') == 'Center') selected @endif @endif>Center</option>
+                                <option value="Right" @if(isset($data)) @if($data->steering == 'Right') selected @endif @else @if(old('steering') == 'Right') selected @endif @endif>Right</option>
                               </select>
                               @if($errors->has('steering')) <span class="help-block">{{ $errors->first('steering') }}</span>  @endif
                             </div>
@@ -166,7 +183,7 @@
                               <select class="form-control" name="transmission[]" required="required" id="transmission" data-placeholder="Select Transmission" style="width: 100%;">
                                 <option>Select Transmission</option>
                                 @foreach($transmissions as $transmission)
-                                  <option value="{{$transmission->id}}">{{ $transmission->name }}</option>
+                                  <option value="{{$transmission->id}}"  @if(isset($data)) @if($data->transmission[0]->id == $transmission->id) selected @endif @else @if(old('transmission') == $transmission->id) selected @endif @endif>{{ $transmission->name }}</option>
                                 @endforeach
                               </select>
                               @if($errors->has('transmission')) <span class="help-block">{{ $errors->first('transmission') }}</span>  @endif
@@ -176,18 +193,18 @@
                               <label for="exampleInputEmail1">Drive Type</label>
                               <select class="form-control" name="drive_type" id="drive_type" data-placeholder="Select Drive Type" style="width: 100%;">
                                 <option value="">Select Drive Type</option>
-                                <option value="2WD">2WD</option>
-                                <option value="4WD">4WD</option>
+                                <option value="2WD" @if(isset($data)) @if($data->drive_type == '2WD') selected @endif @else @if(old('drive_type') == '2WD') selected @endif @endif>2WD</option>
+                                <option value="4WD" @if(isset($data)) @if($data->drive_type == '4WD') selected @endif @else @if(old('drive_type') == '4WD') selected @endif @endif>4WD</option>
                               </select>
-                              @if($errors->has('steering')) <span class="help-block">{{ $errors->first('steering') }}</span>  @endif
                             </div>
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Color <span style="color: red">*</span></label>
-                              <select class="form-control" name="color[]" required="required" id="transmission" data-placeholder="Select Color" style="width: 100%;">
-                                <option>Select Color</option>
-                                @foreach($transmissions as $transmission)
-                                  <option value="{{$transmission->id}}">{{ $transmission->name }}</option>
+                              <select class="form-control" name="color" required="required" id="color" data-placeholder="Select Color" style="width: 100%;">
+                              <?php $colors = array('Beige','Black','Blue','Bronze','Brown','Gold','Gray','Green','Maroon','Orange','Pearl','Pink','Purple','Red','Silver','White','Yellow','Other') ?>
+                                <option value>Select Color</option>
+                                @foreach($colors as $color)
+                                  <option value="{{$color}}" @if(isset($data)) @if($data->color == $color) selected @endif @else @if(old('color') == $color) selected @endif @endif>{{ $color }}</option>
                                 @endforeach
                               </select>
                               @if($errors->has('color')) <span class="help-block">{{ $errors->first('color') }}</span>  @endif
@@ -195,35 +212,35 @@
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Engine Code</label>
-                              <input type="text" name="engine_code" class="form-control">
+                              <input type="text" name="engine_code" class="form-control"  value="{{ isset($data) ? $data->engine_code : old('engine_code') }}">
                             </div>
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Number of Doors <span style="color: red">*</span></label>
-                              <input type="text" name="number_of_doors" required class="form-control">
+                              <input type="text" name="number_of_doors" required class="form-control"  value="{{ isset($data) ? $data->number_of_doors : old('number_of_doors') }}">
                               @if($errors->has('number_of_doors')) <span class="help-block">{{ $errors->first('number_of_doors') }}</span>  @endif
                             </div>
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Seats <span style="color: red">*</span></label>
-                              <input type="number" name="seats" required class="form-control">
+                              <input type="number" name="seats" required class="form-control" value="{{ isset($data) ? $data->seats : old('seats') }}">
                               @if($errors->has('seats')) <span class="help-block">{{ $errors->first('seats') }}</span>  @endif
                             </div>
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Total Seats </label>
-                              <input type="number" name="total_seats" class="form-control">
+                              <input type="number" name="total_seats" class="form-control"  value="{{ isset($data) ? $data->total_seats : old('total_seats') }}">
                             </div>
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Weight (kg)</label>
-                              <input type="number" step="0.01" name="weight" class="form-control">
+                              <input type="number" step="0.01" name="weight" class="form-control" value="{{ isset($data) ? $data->weight : old('weight') }}">
                               @if($errors->has('weight')) <span class="help-block">{{ $errors->first('weight') }}</span>  @endif
                             </div>
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Total Weight (kg)</label>
-                              <input type="number" step="0.01" name="total_weight" class="form-control">
+                              <input type="number" step="0.01" name="total_weight" class="form-control" value="{{ isset($data) ? $data->total_weight : old('total_weight') }}">
                               @if($errors->has('total_weight')) <span class="help-block">{{ $errors->first('total_weight') }}</span>  @endif
                             </div>
 
@@ -244,7 +261,7 @@
                               <label for="exampleInputEmail1">Trade Price <span style="color: red">*</span></label>
                               <div class="input-group">
                                 <span class="input-group-addon">USD</span>
-                                <input type="number" min=0 step=".01" name="price" required class="form-control" id="price">
+                                <input type="number" min=0 step=".01" name="price" required class="form-control" id="price" value="{{ isset($data) ? $data->price : old('price') }}">
                                 @if($errors->has('price')) <span class="help-block">{{ $errors->first('price') }}</span>  @endif
                               </div>
                             </div>
@@ -259,7 +276,7 @@
                           <div class="box-body">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Remarks</label>
-                              <textarea name="remarks" class="form-control my-editor"></textarea>
+                              <textarea name="remarks" class="form-control my-editor">{{ isset($data) ? $data->remarks : old('remarks') }}</textarea>
                             </div>
                           </div>
                         </div>
@@ -274,7 +291,13 @@
                                </span>
                                <input id="thumbnail_image" class="form-control" type="text" name="thumbnail">
                              </div>
-                             <div id="holder_thumbnail" style="margin-top:15px;max-height:300px;"></div>
+                             <div id="holder_thumbnail" style="margin-top:15px;max-height:300px;">
+                               @if(isset($data))
+                                 @if($data->thumbnail)
+                                  <img style="height: 10rem" src="{{ $data->thumbnail }}">
+                                 @endif
+                                @endif
+                             </div>
                              <br>
 
                             <label for="exampleInputEmail1">Image</label>
@@ -286,48 +309,36 @@
                                </span>
                                <input id="thumbnail" class="form-control" type="text" name="image">
                              </div>
-                             <div id="holder" style="margin-top:15px;max-height:300px;"></div>
+                             <div id="holder" style="margin-top:15px;max-height:300px;">
+                              @if(isset($data))
+                               @if(count($data->product_image)>0)
+                                @foreach($data->product_image as $image)
+                                <img style="height: 10rem" src="{{ $image->image }}">
+                                @endforeach
+                               @endif
+                              @endif
+                             </div>
                              <br>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Features</label>
                           <div class="row">
+                            @foreach($accessories as $acc)
                             <div class="col-md-3">
                               <div class="checkbox">
                                 <label>
-                                  <input type="checkbox">
-                                  Checkbox 1
+                                  <input type="checkbox" name="accessories[]" value="{{ $acc->id }}" @if(isset($data)) @foreach($data->accessories as $access) @if($access->id == $acc->id) checked @endif @endforeach @else @endif>
+                                  {{ $acc->name }}
                                 </label>
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox">
-                                  Checkbox 1
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox">
-                                  Checkbox 1
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox">
-                                  Checkbox 1
-                                </label>
-                              </div>
-                            </div>
+                            @endforeach
                           </div>
                         </div>
-
+                        @if(isset($data))
+                        <input type="hidden" name="id" value="{{ $data->id }}">
+                        @endif
                       </div>
                       <div class="box-body">
                         <div class="col-md-12">

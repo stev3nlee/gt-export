@@ -125,101 +125,20 @@
             <div class="bdr"></div>
             <div class="t2">Exterior Features</div>
             <div class="row text2">
+                @foreach($product->accessories as $acc)
                 <div class="col-md-4">
                     <div class="pos-rel mb15">
                         <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
+                        <div class="t"> {{ $acc->name }}</div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="pos-rel mb15">
-                        <div class="abs"><img src="{{ asset('images/correct.png') }}" alt="" title=""/></div>
-                        <div class="t"> Glass - Rear Windows heated with Timer Control</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="bdr"></div>
             <div class="t2">Technical</div>
             <div class="text3">
-                <div class="row">
+                {!! $product->remarks !!}
+<!--                 <div class="row">
                     <div class="col-md-4">
                         <div class="mb15">Power Steering</div>
                     </div>
@@ -247,7 +166,7 @@
                     <div class="col-md-4">
                         <div class="mb15">Power Steering</div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="bdr"></div>
         </div>

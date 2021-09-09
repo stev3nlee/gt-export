@@ -28,7 +28,6 @@ class AddColumnToProductTable extends Migration
             $table->string('engine_no')->nullable();
             $table->string('fuel')->nullable();
             $table->string('steering')->nullable();
-            $table->string('transmission')->nullable();
             $table->string('drive_type')->nullable();
             $table->string('color')->nullable();
             $table->string('engine_code')->nullable();
