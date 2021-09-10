@@ -31,12 +31,6 @@ class SendEmailAdmin implements ShouldQueue
      */
     public function handle()
     {
-        if($this->data['label'] == 'newsletter'){
-            Mail::send(new GtExportEmail($this->data));
-        }else if($this->data['label'] == 'contact us'){
-            Mail::send(new GtExportEmail($this->data));
-        }else{
-            Mail::send(new GtExportEmail($this->data));
-        }
+        Mail::send(new GtExportEmail($this->data));
     }
 }

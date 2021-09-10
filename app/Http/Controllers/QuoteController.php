@@ -135,8 +135,8 @@ class QuoteController extends BaseController
                 'email_view' => 'email.email_quotation',
                 'url'=>url('/'),
             );
-            //dispatch(new SendEmailAdmin($data_admin));
-            //dispatch(new SendEmail($data_member));
+            dispatch(new SendEmailAdmin($data_admin));
+            dispatch(new SendEmail($data_member));
         });
 
 

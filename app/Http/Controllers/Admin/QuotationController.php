@@ -141,7 +141,7 @@ class QuotationController extends Controller
     {
         $quotation_id = $request->quotation_id;
         if ($quotation_id) {
-            return Quotation::with(['product'])->find($quotation_id);
+            return Quotation::with(['product.model'])->find($quotation_id);
         }
     }
 }

@@ -174,70 +174,6 @@
                             </div>
                         </div>
                     </div>
-                   <!--  <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-4 my-auto left">Category1</div>
-                                <div class="col-8 my-auto right">Category1</div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="bdr"></div>
@@ -254,7 +190,7 @@
             <div class="text3">{!! $product->remarks !!}</div>
             <div class="bdr"></div>
         </div>
-        <div class="banner" style="background: url('images/banner-detail.jpg') no-repeat center;">
+        <div class="banner" style="background: url('{{ asset('images/banner-detail.jpg') }}') no-repeat center;">
             <div class="container">
                 <div class="t-banner">Interested?</div>
                 <div class="bdy-banner">

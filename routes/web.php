@@ -269,11 +269,12 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::post('invoice/exportToExcel', 'Admin\InvoiceController@exportOrderToExcel');
         Route::get('invoice/create', 'Admin\InvoiceController@create');
         Route::get('invoice/detail/{id}', 'Admin\InvoiceController@detail');
+        Route::get('invoice/edit/{id}', 'Admin\InvoiceController@edit');
         Route::post('invoice/insert', 'Admin\InvoiceController@insert');
         Route::post('invoice/update', 'Admin\InvoiceController@update');
         Route::patch('invoice/update/shipping_status', 'Admin\InvoiceController@updateShippingStatus');
         Route::post('invoice/exportToCsv', 'Admin\InvoiceController@exportCstarOrderToCsv');
-        Route::post('invoice/id/{id}/export/billing', 'Admin\InvoiceController@exportBillingOrder');
+        Route::post('invoice/id/{id}/export/invoice', 'Admin\InvoiceController@exportInvoice');
         Route::post('invoice/id/{id}/export/shipping', 'Admin\InvoiceController@exportShippingOrder');
         Route::get('invoice/delete/{id}', 'Admin\InvoiceController@delete');
         Route::post('invoice/exportShipping', 'Admin\InvoiceController@exportShipping');

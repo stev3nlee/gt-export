@@ -266,59 +266,28 @@
                 type: 'POST',
                 data: { quotation_id: this.value, order_id: order_id, _token: token }
             }).done(function(data) {
-              if(data.shipping_address){
-                $('#city-value').val(data.shipping_address.city);
-                $('#regency-value').val(data.shipping_address.district);
-                $('#fname').val(data.shipping_address.first_name);
-                $('#lname').val(data.shipping_address.last_name);
-                $('#phone').val(data.shipping_address.phone_number);
-                $('#email').val(data.shipping_address.email);
-                $('#country').val(data.shipping_address.country).change();
-                $('#province').val(data.shipping_address.province).change();
-                $('#address').val(data.shipping_address.address);
-                $('#postal').val(data.shipping_address.zip_code);
-              }else if(data.order_shipping_address){
-                $('#city-value').val(data.order_shipping_address.city);
-                $('#regency-value').val(data.order_shipping_address.district);
-                $('#fname').val(data.order_shipping_address.first_name);
-                $('#lname').val(data.order_shipping_address.last_name);
-                $('#phone').val(data.order_shipping_address.phone_number);
-                $('#email').val(data.order_shipping_address.email);
-                $('#country').val(data.order_shipping_address.country).change();
-                $('#province').val(data.order_shipping_address.province).change();
-                $('#address').val(data.order_shipping_address.address);
-                $('#postal').val(data.order_shipping_address.postal_code);
-              }else{
-                $('#fname').val('');
-                $('#lname').val('');
-                $('#phone').val('');
-                $('#email').val('');
-                $('#country').val('');
-                $('#province').val('').change();
-                $('#city').val('').change();
-                $('#address').val('');
-                $('#postal').val('');
-                $('#city-value').val('');
-                $('#regency-value').val('');
-              }
               var i = 0;
               $('#detail-table').find('tbody').html('');
-                for (var key in data.product) {
+                //for (var key in data.product) {
                     addRow(u)
-                    //calculateSubtotal(data.detail[key].amount);
+                    console.log(data.product.color);
+                    //calculateSubtotal(data.price);
                     //calculateTotal();
-                    $('#shipping_fee').val(parseInt(data.delivery_fee));
+                    //$('#shipping_fee').val(parseInt(data.delivery_fee));
                     //$('.item-row-'+u+'').eq(i).val(data.detail[key].id);
-                    $('.packing-detail-id-'+u+'').eq(i).val(data.detail[key].id);
-                    $('.cubic-row-'+u+'').eq(i).val(data.detail[key].total_cubic);
-                    $('.colly-row-'+u+'').eq(i).val(data.detail[key].colly);
-                    $('.item-name-'+u+'').eq(i).val(data.detail[key].item_description);
-                    $('.booking-row-'+u+'').eq(i).val(data.detail[key].booking_no);
-                     $('.quantity-row-'+u+'').eq(i).val(data.detail[key].quantity);
-                    //$('.price-row-'+u+'').eq(i).val(data.detail[key].price);
+                    //$('.packing-detail-id-'+u+'').eq(i).val(data.detail[key].id);
+                    $('.make-model-row-'+u+'').eq(i).val(data.product.model[0].name);
+                    $('.product-id-row-'+u+'').eq(i).val(data.product.id);
+                    $('.colour-row-'+u+'').eq(i).val(data.product.color);
+                    $('.engine-cap-row-'+u+'').eq(i).val(data.product.engine_capacity);
+                    $('.mileage-row-'+u+'').eq(i).val(data.product.mileage);
+                    $('.chassis-no-row-'+u+'').eq(i).val(data.product.chassis_no);
+                    $('.engine-no-row-'+u+'').eq(i).val(data.product.engine_no);
+                    $('.amount-row-'+u+'').eq(i).val(data.price);
+                    calculateSubtotal();
                        
                     i++;
-                }
+                //}
 
               
             }).fail(function() {
@@ -374,7 +343,7 @@
             '<td><input type="text" class="form-control engine_cap engine-cap-row-'+id+'" name="detail[engine_cap][]"></td>' +
             '<td><input type="text" class="form-control mileage mileage-row-'+id+'" name="detail[mileage][]"></td>' +
             '<td><input type="text" class="form-control chassis_no chassis-no-row-'+id+'" name="detail[chassis_no][]"></td>' +
-            '<td><input type="text" class="form-control engine_no angine-no-row-'+id+'" name="detail[engine_no][]"></td>' +
+            '<td><input type="text" class="form-control engine_no engine-no-row-'+id+'" name="detail[engine_no][]"></td>' +
             '<td><input type="number" step=0.01 class="form-control amount amount-row-'+id+'" name="detail[amount][]"></td>' +
             '</tr>';
                                         
@@ -415,7 +384,7 @@
             })
 
             $('input[name="subtotal"]').val( subtotal );
-           // $('#subtotal').number(subtotal, 3, ',', '.');
+           //$('#subtotal').number(subtotal, 3, ',', '.');
             $('#subtotal').html(subtotal);
             console.log(subtotal)
         calculateTotal();

@@ -14,7 +14,7 @@
         <tbody>
             <tr>
                 <td width="400" style="vertical-align:top;"> <img src="http://167.71.212.250/images/logo.svg" alt="Logo" style="height: 30px; margin-top: 10px;"> </td>
-                <td style="vertical-align:top; text-align: right; font-size: 8pt; line-height: 26px; color: #494949; font-family: 'Quicksand-Bold';">Invoice</td>
+                <td style="vertical-align:top; text-align: right; font-size: 8pt; line-height: 26px; color: #494949; font-family: 'Quicksand-Bold';">Proforma Invoice</td>
             </tr>
         </tbody>
     </table>
@@ -40,19 +40,19 @@
                     <table style="border-collapse: collapse; width: 100%; font-size: 7pt; line-height: 13px;">
                         <tr>
                             <td style="font-family: 'Quicksand-Bold'; width: 100px;">CONSIGNEE:</td>
-                            <td>JORDAN LEE KOK MENG</td>
+                            <td>{{ $invoice->quotation->first_name }} {{ $invoice->quotation->last_name }}</td>
                         </tr>
                         <tr>
                             <td style="font-family: 'Quicksand-Bold'; padding-bottom: 10px;">ADDRESS:</td>
-                            <td style="padding-bottom: 25px;">{{ $invoice->consignee_address }}</td>
+                            <td style="padding-bottom: 25px;">{{ $invoice->consignee_address }} </td>
                         </tr>
                         <tr>
                             <td style="font-family: 'Quicksand-Bold';">CONTACT:</td>
-                            <td>{{ $invoice->contact_no }}</td>
+                            <td>{{ $invoice->contact_no }} </td>
                         </tr>
                         <tr>
                             <td style="font-family: 'Quicksand-Bold';">EMAIL:</td>
-                            <td>{{ $invoice->email }}</td>
+                            <td>{{ $invoice->email }} </td>
                         </tr>
                     </table>
                 </td>
@@ -112,18 +112,18 @@
                 <th style="border:1px solid #000; background: #C4C4C4;text-align:center;padding:5px 10px;">CHASSIS NO.</th>
                 <th style="border:1px solid #000; background: #C4C4C4;text-align:center;padding:5px 10px;">ENGINE NO.</th>
             </tr>
-            @foreach($invoice->invoice_details as $item)
+            @foreach($invoice->invoice_details as $detail)
             <tr>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->vehicle_number }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->make_model }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->colour }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->ord }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->engine_cap }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->mileage }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->chassis_no }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->engine_no }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $item->amount }}</th>
-                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">$ {{ $item->amount }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->vehicle_number }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->make_model }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->colour }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->ord }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ date('d F Y', strtotime($detail->date)) }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->engine_cap }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->mileage }}KM</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->chassis_no }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">{{ $detail->engine_no }}</th>
+                <th style="border:1px solid #000; vertical-align: top;  border-bottom: 1px solid white;text-align:center;padding:5px 10px 0 10px;">$ {{ number_format($detail->amount, 2, '.', ',') }}</th>
             </tr>
             @endforeach
             <!-- <tr>
@@ -146,9 +146,9 @@
                     <div>Payment Due:</div>
                 </th>
                 <th style="border:1px solid #000;text-align:center;padding:5px 10px;">
+                    <div>$ {{ number_format($invoice->sub_total, 2, '.', ',') }}</</div>
                     <div>$ 13,000.00</div>
-                    <div>$ 13,000.00</div>
-                    <div>$ 13,000.00</div>
+                    <div>$ {{ number_format($invoice->total, 2, '.', ',') }}</</div>
                 </th>
             </tr>
             <tr>

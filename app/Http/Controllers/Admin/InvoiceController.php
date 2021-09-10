@@ -78,11 +78,13 @@ class InvoiceController extends Controller
     		//dd($request->all());
     	$quotation_id = $request->quotation_id;
     	if($quotation_id){
+            $quot = Quotation::find($quotation_id);
             $invoice = new Invoice;
             $invoice->invoice_number = $request->invoice_number;
             $invoice->quotation_id = $quotation_id;
-            //$invoice->sub_total = $request->subtotal;
-           //$invoice->total_price = $request->value;
+            $invoice->member_id = $quot->member_id;
+            $invoice->sub_total = $request->subtotal;
+            $invoice->total = $request->value;
             $invoice->consignee_address = $request->consignee_address;
             $invoice->contact_no = $request->contact_no;
             $invoice->email = $request->email;
@@ -100,7 +102,7 @@ class InvoiceController extends Controller
 
                         Invoice_detail::create([
                             'invoice_id' => $invoice->id,
-                            //'product_id' => $product_detail->id,
+                            'product_id' => $detail['product_id'][$key],
                             'vehicle_number' => $detail['vehicle_number'][$key],
                             'make_model' => $detail['make_model'][$key],
                             'colour' => $detail['colour'][$key],
@@ -174,20 +176,21 @@ class InvoiceController extends Controller
 
             $detail = $request->detail;
             if($detail){
-            	foreach($invoice->invoice_details as $check_detail){
-            		Product::where([
-                        'id' => $check_detail->product_id
-                    ])->increment(
-                        'stock', $check_detail->product_quantity
-                    );
-            		$check_detail->delete();
-            	}
+                $invoice->invoice_details()->delete();
+            	// foreach($invoice->invoice_details as $check_detail){
+            	// 	Product::where([
+             //            'id' => $check_detail->product_id
+             //        ])->increment(
+             //            'stock', 1
+             //        );
+            	// 	$check_detail->delete();
+            	// }
                 foreach ($detail['product_id'] as $key => $item) {
                 		$product_detail = Product::find($item);
 
                 		Invoice_detail::create([
                             'invoice_id' => $invoice->id,
-                            //'product_id' => $product_detail->id,
+                            'product_id' => $detail['product_id'][$key],
                             'vehicle_number' => $detail['vehicle_number'][$key],
                             'make_model' => $detail['make_model'][$key],
                             'colour' => $detail['colour'][$key],
@@ -579,8 +582,8 @@ class InvoiceController extends Controller
             'lang'=>Lang::getLocale(),
             'payment_type' => $payment_type,
         );
-        dispatch(new SendEmailAdmin($data_admin));
-        dispatch(new SendEmail($data_member));
+        //dispatch(new SendEmailAdmin($data_admin));
+        //dispatch(new SendEmail($data_member));
 
 		return back();
     }

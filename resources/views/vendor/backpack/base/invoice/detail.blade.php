@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        Invoice Detail
+        Quotation Detail
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">Invoice Detail</li>
+        <li class="active">Quotation Detail</li>
       </ol>
     </section>
 @endsection
@@ -17,7 +17,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Invoice
+        Quotation
         <small>#{{ $data->invoice_number }}</small>
       </h1>
     </section>
@@ -33,7 +33,7 @@
           
           <form role="form" class="pull-right" method="POST" action="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/id/' . $data->id . '/export/invoice') }}">
               @csrf
-              <button type="submit" class="btn btn-success">Export Invoice</button>
+              <button type="submit" class="btn btn-success">Export Quotation</button>
           </form>
 <!--           <form role="form" class="pull-right" method="POST" action="{{ url(config('backpack.base.route_prefix', 'admin').'/order/id/' . $data->id . '/export/shipping') }}" style="margin-right: 10px;">
               @csrf
@@ -55,7 +55,7 @@
           <address>
              {{ $data->quotation->first_name }} {{ $data->quotation->last_name }}<br>
             {!! $data->consignee_address !!}<br><br>
-            Contact No: {{ $data->quotation->phone_number }}<br>
+            Contact No: {{ $data->contact_no }}<br>
             Email: {{ $data->quotation->email }}
           </address>
         </div>
@@ -118,7 +118,7 @@
       <div class="clearfix" style="padding: 10px; margin-bottom: 20px;">
         <div style="float: left;width: 70%;">&nbsp;</div>
         <div style="float: left;width: 15%;text-align: right;"><b>Grand Total</b></div>
-        <div style="float: left;width: 15%;text-align: right;">{{ number_format($data->total_price ,0,",",".") }}</div>
+        <div style="float: left;width: 15%;text-align: right;">{{ number_format($data->total ,0,",",".") }}</div>
       </div>
 
 
