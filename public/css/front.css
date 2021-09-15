@@ -16729,6 +16729,7 @@ header .bg-menu {
 header .bg-menu.open {
   opacity: 1;
   top: calc(100% + 20px);
+  z-index: 9999;
 }
 header .bg-menu.open ul.l-menu li {
   display: inline-block;
