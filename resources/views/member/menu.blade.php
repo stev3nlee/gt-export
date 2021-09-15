@@ -5,7 +5,7 @@
         <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>
     @endif 
 </div>
-<div class="name">Dennis Tan</div>
+<div class="name">{{ $member->first_name }} {{ $member->last_name }}</div>
 <ul class="l-account">
 	<li><a href="{{ URL::to('/personal-info') }}" class="nav-info">Personal Information</a></li>
 	<li><a href="{{ URL::to('/transaction-history') }}" class="nav-trans">Transaction History</a></li>
