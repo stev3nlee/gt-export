@@ -17815,6 +17815,11 @@ footer .cp {
   font-size: 16px;
   line-height: 20px;
 }
+#main .css-account .right-account .mt20 {
+  margin-top: 20px;
+  font-size: 13px;
+  font-style: italic;
+}
 #main .css-account .right-account .link-account {
   margin: 20px 0 40px;
   padding: 40px 0;

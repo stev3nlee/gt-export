@@ -63,7 +63,7 @@
                                 </div>
                                 @endif
                             @else
-                                Currently you have not any quotations yet.
+                                <div class="mt20"> Currently you have not any transaction yet. </div>
                             @endif
                             </div>
                         </div>
