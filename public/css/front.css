@@ -16663,9 +16663,6 @@ header.account .link {
 header.account .link-account {
   display: block;
 }
-header .link-account {
-  display: none;
-}
 header .link-account a {
   display: inline-block;
   border: 1px solid #ECECEC;
