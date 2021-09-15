@@ -15,10 +15,28 @@ use Image;
 
 class ProductController extends Controller
 {
-    public function view()
+    public function view(Request $request)
     {
-        $data = Product::orderby('id','desc')->get();
-        return view('vendor.backpack.base.product.list', ['data' => $data]);
+        $data = Product::
+        when($request->keyword, function ($query) use ($request) {
+            $query->where([
+                    ['chassis_no', 'like', "%{$request->keyword}%"]
+                ]);
+        })
+        ->when($request->brand, function ($query) use ($request) {
+            $query->whereHas('brand', function($q) use($request) {
+                    $q->where('brand.id', '=', $request->brand); });
+        })->when($request->model, function ($query) use ($request) {
+            $query->whereHas('model', function($q) use($request) {
+                    $q->where('model.id', '=', $request->model); });
+        })->when($request->transmission, function ($query) use ($request) {
+            $query->whereHas('transmission', function($q) use($request) {
+                    $q->where('transmission.id', '=', $request->transmission); });
+        })->orderby('id','desc')->paginate(10)->withQueryString();
+        $models = Models::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
+        $transmissions = Transmission::where('status',1)->get();
+        return view('vendor.backpack.base.product.list', ['data' => $data, 'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
     }
     public function create()
     {
@@ -87,6 +105,7 @@ class ProductController extends Controller
             $product->total_weight = $request->input('total_weight');
             $product->remarks = $request->input('remarks');
             $product->thumbnail = $request->input('thumbnail');
+            $product->stock = rand(10000000,99999999);
             $product->save();
 
             $product->brand()->sync($brand);

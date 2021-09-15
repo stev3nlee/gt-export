@@ -144,8 +144,8 @@
                                         <td>USD {{ number_format($content->total ,0,",",".") }}</td>
                                         
                                         
-                                        <td>@if($content->last_billing_status != 'paid')
-                                            <a class="btn btn-info" onclick="return confirm('Are you want to set this invoice to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Set as Paid</a>
+                                        <td>@if($content->status != 'paid')
+                                            <a class="btn btn-info" onclick="return confirm('Are you want to set this quotation to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Confirm Payment</a>
                                             @else
                                             Paid
                                             @endif
@@ -153,7 +153,7 @@
                                         <td>
                                         <div class="table-actions-hover">
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/detail/'.$content->id) }}">Detail</a>
-                                                
+                                                |
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
                                                 
                                                  <!-- |
@@ -164,7 +164,7 @@
                               @endforeach
                             </tbody>
                         </table>
-                        {{ $data->links("pagination::bootstrap-4") }}
+                        <!-- {{ $data->links("pagination::bootstrap-4") }} -->
                     </div>
                     <!-- /.table-responsive -->
                 </div>

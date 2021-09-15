@@ -37,7 +37,7 @@ class QuoteController extends BaseController
     }
 
     public function submitQuote(Request $request){
-        DB::transaction(function () use($request) {
+        return DB::transaction(function () use($request) {
             $reservation_time = Reservation_time::first();
             $slug = $request->product;
             $id = session()->get('id');
@@ -55,7 +55,7 @@ class QuoteController extends BaseController
             $quote->email = $member->email;
             $quote->phone = $member->phone;
             $quote->dob = $member->dob;
-            $quote->product_name = $product->name;
+            $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->price = $product->price;
             $quote->ip_address = Request()->ip();
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
@@ -84,22 +84,21 @@ class QuoteController extends BaseController
             );
             dispatch(new SendEmailAdmin($data_admin));
             dispatch(new SendEmail($data_member));
+
+            \Session::flash('quotation_success', 'Quotation success.'); 
+            return back();
         });
-
-
-        \Session::flash('quotation_success', 'Quotation success.'); 
-        return back();
 
     }
 
     public function submitQuoteGuest(Request $request){
-        DB::transaction(function () use($request) {
+        return DB::transaction(function () use($request) {
+            $reservation_time = Reservation_time::first();
             $slug = $request->product;
             $product = Product::where('slug', $slug)->where('reserve', 0)->where('status', 1)->first();
             if(!$product){
                 return redirect('/');
             }
-
             $quote = new Quotation;
             $quote->quotation_number = $this->helperFunction->quotationNumberGenerator();
             $quote->product_id = $product->id;
@@ -108,7 +107,7 @@ class QuoteController extends BaseController
             $quote->email = $request->email;
             $quote->phone = $request->phone;
             $quote->price = $product->price;
-            $quote->product_name = $product->name;
+            $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->dob = date('Y-m-d', strtotime($request->dob_guest));
             $quote->ip_address = Request()->ip();
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
@@ -135,13 +134,13 @@ class QuoteController extends BaseController
                 'email_view' => 'email.email_quotation',
                 'url'=>url('/'),
             );
+
             dispatch(new SendEmailAdmin($data_admin));
             dispatch(new SendEmail($data_member));
+
+            \Session::flash('quotation_success', 'Quotation success.'); 
+            return back();
         });
-
-
-        \Session::flash('quotation_success', 'Quotation success.'); 
-        return back();
 
     }
 

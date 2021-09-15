@@ -30,6 +30,9 @@ class CreateInvoiceTable extends Migration
             $table->float('total',12,2)->nullable();
             $table->enum('status',['draft', 'paid', 'cancel']);
             $table->text('remarks')->nullable();
+            $table->integer('view')->default(0);
+            $table->integer('download')->default(0);
+            $table->dateTime('paid_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->unique('invoice_number');

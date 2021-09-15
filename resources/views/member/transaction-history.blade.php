@@ -25,6 +25,7 @@
                                 @endif
                             </div>
                             <div class="table-order-account table-trans">
+                            @if(count($orders)>0)
                                 <div>
                                     <div class="tbl tbl-hdr">
                                         <div class="cell text-center w130">Date</div>
@@ -76,6 +77,9 @@
                                     @endforeach
                                 </div>
                                 @endif
+                            @else
+                                Currently you have not any transaction yet.
+                            @endif
                             </div>
                         </div>
                     </div>

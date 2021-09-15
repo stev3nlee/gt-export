@@ -140,6 +140,7 @@
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @endif
+                                        @if($product->reserve == 0)
                                         <div class="abs-get">
                                         @if(session()->has('email'))
                                             <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
@@ -147,6 +148,7 @@
                                             <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
                                         @endif
                                         </div>
+                                        @endif
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
@@ -159,7 +161,7 @@
                                                     @if($product->price)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
                                                     @endif
-                                                    <div class="stock">Stock # 48595896</div>
+                                                    <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>
                                             </div>
                                         </div>

@@ -29,4 +29,9 @@ class Invoice extends Model
         return $this->belongsTo('App\Models\Quotation');
     }
 
+    public function shipping_documents()
+    {
+        return $this->hasMany('App\Models\Shipping_document');
+    }
+
 }

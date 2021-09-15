@@ -27,7 +27,7 @@ class QuotationController extends Controller
             $query->where([
                     ['status', '=', $request->quotation_status]
                 ]);
-        })->orderby('id','desc')->paginate(15);
+        })->orderby('id','desc')->paginate(15)->withQueryString();
 		//dd($data);
     	return view('vendor.backpack.base.quotation.list', ['data' => $data]);
 	}
@@ -120,7 +120,7 @@ class QuotationController extends Controller
 	function exportToExcel(Request $request)
 	{
 		$quotation_export = new QuotationExport($request->input('quotation_status_export'));
-		$file_name = 'Quotation Report';
+		$file_name = 'Transaction Report';
 		if ($request->input('start_date') && $request->input('end_date')) {
 			$quotation_export->setDuration($request->input('start_date'), $request->input('end_date'));
 

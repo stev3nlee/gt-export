@@ -12,7 +12,7 @@ class Product extends Model
     use SoftDeletes;
     public $timestamps = true;
     protected $table = 'product';
-    protected $fillable = ['name','slug','image','price','description','status','image','reserve','description'];
+    protected $fillable = ['name','slug','image','price','description','status','image','reserve','description','stock'];
     protected $attributes = [
         'status' => 1,
     ];
@@ -20,7 +20,7 @@ class Product extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom(['chassis_no', 'stock'])
             ->saveSlugsTo('slug');
             //->doNotGenerateSlugsOnUpdate();
     }

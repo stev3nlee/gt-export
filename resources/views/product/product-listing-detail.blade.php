@@ -43,12 +43,14 @@
                             </a>
                         </div>
                         @endif
+                        @if($product->description)
                         <div class="box-desc">
                             <div class="t-desc">What we love about this car</div>
                             <div class="desc">
                                 {!! $product->description !!}
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

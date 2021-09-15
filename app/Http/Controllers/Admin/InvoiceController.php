@@ -274,7 +274,7 @@ class InvoiceController extends Controller
 		// }
   		//return view('pdf',$data);
         $pdf = PDF::loadView('vendor.backpack.base.invoice.invoice', $data);
-        return $pdf->download('invoice_'.$invoice->invoice_number.'.pdf');
+        return $pdf->download('quotation_'.$invoice->invoice_number.'.pdf');
 	}
 
 	function exportShippinginvoice(Request $request, $id)
@@ -540,48 +540,52 @@ class InvoiceController extends Controller
     }
 
     function paidinvoice($id){
-	    $invoice = invoice::where('id',$id)->where('last_billing_status','!=','paid')->first();
+	    $invoice = invoice::where('id',$id)->where('status','!=','paid')->first();
 	    if(!$invoice){
-	    	echo "invoice already paid";exit;		
+	    	echo "Quotation already paid";exit;		
 	    }
 	    $invoice->paid_date = date('Y-m-d H:i:s');
+        $invoice->status = 'paid';
 	    $invoice->save();
 
-	    $table = new invoice_billing_detail;
-		$table->billing_status = 'paid';
-		$table->message = 'payment successfull';
-		$table->invoice_id = $id;
-		$table->save();
+        $quot = Quotation::find($invoice->quotation_id);
+        $quot->status = 2;
+        $quot->save();
 
-		$payment_type = $this->midtrans->payment_type($invoice);
-		$subject = Lang::get('yum.email_subject_confirmation');
-		$status_email = 'payment_received';
+	 //    $table = new invoice_billing_detail;
+		// $table->billing_status = 'paid';
+		// $table->message = 'payment successfull';
+		// $table->invoice_id = $id;
+		// $table->save();
 
-		$data_admin = array(
-            'invoice' => $invoice,
-            'status'=>$status_email,
-            'subject' => 'YUM Organic Farm - invoice Confirmation',
-            'email_to' => 'novi@yumindonesia.org',
-            'email_view' => 'email.email_invoice_admin',
-            'label' => 'invoice',
-            'payment_type' => $payment_type,
-            'url'=>url('/'),
-            'lang'=>Lang::getLocale(),
-        );
+		// $subject = Lang::get('yum.email_subject_confirmation');
+		// $status_email = 'payment_received';
 
-        $data_member = array(
-            'invoice' => $invoice,
-            'status'=>$status_email,
-            'email'=>$invoice->member->email,
-            'subject' => $subject,
-            'email_to' => $invoice->member->email,
-            'email_view' => 'email.email_invoice_confirmation',
-            'label' => 'invoice',
-            'tracking_message'=>'We recieve your invoice',
-            'url'=>url('/'),
-            'lang'=>Lang::getLocale(),
-            'payment_type' => $payment_type,
-        );
+		// $data_admin = array(
+  //           'invoice' => $invoice,
+  //           'status'=>$status_email,
+  //           'subject' => 'YUM Organic Farm - invoice Confirmation',
+  //           'email_to' => 'novi@yumindonesia.org',
+  //           'email_view' => 'email.email_invoice_admin',
+  //           'label' => 'invoice',
+  //           'payment_type' => $payment_type,
+  //           'url'=>url('/'),
+  //           'lang'=>Lang::getLocale(),
+  //       );
+
+  //       $data_member = array(
+  //           'invoice' => $invoice,
+  //           'status'=>$status_email,
+  //           'email'=>$invoice->member->email,
+  //           'subject' => $subject,
+  //           'email_to' => $invoice->member->email,
+  //           'email_view' => 'email.email_invoice_confirmation',
+  //           'label' => 'invoice',
+  //           'tracking_message'=>'We recieve your invoice',
+  //           'url'=>url('/'),
+  //           'lang'=>Lang::getLocale(),
+  //           'payment_type' => $payment_type,
+  //       );
         //dispatch(new SendEmailAdmin($data_admin));
         //dispatch(new SendEmail($data_member));
 

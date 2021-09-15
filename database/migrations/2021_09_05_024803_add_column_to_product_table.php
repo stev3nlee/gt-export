@@ -32,6 +32,7 @@ class AddColumnToProductTable extends Migration
             $table->string('color')->nullable();
             $table->string('engine_code')->nullable();
             $table->string('number_of_doors')->nullable();
+            $table->string('stock')->nullable();
             $table->integer('seats')->nullable();
             $table->integer('total_seats')->nullable();
             $table->float('weight', 15,2)->nullable();
@@ -71,6 +72,7 @@ class AddColumnToProductTable extends Migration
             $table->dropColumn('weight');
             $table->dropColumn('total_weight');
             $table->dropColumn('remarks');
+            $table->dropColumn('stock');
         });
     }
 }

@@ -24,12 +24,49 @@
                 </div>
 
                 <div class="box-body">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <form action="{{ url()->current() }}" class="pull-right" style="width: 100%;">
+                                <div class="row">
+                                    
+                                    <div class="col-md-3">
+                                        <select class="form-control" name="brand" id="brand" onChange="this.form.submit()">
+                                            <option value="">Select Brand</option>
+                                            @foreach($brands as $brand)
+                                              <option value="{{$brand->id}}" @if(request('brand') == $brand->id) selected @endif>{{ $brand->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" name="transmission" id="transmission" onChange="this.form.submit()">
+                                            <option value="">Select Transmission</option>
+                                            @foreach($transmissions as $transmission)
+                                              <option value="{{$transmission->id}}" @if(request('transmission') == $transmission->id) selected @endif>{{ $transmission->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> 
+                                    <div class="col-md-3">
+                                        <select class="form-control" name="model" id="model" onChange="this.form.submit()">
+                                            <option value="">Select Model</option>
+                                            @foreach($models as $model)
+                                              <option value="{{$model->id}}" @if(request('model') == $model->id) selected @endif>{{ $model->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> 
+                                    <div class="col-md-3" style="float: right;">
+                                        <input type="text" name="keyword" class="form-control" placeholder="Search" value="{{ request('keyword') }}">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="dataTable_wrapper">
-                        <table id="dataTable" class="table table-striped table-bordered table-hover datatable">
+                        <table class="table table-striped table-bordered table-hover datatable">
                             <thead>
                                 <tr class="nosortable">
                                     <th class="table-actions">Actions</th>
-                                    <th>Name</th>
+                                    <th>Model</th>
                                     <th width="200">Image</th>
                                     <th>Price</th>
                                     <th>Brand</th>
@@ -47,7 +84,7 @@
                                             <a onclick="return confirm('Are you sure ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/product/delete/'.$content->id) }}"><i class="fa fa-trash fa-fw"></i></a>
                                         </div>
                                     </td>
-                                    <td>{{ $content->name }}</td>
+                                    <td>@if($content->model){{ $content->model[0]->name }}@endif</td>
                                     <td>
                                         @if(isset($content->product_image[0]))<img src="{{ $content->product_image[0]->image }}" width="40%" />@endif
                                     </td>
@@ -60,6 +97,8 @@
                               @endforeach
                             </tbody>
                         </table>
+                        {{ $data->links("pagination::bootstrap-4") }}
+
                     </div>
                     <!-- /.table-responsive -->
                 </div>

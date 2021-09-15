@@ -114,7 +114,7 @@
                                                     @if($product->price)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
                                                     @endif
-                                                    <div class="stock">Stock # 48595896</div>
+                                                    <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>
                                             </div>
                                         </div>

@@ -71,6 +71,11 @@ Route::group(['middleware' => ['membersession']], function () {
     Route::get('/transaction-history', 'MemberController@transactionHistory');
     Route::get('/quotation-history', 'MemberController@quotationHistory');
     Route::get('/shipment-documentation', 'MemberController@shipmentDocumentation');
+    Route::get('/view-quotation/{id}', 'MemberController@viewQuotation');
+    Route::get('/download-quotation/{id}', 'MemberController@downloadQuotation');
+
+    Route::get('/view-shipment-document/{id}', 'MemberController@viewShipment');
+    Route::get('/download-shipment-document/{id}', 'MemberController@downloadShipment');
 
     Route::get('/invoice', function () {
         return view('invoice');
@@ -279,7 +284,7 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('invoice/delete/{id}', 'Admin\InvoiceController@delete');
         Route::post('invoice/exportShipping', 'Admin\InvoiceController@exportShipping');
         Route::get('invoice/id/{id}/export/shipping', 'Admin\InvoiceController@exportShippingOrder');
-        Route::get('invoice/cancel/{id}', 'Admin\InvoiceController@cancel');
+        Route::get('invoice/paid/{id}', 'Admin\InvoiceController@paidinvoice');
         Route::get('invoice/resume/{id}', 'Admin\InvoiceController@resume');
         Route::get('invoice/invoices/{id}/{id2}', 'Admin\InvoiceController@invoices');
         Route::get('invoice/address_edit/{id}', 'Admin\InvoiceController@AddressEdit');
@@ -310,7 +315,13 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('accessories/status/{id}/{status}', 'Admin\AccessoriesController@status');
         Route::post('accessories/update_sort', 'Admin\AccessoriesController@update_sort');
 
-
+        Route::get('shipment_document', 'Admin\ShipmentDocumentController@view')
+        ->name('shipment_document_view');
+        Route::get('shipment_document/create', 'Admin\ShipmentDocumentController@create');
+        Route::get('shipment_document/edit/{id}', 'Admin\ShipmentDocumentController@edit');
+        Route::post('shipment_document/insert', 'Admin\ShipmentDocumentController@insert');
+        Route::post('shipment_document/update', 'Admin\ShipmentDocumentController@update');
+        Route::get('shipment_document/delete/{id}', 'Admin\ShipmentDocumentController@delete');
     });
 });
         Route::group(['prefix' => 'laravel-filemanager'], function () {

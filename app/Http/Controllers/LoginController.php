@@ -192,7 +192,7 @@ class LoginController extends BaseController
                         'url'=>url('/'),
                         'link' => url('/').'/member-verified/'.$code,
                 );
-                //dispatch(new SendEmail($data_email));
+                dispatch(new SendEmail($data_email));
                 \Session::flash('register_success', 'Please kindly confirm your email to Login.');
                 return redirect('register');
     }
