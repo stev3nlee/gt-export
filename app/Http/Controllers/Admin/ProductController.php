@@ -8,41 +8,73 @@ use App\Models\Product_image;
 use App\Models\Models;
 use App\Models\Brand;
 use App\Models\Transmission;
+use App\Models\Accessories;
 use Illuminate\Http\Request;
 use DB;
 use Image;
 
 class ProductController extends Controller
 {
-    public function view()
+    public function view(Request $request)
     {
-        $data = Product::orderby('id','desc')->get();
-        return view('vendor.backpack.base.product.list', ['data' => $data]);
+        $data = Product::
+        when($request->keyword, function ($query) use ($request) {
+            $query->where([
+                    ['chassis_no', 'like', "%{$request->keyword}%"]
+                ]);
+        })
+        ->when($request->brand, function ($query) use ($request) {
+            $query->whereHas('brand', function($q) use($request) {
+                    $q->where('brand.id', '=', $request->brand); });
+        })->when($request->model, function ($query) use ($request) {
+            $query->whereHas('model', function($q) use($request) {
+                    $q->where('model.id', '=', $request->model); });
+        })->when($request->transmission, function ($query) use ($request) {
+            $query->whereHas('transmission', function($q) use($request) {
+                    $q->where('transmission.id', '=', $request->transmission); });
+        })->orderby('id','desc')->paginate(10)->withQueryString();
+        $models = Models::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
+        $transmissions = Transmission::where('status',1)->get();
+        return view('vendor.backpack.base.product.list', ['data' => $data, 'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
     }
     public function create()
     {
         $models = Models::where('status',1)->get();
         $brands = Brand::where('status',1)->get();
         $transmissions = Transmission::where('status',1)->get();
-        return view('vendor.backpack.base.product.create', ['models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
+        $accessories = Accessories::get();
+        return view('vendor.backpack.base.product.create', ['models' => $models, 'brands' => $brands, 'transmissions' => $transmissions, 'accessories' => $accessories]);
     }
     public function edit($id)
     {
         $data = Product::find($id);
         $models = Models::where('status',1)->get();
         $brands = Brand::where('status',1)->get();
+        $accessories = Accessories::get();
         $transmissions = Transmission::where('status',1)->get();
-        return view('vendor.backpack.base.product.edit', ['data' => $data,'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
+        return view('vendor.backpack.base.product.create', ['data' => $data,'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions, 'accessories' => $accessories]);
     }
     public function insert(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255|unique:product,deleted_at,NULL',
+            //'name' => 'required|max:255|unique:product,deleted_at,NULL',
+            'chassis_no' => 'required|max:255',
+            'mileage' => 'required',
+            'mileage_km' => 'required',
+            'engine_capacity' => 'required',
+            'fuel' => 'required',
+            'steering' => 'required',
+            'color' => 'required',
+            'number_of_doors' => 'required',
+            'seats' => 'required',
+            'price' => 'required',
         ]);
         DB::transaction(function () use($request) {
             $brand = (null !== $request->input('brand')) ? $request->input('brand') : [];
             $model = (null !== $request->input('model')) ? $request->input('model') : [];
             $transmission = (null !== $request->input('transmission')) ? $request->input('transmission') : [];
+            $accessories = (null !== $request->input('accessories')) ? $request->input('accessories') : [];
 
             $imageName = "";
             $image_array = explode(',', $request->image);
@@ -50,14 +82,36 @@ class ProductController extends Controller
             $product->name = $request->input('name');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
-            $product->economy_performance = $request->input('economy_performance');
-            $product->exterior_features = $request->input('exterior_features');
-            $product->technical = $request->input('technical');
+            $product->chassis_no = $request->input('chassis_no');
+            $product->model_code = $request->input('model_code');
+            $product->product_type = $request->input('product_type');
+            $product->registration_year = $request->input('registration_year');
+            $product->registration_month = $request->input('registration_month');
+            $product->manufacture_year = $request->input('manufacture_year');
+            $product->manufacture_month = $request->input('manufacture_month');
+            $product->mileage = $request->input('mileage');
+            $product->mileage_km = $request->input('mileage_km');
+            $product->engine_capacity = $request->input('engine_capacity');
+            $product->engine_no = $request->input('engine_no');
+            $product->steering = $request->input('steering');
+            $product->fuel = $request->input('fuel');
+            $product->drive_type = $request->input('drive_type');
+            $product->color = $request->input('color');
+            $product->engine_code = $request->input('engine_code');
+            $product->number_of_doors = $request->input('number_of_doors');
+            $product->seats = $request->input('seats');
+            $product->total_seats = $request->input('total_seats');
+            $product->weight = $request->input('weight');
+            $product->total_weight = $request->input('total_weight');
+            $product->remarks = $request->input('remarks');
+            $product->thumbnail = $request->input('thumbnail');
+            $product->stock = rand(10000000,99999999);
             $product->save();
 
             $product->brand()->sync($brand);
             $product->model()->sync($model);
             $product->transmission()->sync($transmission);
+            $product->accessories()->sync($accessories);
 
             foreach ($image_array as $key => $value) {
                 $product_image = new Product_image;
@@ -83,12 +137,23 @@ class ProductController extends Controller
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255|unique:product,name,'.$request->input('id').',id,deleted_at,NULL',
+            //'name' => 'required|max:255|unique:product,name,'.$request->input('id').',id,deleted_at,NULL',
+            'chassis_no' => 'required|max:255',
+            'mileage' => 'required',
+            'mileage_km' => 'required',
+            'engine_capacity' => 'required',
+            'fuel' => 'required',
+            'steering' => 'required',
+            'color' => 'required',
+            'number_of_doors' => 'required',
+            'seats' => 'required',
+            'price' => 'required',
         ]);
         DB::transaction(function () use($request) {
         $brand = (null !== $request->input('brand')) ? $request->input('brand') : [];
         $model = (null !== $request->input('model')) ? $request->input('model') : [];
         $transmission = (null !== $request->input('transmission')) ? $request->input('transmission') : [];
+        $accessories = (null !== $request->input('accessories')) ? $request->input('accessories') : [];
 
         $imageName = "";
         $image_array = explode(',', $request->image);
@@ -97,14 +162,37 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
-        $product->economy_performance = $request->input('economy_performance');
-        $product->exterior_features = $request->input('exterior_features');
-        $product->technical = $request->input('technical');
+        $product->chassis_no = $request->input('chassis_no');
+        $product->model_code = $request->input('model_code');
+        $product->product_type = $request->input('product_type');
+        $product->registration_year = $request->input('registration_year');
+        $product->registration_month = $request->input('registration_month');
+        $product->manufacture_year = $request->input('manufacture_year');
+        $product->manufacture_month = $request->input('manufacture_month');
+        $product->mileage = $request->input('mileage');
+        $product->mileage_km = $request->input('mileage_km');
+        $product->engine_capacity = $request->input('engine_capacity');
+        $product->engine_no = $request->input('engine_no');
+        $product->steering = $request->input('steering');
+        $product->fuel = $request->input('fuel');
+        $product->drive_type = $request->input('drive_type');
+        $product->color = $request->input('color');
+        $product->engine_code = $request->input('engine_code');
+        $product->number_of_doors = $request->input('number_of_doors');
+        $product->seats = $request->input('seats');
+        $product->total_seats = $request->input('total_seats');
+        $product->weight = $request->input('weight');
+        $product->total_weight = $request->input('total_weight');
+        $product->remarks = $request->input('remarks');
+        if($request->thumbnail){
+        $product->thumbnail = $request->input('thumbnail');
+        }        
         $product->save();
 
         $product->brand()->sync($brand);
         $product->model()->sync($model);
         $product->transmission()->sync($transmission);
+        $product->accessories()->sync($accessories);
 
         if($request->image){
             Product_image::where('product_id',$product->id)->delete();

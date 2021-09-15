@@ -9,11 +9,25 @@ use Illuminate\Http\Request;
 use DB;
 use Excel;
 use App\Models\Quotation;
+use App\Exports\QuotationExport;
 
 class QuotationController extends Controller
 {
-    function view(){
-    	$data = quotation::orderby('id','desc')->get();
+    function view(Request $request){
+    	$data = Quotation::
+        when($request->keyword, function ($query) use ($request) {
+            $query->where([
+                    ['quotation_number', 'like', "%{$request->keyword}%"]
+                ])
+                ->orWhere([
+                    ['email', 'like', "%{$request->keyword}%"]
+                ]);
+        })
+        ->when($request->quotation_status, function ($query) use ($request) {
+            $query->where([
+                    ['status', '=', $request->quotation_status]
+                ]);
+        })->orderby('id','desc')->paginate(15)->withQueryString();
 		//dd($data);
     	return view('vendor.backpack.base.quotation.list', ['data' => $data]);
 	}
@@ -103,10 +117,10 @@ class QuotationController extends Controller
         return redirect()->route('quotation_view');
     }
 	
-	function exportquotationToExcel(Request $request)
+	function exportToExcel(Request $request)
 	{
-		$quotation_export = new quotationExport();
-		$file_name = 'Online list Customers';
+		$quotation_export = new QuotationExport($request->input('quotation_status_export'));
+		$file_name = 'Transaction Report';
 		if ($request->input('start_date') && $request->input('end_date')) {
 			$quotation_export->setDuration($request->input('start_date'), $request->input('end_date'));
 
@@ -127,7 +141,7 @@ class QuotationController extends Controller
     {
         $quotation_id = $request->quotation_id;
         if ($quotation_id) {
-            return Quotation::with(['product'])->find($quotation_id);
+            return Quotation::with(['product.model'])->find($quotation_id);
         }
     }
 }

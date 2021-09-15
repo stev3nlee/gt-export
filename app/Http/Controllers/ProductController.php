@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Models;
 use App\Models\Transmission;
+use App\Models\Accessories;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -38,7 +39,15 @@ class ProductController extends BaseController
         $brands = Brand::where('status',1)->orderby('sort','asc')->get();
         $models = Models::where('status',1)->orderby('sort','asc')->get();
         $transmissions = Transmission::where('status',1)->orderby('sort','asc')->get();
+        $range_min = 30000;
+        $range_max = 100000;
 
+        if($request->range_min){
+            $range_min = $request->range_min;
+        }
+        if($request->range_max){
+            $range_max = $request->range_max;
+        }
         $products = Product::where('status',1);
 
         if($request->brand){
@@ -57,12 +66,28 @@ class ProductController extends BaseController
             });
         }
 
-        $products = $products->orderby('id','desc')->limit(15)->get();
+        if($request->search){
+            $products = $products->where('name', 'like', '%'.$request->search.'%');
+        }
+
+        if($request->range_max && $request->range_min){
+            $products = $products->whereBetween('price', [$range_min, $range_max]);
+        }
+
+        $products = $products->orderby('id','desc')->paginate(12)->withQueryString();
+       // dd($products);
+
         $data['brands'] = $brands;
         $data['models'] = $models;
         $data['products'] = $products;
         $data['transmissions'] = $transmissions;
-        return view('/index', $data);  
+        $data['brand_select'] = $request->brand;
+        $data['model_select'] = $request->model;
+        $data['transmission_select'] = $request->transmission;
+        $data['range_min'] = $range_min;
+        $data['range_max'] = $range_max;
+        $data['search'] = $request->search;
+        return view('/product/product-listing', $data);  
     }
 
     public function productDetail($slug){
@@ -72,6 +97,7 @@ class ProductController extends BaseController
         }
 
         $data['product'] = $product;
-        return view('/index', $data);  
+        $data['accessories'] = Accessories::get();
+        return view('/product/product-listing-detail', $data);  
     }
 }

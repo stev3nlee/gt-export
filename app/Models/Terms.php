@@ -8,7 +8,7 @@ class Terms extends Model
 {    
     public $timestamps = true;
     protected $table = 'terms';
-    protected $fillable = ['terms', 'privacy_policy'];
+    protected $fillable = ['terms', 'privacy_policy', 'disclaimers'];
 
     public function languages()
     {

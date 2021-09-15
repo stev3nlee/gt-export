@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\Plan;
 use App\Models\Regulation;
 use App\Models\Faq;
+use App\Models\Faq_category;
 use App\Models\Enquiry;
 use View;
 use App\Helper\HelperFunction;
@@ -38,19 +39,20 @@ class PageController extends BaseController
     }
 
     public function aboutUs(){
-        $story = About::find(1);
-        $our_value = About::find(2);
-        $about = About::find(3);
+        $story = About::find(2);
+        $our_value = About::find(3);
+        $about = About::find(1);
+        $etc = About::find(4);
 
         $data['about'] = $about;
         $data['story'] = $story;
         $data['our_value'] = $our_value;
+        $data['etc'] = $etc;
         return view('/information/about-us', $data);  
     }
 
     public function faq(Request $request){
-        $search = $request->search;
-        $data['faq'] = Faq_category::where('status',1)->orderby('sort','asc')->with(['faq'])->get();
+        $data['faq_category'] = Faq_category::where('status',1)->orderby('sort','asc')->with(['faq'])->get();
         
         return view('information/faq', $data);  
     }
@@ -62,12 +64,21 @@ class PageController extends BaseController
 
     public function privacyPolicy(){
         $data['privacy'] = Terms::first();
-        return view('information/privacy-policy', $data);  
+        return view('information/privacy', $data);  
+    }
+
+    public function disclaimers(){
+        $data['disclaimers'] = Terms::first();
+        return view('information/disclaimers', $data);  
     }
 
     public function regulation(){
-        $data['regulation'] = Regulation::where('status',1)->orderby('sort','asc')->get();
-        return view('information/regulation', $data);  
+        $data['regulations'] = Regulation::where('status',1)->orderby('sort','asc')->get();
+        return view('information/regulation-details', $data);  
+    }
+
+    public function procurement(){
+        return view('information/procurement-flow');  
     }
 
     public function contactUs(){
@@ -102,9 +113,8 @@ class PageController extends BaseController
                         'email' => $email,
                         'phone' => $phone,
                         'subject' => 'GT Export - Contact Us',
-                        'email_to' => 'prepbox@createries.com',
+                        'email_to' => $email,
                         'email_view' => 'email.email_contact_us',
-                        'label' => 'enquiry',
                         'url'=>url('/'),
                     );
 
@@ -116,7 +126,6 @@ class PageController extends BaseController
                         'subject' => 'GT Export - Contact Us',
                         'email_to' => $email,
                         'email_view' => 'email.email_contact_us_member',
-                        'label' => 'enquiry',
                         'url'=>url('/'),
                 );
 
@@ -124,7 +133,7 @@ class PageController extends BaseController
                 dispatch(new SendEmail($data_member));
             });
             \Session::flash('contact_success', 'Thank you, please wait for up to 24 hours for us to get reply back to you.');
-            return redirect('contact');
+            return redirect('contact-us');
     }
 
 }

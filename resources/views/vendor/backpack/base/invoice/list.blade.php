@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        invoice
+        Quotation
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">invoice</li>
+        <li class="active">Quotation</li>
       </ol>
     </section>
 @endsection
@@ -23,9 +23,9 @@
                     <div class="row">
                         <div class="col-md-10 text-right">
                             <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/exportToExcel') }}">
-                                <a style="float: left;" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/create') }}" class="btn btn-success">Create invoice</a>
+                                <a style="float: left;" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/create') }}" class="btn btn-success">Create Quotation</a>
                                 @csrf
-                                <div style="display: inline-block;vertical-align: middle;">
+                                <!-- <div style="display: inline-block;vertical-align: middle;">
                                     <div class="form-group" style="margin-bottom: 0;">
                                         <label style="display: inline-block; vertical-align: middle; margin-bottom: 0; margin-right: 10px;">Start From:</label>
                                         <div style="display: inline-block; width: 150px; vertical-align: middle;">
@@ -56,10 +56,11 @@
                                 <input type="hidden" name="payment_type_export" value="{{ request('payment_type') }}">
                                 <div style="display: inline-block;vertical-align: middle;">
                                     <button type="submit" class="btn btn-success">Export Sales Report</button>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
                         <br><br>
+                        <?php /* ?>
                         <div class="col-md-12">
                             <form action="{{ url()->current() }}" class="pull-right" style="width: 100%;">
                                 <div class="row">
@@ -113,6 +114,7 @@
                                 </div>
                             </form>
                         </div>
+                        <?php */ ?>
                     </div>
                     <br>
                     <div class="dataTable_wrapper table-responsive">
@@ -125,12 +127,7 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Total invoice</th>
-                                    <th>Shipping Type</th>
-                                    <th>Shipping Day</th>
                                     <th>Payment Status</th>
-                                    <!-- <th>Update</th> -->
-                                    <th>Print Status</th>
-                                    <th>Change Payment</th>
                                     <th class="table-actions">Action</th>
 
                                     <!-- <th>Request New Pickup</th> -->
@@ -143,43 +140,12 @@
                                         <td>{{ $content->invoice_number }}</td>
                                         <td>{{ $content->member ? ucwords(strtolower($content->member->first_name)) . ' ' . ucwords(strtolower($content->member->last_name)) : 'Guest' }}</td>
                                         <td>{{ strtolower($content->email) }}</td>
-                                        <td>{{ $content->phone_number }}</td>
-                                        <td>IDR {{ number_format($content->total ,0,",",".") }}</td>
-                                        <td>
-                                            @if ($content->shipping_method == 'pick_up')
-                                                Pick Up
-                                            @else
-                                                Delivery
-                                            @endif
-                                        </td>
-                                        <td>{{ $content->shipping_day }}</td>
-                                        <td>
-                                            @if ($content->last_billing_status == 'paid')
-                                                Paid
-                                            @elseif ($content->last_billing_status == 'failed')
-                                                Failed
-                                            @elseif ($content->last_billing_status == 'unpaid')
-                                                Abandoned Cart
-                                            @elseif ($content->last_billing_status == 'waiting_for_payment')
-                                                Waiting for payment
-                                            @elseif ($content->last_billing_status == 'cancel')
-                                                Cancelled
-                                            @elseif ($content->last_billing_status == 'expire')
-                                                Expired
-                                            @elseif ($content->last_billing_status == 'payment_confirmation')
-                                                Payment Confirmation
-                                            @elseif ($content->last_billing_status == 'pending')
-                                                Pending
-                                            @elseif ($content->last_billing_status == 'refund')
-                                                Refund
-                                            @else
-                                                {{ $content->last_billing_status }}
-                                            @endif
-                                        </td>
+                                        <td>{{ $content->contact_no }}</td>
+                                        <td>USD {{ number_format($content->total ,0,",",".") }}</td>
                                         
-                                        <td>@if($content->print_status == 1) <i class="fa fa-check" style="color: green;"></i> @else <i class="fa fa-times" style="color: red;"></i> @endif</td>
-                                        <td>@if($content->last_billing_status != 'paid')
-                                            <a class="btn btn-info" onclick="return confirm('Are you want to set this invoice to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Set as Paid</a>
+                                        
+                                        <td>@if($content->status != 'paid')
+                                            <a class="btn btn-info" onclick="return confirm('Are you want to set this quotation to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Confirm Payment</a>
                                             @else
                                             Paid
                                             @endif
@@ -187,7 +153,7 @@
                                         <td>
                                         <div class="table-actions-hover">
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/detail/'.$content->id) }}">Detail</a>
-                                                
+                                                |
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
                                                 
                                                  <!-- |
@@ -198,7 +164,7 @@
                               @endforeach
                             </tbody>
                         </table>
-                        {{ $data->links("pagination::bootstrap-4") }}
+                        <!-- {{ $data->links("pagination::bootstrap-4") }} -->
                     </div>
                     <!-- /.table-responsive -->
                 </div>

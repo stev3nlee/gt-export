@@ -3,6 +3,7 @@
 namespace App\Helper;
 use Mail;
 use App\Models\Invoice;
+use App\Models\Quotation;
 
 class HelperFunction
 {
@@ -42,6 +43,30 @@ class HelperFunction
             $invoiceNumber = (string) $date . $orderCount;
 
             return 'GT'.$invoiceNumber;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function quotationNumberGenerator() //YYYYMMDDXXXX
+    {
+        try {
+            $now = new \DateTime("now", new \DateTimeZone('Asia/Jakarta'));
+            $date = $now->format('ymd');
+    
+            $from = date($now->format('Y-m-d' . ' 00:00:00'));
+            $to = date($now->format('Y-m-d' . ' 23:59:59'));
+    
+            $orderCount = Quotation::whereBetween('created_at', [$from, $to])->count();
+            if ($orderCount < 10000) {
+                $orderCount = (string) $orderCount + 1;
+                while (strlen($orderCount) < 4) {
+                    $orderCount = '0' . $orderCount;
+                }
+            }
+            $invoiceNumber = (string) $date . $orderCount;
+
+            return $invoiceNumber;
         } catch (\Exception $e) {
             throw $e;
         }

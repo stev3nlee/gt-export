@@ -40,6 +40,7 @@
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/company_data') }}"><i class="fa fa-phone"></i> <span>Company Data</span></a></li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/privacy_policy') }}"><i class="fa fa-exclamation"></i> <span>Privacy Policy</span></a></li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/terms') }}"><i class="fa fa-info-circle"></i> <span>Terms & Conditions</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/disclaimers') }}"><i class="fa fa-info-circle"></i> <span>Disclaimers</span></a></li>
 
                   <li class="treeview">
                     <a href="#">
@@ -68,7 +69,7 @@
                 </a>
                 <ul class="treeview-menu" >
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/member') }}"><i class="fa fa-users"></i> <span>Member</span></a></li>
-                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/newsletter') }}"><i class="fa fa-newspaper-o"></i> <span>Newsletter</span></a></li>
+                  <!-- <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/newsletter') }}"><i class="fa fa-newspaper-o"></i> <span>Newsletter</span></a></li> -->
 
                   <li class="treeview">
                     <a href="#">
@@ -82,11 +83,15 @@
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/brand') }}"><i class="fa fa-bars"></i> <span>Brand</span></a></li>
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/model') }}"><i class="fa fa-bars"></i> <span>Model</span></a></li>
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/transmission') }}"><i class="fa fa-bars"></i> <span>Transmission</span></a></li>
+                      <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/accessories') }}"><i class="fa fa-bars"></i> <span>Accessories</span></a></li>
                       <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product') }}"><i class="fa fa-car"></i> <span>Cars</span></a></li>
                     </ul>
                   </li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/reservation_time') }}"><i class="fa fa-clock-o"></i> <span>Reservation Time</span></a></li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/shipping_cost') }}"><i class="fa fa-truck"></i> <span>Shipping Cost</span></a></li>
-                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-shopping-cart"></i> <span>Invoice</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation') }}"><i class="fa fa-shopping-cart"></i> <span>Transaction</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-file-pdf-o"></i> <span>Quotation</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/shipment_document') }}"><i class="fa fa-book"></i> <span>Shipment Document</span></a></li>
 
                 </ul>
               </li>

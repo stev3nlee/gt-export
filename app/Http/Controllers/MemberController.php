@@ -7,6 +7,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use App\Http\Controllers\BaseController;
 use App\Models\Member;
+use App\Models\Quotation;
+use App\Models\Shipment_document;
+use App\Models\Invoice;
 use View;
 use App\Helper\HelperFunction;
 use Session;
@@ -17,6 +20,8 @@ use Image;
 use App\Jobs\SendEmail;
 use App\Jobs\SendEmailAdmin;
 use DB;
+use Stevebauman\Location\Facades\Location;
+use PDF;
 
 class MemberController extends BaseController
 {
@@ -29,29 +34,74 @@ class MemberController extends BaseController
         parent::__construct();
     }
 
-    public function index(){
+    public function index(Request $request){
         try{
+           //d(request()->ip());
+           // $position = Location::get(request()->ip());
+            //dd($position);
             $id = session()->get('id');
             $data['member'] = Member::find($id);
-            
-            $data['orders'] = Order::where('member_id', '=', $id)->orderby('id','desc')->limit(4)->get();
-            return view('/member/profile', $data);
+
+            return view('/member/personal-info', $data);
         } catch (\Exception $e) {
+            dd($e);
             return redirect('logout');
         }
         
     }
 
-    public function editProfile(){
+    public function uploadPhoto(Request $request){
+        try{
+            $this->validate($request,[
+                "file" =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $id = session()->get('id');
+            $member = Member::find($id);
+
+            if ($request->hasFile('file')) {
+                if ($member->image != null) {
+                    $oldimage = base_path() . '/public/upload/profile/' . $member->image;
+                    if (file_exists($oldimage)) {
+                        unlink($oldimage);
+                    }
+                }
+
+                $imageName = $member->first_name .'-'. $member->last_name .'-'. rand(1,100) . '.' . $request->file('file')->getClientOriginalExtension();
+                $path = base_path() . '/public/upload/profile';
+                $request->file('file')->move($path, $imageName);
+
+                $member->image = $imageName;
+                $member->save();
+            }
+            
+            return redirect('personal-info');
+        } catch (\Exception $e) {
+            //$response = $e->getResponse();
+            //$responseBodyAsString = $response->getBody()->getContents();
+            return redirect('personal-info');
+        }
+        
+    }
+
+    public function removePhoto(Request $request){
         try{
             $id = session()->get('id');
-            $data['member'] = $member = Member::find($id);
+            $member = Member::find($id);
 
-            return view('/member/edit-profile', $data);
+            if ($member->image != null) {
+                $oldimage = base_path() . '/public/upload/profile/' . $member->image;
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+                $member->image = null;
+                $member->save();
+            }
+            
+            return redirect('personal-info');
         } catch (\Exception $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            return redirect('logout');
+            //$response = $e->getResponse();
+            //$responseBodyAsString = $response->getBody()->getContents();
+            return redirect('personal-info');
         }
         
     }
@@ -77,13 +127,24 @@ class MemberController extends BaseController
                     "email" => "required|email|unique:member",
                   ]);
             }
+
+            if($request->password){
+                $this->validate($request,[
+                    "password" => "required|min:6",
+                ]);
+            }
             $table->first_name = $request->first_name;
             $table->last_name = $request->last_name;
             $table->dob = date('Y-m-d',strtotime($request->dob));
-            $table->phone = $phone;
+            $table->phone = $request->phone;
 
             if($table->email == null){
                $table->email = $request->email; 
+            }
+
+            if($request->password){
+                $table->password = md5($request->password); 
+                $table->last_change_password = date('Y-m-d H:i:s');
             }
             $table->save();
 
@@ -94,7 +155,7 @@ class MemberController extends BaseController
             );
 
             \Session::flash('register_success', 'The account detail has been updated.');
-            return redirect('/profile');
+            return redirect('/personal-info');
 
         // } catch (\Exception $e) {
         //    // dd($e);
@@ -156,19 +217,46 @@ class MemberController extends BaseController
         
     }
 
-    public function order(Request $request){
+    public function transactionHistory(Request $request){
         try {
             $member_id = session()->get('id');
             $whereParams[] = ['member_id', '=', $member_id];
-            if($request->input('search')){
-                $whereParams[] = ['invoice_number', 'LIKE', '%' .$request->input('search'). '%'];
-            }
             $data['member'] = Member::find($member_id);
-            $data['orders'] = Order::where($whereParams)->orderby('id','desc')->paginate(15);
-            return view('member/order',$data);
+            $data['orders'] = Quotation::where($whereParams)->orderby('id','desc')->skip(0)->take(10)->get();
+            $data['next_orders'] = Quotation::where($whereParams)->orderby('id','desc')->skip(10)->take(100)->get();
+            return view('member/transaction-history',$data);
         } catch (Exception $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
+            dd($e);
+            return redirect('/');
+        }
+        
+    }
+
+    public function quotationHistory(Request $request){
+        try {
+            $member_id = session()->get('id');
+            $whereParams[] = ['member_id', '=', $member_id];
+            $data['member'] = $member = Member::find($member_id);
+            $data['quotations'] = $member->invoice()->where($whereParams)->orderby('id','desc')->skip(0)->take(10)->get();
+            $data['next_quotations'] = $member->invoice()->where($whereParams)->orderby('id','desc')->skip(10)->take(100)->get();
+            return view('member/quotation-history',$data);
+        } catch (Exception $e) {
+           // $response = $e->getResponse();
+            //$responseBodyAsString = $response->getBody()->getContents();
+            return redirect('/');
+        }
+        
+    }
+
+    public function shipmentDocumentation(Request $request){
+        try {
+            $member_id = session()->get('id');
+            $whereParams[] = ['member_id', '=', $member_id];
+            $data['member'] = $member = Member::find($member_id);
+            $data['shipments'] = $member->shipment_document()->where($whereParams)->orderby('id','desc')->skip(0)->take(10)->get();
+            $data['next_shipments'] = $member->shipment_document()->where($whereParams)->orderby('id','desc')->skip(10)->take(100)->get();
+            return view('member/shipment-documentation',$data);
+        } catch (Exception $e) {
             return redirect('/');
         }
         
@@ -190,5 +278,65 @@ class MemberController extends BaseController
         }
         
     }
+
+    function viewQuotation(Request $request, $invoice_number)
+    {
+        $member_id = session()->get('id');
+        $invoice = Invoice::where([
+            ['invoice_number', '=', $invoice_number],
+            ['member_id', '=', $member_id],
+        ])->first();
+        if(!$invoice){
+            return redirect('personal-info');
+        }
+
+        $data['invoice'] = $invoice;
+        $pdf = PDF::loadView('vendor.backpack.base.invoice.invoice', $data);
+        return $pdf->stream();
+    }
+
+
+    function downloadQuotation(Request $request, $invoice_number)
+    {
+        $member_id = session()->get('id');
+        $invoice = Invoice::where([
+            ['invoice_number', '=', $invoice_number],
+            ['member_id', '=', $member_id],
+        ])->first();
+        if(!$invoice){
+            return redirect('personal-info');
+        }
+        $data['invoice'] = $invoice;
+        $pdf = PDF::loadView('vendor.backpack.base.invoice.invoice', $data);
+        return $pdf->download('Quotation '.$invoice->invoice_number.'.pdf');
+    }
+
+    function viewShipment(Request $request, $id)
+    {
+        $member_id = session()->get('id');
+        $document = Shipment_document::where([
+            ['id', '=', $id],
+            ['member_id', '=', $member_id],
+        ])->first();
+        if(!$document){
+            return redirect('personal-info');
+        }
+        return response()->file('upload/'.$document->file_path);
+    }
+
+
+    function downloadShipment(Request $request, $id)
+    {
+        $member_id = session()->get('id');
+        $document = Shipment_document::where([
+            ['id', '=', $id],
+            ['member_id', '=', $member_id],
+        ])->first();
+        if(!$document){
+            return redirect('personal-info');
+        }
+        return response()->download('upload/'.$document->file_path);
+    }
+
 
 }

@@ -9,23 +9,32 @@
                     <div class="col-lg-10">
                         <div class="box">
                             <div class="title">Login</div>
-                            <form>
+                            <form method="post" action="{{ URL::to('/signin') }}">
+                            @if(Session::has('message_login'))
+                                <p style="color:red;text-align:left;font-size:13px;">The email and password are invalid.</p>
+                            @endif
+
+                            @if(Session::has('message_login_verified'))
+                                <p style="color:red;text-align:left;font-size:13px;">Please verify your email before login. </p>
+                            @endif
+                            {!! csrf_field() !!}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="email">Email:</label>
-                                            <input class="form-control" id="email" name="email" type="text" required="" />
+                                            <input class="form-control" id="email" name="email" type="text" required />
                                         </div>     
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="password">Password:</label>
-                                            <input class="form-control" id="password" name="password" type="password" required="" />
+                                            <input class="form-control" id="password" name="password" type="password" required />
                                         </div>     
                                     </div>
                                 </div>
-                                <button class="hvr-button full100" type="button" data-toggle="modal" data-target="#modal-success">Login</button>
-                                <div class="text-auth">New to this site? <a class="click-register">Sign Up</a>. Or you <a href="{{ URL::to('/forgot-password') }}">Forgot Password</a>?</div>
+                                <!-- <button class="hvr-button full100" type="button" data-toggle="modal" data-target="#modal-success">Login</button> -->
+                                <button class="hvr-button full100" type="submit">Login</button>
+                                <div class="text-auth">New to this site? <a href="{{ URL::to('/register') }}">Sign Up</a>. Or you <a href="{{ URL::to('/forgot-password') }}">Forgot Password</a>?</div>
                                 <div class="box-text">
                                     <div class="text">or login with</div>
                                 </div>

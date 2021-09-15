@@ -35,7 +35,7 @@
 
                 <div class="box-header with-border">
                     @include('vendor.backpack.base.inc.alert')
-                    <div class="box-title"><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/banner/create') }}" class="btn btn-success">Create Banner</a></div>
+                    <!-- <div class="box-title"><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/banner/create') }}" class="btn btn-success">Create Banner</a></div> -->
                 </div>
 
                 <div class="box-body">

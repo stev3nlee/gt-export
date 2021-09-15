@@ -10,7 +10,11 @@
                         <div class="box">
                             <div class="title mb20">Forgot Password</div>
                             <div class="t-forgot">Don't worry, you can get your new password by filling your existing email address. We will send you new one.</div> <br />
-                            <form>
+                            @if(Session::has('message_error_forgot'))
+                                <p style="color:red;text-align:left;font-size:13px;">{{ Session::get('message_error_forgot') }}</p>
+                            @endif
+                            <form action="{{ URL::to('/submit-forgot') }}" method="POST" >
+                            {!! csrf_field() !!}
                                 <div class="row justify-content-center">
                                     <div class="col-md-8 col-lg-7">
                                         <div class="form-group">

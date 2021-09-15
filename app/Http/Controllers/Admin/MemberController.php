@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use DB;
 use Excel;
 use App\Models\Member;
+use App\Models\Quotation;
+use App\Models\Invoice;
+use App\Models\Shipment_document;
 
 class MemberController extends Controller
 {
@@ -120,6 +123,9 @@ class MemberController extends Controller
 
     function detail($id){
 		$data = Member::find($id);
-        return view('vendor.backpack.base.member.detail', ['data' => $data]);
+        $quotations = Quotation::where('member_id',$id)->orderby('id','desc')->get();
+        $invoices = Invoice::where('member_id',$id)->orderby('id','desc')->get();
+        $shipments = Shipment_document::where('member_id',$id)->orderby('id','desc')->get();
+        return view('vendor.backpack.base.member.detail', ['data' => $data,'quotations' => $quotations,'invoices' => $invoices,'shipments' => $shipments]);
 	}
 }

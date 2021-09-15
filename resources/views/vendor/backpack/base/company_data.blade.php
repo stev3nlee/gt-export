@@ -26,7 +26,7 @@
                       {!! csrf_field() !!}
                       
                       
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="exampleInputEmail1">Logo</label><br>
                         @if(isset($data->logo))
                         <img src="{{ asset('/upload/'.$logo->image) }}" width="40%" /><br><br>
@@ -34,7 +34,7 @@
                         @endif
                         <input type="file" name="image" class="form-control">
                         
-                      </div>
+                      </div> -->
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                         <textarea name="email" class="form-control my-editor">@if(isset($data->email)){{ $data->email }} @endif</textarea>

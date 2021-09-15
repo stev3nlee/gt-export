@@ -16,9 +16,19 @@ class Member extends Model
 
     use SoftDeletes;
 
-    public function order()
+    public function invoice()
     {
-        return $this->hasMany('App\Models\Order');
+        return $this->hasMany('App\Models\Invoice');
+    }
+
+    public function quotation()
+    {
+        return $this->hasMany('App\Models\Quotation');
+    }
+
+    public function shipment_document()
+    {
+        return $this->hasMany('App\Models\Shipment_document');
     }
 
     public function billing_address()

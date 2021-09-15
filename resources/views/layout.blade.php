@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0"/>
-    <meta name="description" content="PLJ (Pusat Layanan Juru Bahasa Isyarat) adalah lembaga yang mengelola juru bahasa isyarat di Indonesia yang dikelola oleh tuli komunitas pengguna bahasa isyarat.">
-    <meta name="keywords" content="PLJ (Pusat Layanan Juru Bahasa Isyarat) adalah lembaga yang mengelola juru bahasa isyarat di Indonesia yang dikelola oleh tuli komunitas pengguna bahasa isyarat.">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <title>GT EXPORT</title>
     <!--favicon-->
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-icon-180x180.png?v.1') }}">
@@ -17,7 +17,14 @@
     <link href="{{ asset('js/jquery-ui/jquery-ui.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/front.css?v.1') }}" rel="stylesheet"/>
-
+    <style>
+      .help-block{
+        color: #dd4b39;
+      }
+      .required{
+        color: #dd4b39;
+      }
+    </style>
 </head>
 <body>
 
@@ -57,13 +64,30 @@
                 </div>
                 <div class="col-md-4 my-auto text-right">
                     <!-- NO ACCOUNT-->
+                    @if(session()->has('email'))
+                    <div @if (Request::is('personal-info') || Request::is('transaction-history') || Request::is('quotation-history') || Request::is('shipment-documentation')) class="link-account" @else class="link" @endif>
+                        <a href="{{ URL::to('/personal-info') }}">
+                            <div class="tbl">
+                                <div class="cell img">
+                                @if($member_detail)
+                                    <img src="{{ asset('upload/profile/'.$member_detail->image) }}" alt="" title=""/>
+                                @else
+                                    <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>
+                                @endif
+                                </div>
+                                <div class="cell nm">{{ session()->get('first_name') }}</div>
+                            </div>
+                        </a>
+                    </div>
+                    @else
                     <div class="link">
-                        <a data-toggle="modal" data-target="#modal-login">
+                        <a href="{{ url('login') }}" >
                             <button class="hvr-button">Login / Sign Up</button>
                         </a>
                     </div>
-
+                    @endif
                     <!-- ACCOUNT -->
+                    <!--
                     <div class="link-account">
                         <a href="{{ URL::to('/personal-info') }}">
                             <div class="tbl">
@@ -72,6 +96,7 @@
                             </div>
                         </a>
                     </div>
+                    -->
                 </div>
             </div>
             <div class="bg-menu">
@@ -116,9 +141,9 @@
                 </div>
                 <div class="col-sm-6 my-auto order-1 order-md-2">
                     <ul class="l-soc">
-                        <li><a href="#" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
-                        <li><a href="#" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="{{ $company_data->facebook }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
+                        <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -143,6 +168,43 @@
                 <li><a class="nav-faq" href="{{ URL::to('/faq') }}">FAQ</a></li>
                 <li><a class="nav-contact" href="{{ URL::to('/contact-us') }}">Contact Us</a></li>
             </ul>
+        </div>
+    </div>
+
+    <div id="modal-submit-quote" class="modal fade modal-global" role="dialog">
+        <div class="modal-dialog">
+            <form action="{{ url('submit-quote') }}" method="post">
+            @csrf
+            <div class="modal-content">
+                <div class="close-pop" data-dismiss="modal">
+                    <img src="{{ asset('images/close-pop.png') }}" alt="" title=""/>
+                </div>
+                <div class="pad-header">
+                    <div class="img-pop">
+                        <img src="{{ asset('images/logo.svg') }}" alt="" title=""/>
+                    </div>
+                    <div class="text-pop">You deserve quality & reliability.</div>
+                </div>
+                <div class="pad-bdy">
+                    <div class="t2-pop">Let’s get started!</div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="bdy-pop">
+                                <p>Do you want to submit quote?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="l-pop">
+                        <li class="active"><a>Yes</a></li>
+                        <li class="click-quote-no"><a>No</a></li>
+                    </ul>
+                    <input type="hidden" name="product" id="product-quote">
+                    <div class="btn-pop">
+                        <button class="hvr-button" type="submit">Submit Quote</button>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
 
@@ -180,7 +242,7 @@
             </div>
         </div>
     </div>
-
+    <?php /* ?>
     <div id="modal-register" class="modal fade modal-global" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -251,6 +313,7 @@
             </div>
         </div>
     </div>
+    <?php */ ?>
 
     <div id="modal-guest" class="modal fade modal-global" role="dialog">
         <div class="modal-dialog">
@@ -277,7 +340,8 @@
                         <li class="click-login" data-toggle="modal"><a>I have an account</a></li>
                         <li class="active"><a>I do not have an account</a></li>
                     </ul>
-                    <form>
+                    <form action="{{ url('submit-quote-guest') }}" method="post" id="submit-quote-guest">
+                    @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -300,23 +364,24 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Date of Birth:</label>
-                                    <input class="form-control date" name="date-of-birth-guest" readonly="" type="text" required="" value=""/>
+                                    <input class="form-control date" name="dob_guest" readonly="" type="text" required="" value=""/>
                                 </div>     
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label id="email">Email:</label>
-                                    <input class="form-control" id="email" name="email" type="text" required="" />
+                                    <input class="form-control" id="email" name="email" type="email" required="" />
                                 </div>     
                             </div>
+                            <input type="hidden" name="product" id="product-quote-guest">
                         </div>
                         <div class="btn-pop mt30">
-                            <button class="hvr-button click-success" type="button" data-toggle="modal" data-target="#modal-success">Proceed as guest</button>
+                            <button class="hvr-button" type="submit">Proceed as guest</button>
                         </div>
                     </form>                    
                     <div class="or">or</div>
                     <div class="link-pop">
-                        <a class="click-register">Register</a>
+                        <a href="{{ url('register') }}" >Register</a>
                     </div>
                 </div>
             </div>
@@ -336,11 +401,11 @@
                     <div class="text-pop">You deserve quality & reliability.</div>
                 </div>
                 <div class="pad-bdy">
-                    <div class="img-success">
+                    <div class="img-success" id="success-icon">
                         <img src="{{ asset('images/success.png') }}" alt="" title=""/>
                     </div>
                     <div class="t-pop2">
-                        <div>Thank you for your interest! We will send your quotation to your registered email address within x working days.</div>
+                        <div id="message-success">Thank you for your interest! We will send your quotation to your registered email address within x working days.</div>
                     </div>
                     <div class="btn-pop">
                         <a href="{{ URL::to('/') }}">
@@ -433,8 +498,8 @@
         
         $('.click-register').click(function() {
             $('#modal-login').modal('hide');
-            $('#modal-guest').modal('hide');
-            $('#modal-register').modal('toggle');
+            $('#modal-guest').modal('toggle');
+            //$('#modal-register').modal('toggle');
             $('body').addClass('no-scroll');
             $('.modal').addClass('scroll');
         });
@@ -459,6 +524,32 @@
             $('#modal-guest').modal('hide');
             $('#modal-login').modal('hide');
             $('#modal-register').modal('hide');
+        });
+
+        $('.click-quote-no').click(function() {
+            $('#modal-submit-quote').modal('hide');
+            $('body').addClass('scroll');
+            $('.modal').addClass('scroll');
+        });
+
+        $('.click-submit-quote').click(function() {
+            product_quote = $(this).data('product'); 
+            $('#modal-submit-quote').modal('toggle');
+            $('#modal-register').modal('hide');
+            $('#modal-guest').modal('hide');
+            $('#product-quote').val(product_quote);
+            $('body').addClass('scroll');
+            $('.modal').addClass('scroll');
+        });
+
+        $('.click-submit-quote-guest').click(function() {
+            product_quote = $(this).data('product'); 
+            $('#modal-login').modal('toggle');
+            $('#modal-register').modal('hide');
+            $('#modal-guest').modal('hide');
+            $('body').addClass('scroll');
+            $('.modal').addClass('scroll');
+            $('#product-quote-guest').val(product_quote);
         });
 
         $('.close-pop').click(function(event) {
@@ -544,6 +635,33 @@
             }
         });
     }); 
+  @if(Session::has('register_success'))
+  $('#message-success').html('{{Session::get('register_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('register_failed'))
+  $('#message-failed').html('{{Session::get('register_failed')}}');
+  $('#success-icon').html('');
+  $('#modal-failed').modal('show');
+  @endif
+  @if(Session::has('verify_success'))
+  $('#message-success').html('{{Session::get('verify_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('forgot_success'))
+  $('#message-success').html('{{Session::get('forgot_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('recovery_success'))
+  $('#message-success').html('{{Session::get('recovery_success')}}');
+  $('#modal-success').modal('show');
+  @endif
+  @if(Session::has('contact_success'))
+  $('#modal-contact').modal('show');
+  @endif
+  @if(Session::has('quotation_success'))
+  $('#modal-success').modal('show');
+  @endif
 </script>
 
 </body>

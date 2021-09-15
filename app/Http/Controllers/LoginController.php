@@ -61,7 +61,7 @@ class LoginController extends BaseController
             return redirect('/');
         }
         else
-        return view('auth/forgot');
+        return view('auth/forgot-password');
     }
     public function getViewLogin(){
         if (session()->has('email')){
@@ -120,11 +120,12 @@ class LoginController extends BaseController
                 session(
                     [
                         'name' => $member->first_name.' '.$member->last_name,
+                        'first_name' => $member->first_name,
                         'email' => $member->email,
                         'id' => $member->id,
                     ]
                 );
-                return redirect('/profile');
+                return redirect('/personal-info');
             
             } catch (\Exception $e) {
                 //dd($e);
@@ -173,7 +174,7 @@ class LoginController extends BaseController
                 $newMember->first_name = $first_name;
                 $newMember->last_name = $last_name;
                 $newMember->phone = $phone;
-                $newMember->dob = $dob;
+                $newMember->dob = date('Y-m-d', strtotime($dob));
                 $newMember->save();
 
                 $code = md5(uniqid().$newMember->id);
@@ -183,7 +184,7 @@ class LoginController extends BaseController
                 $memberVerif->save();
 
                 $data_email = array(
-                        'name' => $name,
+                        'name' => $newMember->first_name.' '.$newMember->last_name,
                         'email'=>$email,
                         'subject' => 'GT Export - Verification of New Account',
                         'email_to' => $email,
@@ -370,22 +371,32 @@ class LoginController extends BaseController
                     session(
                         [
                             'name' => $member->first_name.' '.$member->last_name,
+                            'first_name' => $member->first_name,
                             'email' => $member->email,
                             'id' => $member->id,
                         ]
                     );
                     return redirect('/profile');
                 }else{
+                    $separated_name = explode(' ', $name, 2);
+                    $first_name = $separated_name[0];
+                    $last_name = $separated_name[0];
+                    if(isset($separated_name[1])){
+                        $last_name = $separated_name[1];
+                    }
+
                     $newMember = new Member;
                     $newMember->email = $email;
                     $newMember->facebook_id = $facebook_id;
-                    $newMember->name = $name;
+                    $newMember->first_name = $first_name;
+                    $newMember->last_name = $last_name;
                     $newMember->verified = 1;
                     $newMember->save();
 
                     session(
                         [
                             'name' => $member->first_name.' '.$member->last_name,
+                            'first_name' => $member->first_name,
                             'email' => $newMember->email,
                             'id' => $newMember->id,
                         ]
@@ -420,16 +431,25 @@ class LoginController extends BaseController
                     );
                     return redirect('/profile');
                 }else{
+                    $separated_name = explode(' ', $name, 2);
+                    $first_name = $separated_name[0];
+                    $last_name = $separated_name[0];
+                    if(isset($separated_name[1])){
+                        $last_name = $separated_name[1];
+                    }
+
                     $newMember = new Member;
                     $newMember->email = $email;
                     $newMember->google_id = $google_id;
-                    $newMember->name = $name;
+                    $newMember->first_name = $first_name;
+                    $newMember->last_name = $last_name;
                     $newMember->verified = 1;
                     $newMember->save();
 
                     session(
                         [
                             'name' => $member->first_name.' '.$member->last_name,
+                            'first_name' => $member->first_name,
                             'email' => $newMember->email,
                             'id' => $newMember->id,
                         ]

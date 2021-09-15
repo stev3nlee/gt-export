@@ -47,8 +47,8 @@
                                     <th width="200">Title</th>
                                     <th>Content</th>
                                     <th>Image</th>
-                                    <th>Status</th>
-                                    <th width="150">Created Date</th>
+                                    <!-- <th>Status</th> -->
+                                    <th width="150">Updated Date</th>
                                 </tr>
                             </thead>
                             <tbody id="element-order" class="sortable-treatment grabbable">
@@ -63,10 +63,11 @@
                                     <td>{{ $content->title }}</td>
                                     <td>{!! $content->content !!}</td>
                                     <td>
-                                        <img src="{{ asset('/upload/'.$content->image) }}" width="40%"/>
+                                        @if($content->image)<img src="{{ asset('/upload/'.$content->image) }}" width="40%"/>@endif
                                     </td>
-                                    <td><?php if($content->status == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/about/status/'.$content->id.'/1') }}"><span class="badge bg-red">Inactive</span></a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/about/status/'.$content->id.'/0') }}"><span class="badge bg-green">Active</span></a><?php } ?></td>
-                                    <td>{{ $content->created_at }}</td>
+                                    <?php /* ?>
+                                    <td><?php if($content->status == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/about/status/'.$content->id.'/1') }}"><span class="badge bg-red">Inactive</span></a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/about/status/'.$content->id.'/0') }}"><span class="badge bg-green">Active</span></a><?php } ?></td><?php */ ?>
+                                    <td>{{ $content->updated_at }}</td>
                                 </tr> 
                               @endforeach
                               
