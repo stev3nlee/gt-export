@@ -64,13 +64,30 @@
                 </div>
                 <div class="col-md-4 my-auto text-right">
                     <!-- NO ACCOUNT-->
+                    @if(session()->has('email'))
+                    <div @if (Request::is('personal-info') || Request::is('transaction-history') || Request::is('quotation-history') || Request::is('shipment-documentation')) class="link-account" @else class="link" @endif>
+                        <a href="{{ URL::to('/personal-info') }}">
+                            <div class="tbl">
+                                <div class="cell img">
+                                @if($member_detail)
+                                    <img src="{{ asset('upload/profile/'.$member_detail->image) }}" alt="" title=""/>
+                                @else
+                                    <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>
+                                @endif
+                                </div>
+                                <div class="cell nm">{{ session()->get('first_name') }}</div>
+                            </div>
+                        </a>
+                    </div>
+                    @else
                     <div class="link">
                         <a href="{{ url('login') }}" >
                             <button class="hvr-button">Login / Sign Up</button>
                         </a>
                     </div>
-
+                    @endif
                     <!-- ACCOUNT -->
+                    <!--
                     <div class="link-account">
                         <a href="{{ URL::to('/personal-info') }}">
                             <div class="tbl">
@@ -79,6 +96,7 @@
                             </div>
                         </a>
                     </div>
+                    -->
                 </div>
             </div>
             <div class="bg-menu">

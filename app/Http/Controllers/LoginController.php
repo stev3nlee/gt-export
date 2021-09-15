@@ -120,6 +120,7 @@ class LoginController extends BaseController
                 session(
                     [
                         'name' => $member->first_name.' '.$member->last_name,
+                        'first_name' => $member->first_name,
                         'email' => $member->email,
                         'id' => $member->id,
                     ]
@@ -370,6 +371,7 @@ class LoginController extends BaseController
                     session(
                         [
                             'name' => $member->first_name.' '.$member->last_name,
+                            'first_name' => $member->first_name,
                             'email' => $member->email,
                             'id' => $member->id,
                         ]
@@ -394,6 +396,7 @@ class LoginController extends BaseController
                     session(
                         [
                             'name' => $member->first_name.' '.$member->last_name,
+                            'first_name' => $member->first_name,
                             'email' => $newMember->email,
                             'id' => $newMember->id,
                         ]
@@ -446,6 +449,7 @@ class LoginController extends BaseController
                     session(
                         [
                             'name' => $member->first_name.' '.$member->last_name,
+                            'first_name' => $member->first_name,
                             'email' => $newMember->email,
                             'id' => $newMember->id,
                         ]

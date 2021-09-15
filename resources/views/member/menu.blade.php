@@ -11,4 +11,5 @@
 	<li><a href="{{ URL::to('/transaction-history') }}" class="nav-trans">Transaction History</a></li>
 	<li><a href="{{ URL::to('/quotation-history') }}" class="nav-quota">Quotation History</a></li>
 	<li><a href="{{ URL::to('/shipment-documentation') }}" class="nav-ship">Shipment Documentation</a></li>
+	<li><a href="{{ URL::to('/logout') }}" class="nav">Logout</a></li>
 </ul>
