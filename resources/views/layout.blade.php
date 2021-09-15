@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0"/>
-    <meta name="description" content="PLJ (Pusat Layanan Juru Bahasa Isyarat) adalah lembaga yang mengelola juru bahasa isyarat di Indonesia yang dikelola oleh tuli komunitas pengguna bahasa isyarat.">
-    <meta name="keywords" content="PLJ (Pusat Layanan Juru Bahasa Isyarat) adalah lembaga yang mengelola juru bahasa isyarat di Indonesia yang dikelola oleh tuli komunitas pengguna bahasa isyarat.">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <title>GT EXPORT</title>
     <!--favicon-->
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-icon-180x180.png?v.1') }}">
@@ -17,7 +17,14 @@
     <link href="{{ asset('js/jquery-ui/jquery-ui.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/front.css?v.1') }}" rel="stylesheet"/>
-
+    <style>
+      .help-block{
+        color: #dd4b39;
+      }
+      .required{
+        color: #dd4b39;
+      }
+    </style>
 </head>
 <body>
 
