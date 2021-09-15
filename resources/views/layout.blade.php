@@ -65,7 +65,7 @@
                 <div class="col-md-4 my-auto text-right">
                     <!-- NO ACCOUNT-->
                     @if(session()->has('email'))
-                    <div @if (Request::is('personal-info') || Request::is('transaction-history') || Request::is('quotation-history') || Request::is('shipment-documentation')) class="link-account" @else class="link-account" @endif>
+                    <div class="link-account" class="link-account">
                         <a href="{{ URL::to('/personal-info') }}">
                             <div class="tbl">
                                 <div class="cell img">
