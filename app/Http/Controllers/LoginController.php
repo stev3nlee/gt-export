@@ -119,8 +119,8 @@ class LoginController extends BaseController
 
                 session(
                     [
-                        'name' => $member->first_name.' '.$member->last_name,
-                        'first_name' => $member->first_name,
+                        'name' => ucwords($member->first_name).' '.ucwords($member->last_name),
+                        'first_name' => ucwords($member->first_name),
                         'email' => $member->email,
                         'id' => $member->id,
                     ]
@@ -242,9 +242,9 @@ class LoginController extends BaseController
                 $table->email = $email;
                 $table->member_id = $member->id;
                 $table->save();
-
+                
                 $data_email = array(
-                        'name' => $member->first_name.' '.$member->last_name,
+                        'name' => ucwords($member->first_name).' '.ucwords($member->last_name),
                         'email'=>$email,
                         'subject' => 'GT Export - Forgot Password',
                         'email_to' => $email,
@@ -395,8 +395,8 @@ class LoginController extends BaseController
 
                     session(
                         [
-                            'name' => $member->first_name.' '.$member->last_name,
-                            'first_name' => $member->first_name,
+                            'name' => ucwords($member->first_name).' '.ucwords($member->last_name),
+                            'first_name' => ucwords($member->first_name),
                             'email' => $newMember->email,
                             'id' => $newMember->id,
                         ]
@@ -448,8 +448,8 @@ class LoginController extends BaseController
 
                     session(
                         [
-                            'name' => $member->first_name.' '.$member->last_name,
-                            'first_name' => $member->first_name,
+                            'name' => ucwords($member->first_name).' '.ucwords($member->last_name),
+                            'first_name' => ucwords($member->first_name),
                             'email' => $newMember->email,
                             'id' => $newMember->id,
                         ]

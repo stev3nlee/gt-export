@@ -182,8 +182,8 @@
                             <div class="t">You deserve quality and reliability.</div>
                         </div>
                         <div class="link">
-                            <a class="click-register">
-                                <button type="button" class="hvr-button full100">GSign up and start dealing now.</button>
+                            <a href="{{ url('register') }}">
+                                <button type="button" class="hvr-button full100">Sign up and start dealing now.</button>
                             </a>
                         </div>
                     </div>

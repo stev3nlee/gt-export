@@ -147,7 +147,7 @@
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Engine Capacity (cc) <span style="color: red">*</span></label>
-                              <input type="text" name="engine_capacity" required class="form-control" value="{{ isset($data) ? $data->engine_capacity : old('engine_capacity') }}">
+                              <input type="number" step="0.01" name="engine_capacity" required class="form-control" value="{{ isset($data) ? $data->engine_capacity : old('engine_capacity') }}">
                               @if($errors->has('engine_capacity')) <span class="help-block">{{ $errors->first('engine_capacity') }}</span>  @endif
                             </div>
 

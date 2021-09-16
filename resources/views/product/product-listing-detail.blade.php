@@ -10,6 +10,11 @@
                     <div class="col-md-7 col-lg-8">
                         <div class="pr40">
                             <div class="slider-product">
+                                <div class="item">
+                                    <a href="{{ asset($product->thumbnail) }}" data-fancybox="fancy-product">
+                                        <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
+                                    </a>
+                                </div>
                                 @foreach($product->product_image as $image)
                                 <div class="item">
                                     <a href="{{ asset($image->image) }}" data-fancybox="fancy-product">
@@ -19,6 +24,9 @@
                                 @endforeach
                             </div>
                             <div class="slider-thumb">
+                                <div class="item">
+                                    <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
+                                </div>
                                 @foreach($product->product_image as $image)
                                 <div class="item">
                                     <img src="{{ asset($image->image) }}" alt="" title=""/>
@@ -30,8 +38,9 @@
                     <div class="col-md-5 col-lg-4">
                         <div class="merk">{{ $product->registration_year }}</div>
                         <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
+                        <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                         <div class="buy">Buy it at</div>
-                        <div class="price">$ {{ number_format($product->price, 2, '.', ',') }}</div>
+                        <div class="price">$ {{ number_format($product->price, 2, ',', '.') }}</div>
                         @if($product->reserve == 0)
                         <div class="add">
                             <a>
@@ -66,7 +75,7 @@
                     <div class="l-detail-t2">Year</div>
                 </li>
                 <li>
-                    <div class="l-detail-t1">{{ number_format($product->engine_capacity, 0, '.', ',') }}cc</div>
+                    <div class="l-detail-t1">{{ number_format($product->engine_capacity, 2, ',', '.') }}cc</div>
                     <div class="l-detail-t2">Engine</div>
                 </li>
                 <li>
@@ -83,8 +92,56 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
+                                <div class="col-4 my-auto left">Brand</div>
+                                <div class="col-8 my-auto right">{{$product->brand[0]->name  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Model</div>
+                                <div class="col-8 my-auto right">{{$product->model[0]->name  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Transmission</div>
+                                <div class="col-8 my-auto right">{{$product->transmission[0]->name  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Chassis No</div>
+                                <div class="col-8 my-auto right">{{$product->chassis_no  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Model Code</div>
+                                <div class="col-8 my-auto right">{{$product->model_code  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-4 my-auto left">Product Type</div>
+                                <div class="col-8 my-auto right">{{$product->product_type  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
                                 <div class="col-4 my-auto left">Registeration Year/Month</div>
-                                <div class="col-8 my-auto right">{{$product->registeration_year  ?? '-'}}/{{$product->registeration_month  ?? '-'}}</div>
+                                <div class="col-8 my-auto right">{{$product->registration_year  ?? '-'}}/{{$product->registration_month  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +172,7 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Drive Type Ability</div>
+                                <div class="col-4 my-auto left">Drive Type</div>
                                 <div class="col-8 my-auto right">{{$product->drive_type  ?? '-'}}</div>
                             </div>
                         </div>
@@ -192,19 +249,24 @@
             <div class="text3">{!! $product->remarks !!}</div>
             <div class="bdr"></div>
         </div>
+        @if($product->reserve == 0)
         <div class="banner" style="background: url('{{ asset('images/banner-detail.jpg') }}') no-repeat center;">
             <div class="container">
                 <div class="t-banner">Interested?</div>
                 <div class="bdy-banner">
                     <p>Get in touch with our sales partner for more information.</p>
                 </div>
+
                 <div class="link">
-                    <a href="{{ URL::to('/contact-us') }}">
-                        <button type="button" class="hvr-button">Get Quote</button>
-                    </a>
+                    @if(session()->has('email'))
+                        <button type="button" class="hvr-button click-submit-quote" data-product="{{ $product->slug }}">Get Quote</button>
+                    @else
+                        <button type="button" class="hvr-button click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</button>
+                    @endif
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 

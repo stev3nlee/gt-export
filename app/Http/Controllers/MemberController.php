@@ -133,8 +133,8 @@ class MemberController extends BaseController
                     "password" => "required|min:6",
                 ]);
             }
-            $table->first_name = $request->first_name;
-            $table->last_name = $request->last_name;
+            $table->first_name = ucwords($request->first_name);
+            $table->last_name = ucwords($request->last_name);
             $table->dob = date('Y-m-d',strtotime($request->dob));
             $table->phone = $request->phone;
 

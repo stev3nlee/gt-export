@@ -230,12 +230,18 @@
                         </div>
                     </div>
                     <ul class="l-pop">
-                        <li class="active"><a>I have an account</a></li>
-                        <li class="click-register"><a>I do not have an account</a></li>
+                        <li class="active have-account"><a>I have an account</a></li>
+                        <li class="dont-have-account"><a>I do not have an account</a></li>
+                        <li class="click-register"><a>Continue as a guest</a></li>
                     </ul>
-                    <div class="btn-pop">
+                    <div class="btn-pop" id="button-login">
                         <a href="{{ URL::to('/login') }}">
                             <button class="hvr-button" type="button">Proceed to Login</button>
+                        </a>
+                    </div>
+                    <div class="btn-pop" id="button-register" style="display: none;">
+                        <a href="{{ URL::to('/register') }}">
+                            <button class="hvr-button" type="button">Proceed to Register</button>
                         </a>
                     </div>
                 </div>
@@ -338,7 +344,7 @@
                     </div>
                     <ul class="l-pop">
                         <li class="click-login" data-toggle="modal"><a>I have an account</a></li>
-                        <li class="active"><a>I do not have an account</a></li>
+                        <li class="active"><a>Continue as a guest</a></li>
                     </ul>
                     <form action="{{ url('submit-quote-guest') }}" method="post" id="submit-quote-guest">
                     @csrf
@@ -559,6 +565,20 @@
 
         $('.menu-dropdown-toggle').click(function(event) {
             $('.bg-menu').toggleClass('open');
+        });
+
+        $('.dont-have-account').click(function() {
+            $('#button-login').hide();
+            $('#button-register').show();
+            $('.dont-have-account').addClass('active');
+            $('.have-account').removeClass('active');
+        });
+
+        $('.have-account').click(function() {
+            $('#button-login').show();
+            $('#button-register').hide();
+            $('.dont-have-account').removeClass('active');
+            $('.have-account').addClass('active');
         });
 
         let start = new Date();

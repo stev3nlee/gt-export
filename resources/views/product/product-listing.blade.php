@@ -166,14 +166,14 @@
                         @else
                         <div class="t-empty">There's no product in this category.</div>
                         @endif
-                        <div class="banner" style="background: url('images/banner-product.jpg') no-repeat center;">
+                        <!-- <div class="banner" style="background: url('images/banner-product.jpg') no-repeat center;">
                             <div class="t-banner">Lorem ipsum dolor sit amet conseactetur</div>
                             <div class="link">
                                 <a href="{{ URL::to('/contact-us') }}">
                                     <button type="button" class="hvr-button">Get Quote</button>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
