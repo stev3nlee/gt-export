@@ -35,7 +35,7 @@
                             <select name="quotation_id" class="form-control select2 select-quotation">
                               <option value="">Select Quotation</option>
                               @foreach($quotations as $quotation)
-                              <option value="{{ $quotation->id }}" @if(isset($data)) @if($data->invoice_id == $quotation->id) selected @endif @endif>#{{ $quotation->invoice_number }}</option>
+                              <option value="{{ $quotation->id }}" @if(isset($data)) @if($data->quotation_id == $quotation->id) selected @endif @endif>#{{ $quotation->quotation_number }}</option>
                               @endforeach
                             </select>
                             @if($errors->has('quotation_id')) <span class="help-block">{{ $errors->first('quotation_id') }}</span>  @endif
@@ -44,7 +44,7 @@
                         <div class="form-group @if($errors->has('file')) has-error @endif">
                             <label for="exampleInputEmail1">File</label>
                             @if(isset($data)) {{ $data->file }} @endif
-                            <input type="file" name="file" class="form-control" required="required">
+                            <input type="file" name="file" class="form-control" @if(!isset($data)) required="required" @endif>
                             @if($errors->has('file')) <span class="help-block">{{ $errors->first('file') }}</span>  @endif
                           </div>
                         </div>

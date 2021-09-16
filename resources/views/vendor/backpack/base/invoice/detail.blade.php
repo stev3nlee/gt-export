@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        Quotation Detail
+        Invoice Detail
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">Quotation Detail</li>
+        <li class="active">Invoice Detail</li>
       </ol>
     </section>
 @endsection
@@ -17,7 +17,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Quotation
+        Invoice
         <small>#{{ $data->invoice_number }}</small>
       </h1>
     </section>
@@ -33,7 +33,7 @@
           
           <form role="form" class="pull-right" method="POST" action="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/id/' . $data->id . '/export/invoice') }}">
               @csrf
-              <button type="submit" class="btn btn-success">Export Quotation</button>
+              <button type="submit" class="btn btn-success">Export Invoice</button>
           </form>
 <!--           <form role="form" class="pull-right" method="POST" action="{{ url(config('backpack.base.route_prefix', 'admin').'/order/id/' . $data->id . '/export/shipping') }}" style="margin-right: 10px;">
               @csrf
@@ -53,10 +53,10 @@
         <div class="col-sm-4 invoice-col">
           <b>Consignee Address</b>
           <address>
-             {{ $data->quotation->first_name }} {{ $data->quotation->last_name }}<br>
+            @if($data->quoation) {{ $data->quotation->first_name }} {{ $data->quotation->last_name }}<br> @endif
             {!! $data->consignee_address !!}<br><br>
             Contact No: {{ $data->contact_no }}<br>
-            Email: {{ $data->quotation->email }}
+             @if($data->quoation) Email: {{ $data->quotation->email }}@endif
           </address>
         </div>
         <!-- /.col -->

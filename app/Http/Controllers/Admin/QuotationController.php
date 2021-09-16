@@ -120,7 +120,7 @@ class QuotationController extends Controller
 	function exportToExcel(Request $request)
 	{
 		$quotation_export = new QuotationExport($request->input('quotation_status_export'));
-		$file_name = 'Transaction Report';
+		$file_name = 'Quotation Report';
 		if ($request->input('start_date') && $request->input('end_date')) {
 			$quotation_export->setDuration($request->input('start_date'), $request->input('end_date'));
 

@@ -96,7 +96,7 @@
                             <tbody>
                               @foreach ($data as $content)
                                     <tr>
-                                        <td>{{ $content->invoice_number }}</td>
+                                        <td>{{ $content->quotation_number }}</td>
                                         <td>{{ $content->quotation ? ucwords(strtolower($content->quotation->first_name)) . ' ' . ucwords(strtolower($content->quotation->last_name)) : '' }}</td>
                                         <td>{{ $content->file }}</td>
                                         <td>{{ $content->created_at }}</td>

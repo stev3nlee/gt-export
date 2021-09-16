@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        Quotation
+        Invoice
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">Quotation</li>
+        <li class="active">Invoice</li>
       </ol>
     </section>
 @endsection
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-md-10 text-right">
                             <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/exportToExcel') }}">
-                                <a style="float: left;" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/create') }}" class="btn btn-success">Create Quotation</a>
+                                <a style="float: left;" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/create') }}" class="btn btn-success">Create Invoice</a>
                                 @csrf
                                 <!-- <div style="display: inline-block;vertical-align: middle;">
                                     <div class="form-group" style="margin-bottom: 0;">
@@ -126,7 +126,7 @@
                                     <th>Buyer</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Total invoice</th>
+                                    <th>Total Invoice</th>
                                     <th>Payment Status</th>
                                     <th class="table-actions">Action</th>
 

@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        Transaction
+        Quotation
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">Transaction</li>
+        <li class="active">Quotation</li>
       </ol>
     </section>
 @endsection
@@ -55,7 +55,7 @@
                                 <input type="hidden" name="quotation_status_export" value="{{ request('quotation_status') }}">
                                 <!-- <input type="hidden" name="payment_type_export" value="{{ request('payment_type') }}"> -->
                                 <div style="display: inline-block;vertical-align: middle;">
-                                    <button type="submit" class="btn btn-success">Export Transaction Report</button>
+                                    <button type="submit" class="btn btn-success">Export Quotation Report</button>
                                 </div>
                             </form>
                         </div>
@@ -74,7 +74,7 @@
                                     </div> -->
                                     <div class="col-md-3">
                                         <select class="form-control" name="quotation_status" id="quotation_status" onChange="this.form.submit()">
-                                            <option value="">Select Transaction Status</option>
+                                            <option value="">Select Quotation Status</option>
                                             <option value="1" {{ request('quotation_status') == '1' ? 'selected' : '' }}>Pending</option>
                                             <option value="2" {{ request('quotation_status') == '2' ? 'selected' : '' }}>Fulfilled</option>
                                             <option value="3" {{ request('quotation_status') == '3' ? 'selected' : '' }}>Unsuccessful</option>

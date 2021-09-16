@@ -89,8 +89,8 @@
                   </li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/reservation_time') }}"><i class="fa fa-clock-o"></i> <span>Reservation Time</span></a></li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/shipping_cost') }}"><i class="fa fa-truck"></i> <span>Shipping Cost</span></a></li>
-                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation') }}"><i class="fa fa-shopping-cart"></i> <span>Transaction</span></a></li>
-                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-file-pdf-o"></i> <span>Quotation</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation') }}"><i class="fa fa-shopping-cart"></i> <span>Quotation</span></a></li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-file-pdf-o"></i> <span>Invoice</span></a></li>
                   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/shipment_document') }}"><i class="fa fa-book"></i> <span>Shipment Document</span></a></li>
 
                 </ul>

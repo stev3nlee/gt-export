@@ -69,7 +69,7 @@
                         <a href="{{ URL::to('/personal-info') }}">
                             <div class="tbl">
                                 <div class="cell img">
-                                @if($member_detail)
+                                @if(isset($member_detail->image))
                                     <img src="{{ asset('upload/profile/'.$member_detail->image) }}" alt="" title=""/>
                                 @else
                                     <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>

@@ -38,10 +38,12 @@
             <tr>
                 <td width="60%" style="vertical-align:top;"> 
                     <table style="border-collapse: collapse; width: 100%; font-size: 7pt; line-height: 13px;">
+                        @if($invoice->quoation)
                         <tr>
                             <td style="font-family: 'Quicksand-Bold'; width: 100px;">CONSIGNEE:</td>
                             <td>{{ $invoice->quotation->first_name }} {{ $invoice->quotation->last_name }}</td>
                         </tr>
+                        @endif
                         <tr>
                             <td style="font-family: 'Quicksand-Bold'; padding-bottom: 10px;">ADDRESS:</td>
                             <td style="padding-bottom: 25px;">{{ $invoice->consignee_address }} </td>

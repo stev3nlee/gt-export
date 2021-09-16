@@ -64,7 +64,7 @@ class InvoiceController extends Controller
     function insert(Request $request){
         $validatedData = $request->validate([
             'invoice_number' => 'required|max:255|unique:invoice,deleted_at,NULL',
-            'quotation_id' => 'required|not_in:0',
+            //'quotation_id' => 'required|not_in:0',
             'consignee_address' => 'required|string',
             'contact_no' => 'required|string',
             'email' => 'required|email',
@@ -75,14 +75,18 @@ class InvoiceController extends Controller
         ]);
 
     	return DB::transaction(function () use($request,&$invoice) {
-    		//dd($request->all());
-    	$quotation_id = $request->quotation_id;
-    	if($quotation_id){
+
+    	$quotation_id = null;
+        $member_id = null;
+    	if($request->quotation_id){
+            $quotation_id = $request->quotation_id;
             $quot = Quotation::find($quotation_id);
+            $member_id = $quot->member_id;
+        }
             $invoice = new Invoice;
             $invoice->invoice_number = $request->invoice_number;
             $invoice->quotation_id = $quotation_id;
-            $invoice->member_id = $quot->member_id;
+            $invoice->member_id = $member_id;
             $invoice->sub_total = $request->subtotal;
             $invoice->total = $request->value;
             $invoice->consignee_address = $request->consignee_address;
@@ -97,9 +101,9 @@ class InvoiceController extends Controller
 
             $total_price_original = 0;$total_quantity = 0;$total_weight = 0;
             $detail = $request->detail;
+            //dd($detail);
                 foreach ($detail['product_id'] as $key => $item) {
                 	//$product_detail = Product::find($item);
-
                         Invoice_detail::create([
                             'invoice_id' => $invoice->id,
                             'product_id' => $detail['product_id'][$key],
@@ -113,15 +117,7 @@ class InvoiceController extends Controller
                             'engine_no' => $detail['engine_no'][$key],
                             'amount' => $detail['amount'][$key],
                         ]);
-
-                        // Product::where([
-                        //     'id' => $product_detail->id
-                        // ])->decrement(
-                        //     'stock', $detail['product_quantity'][$key]
-                        // );
-                   //	$total_price_original += $product_detail->price * $detail['product_quantity'][$key];
                 }
-           // $invoice->sub_total_original = $total_price_original;
             $invoice->save();
 
             // $invoice_billing_detail = new invoice_billing_detail;
@@ -138,14 +134,13 @@ class InvoiceController extends Controller
 
             $request->session()->flash('insert', 'Success');
             return redirect()->route('invoice_view');
-    	}
     	});
     }
 
     function update(Request $request){
         $validatedData = $request->validate([
             'invoice_number' => 'required|max:255|unique:invoice,invoice_number,'.$request->id,
-            'quotation_id' => 'required|not_in:0',
+            //'quotation_id' => 'required|not_in:0',
             'consignee_address' => 'required|string',
             'contact_no' => 'required|string',
             'email' => 'required|email',

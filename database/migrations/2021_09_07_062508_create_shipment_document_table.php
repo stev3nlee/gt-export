@@ -19,6 +19,7 @@ class CreateShipmentDocumentTable extends Migration
             $table->unsignedBigInteger('quotation_id')->nullable();
             $table->unsignedBigInteger('member_id')->nullable();
             $table->string('invoice_number')->nullable();
+            $table->string('quotation_number')->nullable();
             $table->string('file_path')->nullable();
             $table->string('slug')->nullable();
             $table->integer('size')->nullable();

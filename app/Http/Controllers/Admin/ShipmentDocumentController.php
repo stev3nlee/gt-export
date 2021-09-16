@@ -51,14 +51,14 @@ class ShipmentDocumentController extends Controller
     function create(){
         $member = Member::get();
         // $products = Product::get();
-        $quotations = Invoice::get();
+        $quotations = Quotation::get();
         return view('vendor.backpack.base.shipment_document.create', ['member' => $member, 'quotations' => $quotations]);
     }
 
    	function edit($id){
    		$shipment_document = Shipment_document::find($id);
         $member = Member::get();
-        $quotations = Invoice::get();
+        $quotations = Quotation::get();
 
         return view('vendor.backpack.base.shipment_document.create', ['member' => $member, 'quotations'=>$quotations, 'data'=>$shipment_document]);
     }
@@ -72,18 +72,18 @@ class ShipmentDocumentController extends Controller
     		//dd($request->all());
     	$quotation_id = $request->quotation_id;
     	if($quotation_id){
-            $invoice = Invoice::find($quotation_id);
+            $invoice = Quotation::find($quotation_id);
             $shipment_document = new Shipment_document;
-            $shipment_document->invoice_number = $invoice->invoice_number;
-            $shipment_document->quotation_id = $invoice->quotation_id;
+            $shipment_document->quotation_number = $invoice->quotation_number;
+            $shipment_document->quotation_id = $invoice->id;
             $shipment_document->member_id = $invoice->member_id;
-            $shipment_document->invoice_id = $invoice->id;
+            //$shipment_document->invoice_id = $invoice->id;
             $shipment_document->save();
 
             if ($request->hasFile('file')) {
                 $fileSize = $request->file('file')->getSize();
-                $fileName = $invoice->invoice_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
-                $fileNameSave = 'shipment-document/'.$shipment_document->quotation_id.'/'.$invoice->invoice_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
+                $fileName = $invoice->quotation_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
+                $fileNameSave = 'shipment-document/'.$shipment_document->quotation_id.'/'.$invoice->quotation_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
                // dd($fileNameSave);
                 $path = base_path() . '/public/upload/shipment-document/'.$shipment_document->quotation_id;
                 $request->file('file')->move($path, $fileName);
@@ -110,12 +110,12 @@ class ShipmentDocumentController extends Controller
     		//dd($request->all());
     	$quotation_id = $request->quotation_id;
     	if($quotation_id){
-            $invoice = Invoice::find($quotation_id);
+            $invoice = Quotation::find($quotation_id);
             $shipment_document = Shipment_document::find($request->id);
-            $shipment_document->invoice_number = $invoice->invoice_number;
-            $shipment_document->quotation_id = $invoice->quotation_id;
+            $shipment_document->quotation_number = $invoice->quotation_number;
+            $shipment_document->quotation_id = $invoice->id;
             $shipment_document->member_id = $invoice->member_id;
-            $shipment_document->invoice_id = $invoice->id;
+            //$shipment_document->invoice_id = $invoice->id;
             $shipment_document->save();
 
             if ($request->hasFile('file')) {
@@ -127,8 +127,8 @@ class ShipmentDocumentController extends Controller
                     }
                 }
                 $fileSize = $request->file('file')->getSize();
-                $fileName = $invoice->invoice_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
-                $fileNameSave = 'shipment-document/'.$shipment_document->quotation_id.'/'.$invoice->invoice_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
+                $fileName = $invoice->quotation_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
+                $fileNameSave = 'shipment-document/'.$shipment_document->quotation_id.'/'.$invoice->quotation_number . ' Shipment Document.' . $request->file('file')->getClientOriginalExtension();
                // dd($fileNameSave);
                 $path = base_path() . '/public/upload/shipment-document/'.$shipment_document->quotation_id;
                 $request->file('file')->move($path, $fileName);

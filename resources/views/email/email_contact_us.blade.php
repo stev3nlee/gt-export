@@ -31,14 +31,12 @@
 					<p style="margin: 5px;">{{ $name }}</p>
 				</div>
 			</div>
-			@if($label == 'enquiry')
 			<div style="display: table;width: 100%;">
 				<div style="display: table-cell; width: 130px;">Phone Number :</div>
 				<div style="display: table-cell;">
 					<p style="margin: 5px;">{{ $phone }}</p>
 				</div>
 			</div>
-			@endif
 			<div style="display: table;width: 100%;">
 				<div style="display: table-cell; width: 130px;">Message :</div>
 				<div style="display: table-cell;">

@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        Quotation
+        Invoice
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">Quotation</li>
+        <li class="active">Invoice</li>
       </ol>
     </section>
 @endsection
@@ -23,7 +23,7 @@
                     <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/invoice/insert') }}">
                 @endif
                 <div class="box-header with-border">
-                    @if(isset($data)) Update Quotation @else Create Quotation @endif <div style="float: right;"><input type="text" name="invoice_number" value="{{ isset($data) ? $data->invoice_number : $invoice_number }}">
+                    @if(isset($data)) Update Invoice @else Create Invoice @endif <div style="float: right;"><input type="text" name="invoice_number" value="{{ isset($data) ? $data->invoice_number : $invoice_number }}">
                     @if($errors->has('invoice_number')) <span class="help-block">{{ $errors->first('invoice_number') }}</span>  @endif</div>
                 </div>
 
@@ -32,7 +32,7 @@
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Quotation <span class="required">*</span></label>
+                            <label for="exampleInputEmail1">Quotation</label>
                             <select name="quotation_id" class="form-control select2 select-quotation" @if(isset($data)) disabled="disabled" @endif>
                               <option value="0">Select Quotation</option>
                               @foreach($quotations as $quotation)
@@ -148,12 +148,12 @@
                                     </tr>
                                     <?php */ ?>
                                 </tbody>
-                                @endif
-                                <!-- <tfoot>
+                                <tfoot>
                                 <tr>
-                                    <td colspan="10" class="text-center bg-slate" id="add-row"><span><i class="fa fa-plus fa-fw" style="cursor: pointer;"></i> Add another row</span></td>
+                                    <td colspan="10" class="text-center bg-slate" id="add-row"><span><i class="fa fa-plus fa-fw" style="cursor: pointer;"></i> Add Product</span></td>
                                 </tr>
-                                </tfoot> -->
+                                </tfoot>
+                                @endif
                             </table>
                           </div>
                         </div>
@@ -325,11 +325,11 @@
         calculateSubtotal();
         
     })
-    $('#detail-table').on('keyup', 'input.product_quantity, input.product_price', function() {
-        var qty = $(this).closest('tr').find('input.product_quantity').val();
-        var prc = $(this).closest('tr').find('input.product_price').val();
+    $('#detail-table').on('keyup', 'input.amount', function() {
+        // var qty = $(this).closest('tr').find('input.product_quantity').val();
+        // var prc = $(this).closest('tr').find('input.product_price').val();
 
-        $(this).closest('tr').find('input.amount').val( (qty * prc) );
+        // $(this).closest('tr').find('input.amount').val( (qty * prc) );
         
         calculateSubtotal();
     })
@@ -373,6 +373,24 @@
         $(this).parent().remove();
         calculateSubtotal();
         calculateTotal();
+    })
+
+    $('#add-row').on('click', function() {
+       var html = '<tr>' +
+            '<input type="hidden" name="detail[detail_id][]" value="0">'+
+            '<td><input type="text" class="form-control vehicle_no vehicle-no-row" name="detail[vehicle_number][]"></td>' +
+            '<td><input type="hidden" class="form-control product_id product-id-row" name="detail[product_id][]"><input type="text" class="form-control make_model make-model-row" name="detail[make_model][]"></td>' +
+            '<td><input type="text" class="form-control colour colour-row" name="detail[colour][]"></td>' +
+            '<td><input type="text" class="form-control ord ord-row" name="detail[ord][]"></td>' +
+            '<td><input type="text" class="form-control engine_cap engine-cap-row" name="detail[engine_cap][]"></td>' +
+            '<td><input type="text" class="form-control mileage mileage-row" name="detail[mileage][]"></td>' +
+            '<td><input type="text" class="form-control chassis_no chassis-no-row" name="detail[chassis_no][]"></td>' +
+            '<td><input type="text" class="form-control engine_no engine-no-row" name="detail[engine_no][]"></td>' +
+            '<td><input type="number" step=0.01 class="form-control amount amount-row" name="detail[amount][]"></td>' +
+            '</tr>';
+                                        
+
+        $('#detail-table').find('tbody').append(html);
     })
 
      function calculateSubtotal() {
