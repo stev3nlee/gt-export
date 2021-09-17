@@ -138,7 +138,7 @@
                                     <tr>
                                         <td>{{ $content->id }}</td>
                                         <td>{{ $content->invoice_number }}</td>
-                                        <td>{{ $content->member ? ucwords(strtolower($content->member->first_name)) . ' ' . ucwords(strtolower($content->member->last_name)) : 'Guest' }}</td>
+                                        <td>{{ ucwords(strtolower($content->first_name)) . ' ' . ucwords(strtolower($content->last_name)) }}</td>
                                         <td>{{ strtolower($content->email) }}</td>
                                         <td>{{ $content->contact_no }}</td>
                                         <td>USD {{ number_format($content->total ,0,",",".") }}</td>

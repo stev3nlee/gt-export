@@ -53,10 +53,11 @@
         <div class="col-sm-4 invoice-col">
           <b>Consignee Address</b>
           <address>
-            @if($data->quoation) {{ $data->quotation->first_name }} {{ $data->quotation->last_name }}<br> @endif
+            {{ $data->first_name }} {{ $data->last_name }}<br>
             {!! $data->consignee_address !!}<br><br>
             Contact No: {{ $data->contact_no }}<br>
-             @if($data->quoation) Email: {{ $data->quotation->email }}@endif
+            Email: {{ $data->email }}<br>
+            Date of Birth: {{ $data->dob }}
           </address>
         </div>
         <!-- /.col -->

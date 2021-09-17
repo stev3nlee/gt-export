@@ -28,7 +28,7 @@ class GtExportEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('noreply@createries.com','GT Export')
+        return $this->from('noreplygtexport@gmail.com','GT Export')
         ->to($this->data['email_to'])
         ->subject($this->data['subject'])
         //->cc($this->data['cc'])

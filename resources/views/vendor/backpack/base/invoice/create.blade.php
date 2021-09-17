@@ -23,7 +23,7 @@
                     <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/invoice/insert') }}">
                 @endif
                 <div class="box-header with-border">
-                    @if(isset($data)) Update Invoice @else Create Invoice @endif <div style="float: right;"><input type="text" name="invoice_number" value="{{ isset($data) ? $data->invoice_number : $invoice_number }}">
+                    @if(isset($data)) Update Invoice @else Create Invoice @endif <div style="float: right;"><input type="text" name="invoice_number" @if(isset($data)) disabled @endif value="{{ isset($data) ? $data->invoice_number : $invoice_number }}">
                     @if($errors->has('invoice_number')) <span class="help-block">{{ $errors->first('invoice_number') }}</span>  @endif</div>
                 </div>
 
@@ -41,17 +41,34 @@
                             </select>
                             @if($errors->has('quotation_id')) <span class="help-block">{{ $errors->first('quotation_id') }}</span>  @endif
                           </div>
+
+                          <div class="form-group">
+                            <label for="fname">First Name <span class="required">*</span></label>
+                            <input type="text" name="first_name" id="first-name" class="form-control" value="{{ isset($data) ? $data->first_name : old('first_name') }}"/>
+                            @if($errors->has('first_name')) <span class="help-block">{{ $errors->first('first_name') }}</span>  @endif
+                          </div>
+
+                          <div class="form-group">
+                            <label for="fname">Last Name <span class="required">*</span></label>
+                            <input type="text" name="last_name" id="last-name" class="form-control" value="{{ isset($data) ? $data->last_name : old('last_name') }}"/>
+                            @if($errors->has('last_name')) <span class="help-block">{{ $errors->first('last_name') }}</span>  @endif
+                          </div>
+
+                          <div class="form-group">
+                            <label for="fname">Date of Birth</label>
+                            <input type="date" name="dob" id="dob" class="form-control" value="{{ isset($data) ? $data->dob : old('dob') }}"/>
+                            @if($errors->has('dob')) <span class="help-block">{{ $errors->first('dob') }}</span>  @endif
+                          </div>
                         </div>
-                        <div class="row">
                             <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="fname">Consignee Adress <span class="required">*</span></label>
-                                        <input type="text" name="consignee_address" class="form-control" value="{{ isset($data) ? $data->consignee_address : old('consignee_address') }}"/>
+                                        <textarea name="consignee_address" style="height: 108px;" class="form-control" >{{ isset($data) ? $data->consignee_address : old('consignee_address') }}</textarea>
                                         @if($errors->has('consignee_address')) <span class="help-block">{{ $errors->first('consignee_address') }}</span>  @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="lname">Contact No <span class="required">*</span></label>
-                                        <input name="contact_no" type="text" class="form-control" value="{{ isset($data) ? $data->contact_no : old('contact_no') }}"/>
+                                        <input name="contact_no" id="contact-no" type="text" class="form-control" value="{{ isset($data) ? $data->contact_no : old('contact_no') }}"/>
                                         @if($errors->has('contact_no')) <span class="help-block">{{ $errors->first('contact_no') }}</span>  @endif
                                     </div>
                                     <div class="form-group">
@@ -82,8 +99,6 @@
                                     @if($errors->has('port_of_destination')) <span class="help-block">{{ $errors->first('port_of_destination') }}</span>  @endif
                                 </div>
                             </div>
-
-                        </div>
                       </div>
                       @if(isset($data))
                       <input type="hidden" name="quotation_id" value="{{ $data->quotation_id }}">
@@ -125,28 +140,6 @@
                                 @endforeach
                                 @else
                                 <tbody id="element-order">
-                                    <?php /* ?>
-                                    <tr>
-                                        <input type="hidden" name="detail[detail_id][]" value="0">
-                                        <td><select class="form-control select2 product_select">
-                                              <option value="0">Select Product</option>
-                                              @foreach($products as $product)
-                                              <option value="{{ $product->id }}|@if($product->discount_price > 0){{ $product->discount_price }}@else{{ $product->price }}@endif">{{ $product->name }}</option>
-                                              @endforeach
-                                            </select>
-                                        </td>
-                                        
-                                        <td><input type="hidden" class="form-control product_id" name="detail[product_id][]"><input type="text" class="form-control product_price" name="detail[product_price][]"></td>
-                                        <td><input type="number" class="form-control product_quantity" name="detail[product_quantity][]"></td>
-                                        <td><input type="text" class="form-control amount" name="detail[amount][]"></td>
-                                        <td><input type="text" class="form-control amount" name="detail[amount][]"></td>
-                                        <td><input type="text" class="form-control amount" name="detail[amount][]"></td>
-                                        <td><input type="text" class="form-control amount" name="detail[amount][]"></td>
-                                        <td><input type="text" class="form-control amount" name="detail[amount][]"></td>
-                                        <td><input type="text" class="form-control amount" name="detail[amount][]"></td>
-                                        <td id="delete-row"><i class="fa fa-trash fa-fw" style="color: red; cursor: pointer;"></i></td>
-                                    </tr>
-                                    <?php */ ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -209,14 +202,10 @@
         
                             <div class="row">
                                 <div class="form-group">
-                                    <!-- <label class="col-sm-7 control-label text-right">
-                                        <select name="shipping" class="form-control" id="shipping" >
-                                            <option value=""  selected disabled>@lang('yum.please_select') Shipping</option>
-                                          </select>
-                                    </label> -->
+                                    <label class="col-sm-7 control-label text-right">Shipping
+                                        <input type="number" step="0.01" name="shipping" id="input_shipping" class="form-control" value="{{ isset($data) ? $data->shipping_fee : old('shipping_fee') }}">
+                                    </label>
                                     <div class="col-sm-5">
-                                        <input type="hidden" name="shipping_fee" id="input_shipping">
-                                        <input type="hidden" name="shipping_type" id="input_shipping_type">
                                         <label class="col-sm-10 control-label text-right">
                                             <h4 id="shipping_price"></h4>
                                         </label>
@@ -254,19 +243,23 @@
     var u=1;
     $('.select-quotation').change(function() {
         var token = '{{ csrf_token() }}';
-        var order_id = @if(isset($data)){{ $data->id }}@else 0 @endif;
+        //var order_id = @if(isset($data)){{ $data->id }}@else 0 @endif;
         var url = "{{ url(config('backpack.base.route_prefix').'/quotation/data') }}";
-        if(order_id){
-            var url = "{{ url(config('backpack.base.route_prefix').'/invoice/data') }}";
-        }
+        // if(order_id){
+        //     var url = "{{ url(config('backpack.base.route_prefix').'/invoice/data') }}";
+        // }
         u++;
         if (this.value > 0) {
             $.ajax({
                 url: url,
                 type: 'POST',
-                data: { quotation_id: this.value, order_id: order_id, _token: token }
+                data: { quotation_id: this.value, _token: token }
             }).done(function(data) {
               var i = 0;
+              $('#first-name').val(data.first_name);
+              $('#last-name').val(data.last_name);
+              $('#dob').val(data.dob);
+              $('#contact-no').val(data.phone);
               $('#detail-table').find('tbody').html('');
                 //for (var key in data.product) {
                     addRow(u)
@@ -306,7 +299,7 @@
             $('#city-value').val('');
             $('#regency-value').val('');
         }
-    }).change();
+    });
 
     $('.product_select').on('change', function() {
         // Reset all input in row
@@ -330,6 +323,11 @@
         // var prc = $(this).closest('tr').find('input.product_price').val();
 
         // $(this).closest('tr').find('input.amount').val( (qty * prc) );
+        
+        calculateSubtotal();
+    })
+
+    $('#input_shipping').on('keyup', function() {
         
         calculateSubtotal();
     })
@@ -422,6 +420,7 @@
         // $('#subtotal_after_discount').html(subtotal - subtotal_after_discount);
 
         var shipping_fee = $('#input_shipping').val();
+        $('#shipping_price').html( shipping_fee);
         var fee = isNaN(shipping_fee) || shipping_fee == '' ? 0 : shipping_fee;
         var subtotal_after_shipping = parseInt(subtotal_after_discount) + parseInt(fee)
 

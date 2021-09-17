@@ -72,6 +72,9 @@ class InvoiceController extends Controller
             'payment_terms' => 'required|string',
             'port_of_destination' => 'required|string',
             'date' => 'required|date',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            //'dob' => 'required|date',
         ]);
 
     	return DB::transaction(function () use($request,&$invoice) {
@@ -89,6 +92,7 @@ class InvoiceController extends Controller
             $invoice->member_id = $member_id;
             $invoice->sub_total = $request->subtotal;
             $invoice->total = $request->value;
+            $invoice->shipping_fee = $request->shipping;
             $invoice->consignee_address = $request->consignee_address;
             $invoice->contact_no = $request->contact_no;
             $invoice->email = $request->email;
@@ -97,6 +101,9 @@ class InvoiceController extends Controller
             $invoice->port_of_destination = $request->port_of_destination;
             $invoice->date = $request->date;
             $invoice->remarks = $request->remarks;
+            $invoice->first_name = $request->first_name;
+            $invoice->last_name = $request->last_name;
+            $invoice->dob = $request->dob;
             $invoice->save();
 
             $total_price_original = 0;$total_quantity = 0;$total_weight = 0;
@@ -148,25 +155,37 @@ class InvoiceController extends Controller
             'payment_terms' => 'required|string',
             'port_of_destination' => 'required|string',
             'date' => 'required|date',
+            'first_name' => 'required',
+            'last_name' => 'required',
         ]);
 
     	return DB::transaction(function () use($request,&$invoice) {
     		//dd($request->all());
-    	$quotation_id = $request->quotation_id;
-    	if($quotation_id){
+        $quotation_id = null;
+        $member_id = null;
+        if($request->quotation_id){
+            $quotation_id = $request->quotation_id;
+            // $quot = Quotation::find($quotation_id);
+            // $member_id = $quot->member_id;
+        }
+
             $invoice = Invoice::find($request->id);
             //$invoice->invoice_number = $data_invoice;
             //$invoice->member_id = $member_id;
             $invoice->consignee_address = $request->consignee_address;
             $invoice->contact_no = $request->contact_no;
             $invoice->email = $request->email;
+            $invoice->shipping_fee = $request->shipping;
             $invoice->payment_terms = $request->payment_terms;
             $invoice->type = $request->type;
             $invoice->port_of_destination = $request->port_of_destination;
             $invoice->date = $request->date;
             $invoice->remarks = $request->remarks;
-            //$invoice->sub_total = $request->subtotal;
-            //$invoice->total_price = $request->value;
+            $invoice->first_name = $request->first_name;
+            $invoice->last_name = $request->last_name;
+            $invoice->dob = $request->dob;
+            $invoice->sub_total = $request->subtotal;
+            $invoice->total = $request->value;
             $invoice->save();
 
             $detail = $request->detail;
@@ -181,8 +200,6 @@ class InvoiceController extends Controller
             	// 	$check_detail->delete();
             	// }
                 foreach ($detail['product_id'] as $key => $item) {
-                		$product_detail = Product::find($item);
-
                 		Invoice_detail::create([
                             'invoice_id' => $invoice->id,
                             'product_id' => $detail['product_id'][$key],
@@ -205,9 +222,8 @@ class InvoiceController extends Controller
                 }
             }
             $invoice->save();
-    	}
-    	$request->session()->flash('update', 'Success');
-    	return redirect()->route('invoice_view');
+    	    $request->session()->flash('update', 'Success');
+    	    return redirect()->route('invoice_view');
     	});
     }
 
