@@ -10,10 +10,10 @@ use App\Models\Company_data;
 use App\Models\Enquiry;
 use App\Models\Product;
 use App\Models\Member;
-use App\Models\Order;
-use App\Models\Order_detail;
+use App\Models\Quotation;
+use App\Models\Invoice;
+use App\Models\Invoice_detail;
 use App\Models\Newsletter;
-use App\Models\Contact;
 use App\Models\Shipping_fee;
 use App\Models\Reservation_time;
 use App\Exports\NewsletterExport;
@@ -27,9 +27,101 @@ class DashboardController extends Controller
     }
 
     public function view(Request $request){
-   
+        $getUser = session('__ADMINSESSION__');
 
-        return view('vendor.backpack.base.dashboard');
+        $daterange = $request->input('date');
+        $date_filter = $request->input('date_filter');
+        $date = date('Y-m-d H:i:s');
+        $order_statistic = array();
+        $whereParams = [];
+
+        $first_order = Invoice::first();
+        if(!$first_order){
+            $first_created = date('Y-m-d H:i:s');
+        }else{
+            $first_created = $first_order->created_at;
+        }
+        $datediff = strtotime(date('Y-m-d H:i:s')) - strtotime($first_created);
+        $days = round($datediff / (60 * 60 * 24));
+        if($days == 0){
+            $days=1;
+        }
+
+        if($date_filter == 1){
+            $whereParams[] = ['created_at', '>=', date('Y-m-d 00:00:00', strtotime('-7 day', strtotime($date)))];
+            $whereParams[] = ['created_at', '<=', $date];
+            $days = 7;
+        }else if($date_filter == 2){
+            $whereParams[] = ['created_at', '>=', date('Y-m-01 00:00:00')];
+            $whereParams[] = ['created_at', '<=', $date];
+
+            $datediff = strtotime(date('Y-m-d')) - strtotime(date('Y-m-01'));
+            $days = round($datediff / (60 * 60 * 24));
+        }else if($date_filter == 3){
+            $whereParams[] = ['created_at', '>=', date('Y-m-01 00:00:00', strtotime('-1 month', strtotime($date)))];
+            $whereParams[] = ['created_at', '<=', date('Y-m-31 23:59:59', strtotime('-1 month', strtotime($date)))];
+            $days = date("t", strtotime(date('Y-m-01', strtotime('-1 month', strtotime($date)))));
+        }else if($date_filter == 4){
+            $whereParams[] = ['created_at', '>=', date('Y-01-01 00:00:00')];
+            $whereParams[] = ['created_at', '<=', date('Y-12-31 23:59:59')];
+            $datediff = strtotime(date('Y-m-d')) - strtotime(date('Y-01-01'));
+            $days = round($datediff / (60 * 60 * 24));
+        }else if($date_filter == 5){
+            if($daterange){
+                $split = explode(' - ', $daterange);
+                $start_date = date('Y-m-d 00:00:00', strtotime($split[0]));
+                $end_date = date('Y-m-d 23:59:59', strtotime($split[1]));
+
+                $whereParams[] = ['created_at', '>=', $start_date];
+                $whereParams[] = ['created_at', '<=', $end_date];
+
+                $datediff = strtotime($end_date) - strtotime($start_date);
+                $days = round($datediff / (60 * 60 * 24));
+            }
+        }
+
+        $order_statistic['total_member'] = Member::where($whereParams)->count('id');
+        $order_statistic['total_product'] = Product::count('id');
+        $order_statistic['total_invoice'] = Invoice::where($whereParams)->count('id');
+        $order_statistic['total_quotation'] = Quotation::where($whereParams)->count('id');
+        $order_statistic['total_quotation_complete'] = Quotation::where($whereParams)->where([
+            ['status', '=', '2']
+        ])->count('id');
+
+        $order_statistic['total_inquiry'] = Enquiry::where($whereParams)->count('id');
+
+        $order_statistic['latest_member'] = Member::where($whereParams)->orderby('id','desc')->limit(16)->get();
+        $order_statistic['latest_quotation'] = Quotation::where($whereParams)->orderby('id','desc')->limit(10)->get();
+        $order_statistic['latest_product'] = Product::orderby('id','desc')->limit(4)->get();
+        $order_statistic['latest_inquiry'] = Enquiry::orderby('id','desc')->limit(10)->get();
+
+        // $order = Order::where($whereParams)->where([
+        //     ['last_billing_status', '=', 'paid']
+        // ]);
+        // $gross_sales = $order->sum('sub_total_original') + $order->sum('shipping_fee');
+        // $order_statistic['gross_sales'] = $gross_sales;
+        // $order_statistic['average_gross'] = $order_statistic['gross_sales'] / $days;
+        // $order_statistic['net_sales'] = $order->sum('sub_total');
+        // $order_statistic['average_daily_net'] = $order_statistic['net_sales'] / $days;
+        // $order_statistic['shipping_charge'] = $order->sum('shipping_fee');
+        // $order_statistic['order_placed'] = $order->count('id');
+        // $order_statistic['discount_given'] = $order->sum('sub_total_original') - $order->sum('sub_total');
+        // $order_statistic['item_purchased'] = $order->withCount(['order_details AS value' => function ($order) {
+        //                                         $order->select(DB::raw('SUM(product_quantity) as value'));
+        //                                     }])->get()->sum('value');
+
+        // $order_statistic['chart'] = Order::selectRaw('sum(sub_total_original + shipping_fee) as total_order, sum(sub_total) as subtotal_order, sum(shipping_fee) as total_shipping, DAY(created_at) AS day, MONTH(created_at) AS month, YEAR(created_at) AS year')->where($whereParams)->where([['last_billing_status', '=', 'paid']])->orderby('day')->groupby('day')->groupby('month')->groupby('year')->get();
+
+        // $top =  Order_detail::selectRaw('product_id, product_name, sum(product_quantity) as total_product, sum(product_quantity * product_price) as total_selling')->where($whereParams)->groupby('product_id')->groupby('product_name');
+
+        // $top = $top->whereHas('order', function($q) {
+        //             $q->where('order.last_billing_status', '=', 'paid'); 
+        //         });
+
+        // $order_statistic['top_product'] = $top->orderby('total_product','desc')->limit(10)->get();
+
+
+        return view('vendor.backpack.base.dashboard1',['data'=>$order_statistic, 'daterange'=>$daterange, 'date_filter'=>$date_filter]);
     }
 
     public function about(){

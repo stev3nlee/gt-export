@@ -59,27 +59,12 @@
             <div class="inner">
               <h3>{{ $data['total_product'] }}</h3>
 
-              <p>Total Meals</p>
+              <p>Total Product</p>
             </div>
             <div class="icon">
-              <i class="ion ion-android-restaurant"></i>
+              <i class="ion ion-bag"></i>
             </div>
-            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/meal') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>{{ $data['total_order'] }}</h3>
-
-              <p>Total Subscription</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/order') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -100,16 +85,31 @@
 
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{ $data['total_quotation'] }}</h3>
+
+              <p>Total Quotation</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{ $data['item_purchased'] }}</h3>
+              <h3>{{ $data['total_invoice'] }}</h3>
 
-              <p>Meal Purchased</p>
+              <p>Total Invoice</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/order') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -122,130 +122,127 @@
         <!-- /.col -->
         <!-- /.col -->
       </div>
-
+      <?php /* ?>
       <div class="row">
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Monthly Recap Report</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
+              <h3 class="box-title">Sales Recap Report</h3>
+              <!-- <a class="btn btn-primary" style="float: right;" href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard/report_product') }}">View Report by Product</a> -->
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-3">
+                  <div class="info-box bg-yellow">
+                    <div class="info-box-content">
+                      <span class="info-box-text">Gross sales in this period</span>
+                      <span class="info-box-number">IDR {{ number_format($data['gross_sales'] ,0,",",".") }}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+
+                  <div class="info-box bg-green">
+                    <div class="info-box-content">
+                      <span class="info-box-text">Average gross daily sales</span>
+                      <span class="info-box-number">IDR {{ number_format($data['average_gross'] ,0,",",".") }}</span>
+                      
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+
+                  <div class="info-box bg-red">
+                    <div class="info-box-content">
+                      <span class="info-box-text">Net sales in this period</span>
+                      <span class="info-box-number">IDR {{ number_format($data['net_sales'] ,0,",",".") }}</span>
+
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+
+                  <div class="info-box bg-aqua">
+                    <div class="info-box-content">
+                      <span class="info-box-text">Average net daily sales</span>
+                      <span class="info-box-number">IDR {{ number_format($data['average_daily_net'] ,0,",",".") }}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+
+                  <!-- <div class="info-box bg-blue">
+                    <div class="info-box-content">
+                      <span class="info-box-text">Discount Product</span>
+                      <span class="info-box-number">IDR {{ number_format($data['discount_given'] ,0,",",".") }}</span>
+                    </div>
+                  </div> -->
+
+                  <div class="info-box bg-black">
+                    <div class="info-box-content">
+                      <span class="info-box-text">Charge for shipping</span>
+                      <span class="info-box-number">IDR {{ number_format($data['shipping_charge'] ,0,",",".") }}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+
+                </div>
+
+                <div class="col-md-9">
                   <p class="text-center">
                     <!-- <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong> -->
                   </p>
 
                   <div class="chart">
                     <!-- Sales Chart Canvas -->
-                    <div class="chart tab-pane active" id="revenue-chart"></div>
-                    <!-- <canvas id="salesChart" style="height: 180px;"></canvas> -->
+                    @if(count($data['chart']) == 0) No Data @endif
+                    <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 500px;"></div>
                   </div>
                   <!-- /.chart-responsive -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-4">
-                  <!-- <p class="text-center">
-                    <strong>Goal Completion</strong>
-                  </p>
-
-                  <div class="progress-group">
-                    <span class="progress-text">Add Products to Cart</span>
-                    <span class="progress-number"><b>160</b>/200</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <div class="progress-group">
-                    <span class="progress-text">Complete Purchase</span>
-                    <span class="progress-number"><b>310</b>/400</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-red" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <div class="progress-group">
-                    <span class="progress-text">Visit Premium Page</span>
-                    <span class="progress-number"><b>480</b>/800</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-green" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <div class="progress-group">
-                    <span class="progress-text">Send Inquiries</span>
-                    <span class="progress-number"><b>250</b>/500</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
-                    </div>
-                  </div> -->
-                  <!-- /.progress-group -->
                 </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->
             </div>
-            <!-- <div class="box-footer">
-              <div class="row">
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                    <h5 class="description-header">$35,210.43</h5>
-                    <span class="description-text">TOTAL REVENUE</span>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                    <h5 class="description-header">$10,390.90</h5>
-                    <span class="description-text">TOTAL COST</span>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                    <h5 class="description-header">$24,813.53</h5>
-                    <span class="description-text">TOTAL PROFIT</span>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block">
-                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                    <h5 class="description-header">1200</h5>
-                    <span class="description-text">GOAL COMPLETIONS</span>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- /.box-footer -->
+            <!-- ./box-body -->
           </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>
+      <?php */ ?>
 
       <div class="row">
-        
+            <?php /* ?>
+            <div class="col-md-6">
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Top Sales Product</h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="table-responsive">
+                    <table class="table no-margin">
+                      <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Total Quantity</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php */ ?>
+
             <div class="col-md-6">
               <!-- USERS LIST -->
               <div class="box box-danger">
@@ -253,7 +250,6 @@
                   <h3 class="box-title">Latest Members</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger">{{ count($data['latest_member']) }} New Members</span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -266,7 +262,7 @@
                     @foreach($data['latest_member'] as $list)
                     <li>
                       <span class="glyphicon glyphicon-user" style="font-size: 29px;"></span>
-                      <a class="users-list-name" href="{{ url(config('backpack.base.route_prefix', 'admin').'/member/detail/'.$list->id) }}">@if($list->name == null) Guest @else{{ ucwords(strtolower($list->name)) }} @endif</a>
+                      <a class="users-list-name" href="{{ url(config('backpack.base.route_prefix', 'admin').'/member/detail/'.$list->id) }}">{{ ucwords(strtolower($list->first_name)) }} {{ ucwords(strtolower($list->last_name)) }}</a>
                       <span class="users-list-date">{{ $list->created_at }}</span>
                     </li>
                     @endforeach
@@ -285,64 +281,48 @@
 
             <div class="col-md-6">
               <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Latest Subscription</h3>
+              <div class="box-header with-border">
+                <h3 class="box-title">Latest Quotation</h3>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
               </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Total</th>
-                    <th>Subscription Status</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  @foreach($data['latest_order'] as $val)
-                  <tr>
-                    <td><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/order/detail/'.$val->id) }}">{{ $val->order->invoice_number }}</a></td>
-                    <td>SGD {{ number_format($val->order->total_price, 2, '.', '') }}</td>
-                    <td><span class="label label-success">@if ($val->stripe_status == 'active')
-                                                Active
-                                            @elseif ($val->stripe_status == 'trialing')
-                                                Trial
-                                            @elseif ($val->stripe_status == 'past_due')
-                                                Past Due
-                                            @elseif ($val->stripe_status == 'unpaid')
-                                                Unpaid
-                                            @elseif ($val->stripe_status == 'canceled')
-                                                Cancelled
-                                            @elseif ($val->stripe_status == 'incomplete')
-                                                Incomplete
-                                            @elseif ($val->stripe_status == 'incomplete_expired')
-                                                Incomplete Expired
-                                            @elseif ($val->stripe_status == 'all')
-                                                All
-                                            @elseif ($val->stripe_status == 'ended')
-                                                Ended
-                                            @endif</span></td>
-                  </tr>
-                  @endforeach
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="table-responsive">
+                  <table class="table no-margin">
+                    <thead>
+                    <tr>
+                      <th>Quotation</th>
+                      <th>Buyer</th>
+                      <th>Car</th>
+                      <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($data['latest_quotation'] as $val)
+                    <tr>
+                      <td>{{ $val->quotation_number }}</td>
+                      <td>{{ ucwords(strtolower($val->first_name)) . ' ' . ucwords(strtolower($val->last_name)) }}</td>
+                      <td>{{ $val->product->name }}</td>
+                      <td>$ {{ number_format($val->price, 2, '.', ',')  }}</td>
+                    </tr>
+                    @endforeach
 
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
               </div>
-              <!-- /.table-responsive -->
-            </div>
             <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/order') }}" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
-            </div>
+              <div class="box-footer clearfix">
+                <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation') }}" class="btn btn-sm btn-default btn-flat pull-right">View All Quotation</a>
+              </div>
             <!-- /.box-footer -->
-          </div>
+            </div>
             </div>
           </div>
           
@@ -362,6 +342,8 @@
       $('#dashboarddate').hide();
     }
   });
+
+  <?php /* ?>
     // Sales chart
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var area = new Morris.Line({
@@ -369,16 +351,41 @@
     resize    : true,
     data      : [
       <?php $i=1; foreach ($data['chart'] as $list){ ?>
-        {y: '<?php echo $list->year; ?>-<?php echo $list->month; ?>-<?php echo $list->day; ?>', item1: <?php echo $list->total_subscription; ?>},
+        {y: '<?php echo $list->year; ?>-<?php echo $list->month; ?>-<?php echo $list->day; ?>', item1: <?php echo $list->total_order; ?>, item2: <?php echo $list->subtotal_order; ?>, item3: <?php echo $list->total_shipping; ?>},
       <?php $i++; } ?>
     ],
     xkey      : 'y',
-    ykeys     : ['item1'],
-    labels    : ['Subscripiton'],
+    ykeys     : ['item1','item2','item3'],
+    labels    : ['Gross Sales', 'Net Sales', 'Shipping'],
     lineColors: ['#f39c12', '#FE1717', '#27872E'],
     hideHover : 'auto',
 
   });
+  <?php */ ?>
   
 </script>
+<!-- <script>
+    // Sales chart
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var area = new Morris.Line({
+    element   : 'revenue-chart',
+    resize    : true,
+    data      : [
+    ],
+    xkey      : 'y',
+    ykeys     : ['item1'],
+    labels    : ['Total Order'],
+    lineColors: ['#a0d0e0', '#3c8dbc'],
+    hideHover : 'auto',
+    xLabelFormat: function(x) { // <--- x.getMonth() returns valid index
+      var month = months[x.getMonth()];
+      return month;
+    },
+    dateFormat: function(x) {
+      var month = months[new Date(x).getMonth()];
+      return month;
+    },
+  });
+  
+</script> -->
 @endsection

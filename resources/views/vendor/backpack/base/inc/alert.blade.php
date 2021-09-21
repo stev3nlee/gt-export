@@ -22,7 +22,7 @@
 @if(Session::has('send_email'))
 <div class="alert alert-success alert-dismissible" style="padding: 5px 15px 5px 10px">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <b>You have successfully send email confirmation to user</b>
+      <b>You have successfully send email to user</b>
 
 </div>
 @endif

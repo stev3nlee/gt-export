@@ -154,7 +154,8 @@
                                         <div class="table-actions-hover">
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/detail/'.$content->id) }}">Detail</a>
                                                 |
-                                                <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
+                                                <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a> | 
+                                                <a onclick="return confirm('Are you want to send invoice ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/send/'.$content->id) }}"><i class="fa fa-envelope"></i></a>
                                                 
                                                  <!-- |
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice_packing/id/' . $content->id . '/export/shipping') }}">Packing</a> -->

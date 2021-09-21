@@ -18,6 +18,7 @@ use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
 use App\Jobs\SendEmailAdmin;
+use Stevebauman\Location\Facades\Location;
 use Session;
 use Output;
 use Status;
@@ -93,6 +94,9 @@ class QuoteController extends BaseController
 
     public function submitQuoteGuest(Request $request){
         return DB::transaction(function () use($request) {
+           // d(request()->ip());
+          // $position = Location::get(request()->ip());
+            //dd($position);
             $reservation_time = Reservation_time::first();
             $slug = $request->product;
             $product = Product::where('slug', $slug)->where('reserve', 0)->where('status', 1)->first();

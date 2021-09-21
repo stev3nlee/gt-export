@@ -280,15 +280,9 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::patch('invoice/update/shipping_status', 'Admin\InvoiceController@updateShippingStatus');
         Route::post('invoice/exportToCsv', 'Admin\InvoiceController@exportCstarOrderToCsv');
         Route::post('invoice/id/{id}/export/invoice', 'Admin\InvoiceController@exportInvoice');
-        Route::post('invoice/id/{id}/export/shipping', 'Admin\InvoiceController@exportShippingOrder');
         Route::get('invoice/delete/{id}', 'Admin\InvoiceController@delete');
-        Route::post('invoice/exportShipping', 'Admin\InvoiceController@exportShipping');
-        Route::get('invoice/id/{id}/export/shipping', 'Admin\InvoiceController@exportShippingOrder');
         Route::get('invoice/paid/{id}', 'Admin\InvoiceController@paidinvoice');
-        Route::get('invoice/resume/{id}', 'Admin\InvoiceController@resume');
-        Route::get('invoice/invoices/{id}/{id2}', 'Admin\InvoiceController@invoices');
-        Route::get('invoice/address_edit/{id}', 'Admin\InvoiceController@AddressEdit');
-        Route::post('invoice/address_update', 'Admin\InvoiceController@AddressUpdate');
+        Route::get('invoice/send/{id}', 'Admin\InvoiceController@sendInvoice');
 
         Route::get('change-password', 'Admin\AuthController@changePassword')->name('change_password_view');
         Route::post('auth/update', 'Admin\AuthController@updatePassword');
