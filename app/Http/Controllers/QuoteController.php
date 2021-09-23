@@ -43,10 +43,10 @@ class QuoteController extends BaseController
             $shipping_cost = 0;
             $ip_address = request()->ip();
             $position = Location::get($ip_address);
-            $country = $position->countryName;
+            $country = $position->countryCode;
 
             if($country){
-                $shipping_detail = Shipping_cost::where('country',$country)->first();
+                $shipping_detail = Shipping_cost::where('country_code',$country)->first();
                 if($shipping_detail){
                     $shipping_cost = $shipping_detail->shipping_cost;
                 }
@@ -72,7 +72,7 @@ class QuoteController extends BaseController
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->price = $product->price;
             $quote->ip_address = $ip_address;
-            $quote->country = $country;
+            $quote->country = $position->countryName;
             $quote->country_code = $position->countryCode;
             $quote->region = $position->regionName;
             $quote->city = $position->cityName;
@@ -116,10 +116,10 @@ class QuoteController extends BaseController
             $shipping_cost = 0;
             $ip_address = request()->ip();
             $position = Location::get($ip_address);
-            $country = $position->countryName;
+            $country = $position->countryCode;
 
             if($country){
-                $shipping_detail = Shipping_cost::where('country',$country)->first();
+                $shipping_detail = Shipping_cost::where('country_code',$country)->first();
                 if($shipping_detail){
                     $shipping_cost = $shipping_detail->shipping_cost;
                 }
@@ -141,7 +141,7 @@ class QuoteController extends BaseController
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->dob = date('Y-m-d', strtotime($request->dob_guest));
             $quote->ip_address = $ip_address;
-            $quote->country = $country;
+            $quote->country = $position->countryName;
             $quote->country_code = $position->countryCode;
             $quote->region = $position->regionName;
             $quote->city = $position->cityName;

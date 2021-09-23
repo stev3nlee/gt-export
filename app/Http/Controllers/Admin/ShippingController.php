@@ -31,7 +31,8 @@ class ShippingController extends Controller
 
 	        $table = new Shipping_cost;
 	        $table->shipping_cost = $request->input('shipping_cost');
-	        $table->country = $request->input('country');
+            $table->country = $request->input('country');
+	        $table->country_code = $request->input('country_code');
 	        $table->save();
 			$request->session()->flash('insert', 'Success');
 			return redirect()->route('shipping_cost_view');
@@ -43,6 +44,7 @@ class ShippingController extends Controller
 
 	        $table = Shipping_cost::find($request->input('id'));
 	        $table->shipping_cost = $request->input('shipping_cost');
+            $table->country_code = $request->input('country_code');
 	        $table->country = $request->input('country');
 	        $table->save();
 

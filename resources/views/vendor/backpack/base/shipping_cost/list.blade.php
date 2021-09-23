@@ -30,6 +30,7 @@
                                 <tr class="nosortable">
                                     <th class="table-actions">Actions</th>
                                     <th>Country</th>
+                                    <th>Country Code</th>
                                     <th>Shipping Cost</th>
                                     <th width="150">Updated Date</th>
                                 </tr>
@@ -44,6 +45,7 @@
                                         </div>
                                     </td>
                                     <td>{{ $content->country }}</td>
+                                    <td>{{ $content->country_code }}</td>
                                     <td>$ {{ $content->shipping_cost }}</td>
                                     <td>{{ $content->updated_at }}</td>
                                 </tr>

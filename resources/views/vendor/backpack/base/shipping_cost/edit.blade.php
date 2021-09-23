@@ -31,6 +31,10 @@
                             <input type="text" name="country" class="form-control" value="{{ $data->country }}">
                           </div>
                           <div class="form-group">
+                            <label for="exampleInputEmail1">Country Code</label>
+                            <input type="text" name="country_code" class="form-control" value="{{ $data->country_code }}">
+                          </div>
+                          <div class="form-group">
                           <label for="exampleInputEmail1">Shipping Cost</label>
                             <input type="number" step=".01" name="shipping_cost" class="form-control" id="shipping_cost"  value="@if(isset($data->shipping_cost)){{ $data->shipping_cost }}@endif">
                         </div>
