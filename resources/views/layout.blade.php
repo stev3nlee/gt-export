@@ -660,9 +660,9 @@
   $('#modal-success').modal('show');
   @endif
   @if(Session::has('register_failed'))
-  $('#message-failed').html('{{Session::get('register_failed')}}');
+  $('#message-success').html('{{Session::get('register_failed')}}');
   $('#success-icon').html('');
-  $('#modal-failed').modal('show');
+  $('#modal-success').modal('show');
   @endif
   @if(Session::has('verify_success'))
   $('#message-success').html('{{Session::get('verify_success')}}');

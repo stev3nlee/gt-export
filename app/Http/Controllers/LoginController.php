@@ -409,12 +409,35 @@ class LoginController extends BaseController
 
     public function googleCallback()
     {
+        $id = session()->get('id');
+
         $user = Socialite::driver('google')->user();
         $google_id = $user->getId();
         $name = $user->getName();
         $email = !empty($user->getEmail())? $user->getEmail() : '';
 
-        $member = Member::where([
+        if($id){
+            $check_member = Member::where([
+                    ['google_id', '=', $google_id],
+                ])->first();
+            if($check_member){
+                \Session::flash('register_failed', 'Google account already registered');
+                return redirect('/personal-info');
+            }
+
+            $member = Member::where([
+                    ['id', '=', $id],
+                    ['google_id', '=', null],
+                ])->first();
+
+            if($member){
+                $member->google_id = $google_id;
+                $member->save();
+            }
+
+            return redirect('/personal-info');
+        }else{
+            $member = Member::where([
                     ['google_id', '=', $google_id],
                 ])->first();
 
@@ -424,12 +447,13 @@ class LoginController extends BaseController
 
                     session(
                         [
-                            'name' => $member->first_name.' '.$member->last_name,
+                            'name' => ucwords($member->first_name).' '.ucwords($member->last_name),
+                            'first_name' => ucwords($member->first_name),
                             'email' => $member->email,
                             'id' => $member->id,
                         ]
                     );
-                    return redirect('/profile');
+                    return redirect('/personal-info');
                 }else{
                     $separated_name = explode(' ', $name, 2);
                     $first_name = $separated_name[0];
@@ -448,14 +472,16 @@ class LoginController extends BaseController
 
                     session(
                         [
-                            'name' => ucwords($member->first_name).' '.ucwords($member->last_name),
-                            'first_name' => ucwords($member->first_name),
+                            'name' => ucwords($newMember->first_name).' '.ucwords($newMember->last_name),
+                            'first_name' => ucwords($newMember->first_name),
                             'email' => $newMember->email,
                             'id' => $newMember->id,
                         ]
                     );
-                    return redirect('/profile');
+                    return redirect('/personal-info');
                 }
+
+        }
 
                 
     }

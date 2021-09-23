@@ -76,6 +76,7 @@ Route::group(['middleware' => ['membersession']], function () {
 
     Route::get('/view-shipment-document/{id}', 'MemberController@viewShipment');
     Route::get('/download-shipment-document/{id}', 'MemberController@downloadShipment');
+    Route::get('/link-account', 'MemberController@linkGoogle');
 
     Route::get('/invoice', function () {
         return view('invoice');

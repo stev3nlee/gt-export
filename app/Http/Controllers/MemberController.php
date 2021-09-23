@@ -36,9 +36,6 @@ class MemberController extends BaseController
 
     public function index(Request $request){
         try{
-           //d(request()->ip());
-           // $position = Location::get(request()->ip());
-            //dd($position);
             $id = session()->get('id');
             $data['member'] = Member::find($id);
 

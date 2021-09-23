@@ -70,7 +70,7 @@
                                 </div>
                                 <ul class="l-auth">
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ url('google-login') }}">
                                             <ul class="link">
                                                 <li class="mr25"><img src="{{ asset('images/google.png') }}" alt="" title=""/></li>
                                                 <li>Google</li>

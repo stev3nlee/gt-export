@@ -101,14 +101,16 @@
                                         <div class="col-md-6">
                                             <ul class="link">
                                                 <li><img src="{{ asset('images/google.png') }}" alt="" title=""/></li>
-                                                <li>Sign in with Google</li>
+                                                @if($member->google_id == null) <li>Sign in with Google</li> @else <li>Your account is linked</li> @endif
                                             </ul>
                                         </div>
+                                        @if($member->google_id == null)
                                         <div class="col-md-6 text-right resp-text-right">
                                             <div class="btn-link">
-                                                <a href="#">Connect</a>
+                                                <a href="{{ url('google-login') }}">Connect</a>
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row">
