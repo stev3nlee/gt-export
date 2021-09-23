@@ -133,7 +133,7 @@ class QuotationController extends Controller
 	}
 
     function detail($id){
-		$data = quotation::find($id);
+		$data = Quotation::find($id);
         return view('vendor.backpack.base.quotation.detail', ['data' => $data]);
 	}
 

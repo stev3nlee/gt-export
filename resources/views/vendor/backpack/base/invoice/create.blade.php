@@ -260,6 +260,7 @@
               $('#last-name').val(data.last_name);
               $('#dob').val(data.dob);
               $('#contact-no').val(data.phone);
+              $('#input_shipping').val(data.shipping_fee);
               $('#detail-table').find('tbody').html('');
                 //for (var key in data.product) {
                     addRow(u)

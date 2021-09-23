@@ -129,7 +129,7 @@ class PageController extends BaseController
                         'url'=>url('/'),
                 );
 
-                dispatch(new SendEmailAdmin($data_admin));
+                //dispatch(new SendEmailAdmin($data_admin));
                 dispatch(new SendEmail($data_member));
             });
             \Session::flash('contact_success', 'Thank you, please wait for up to 24 hours for us to get reply back to you.');

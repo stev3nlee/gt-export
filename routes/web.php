@@ -266,6 +266,7 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::post('quotation/data', 'Admin\QuotationController@data');
         Route::get('quotation', 'Admin\QuotationController@view')
         ->name('quotation_view');
+        Route::get('quotation/detail/{id}', 'Admin\QuotationController@detail');
         Route::post('quotation/exportToExcel', 'Admin\QuotationController@exportToExcel');
         
 

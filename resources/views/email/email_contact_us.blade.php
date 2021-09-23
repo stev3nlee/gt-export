@@ -8,7 +8,7 @@
 	<div style="width:600px;margin:0 auto;background-color:transparent;text-align:center;">
 		<div style="text-align: center;padding: 10px 0;">
 			<a href="{{ $url }}">
-				<img src="{{ $url }}/images/logo.pngg" />
+				<img src="{{ $url }}/images/logo.png" />
 			</a>
 		</div>
 		<div style="margin-bottom: 20px;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">

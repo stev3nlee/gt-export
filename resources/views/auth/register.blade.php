@@ -77,14 +77,14 @@
                                             </ul>
                                         </a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="#">
                                             <ul class="link">
                                                 <li class="mr35"><img src="{{ asset('images/facebook.png') }}" alt="" title=""/></li>
                                                 <li>Facebook</li>
                                             </ul>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </form>
                         </div>

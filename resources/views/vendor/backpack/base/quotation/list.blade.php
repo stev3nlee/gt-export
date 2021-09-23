@@ -120,9 +120,10 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Car</th>
+                                    <th>Country</th>
                                     <th>Amount</th>
                                     <th>Status</th>
-                                    <!-- <th class="table-actions">Action</th> -->
+                                    <th class="table-actions">Action</th>
 
                                     <!-- <th>Request New Pickup</th> -->
                                 </tr>
@@ -134,7 +135,8 @@
                                         <td>{{ ucwords(strtolower($content->first_name)) . ' ' . ucwords(strtolower($content->last_name)) }}</td>
                                         <td>{{ strtolower($content->email) }}</td>
                                         <td>{{ $content->phone }}</td>
-                                        <td>{{ $content->product->name }}</td>
+                                        <td>{{ $content->product_name }}</td>
+                                        <td>{{ $content->country }}</td>
                                         <td>$ {{ number_format($content->price, 2, '.', ',')  }}</td>
                                         <td>@if($content->status == 1)
                                                 <span class="badge bg-blue">Pending</span>
@@ -146,16 +148,16 @@
                                         </td>
                                         
                                         
-                                        <!-- <td>
+                                        <td>
                                         <div class="table-actions-hover">
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation/detail/'.$content->id) }}"><i class="fa fa-eye fa-fw"></i></a>
                                                 
-                                                <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
+                                                <!-- <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
                                                 
                                                  |
-                                                <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation_packing/id/' . $content->id . '/export/shipping') }}">Packing</a>
+                                                <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/quotation_packing/id/' . $content->id . '/export/shipping') }}">Packing</a> -->
                                             </div>
-                                        </td> -->
+                                        </td>
                                     </tr>
                               @endforeach
                             </tbody>

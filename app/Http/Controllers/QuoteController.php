@@ -14,6 +14,7 @@ use App\Models\Models;
 use App\Models\Transmission;
 use App\Models\Member;
 use App\Models\Reservation_time;
+use App\Models\Shipping_cost;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -39,6 +40,18 @@ class QuoteController extends BaseController
 
     public function submitQuote(Request $request){
         return DB::transaction(function () use($request) {
+            $shipping_cost = 0;
+            $ip_address = request()->ip();
+            $position = Location::get($ip_address);
+            $country = $position->countryName;
+
+            if($country){
+                $shipping_detail = Shipping_cost::where('country',$country)->first();
+                if($shipping_detail){
+                    $shipping_cost = $shipping_detail->shipping_cost;
+                }
+            }
+
             $reservation_time = Reservation_time::first();
             $slug = $request->product;
             $id = session()->get('id');
@@ -58,7 +71,13 @@ class QuoteController extends BaseController
             $quote->dob = $member->dob;
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->price = $product->price;
-            $quote->ip_address = Request()->ip();
+            $quote->ip_address = $ip_address;
+            $quote->country = $country;
+            $quote->country_code = $position->countryCode;
+            $quote->region = $position->regionName;
+            $quote->city = $position->cityName;
+            $quote->shipping_fee = $shipping_cost;
+            $quote->payload = json_encode($position);
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
 
@@ -94,9 +113,17 @@ class QuoteController extends BaseController
 
     public function submitQuoteGuest(Request $request){
         return DB::transaction(function () use($request) {
-           // d(request()->ip());
-          // $position = Location::get(request()->ip());
-            //dd($position);
+            $shipping_cost = 0;
+            $ip_address = request()->ip();
+            $position = Location::get($ip_address);
+            $country = $position->countryName;
+
+            if($country){
+                $shipping_detail = Shipping_cost::where('country',$country)->first();
+                if($shipping_detail){
+                    $shipping_cost = $shipping_detail->shipping_cost;
+                }
+            }
             $reservation_time = Reservation_time::first();
             $slug = $request->product;
             $product = Product::where('slug', $slug)->where('reserve', 0)->where('status', 1)->first();
@@ -113,7 +140,13 @@ class QuoteController extends BaseController
             $quote->price = $product->price;
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->dob = date('Y-m-d', strtotime($request->dob_guest));
-            $quote->ip_address = Request()->ip();
+            $quote->ip_address = $ip_address;
+            $quote->country = $country;
+            $quote->country_code = $position->countryCode;
+            $quote->region = $position->regionName;
+            $quote->city = $position->cityName;
+            $quote->shipping_fee = $shipping_cost;
+            $quote->payload = json_encode($position);
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
 
