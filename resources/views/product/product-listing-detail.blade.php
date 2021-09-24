@@ -92,144 +92,144 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Brand</div>
-                                <div class="col-8 my-auto right">{{$product->brand[0]->name  ?? '-'}}</div>
+                                <div class="col my-auto left">Brand</div>
+                                <div class="col my-auto right">{{$product->brand[0]->name  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Model</div>
-                                <div class="col-8 my-auto right">{{$product->model[0]->name  ?? '-'}}</div>
+                                <div class="col my-auto left">Model</div>
+                                <div class="col my-auto right">{{$product->model[0]->name  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Transmission</div>
-                                <div class="col-8 my-auto right">{{$product->transmission[0]->name  ?? '-'}}</div>
+                                <div class="col my-auto left">Transmission</div>
+                                <div class="col my-auto right">{{$product->transmission[0]->name  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Chassis No</div>
-                                <div class="col-8 my-auto right">{{$product->chassis_no  ?? '-'}}</div>
+                                <div class="col my-auto left">Chassis No</div>
+                                <div class="col my-auto right">{{$product->chassis_no  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Model Code</div>
-                                <div class="col-8 my-auto right">{{$product->model_code  ?? '-'}}</div>
+                                <div class="col my-auto left">Model Code</div>
+                                <div class="col my-auto right">{{$product->model_code  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Product Type</div>
-                                <div class="col-8 my-auto right">{{$product->product_type  ?? '-'}}</div>
+                                <div class="col my-auto left">Product Type</div>
+                                <div class="col my-auto right">{{$product->product_type  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Registeration Year/Month</div>
-                                <div class="col-8 my-auto right">{{$product->registration_year  ?? '-'}}/{{$product->registration_month  ?? '-'}}</div>
+                                <div class="col my-auto left">Registration Year/Month</div>
+                                <div class="col my-auto right">{{$product->registration_year  ?? '-'}}/{{$product->registration_month  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Manufacture Year/Month</div>
-                                <div class="col-8 my-auto right">{{$product->manufacture_year  ?? '-'}}/{{$product->manufacture_month  ?? '-'}}</div>
+                                <div class="col my-auto left">Manufacture Year/Month</div>
+                                <div class="col my-auto right">{{$product->manufacture_year  ?? '-'}}/{{$product->manufacture_month  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Engine No</div>
-                                <div class="col-8 my-auto right">{{$product->engine_no  ?? '-'}}</div>
+                                <div class="col my-auto left">Engine No</div>
+                                <div class="col my-auto right">{{$product->engine_no  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Steering</div>
-                                <div class="col-8 my-auto right">{{$product->steering  ?? '-'}}</div>
+                                <div class="col my-auto left">Steering</div>
+                                <div class="col my-auto right">{{$product->steering  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Drive Type</div>
-                                <div class="col-8 my-auto right">{{$product->drive_type  ?? '-'}}</div>
+                                <div class="col my-auto left">Drive Type</div>
+                                <div class="col my-auto right">{{$product->drive_type  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Color</div>
-                                <div class="col-8 my-auto right">{{$product->color  ?? '-'}}</div>
+                                <div class="col my-auto left">Color</div>
+                                <div class="col my-auto right">{{$product->color  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Engine Code</div>
-                                <div class="col-8 my-auto right">{{$product->engine_code  ?? '-'}}</div>
+                                <div class="col my-auto left">Engine Code</div>
+                                <div class="col my-auto right">{{$product->engine_code  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Number of Doors</div>
-                                <div class="col-8 my-auto right">{{$product->number_of_doors  ?? '-'}}</div>
+                                <div class="col my-auto left">Number of Doors</div>
+                                <div class="col my-auto right">{{$product->number_of_doors  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Seats</div>
-                                <div class="col-8 my-auto right">{{$product->seats  ?? '-'}}</div>
+                                <div class="col my-auto left">Seats</div>
+                                <div class="col my-auto right">{{$product->seats  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Total Seats</div>
-                                <div class="col-8 my-auto right">{{$product->total_seats  ?? '-'}}</div>
+                                <div class="col my-auto left">Total Seats</div>
+                                <div class="col my-auto right">{{$product->total_seats  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Weight(kg)</div>
-                                <div class="col-8 my-auto right">{{$product->weight  ?? '-'}}</div>
+                                <div class="col my-auto left">Weight(kg)</div>
+                                <div class="col my-auto right">{{$product->weight  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-4 my-auto left">Total weight(kg)</div>
-                                <div class="col-8 my-auto right">{{$product->total_weight  ?? '-'}}</div>
+                                <div class="col my-auto left">Total weight(kg)</div>
+                                <div class="col my-auto right">{{$product->total_weight  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
