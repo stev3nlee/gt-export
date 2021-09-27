@@ -318,6 +318,7 @@ class MemberController extends BaseController
         if(!$document){
             return redirect('personal-info');
         }
+        $document->increment('view', 1);
         return response()->file('upload/'.$document->file_path);
     }
 
@@ -332,6 +333,7 @@ class MemberController extends BaseController
         if(!$document){
             return redirect('personal-info');
         }
+        $document->increment('download', 1);
         return response()->download('upload/'.$document->file_path);
     }
 

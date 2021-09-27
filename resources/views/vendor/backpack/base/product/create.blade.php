@@ -328,16 +328,16 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1">Features</label>
                           <div class="row">
-                            @foreach($accessories as $acc)
-                            <div class="col-md-3">
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" name="accessories[]" value="{{ $acc->id }}" @if(isset($data)) @foreach($data->accessories as $access) @if($access->id == $acc->id) checked @endif @endforeach @else @endif>
-                                  {{ $acc->name }}
-                                </label>
-                              </div>
-                            </div>
-                            @endforeach
+                            <table class="table table-bordered">
+                              @foreach($accessories as $acc)
+                              <tr>
+                                @foreach($acc as $abc)
+                                <td><input type="checkbox" name="accessories[]" value="{{ $abc['id'] }}" @if(isset($data)) @foreach($data->accessories as $access) @if($access->id == $abc['id']) checked @endif @endforeach @else @endif> {{ $abc['name'] }}</td>
+                                @endforeach
+                              </tr>
+                              @endforeach
+                            </table>
+                           
                           </div>
                         </div>
                         @if(isset($data))

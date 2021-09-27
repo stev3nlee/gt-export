@@ -43,7 +43,9 @@ class ProductController extends Controller
         $models = Models::where('status',1)->get();
         $brands = Brand::where('status',1)->get();
         $transmissions = Transmission::where('status',1)->get();
-        $accessories = Accessories::get();
+        $accessorie = Accessories::get();
+        $accessories = array_chunk($accessorie->toArray(),3);
+        // dd($items);
         return view('vendor.backpack.base.product.create', ['models' => $models, 'brands' => $brands, 'transmissions' => $transmissions, 'accessories' => $accessories]);
     }
     public function edit($id)
@@ -51,7 +53,8 @@ class ProductController extends Controller
         $data = Product::find($id);
         $models = Models::where('status',1)->get();
         $brands = Brand::where('status',1)->get();
-        $accessories = Accessories::get();
+        $accessorie = Accessories::get();
+        $accessories = array_chunk($accessorie->toArray(),3);
         $transmissions = Transmission::where('status',1)->get();
         return view('vendor.backpack.base.product.create', ['data' => $data,'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions, 'accessories' => $accessories]);
     }

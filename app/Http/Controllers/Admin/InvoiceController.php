@@ -10,6 +10,7 @@ use App\Helper\HelperFunction;
 use DB;
 use App\Models\Invoice;
 use App\Models\Invoice_detail;
+use App\Models\Invoice_history;
 use App\Models\Product;
 use App\Models\Member;
 use App\Models\Quotation;
@@ -107,6 +108,7 @@ class InvoiceController extends Controller
             $invoice->first_name = $request->first_name;
             $invoice->last_name = $request->last_name;
             $invoice->dob = $request->dob;
+            $invoice->payment_received = $request->payment_received;
             $invoice->save();
 
             $total_price_original = 0;$total_quantity = 0;$total_weight = 0;
@@ -149,7 +151,7 @@ class InvoiceController extends Controller
 
     function update(Request $request){
         $validatedData = $request->validate([
-            'invoice_number' => 'required|max:255|unique:invoice,invoice_number,'.$request->id,
+            //'invoice_number' => 'required|max:255|unique:invoice,invoice_number,'.$request->id,
             //'quotation_id' => 'required|not_in:0',
             'consignee_address' => 'required|string',
             'contact_no' => 'required|string',
@@ -172,7 +174,8 @@ class InvoiceController extends Controller
             // $member_id = $quot->member_id;
         }
 
-            $invoice = Invoice::find($request->id);
+            $invoice = Invoice::where('id', $request->id)->with(['invoice_details'])->first();
+            $old_invoice = json_encode($invoice);
             //$invoice->invoice_number = $data_invoice;
             //$invoice->member_id = $member_id;
             $invoice->consignee_address = $request->consignee_address;
@@ -189,6 +192,7 @@ class InvoiceController extends Controller
             $invoice->dob = $request->dob;
             $invoice->sub_total = $request->subtotal;
             $invoice->total = $request->value;
+            $invoice->payment_received = $request->payment_received;
             $invoice->save();
 
             $detail = $request->detail;
@@ -225,6 +229,14 @@ class InvoiceController extends Controller
                 }
             }
             $invoice->save();
+
+            $new_invoice = Invoice::where('id', $invoice->id)->with(['invoice_details'])->first();
+
+            $history = new Invoice_history;
+            $history->invoice_id = $invoice->id;
+            $history->old_data = $old_invoice;
+            $history->new_data = json_encode($new_invoice);
+            $history->save();
     	    $request->session()->flash('update', 'Success');
     	    return redirect()->route('invoice_view');
     	});
@@ -375,7 +387,7 @@ class InvoiceController extends Controller
 		return back();
     }
 
-    function sendInvoice($id){
+    function sendInvoice(Request $request, $id){
         $invoice = Invoice::find($id);
         
         $data['invoice'] = $invoice;

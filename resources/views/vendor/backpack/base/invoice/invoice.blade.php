@@ -13,7 +13,7 @@
     <table style="border-collapse: collapse; width: 100%; margin-bottom: 10px;">
         <tbody>
             <tr>
-                <td width="400" style="vertical-align:top;"> <img src="http://167.71.212.250/images/logo.svg" alt="Logo" style="height: 30px; margin-top: 10px;"> </td>
+                <td width="400" style="vertical-align:top;"> <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 30px; margin-top: 10px;"> </td>
                 <td style="vertical-align:top; text-align: right; font-size: 8pt; line-height: 26px; color: #494949; font-family: 'Quicksand-Bold';">Proforma Invoice</td>
             </tr>
         </tbody>
@@ -142,13 +142,15 @@
                 <th colspan="8" style="border:1px solid #000;text-align:center;padding:5px 10px;">&nbsp;</th>
                 <th style="border:1px solid #000;text-align:center;padding:5px 10px; text-align: right;">
                     <div>Sub-Total:</div>
-                    <div>Received:</div>
+                    <div>Shipping Cost:</div>
+                    @if($invoice->payment_received > 0)<div>Received:</div>@endif
                     <div>Payment Due:</div>
                 </th>
                 <th style="border:1px solid #000;text-align:center;padding:5px 10px;">
                     <div>$ {{ number_format($invoice->sub_total, 2, '.', ',') }}</</div>
-                    <div>$ 13,000.00</div>
-                    <div>$ {{ number_format($invoice->total, 2, '.', ',') }}</</div>
+                    <div>$ {{ number_format($invoice->shipping_fee, 2, '.', ',') }}</</div>
+                    @if($invoice->payment_received > 0)<div>$ {{ number_format($invoice->payment_received, 2, '.', ',') }}</</div>@endif
+                    <div>$ {{ number_format($invoice->total - $invoice->payment_received, 2, '.', ',') }}</</div>
                 </th>
             </tr>
             <tr>

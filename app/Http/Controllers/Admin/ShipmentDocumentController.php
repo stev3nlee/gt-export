@@ -14,6 +14,8 @@ use App\Models\Product;
 use App\Models\Member;
 use App\Models\Quotation;
 use App\Models\Shipment_document;
+use App\Jobs\SendEmail;
+use App\Jobs\SendEmailAdmin;
 use Excel;
 use PDF;
 use DNS2D;
@@ -92,6 +94,18 @@ class ShipmentDocumentController extends Controller
                 $shipment_document->file_path = $fileNameSave;
                 $shipment_document->size = round($fileSize / 1024,2);
                 $shipment_document->save();
+            }
+
+            if($invoice->member){
+                $data_member = array(
+                    'document' => $shipment_document,
+                    'email'=>$invoice->member->email,
+                    'subject' => 'GT Export - Shipment Document',
+                    'email_to' => $invoice->member->email,
+                    'email_view' => 'email.email_shipment_document',
+                    'url'=>url('/'),
+                );
+                dispatch(new SendEmail($data_member));
             }
 
             $request->session()->flash('insert', 'Success');

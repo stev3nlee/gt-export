@@ -121,16 +121,18 @@
 						<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding:5px 10px;">{{ number_format($quotation->price, 2, '.', ',') }}
 						</td>
 					</tr>
+				
+				
+				<tr>
+					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px;" colspan="3"></td>
+					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3">Shipping Cost</td>
+					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;">USD {{ number_format($quotation->shipping_fee, 2, '.', ',') }} </td>
+				</tr>
 				<?php /* ?>
 				<tr>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3"></td>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3">Subtotal</td>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;">IDR {{ number_format($order->sub_total,0,",",".") }} </td>
-				</tr>
-				<tr>
-					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px;" colspan="3"></td>
-					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3">Delivery</td>
-					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;">IDR {{ number_format($order->shipping_fee,0,",",".") }} </td>
 				</tr>
 				@if($order->discount_price > 0)
 				<tr>
@@ -143,7 +145,7 @@
 				<tr>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 5px 10px;" colspan="3"></td>
 					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;" colspan="3"><b> Total</b></td>
-					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;"><b>USD {{ number_format($quotation->price, 2, '.', ',') }}</b></td>
+					<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 5px 10px;"><b>USD {{ number_format($quotation->price + $quotation->shipping_fee, 2, '.', ',') }}</b></td>
 				</tr>
 			</table>
 		</div>

@@ -203,11 +203,23 @@
                             <div class="row">
                                 <div class="form-group">
                                     <label class="col-sm-7 control-label text-right">Shipping
-                                        <input type="number" step="0.01" name="shipping" id="input_shipping" class="form-control" value="{{ isset($data) ? $data->shipping_fee : old('shipping_fee') }}">
+                                        <input type="number"  style="width: 40%; float: right;" step="0.01" name="shipping" id="input_shipping" class="form-control" value="{{ isset($data) ? $data->shipping_fee : old('shipping_fee') }}">
                                     </label>
                                     <div class="col-sm-5">
                                         <label class="col-sm-10 control-label text-right">
-                                            <h4 id="shipping_price"></h4>
+                                            <label id="shipping_price"></label>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-7 control-label text-right">Payment Received
+                                        <input type="number" style="width: 40%; float: right;" step="0.01" name="payment_received" id="payment_received" class="form-control" value="{{ isset($data) ? $data->payment_received : old('payment_received') }}">
+                                    </label>
+                                    <div class="col-sm-5">
+                                        <label class="col-sm-10 control-label text-right">
+                                            <label id="price_received"></label>
                                         </label>
                                     </div>
                                 </div>
@@ -328,7 +340,7 @@
         calculateSubtotal();
     })
 
-    $('#input_shipping').on('keyup', function() {
+    $('#input_shipping, #payment_received').on('keyup', function() {
         
         calculateSubtotal();
     })
@@ -421,14 +433,18 @@
         // $('#subtotal_after_discount').html(subtotal - subtotal_after_discount);
 
         var shipping_fee = $('#input_shipping').val();
+        var payment_received = $('#payment_received').val();
         $('#shipping_price').html( shipping_fee);
+        $('#price_received').html( payment_received);
         var fee = isNaN(shipping_fee) || shipping_fee == '' ? 0 : shipping_fee;
-        var subtotal_after_shipping = parseInt(subtotal_after_discount) + parseInt(fee)
+        var received = isNaN(payment_received) || payment_received == '' ? 0 : payment_received;
+        var subtotal_after_shipping = parseFloat(subtotal_after_discount) + parseFloat(fee);
+        var subtotal_after_payment = parseFloat(subtotal_after_discount) + parseFloat(fee) - parseFloat(received);
 
-        $('input[name="subtotal_after_shipping"]').val( subtotal_after_shipping );
-        $('#subtotal_after_shipping').html( subtotal_after_shipping);
+        $('input[name="subtotal_after_shipping"]').val( subtotal_after_payment );
+        $('#subtotal_after_shipping').html( subtotal_after_payment);
 
-        $('#total').html( subtotal_after_shipping);
+        $('#total').html( subtotal_after_payment);
         $('#input_total').val( subtotal_after_shipping );
     }
     

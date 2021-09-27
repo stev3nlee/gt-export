@@ -116,10 +116,15 @@
         <div style="float: left;width: 15%;text-align: right; border-bottom: 1px solid #f5f5f5; padding-bottom: 10px;"><b>Shipping</b></div>
         <div style="float: left;width: 15%; text-align: right; border-bottom: 1px solid #f5f5f5; padding: 0 0 10px;">{{ number_format($data->shipping_fee ,0,",",".") }}</div>
       </div>
+      <div class="clearfix" style="padding: 10px;">
+        <div style="float: left;width: 70%;">&nbsp;</div>
+        <div style="float: left;width: 15%;text-align: right; border-bottom: 1px solid #f5f5f5; padding-bottom: 10px;"><b>Payment Received</b></div>
+        <div style="float: left;width: 15%; text-align: right; border-bottom: 1px solid #f5f5f5; padding: 0 0 10px;">{{ number_format($data->payment_received ,0,",",".") }}</div>
+      </div>
       <div class="clearfix" style="padding: 10px; margin-bottom: 20px;">
         <div style="float: left;width: 70%;">&nbsp;</div>
         <div style="float: left;width: 15%;text-align: right;"><b>Grand Total</b></div>
-        <div style="float: left;width: 15%;text-align: right;">{{ number_format($data->total ,0,",",".") }}</div>
+        <div style="float: left;width: 15%;text-align: right;">{{ number_format($data->total - $data->payment_received ,0,",",".") }}</div>
       </div>
 
 
