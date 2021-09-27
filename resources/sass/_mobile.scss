@@ -351,7 +351,6 @@
 	        }
 	        .text1 {
 	            .text1-row {
-	                display: block;
 	                margin-bottom: 30px;
 	                .text1-col {
 	                    flex: 0 0 100%;
@@ -360,10 +359,10 @@
 	                        font-size: 12px;
 	                        line-height: 15px;
 	                        .left {
-	                            padding: 10px 15px;
+	                            padding: 10px;
 	                        }
 	                        .right {
-	                            padding: 10px 15px;
+	                            padding: 10px;
 	                        }
 	                    }
 	                }

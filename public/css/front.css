@@ -17279,6 +17279,7 @@ footer .cp {
   flex-wrap: wrap;
 }
 #main .css-detail .text1 .text1-row .text1-col {
+  border-top: 1px solid #ADADAD;
   flex: 0 0 50%;
   max-width: 50%;
 }
@@ -17289,16 +17290,19 @@ footer .cp {
   height: 100%;
   line-height: 20px;
 }
+#main .css-detail .text1 .text1-row .text1-col .text1-bdr .row {
+  height: 100%;
+}
 #main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
-  border-top: 1px solid #ADADAD;
+  height: 100%;
   border-right: 1px solid #adadad;
   padding: 10px 20px;
   font-family: "Quicksand-Bold";
   background-color: #f5f5f5;
 }
 #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
-  border-right: 1px solid #adadad;
-  border-top: 1px solid #ADADAD;
+  height: 100%;
+  border-right: 1px solid #ADADAD;
   padding: 10px 20px;
 }
 #main .css-detail .text2 .text2-row {
@@ -19893,7 +19897,6 @@ input[type=file] {
     line-height: 17px;
   }
   #main .css-detail .text1 .text1-row {
-    display: block;
     margin-bottom: 30px;
   }
   #main .css-detail .text1 .text1-row .text1-col {
@@ -19905,10 +19908,10 @@ input[type=file] {
     line-height: 15px;
   }
   #main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
-    padding: 10px 15px;
+    padding: 10px;
   }
   #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
-    padding: 10px 15px;
+    padding: 10px;
   }
   #main .css-detail .text2 .text2-row .text2-col {
     flex: 0 0 33.333%;
