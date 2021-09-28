@@ -67,7 +67,7 @@
                                     </td>
                                     <?php /* ?>
                                     <td><?php if($content->status == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/about/status/'.$content->id.'/1') }}"><span class="badge bg-red">Inactive</span></a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/about/status/'.$content->id.'/0') }}"><span class="badge bg-green">Active</span></a><?php } ?></td><?php */ ?>
-                                    <td>{{ $content->updated_at }}</td>
+                                    <td>{{ date('d/m/Y H:i:s', strtotime($content->updated_at)) }}</td>
                                 </tr> 
                               @endforeach
                               

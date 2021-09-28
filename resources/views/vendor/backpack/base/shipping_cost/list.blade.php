@@ -47,7 +47,7 @@
                                     <td>{{ $content->country }}</td>
                                     <td>{{ $content->country_code }}</td>
                                     <td>$ {{ $content->shipping_cost }}</td>
-                                    <td>{{ $content->updated_at }}</td>
+                                    <td>{{ date('d/m/Y H:i:s', strtotime($content->updated_at)) }}</td>
                                 </tr>
                               @endforeach
                             </tbody>

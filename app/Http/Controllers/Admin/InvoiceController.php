@@ -10,10 +10,12 @@ use App\Helper\HelperFunction;
 use DB;
 use App\Models\Invoice;
 use App\Models\Invoice_detail;
+use App\Models\Invoice_billing_detail;
 use App\Models\Invoice_history;
 use App\Models\Product;
 use App\Models\Member;
 use App\Models\Quotation;
+use App\Models\Reservation_time;
 use App\Exports\invoiceExport;
 use App\Jobs\SendEmail;
 use App\Jobs\SendEmailAdmin;
@@ -82,7 +84,7 @@ class InvoiceController extends Controller
         ]);
 
     	return DB::transaction(function () use($request,&$invoice) {
-
+        $reservation_time = Reservation_time::first();
     	$quotation_id = null;
         $member_id = null;
     	if($request->quotation_id){
@@ -96,7 +98,7 @@ class InvoiceController extends Controller
             $invoice->member_id = $member_id;
             $invoice->sub_total = $request->subtotal;
             $invoice->total = $request->value;
-            $invoice->shipping_fee = $request->shipping;
+            $invoice->shipping_fee = $request->shipping ? $request->shipping : 0;
             $invoice->consignee_address = $request->consignee_address;
             $invoice->contact_no = $request->contact_no;
             $invoice->email = $request->email;
@@ -108,7 +110,8 @@ class InvoiceController extends Controller
             $invoice->first_name = $request->first_name;
             $invoice->last_name = $request->last_name;
             $invoice->dob = $request->dob;
-            $invoice->payment_received = $request->payment_received;
+            $invoice->payment_received = $request->payment_received ? $request->payment_received : 0;
+            $invoice->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $invoice->save();
 
             $total_price_original = 0;$total_quantity = 0;$total_weight = 0;
@@ -127,22 +130,22 @@ class InvoiceController extends Controller
                             'mileage' => $detail['mileage'][$key],
                             'chassis_no' => $detail['chassis_no'][$key],
                             'engine_no' => $detail['engine_no'][$key],
-                            'amount' => $detail['amount'][$key],
+                            'amount' => $detail['amount'][$key] ? $detail['amount'][$key] : 0,
                         ]);
+
+                        if($detail['product_id'][$key]){
+                            $product = Product::find($detail['product_id'][$key]);
+                            $product->reserve = 1;
+                            $product->save();
+                        }
                 }
             $invoice->save();
 
-            // $invoice_billing_detail = new invoice_billing_detail;
-            // $invoice_billing_detail->invoice_id = $invoice->id;
-            // $invoice_billing_detail->billing_status = 'waiting_for_payment';
-            // $invoice_billing_detail->message = 'Waiting for payment.';
-            // $invoice_billing_detail->save();
-
-            // $invoice_shipping_detail = new invoice_shipping_detail;
-            // $invoice_shipping_detail->invoice_id = $invoice->id;
-            // $invoice_shipping_detail->shipping_status = 'checkout';
-            // $invoice_shipping_detail->message = 'invoice created.';
-            // $invoice_shipping_detail->save();
+            $invoice_billing_detail = new Invoice_billing_detail;
+            $invoice_billing_detail->invoice_id = $invoice->id;
+            $invoice_billing_detail->billing_status = 'draft';
+            $invoice_billing_detail->message = 'Waiting for payment.';
+            $invoice_billing_detail->save();
 
             $request->session()->flash('insert', 'Success');
             return redirect()->route('invoice_view');
@@ -181,7 +184,7 @@ class InvoiceController extends Controller
             $invoice->consignee_address = $request->consignee_address;
             $invoice->contact_no = $request->contact_no;
             $invoice->email = $request->email;
-            $invoice->shipping_fee = $request->shipping;
+            $invoice->shipping_fee = $request->shipping ? $request->shipping : 0;
             $invoice->payment_terms = $request->payment_terms;
             $invoice->type = $request->type;
             $invoice->port_of_destination = $request->port_of_destination;
@@ -192,20 +195,22 @@ class InvoiceController extends Controller
             $invoice->dob = $request->dob;
             $invoice->sub_total = $request->subtotal;
             $invoice->total = $request->value;
-            $invoice->payment_received = $request->payment_received;
+            $invoice->payment_received = $request->payment_received ? $request->payment_received : 0;
             $invoice->save();
 
             $detail = $request->detail;
             if($detail){
+                // foreach($invoice->invoice_details as $check_detail){
+                //     if($check_detail->product_id){
+                //         Product::where([
+                //             'id' => $check_detail->product_id
+                //         ])->update([
+                //             'reserve' => 0
+                //         ]);
+                //     }
+                // }
                 $invoice->invoice_details()->delete();
-            	// foreach($invoice->invoice_details as $check_detail){
-            	// 	Product::where([
-             //            'id' => $check_detail->product_id
-             //        ])->increment(
-             //            'stock', 1
-             //        );
-            	// 	$check_detail->delete();
-            	// }
+
                 foreach ($detail['product_id'] as $key => $item) {
                 		Invoice_detail::create([
                             'invoice_id' => $invoice->id,
@@ -218,14 +223,16 @@ class InvoiceController extends Controller
                             'mileage' => $detail['mileage'][$key],
                             'chassis_no' => $detail['chassis_no'][$key],
                             'engine_no' => $detail['engine_no'][$key],
-                            'amount' => $detail['amount'][$key],
+                            'amount' => $detail['amount'][$key] ? $detail['amount'][$key] : 0,
                         ]);
 
-                        // Product::where([
-                        //     'id' => $product_detail->id
-                        // ])->decrement(
-                        //     'stock', $detail['product_quantity'][$key]
-                        // );
+                        if($detail['product_id'][$key]){
+                            $product = Product::find($detail['product_id'][$key]);
+                            if($product->reserve == 0){
+                                $product->reserve = 1;
+                                $product->save();
+                            }
+                        }
                 }
             }
             $invoice->save();
@@ -286,26 +293,9 @@ class InvoiceController extends Controller
         return $pdf->download('quotation_'.$invoice->invoice_number.'.pdf');
 	}
 		
-    function updateShippingStatus(Request $request)
-    {
-			$invoice = invoice::where([
-					['id', '=', $request->input('id')],
-			])->first();
 
-			$invoiceShippingDetail = new invoice_shipping_detail;
-			$invoiceShippingDetail->invoice_id = $invoice->id;
-			$invoiceShippingDetail->shipping_status = 'returned';
-			$invoiceShippingDetail->message = $request->input('message');
-			$invoiceShippingDetail->payload = null;
-			$invoiceShippingDetail->save();
-
-			return redirect()->action(
-				'Admin\invoiceController@detail', ['id' => $request->input('id')]
-			);
-		}
-
-		function exportinvoiceToExcel(Request $request)
-		{
+	function exportinvoiceToExcel(Request $request)
+	{
 			// if($request->input('with_product') == 2){
 			// 	$invoice_export = new invoiceExportSingle();
 			// }else{
@@ -321,7 +311,7 @@ class InvoiceController extends Controller
 			}
 	
 			return Excel::download($invoice_export, $file_name . '.xlsx');
-		}
+	}
 
 	function cancel($id){
     	$table = new invoice_billing_detail;
@@ -337,15 +327,29 @@ class InvoiceController extends Controller
     function paidinvoice($id){
 	    $invoice = invoice::where('id',$id)->where('status','!=','paid')->first();
 	    if(!$invoice){
-	    	echo "Quotation already paid";exit;		
+	    	echo "Invoice already paid";exit;		
 	    }
 	    $invoice->paid_date = date('Y-m-d H:i:s');
         $invoice->status = 'paid';
 	    $invoice->save();
 
+        $payment_detail = new Invoice_billing_detail;
+        $payment_detail->invoice_id = $invoice->id; 
+        $payment_detail->billing_status = 'paid';
+        $payment_detail->message = 'Payment Success';
+        $payment_detail->save();
+
         $quot = Quotation::find($invoice->quotation_id);
         $quot->status = 2;
         $quot->save();
+
+        foreach ($invoice->invoice_details as $detail) {
+            if($detail->product_id){
+                $product = Product::find($detail->product_id);
+                $product->reserve = 2;
+                $product->save();
+            }
+        }
 
 	 //    $table = new invoice_billing_detail;
 		// $table->billing_status = 'paid';

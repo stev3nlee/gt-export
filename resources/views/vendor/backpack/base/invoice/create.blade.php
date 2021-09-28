@@ -136,6 +136,7 @@
                                     <td><input type="text" class="form-control chassis_no" name="detail[chassis_no][]" value="{{ $item->chassis_no }}"></td>
                                     <td><input type="text" class="form-control engine_no" name="detail[engine_no][]" value="{{ $item->engine_no }}"></td>
                                     <td><input type="number" step=0.01 class="form-control amount" name="detail[amount][]" value="{{ $item->amount }}"></td>
+                                    <td id="delete-row" width="30px" class="text-center"><a href="javacsript:void(0)"><i class="fa fa-trash fa-fw" style="color: red"></i></a></td>
                                 </tr>
                                 @endforeach
                                 @else
@@ -356,6 +357,7 @@
             '<td><input type="text" class="form-control chassis_no chassis-no-row-'+id+'" name="detail[chassis_no][]"></td>' +
             '<td><input type="text" class="form-control engine_no engine-no-row-'+id+'" name="detail[engine_no][]"></td>' +
             '<td><input type="number" step=0.01 class="form-control amount amount-row-'+id+'" name="detail[amount][]"></td>' +
+            '<td id="delete-row" width="30px" class="text-center"><a href="javacsript:void(0)"><i class="fa fa-trash fa-fw" style="color: red"></i></a></td>' +
             '</tr>';
                                         
 
@@ -398,6 +400,7 @@
             '<td><input type="text" class="form-control chassis_no chassis-no-row" name="detail[chassis_no][]"></td>' +
             '<td><input type="text" class="form-control engine_no engine-no-row" name="detail[engine_no][]"></td>' +
             '<td><input type="number" step=0.01 class="form-control amount amount-row" name="detail[amount][]"></td>' +
+            '<td id="delete-row" width="30px" class="text-center"><a href="javacsript:void(0)"><i class="fa fa-trash fa-fw" style="color: red"></i></a></td>' +
             '</tr>';
                                         
 

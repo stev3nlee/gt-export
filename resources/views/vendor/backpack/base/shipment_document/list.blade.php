@@ -99,7 +99,7 @@
                                         <td>{{ $content->quotation_number }}</td>
                                         <td>{{ $content->quotation ? ucwords(strtolower($content->quotation->first_name)) . ' ' . ucwords(strtolower($content->quotation->last_name)) : '' }}</td>
                                         <td>{{ $content->file }}</td>
-                                        <td>{{ $content->created_at }}</td>
+                                        <td>{{ date('d/m/Y H:i:s', strtotime($content->created_at)) }}</td>
                                         <td><div class="table-actions-hover">
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/shipment_document/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
                                                 |

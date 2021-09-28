@@ -31,7 +31,7 @@
                                 @foreach($quotations as $quotation)
                                 <div>
                                     <div class="tbl tbl-bdy">
-                                        <div class="cell w130">{{ date('d-m-Y', strtotime($quotation->created_at)) }}</div>
+                                        <div class="cell w130">{{ date('d/m/Y', strtotime($quotation->created_at)) }}</div>
                                         <div class="cell"><span class="bold">Quotation {{ $quotation->invoice_number }}.pdf</span></div>
                                         <!-- <div class="cell w110">100MB</div> -->
                                         <div class="cell w90">
@@ -48,7 +48,7 @@
                                     @foreach($next_quotations as $next_quotation)
                                     <div>
                                         <div class="tbl tbl-bdy">
-                                            <div class="cell w130">{{ date('d-m-Y', strtotime($next_quotation->created_at)) }}</div>
+                                            <div class="cell w130">{{ date('d/m/Y', strtotime($next_quotation->created_at)) }}</div>
                                             <div class="cell"><span class="bold">Quotation {{ $next_quotation->invoice_number }}.pdf</span></div>
                                             <!-- <div class="cell w110">100MB</div> -->
                                             <div class="cell w90">

@@ -62,7 +62,7 @@
                                     <td>{{ strtolower($content->email) }}</td>
                                     <td>{{$content->phone}}</td>
                                     <td>@if($content->guest == 0)<?php if($content->verified == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/member/verified/'.$content->id.'/1') }}" onclick="return confirm('Are you want to verify this member ?');">Not Verified</a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/member/verified/'.$content->id.'/0') }}" onclick="return confirm('Are you want to unverify this member ?');">Verified</a><?php } ?> @else Guest @endif</td>
-                                    <td>{{ $content->created_at }}</td>
+                                    <td>{{ date('d/m/Y H:i:s', strtotime($content->created_at)) }}</td>
                                 </tr>
                               @endforeach
                             </tbody>

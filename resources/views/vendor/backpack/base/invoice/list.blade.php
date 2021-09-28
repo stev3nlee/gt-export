@@ -121,11 +121,12 @@
                         <table class="table table-striped table-binvoiceed table-hover datatable ">
                             <thead>
                                 <tr class="nosortable">
-                                    <th>ID</th>
+                                    <!-- <th>ID</th> -->
                                     <th>Invoice</th>
                                     <th>Buyer</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Date</th>
                                     <th>Total Invoice</th>
                                     <th>Payment Status</th>
                                     <th class="table-actions">Action</th>
@@ -136,18 +137,21 @@
                             <tbody id="element-invoice">
                               @foreach ($data as $content)
                                     <tr>
-                                        <td>{{ $content->id }}</td>
+                                        <!-- <td>{{ $content->id }}</td> -->
                                         <td>{{ $content->invoice_number }}</td>
                                         <td>{{ ucwords(strtolower($content->first_name)) . ' ' . ucwords(strtolower($content->last_name)) }}</td>
                                         <td>{{ strtolower($content->email) }}</td>
                                         <td>{{ $content->contact_no }}</td>
+                                        <td>{{ date('d/m/Y', strtotime($content->date)) }}</td>
                                         <td>USD {{ number_format($content->total ,0,",",".") }}</td>
                                         
                                         
-                                        <td>@if($content->status != 'paid')
+                                        <td>@if($content->status == 'draft')
                                             <a class="btn btn-info" onclick="return confirm('Are you want to set this quotation to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Confirm Payment</a>
-                                            @else
-                                            Paid
+                                            @elseif($content->status == 'paid')
+                                            <span class="badge bg-green">Paid</span>
+                                            @elseif($content->status == 'expired')
+                                            <span class="badge bg-red">Expired</span>
                                             @endif
                                         </td>
                                         <td>

@@ -18,6 +18,8 @@ class AddColumnToInvoiceTable extends Migration
             $table->string('last_name')->nullable();
             $table->date('dob')->nullable();
             $table->float('shipping_fee', 15,2)->default(0);
+            $table->dateTime('expired_date')->nullable();
+            $table->integer('return_reserve')->default(0);
             
 
         });
@@ -35,6 +37,8 @@ class AddColumnToInvoiceTable extends Migration
             $table->dropColumn('last_name');
             $table->dropColumn('dob');
             $table->dropColumn('shipping_fee');
+            $table->dropColumn('expired_date');
+            $table->dropColumn('return_reserve');
         });
     }
 }

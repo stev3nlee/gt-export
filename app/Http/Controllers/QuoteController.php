@@ -81,8 +81,8 @@ class QuoteController extends BaseController
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
 
-            $product->reserve = 1;
-            $product->save();
+            // $product->reserve = 1;
+            // $product->save();
 
              $data_admin = array(
                 'quotation' => $quote,
@@ -150,8 +150,8 @@ class QuoteController extends BaseController
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
 
-            $product->reserve = 1;
-            $product->save();
+            // $product->reserve = 1;
+            // $product->save();
 
              $data_admin = array(
                 'quotation' => $quote,

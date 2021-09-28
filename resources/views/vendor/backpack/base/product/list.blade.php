@@ -61,6 +61,7 @@
                             </form>
                         </div>
                     </div>
+                    <br>
                     <div class="dataTable_wrapper">
                         <table class="table table-striped table-bordered table-hover datatable">
                             <thead>
@@ -90,9 +91,9 @@
                                     </td>
                                     <td>@if($content->price)$ {{ $content->price }}@endif</td>
                                     <td>@if($content->brand){{ $content->brand[0]->name }}@endif</td>
-                                    <td><?php if($content->reserve == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product/reserve/'.$content->id.'/1') }}"><span class="badge bg-yellow">Not Reserve</span></a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product/reserve/'.$content->id.'/0') }}"><span class="badge bg-blue">Reserved</span></a><?php } ?></td>
+                                    <td><?php if($content->reserve == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product/reserve/'.$content->id.'/1') }}"><span class="badge bg-yellow">Not Reserve</span></a><?php  }else if($content->reserve == 1){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product/reserve/'.$content->id.'/0') }}"><span class="badge bg-blue">Reserved</span></a><?php }else{ ?> <span class="badge bg-green">Paid</span> <?php } ?></td>
                                     <td><?php if($content->status == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product/status/'.$content->id.'/1') }}"><span class="badge bg-red">Inactive</span></a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/product/status/'.$content->id.'/0') }}"><span class="badge bg-green">Active</span></a><?php } ?></td>
-                                    <td>{{ $content->created_at }}</td>
+                                    <td>{{ date('d/m/Y H:i:s', strtotime($content->created_at)) }}</td>
                                 </tr>
                               @endforeach
                             </tbody>

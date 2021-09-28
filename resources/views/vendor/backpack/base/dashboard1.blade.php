@@ -263,7 +263,7 @@
                     <li>
                       <span class="glyphicon glyphicon-user" style="font-size: 29px;"></span>
                       <a class="users-list-name" href="{{ url(config('backpack.base.route_prefix', 'admin').'/member/detail/'.$list->id) }}">{{ ucwords(strtolower($list->first_name)) }} {{ ucwords(strtolower($list->last_name)) }}</a>
-                      <span class="users-list-date">{{ $list->created_at }}</span>
+                      <span class="users-list-date">{{ date('d/m/Y H:i:s', strtotime($list->created_at)) }}</span>
                     </li>
                     @endforeach
                   </ul>

@@ -44,7 +44,7 @@
                                     <td>{{ $content->name }}</td>
                                     <td>{{ $content->email }}</td>
                                     <td>{{ $content->message }}</td>
-                                    <td>{{ $content->created_at }}</td>
+                                    <td>{{ date('d/m/Y H:i:s', strtotime($content->created_at)) }}</td>
                                 </tr>
                               @endforeach
                             </tbody>

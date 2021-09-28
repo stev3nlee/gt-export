@@ -31,9 +31,9 @@
                                 @foreach($shipments as $shipment)
                                 <div>
                                     <div class="tbl tbl-bdy">
-                                        <div class="cell w130">{{ date('d-m-Y', strtotime($shipment->created_at)) }}</div>
+                                        <div class="cell w130">{{ date('d/m/Y', strtotime($shipment->created_at)) }}</div>
                                         <div class="cell"><span class="bold">{{ $shipment->file }}</span></div>
-                                        <div class="cell w110">100MB</div>
+                                        <div class="cell w110">{{ $shipment->size }}KB</div>
                                         <div class="cell w90">
                                             <ul class="link">
                                                 <li><a target="_blank" href="{{ url('view-shipment-document/'.$shipment->id) }}"><img src="{{ asset('images/view.png') }}" alt="" title=""/></a></li>
@@ -48,9 +48,9 @@
                                     @foreach($next_shipments as $next_shipment)
                                     <div>
                                         <div class="tbl tbl-bdy">
-                                            <div class="cell w130">{{ date('d-m-Y', strtotime($next_shipment->created_at)) }}</div>
+                                            <div class="cell w130">{{ date('d/m/Y', strtotime($next_shipment->created_at)) }}</div>
                                             <div class="cell"><span class="bold">{{ $next_shipment->file }}</span></div>
-                                            <div class="cell w110">100MB</div>
+                                            <div class="cell w110">{{ $next_shipment->size }}KB</div>
                                             <div class="cell w90">
                                                 <ul class="link">
                                                     <li><a target="_blank" href="{{ url('view-shipment-document/'.$shipment->id) }}"><img src="{{ asset('images/view.png') }}" alt="" title=""/></a></li>

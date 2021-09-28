@@ -73,7 +73,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Date of Birth:</label>
-                                            <input class="form-control date" name="dob" type="text" value="{{ $member->dob }}" readonly="" />
+                                            <input class="form-control date" name="dob" type="text" @if($member->dob) value="{{ date('d F Y', strtotime($member->dob)) }}" @endif readonly="" />
                                             @if($errors->has('dob')) <span class="help-block">{{ $errors->first('dob') }}</span>  @endif
                                         </div>     
                                     </div>

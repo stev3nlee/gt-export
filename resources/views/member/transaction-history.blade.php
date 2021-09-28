@@ -38,9 +38,9 @@
                                 @foreach($orders as $order)
                                 <div class="xs30">
                                     <div class="tbl tbl-bdy">
-                                        <div class="cell text-center w130"><span class="show-title">Date:</span>{{ date('d-m-Y', strtotime($order->created_at)) }}</div>
+                                        <div class="cell text-center w130"><span class="show-title">Date:</span>{{ date('d/m/Y', strtotime($order->created_at)) }}</div>
                                         <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># {{ $order->quotation_number }}</div>
-                                        <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
+                                        <div class="cell text-center"><span class="show-title">Description:</span>{{ $order->product_name }}</div>
                                         <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ {{ number_format($order->price, 2, '.', ',') }}</div>
                                         <div class="cell text-center w100 pr0"><span class="show-title">Status:</span>
                                         @if($order->status == 1)
@@ -59,9 +59,9 @@
                                     @foreach($next_orders as $next_order)
                                     <div class="xs30">
                                         <div class="tbl tbl-bdy">
-                                            <div class="cell text-center w130"><span class="show-title">Date:</span>{{ date('d-m-Y', strtotime($next_order->created_at)) }}</div>
+                                            <div class="cell text-center w130"><span class="show-title">Date:</span>{{ date('d/m/Y', strtotime($next_order->created_at)) }}</div>
                                             <div class="cell text-center w150"><span class="show-title">Transaction Number:</span># {{ $next_order->quotation_number }}</div>
-                                            <div class="cell text-center"><span class="show-title">Description:</span>BMW 3 Series, Automatic</div>
+                                            <div class="cell text-center"><span class="show-title">Description:</span>{{ $order->product_name }}</div>
                                             <div class="cell text-center w100"><span class="show-title">Amount:</span>S$ {{ number_format($next_order->price, 2, '.', ',') }}</div>
                                             <div class="cell text-center w100 pr0"><span class="show-title">Status:</span>
                                             @if($next_order->status == 1)

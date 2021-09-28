@@ -139,6 +139,8 @@
                                         <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
+                                        @elseif($product->reserve == 2)
+                                            <div class="abs">Sold</div>
                                         @endif
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
