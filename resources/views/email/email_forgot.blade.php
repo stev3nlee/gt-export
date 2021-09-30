@@ -27,7 +27,7 @@
 		</div>
 		<div style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
 			<p style="margin-bottom: 0;">If problems still persist, please feel free to contact member of our support at</p>
-			<a style="color: #0080ff;" href="mailto:email@gtexport.com" target="_blank">email@gtexport.com</a>
+			<a style="color: #0080ff;" href="mailto:cs.gtexport@gmail.com" target="_blank">cs.gtexport@gmail.com</a>
 		</div>
 	</div>
 </body>

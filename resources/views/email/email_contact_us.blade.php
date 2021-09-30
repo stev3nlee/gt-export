@@ -46,7 +46,7 @@
 		</div>
 		<div style="font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
 			<div style="margin-bottom: 5px;">
-				<p> As usual, if you have any questions, you may visit our <a href="{{ $url }}/faq">FAQ page</a>, or contact us at <a href="mailto:email@gtexport.com">email@gtexport.com</a> </p>
+				<p> As usual, if you have any questions, you may visit our <a href="{{ $url }}/faq">FAQ page</a>, or contact us at <a href="mailto:cs.gtexport@gmail.com">cs.gtexport@gmail.com</a> </p>
 			</div>
 		</div>
 	</div>

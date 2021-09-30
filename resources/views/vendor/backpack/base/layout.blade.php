@@ -175,6 +175,11 @@
           startDate: '-0d',
         })
 
+        $('.datepicker_invoice').datepicker({
+          autoclose: true,
+          format: 'dd/mm/yyyy'
+        })
+
         // $('.datepicker_promo').datetimepicker({
         //   autoclose: true,
         //   format: 'yyyy-mm-dd',

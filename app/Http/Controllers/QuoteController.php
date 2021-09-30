@@ -88,7 +88,7 @@ class QuoteController extends BaseController
                 'quotation' => $quote,
                 'status'=>'confirmation',
                 'subject' => 'GT Export - Quotation',
-                'email_to' => $quote->email,
+                'email_to' => 'cs.gtexport@gmail.com',
                 'email_view' => 'email.email_quotation_admin',
                 'url'=>url('/'),
             );
@@ -157,7 +157,7 @@ class QuoteController extends BaseController
                 'quotation' => $quote,
                 'status'=>'confirmation',
                 'subject' => 'GT Export - Quotation',
-                'email_to' => $quote->email,
+                'email_to' => 'cs.gtexport@gmail.com',
                 'email_view' => 'email.email_quotation_admin',
                 'url'=>url('/'),
             );

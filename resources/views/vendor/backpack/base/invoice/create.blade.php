@@ -56,7 +56,7 @@
 
                           <div class="form-group">
                             <label for="fname">Date of Birth</label>
-                            <input type="date" name="dob" id="dob" class="form-control" value="{{ isset($data) ? $data->dob : old('dob') }}"/>
+                            <input type="text" name="dob" readonly autocomplete="off" id="dob" class="form-control datepicker_invoice" value="{{ isset($data->dob) ? date('d/m/Y', strtotime($data->dob)) : old('dob') }}"/>
                             @if($errors->has('dob')) <span class="help-block">{{ $errors->first('dob') }}</span>  @endif
                           </div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="fname">Date <span class="required">*</span></label>
-                                    <input name="date" type="date" class="form-control" value="{{ isset($data) ? $data->date : old('date') }}"/>
+                                    <input name="date" type="text" readonly autocomplete="off" class="form-control datepicker_invoice" value="{{ isset($data) ? date('d/m/Y', strtotime($data->date)) : old('date') }}"/>
                                     @if($errors->has('date')) <span class="help-block">{{ $errors->first('date') }}</span>  @endif
                                 </div>
                                 <div class="form-group">
@@ -251,7 +251,7 @@
     </div>
 @endsection
 @section('after_scripts')
-<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<!-- <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
 <script>
     var u=1;
     $('.select-quotation').change(function() {

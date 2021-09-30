@@ -141,7 +141,11 @@ class QuotationController extends Controller
     {
         $quotation_id = $request->quotation_id;
         if ($quotation_id) {
-            return Quotation::with(['product.model'])->find($quotation_id);
+            $data = Quotation::with(['product.model'])->find($quotation_id);
+            if($data->dob){
+                $data->dob = date('d/m/Y', strtotime($data->dob));
+            }
+            return $data;
         }
     }
 }

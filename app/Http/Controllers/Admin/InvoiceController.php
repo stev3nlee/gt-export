@@ -77,7 +77,7 @@ class InvoiceController extends Controller
             'type' => 'required|string',
             'payment_terms' => 'required|string',
             'port_of_destination' => 'required|string',
-            'date' => 'required|date',
+            'date' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             //'dob' => 'required|date',
@@ -92,6 +92,14 @@ class InvoiceController extends Controller
             $quot = Quotation::find($quotation_id);
             $member_id = $quot->member_id;
         }
+        $date = str_replace('/', '-', $request->date);
+        $request_date = date('Y-m-d', strtotime($date));
+
+        $dob = null;
+        if($request->dob){
+            $date_dob = str_replace('/', '-', $request->dob);
+            $dob = date('Y-m-d', strtotime($date_dob));
+        }
             $invoice = new Invoice;
             $invoice->invoice_number = $request->invoice_number;
             $invoice->quotation_id = $quotation_id;
@@ -105,11 +113,11 @@ class InvoiceController extends Controller
             $invoice->payment_terms = $request->payment_terms;
             $invoice->type = $request->type;
             $invoice->port_of_destination = $request->port_of_destination;
-            $invoice->date = $request->date;
+            $invoice->date = $request_date;
             $invoice->remarks = $request->remarks;
             $invoice->first_name = $request->first_name;
             $invoice->last_name = $request->last_name;
-            $invoice->dob = $request->dob;
+            $invoice->dob = $dob;
             $invoice->payment_received = $request->payment_received ? $request->payment_received : 0;
             $invoice->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $invoice->save();
@@ -162,7 +170,7 @@ class InvoiceController extends Controller
             'type' => 'required|string',
             'payment_terms' => 'required|string',
             'port_of_destination' => 'required|string',
-            'date' => 'required|date',
+            'date' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
         ]);
@@ -177,6 +185,15 @@ class InvoiceController extends Controller
             // $member_id = $quot->member_id;
         }
 
+        $date = str_replace('/', '-', $request->date);
+        $request_date = date('Y-m-d', strtotime($date));
+
+        $dob = null;
+        if($request->dob){
+            $date_dob = str_replace('/', '-', $request->dob);
+            $dob = date('Y-m-d', strtotime($date_dob));
+        }
+
             $invoice = Invoice::where('id', $request->id)->with(['invoice_details'])->first();
             $old_invoice = json_encode($invoice);
             //$invoice->invoice_number = $data_invoice;
@@ -188,11 +205,11 @@ class InvoiceController extends Controller
             $invoice->payment_terms = $request->payment_terms;
             $invoice->type = $request->type;
             $invoice->port_of_destination = $request->port_of_destination;
-            $invoice->date = $request->date;
+            $invoice->date = $request_date;
             $invoice->remarks = $request->remarks;
             $invoice->first_name = $request->first_name;
             $invoice->last_name = $request->last_name;
-            $invoice->dob = $request->dob;
+            $invoice->dob = $dob;
             $invoice->sub_total = $request->subtotal;
             $invoice->total = $request->value;
             $invoice->payment_received = $request->payment_received ? $request->payment_received : 0;
@@ -412,7 +429,7 @@ class InvoiceController extends Controller
         Mail::send('email.email_invoice', $data_email , function($contact)use($data_email,$pdf)
         {
             $contact->from(
-                'nnoreplygtexport@gmail.com',
+                'cs.gtexport@gmail.com',
                 'GT Export'
             );
             $contact->to($data_email['email_to']);

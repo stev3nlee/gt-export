@@ -110,7 +110,7 @@ class PageController extends BaseController
                 $data_admin = array(
                         'name' => $name,
                         'message_contact' => $message,
-                        'email' => $email,
+                        'email' => 'cs.gtexport@gmail.com',
                         'phone' => $phone,
                         'subject' => 'GT Export - Contact Us',
                         'email_to' => $email,
