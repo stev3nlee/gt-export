@@ -42,8 +42,8 @@
                           </div>
 
                         <div class="form-group @if($errors->has('file')) has-error @endif">
-                            <label for="exampleInputEmail1">File</label>
-                            @if(isset($data)) {{ $data->file }} @endif
+                            <label for="exampleInputEmail1">File <span style="color: red;">*max size : 2MB</span></label>
+                            @if(isset($data)) <br>{{ $data->file }} @endif
                             <input type="file" name="file" class="form-control" @if(!isset($data)) required="required" @endif>
                             @if($errors->has('file')) <span class="help-block">{{ $errors->first('file') }}</span>  @endif
                           </div>

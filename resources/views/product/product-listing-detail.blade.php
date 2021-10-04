@@ -40,7 +40,9 @@
                         <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
                         <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                         <div class="buy">Buy it at</div>
+                        @if($product->reserve == 0)
                         <div class="price">$ {{ number_format($product->price, 2, ',', '.') }}</div>
+                        @endif
                         @if($product->reserve == 0)
                         <div class="add">
                             <a>

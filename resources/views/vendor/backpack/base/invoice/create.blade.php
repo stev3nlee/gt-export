@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="lname">Email <span class="required">*</span></label>
-                                        <input name="email" type="email" class="form-control" value="{{ isset($data) ? $data->email : old('email') }}"/>
+                                        <input name="email" type="email" id="email" class="form-control" value="{{ isset($data) ? $data->email : old('email') }}"/>
                                         @if($errors->has('email')) <span class="help-block">{{ $errors->first('email') }}</span>  @endif
                                     </div>
                             </div>
@@ -274,6 +274,7 @@
               $('#dob').val(data.dob);
               $('#contact-no').val(data.phone);
               $('#input_shipping').val(data.shipping_fee);
+              $('#email').val(data.email);
               $('#detail-table').find('tbody').html('');
                 //for (var key in data.product) {
                     addRow(u)

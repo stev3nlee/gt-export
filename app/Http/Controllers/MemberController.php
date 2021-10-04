@@ -305,7 +305,7 @@ class MemberController extends BaseController
         }
         $data['invoice'] = $invoice;
         $pdf = PDF::loadView('vendor.backpack.base.invoice.invoice', $data);
-        return $pdf->download('Quotation '.$invoice->invoice_number.'.pdf');
+        return $pdf->download('Invoice '.$invoice->invoice_number.'.pdf');
     }
 
     function viewShipment(Request $request, $id)

@@ -68,7 +68,7 @@ class ShipmentDocumentController extends Controller
     function insert(Request $request){
         $validatedData = $request->validate([
             'quotation_id' => 'required',
-            'file' => 'required',
+            'file' => 'required|max:2048',
         ]);
     	return DB::transaction(function () use($request,&$shipment_document) {
     		//dd($request->all());
@@ -117,7 +117,7 @@ class ShipmentDocumentController extends Controller
     function update(Request $request){
         $validatedData = $request->validate([
             'quotation_id' => 'required',
-            //'file' => 'required',
+            'file' => 'max:2048',
         ]);
 
     	return DB::transaction(function () use($request,&$shipment_document) {

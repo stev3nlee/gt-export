@@ -160,7 +160,7 @@
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-6 text-right">
-                                                    @if($product->price)
+                                                    @if($product->price && $product->reserve == 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>

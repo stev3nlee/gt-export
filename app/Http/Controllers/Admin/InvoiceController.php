@@ -307,7 +307,7 @@ class InvoiceController extends Controller
 		// }
   		//return view('pdf',$data);
         $pdf = PDF::loadView('vendor.backpack.base.invoice.invoice', $data);
-        return $pdf->download('quotation_'.$invoice->invoice_number.'.pdf');
+        return $pdf->download('invoice_'.$invoice->invoice_number.'.pdf');
 	}
 		
 
@@ -412,7 +412,7 @@ class InvoiceController extends Controller
         $invoice = Invoice::find($id);
         
         $data['invoice'] = $invoice;
-        $pdf_name = 'quotation_'.$invoice->invoice_number.'.pdf';
+        $pdf_name = 'invoice_'.$invoice->invoice_number.'.pdf';
         $pdf = PDF::loadView('vendor.backpack.base.invoice.invoice', $data);
 
         $data_email = array(
