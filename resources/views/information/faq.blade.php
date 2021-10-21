@@ -6,13 +6,15 @@
             <div class="container">
                 <div class="title">Frequently Asked Questions</div>
                 <div class="bdy">
-                    <p>Regulation details for all our destination countries</p>
+                    <!--<p>Regulation details for all our destination countries</p>-->
                 </div>
                 <div class="controls">
                     <div class="row">
+                        <!--
                         <div class="col-6 col-md-3">
                             <button type="button" class="control" data-filter="all">All</button>
                         </div>
+                        -->
                         @foreach($faq_category as $faq_cat)
                         <div class="col-6 col-md-3">
                             <button type="button" class="control" data-filter=".{{ $faq_cat->slug }}">{{ $faq_cat->name }}</button>

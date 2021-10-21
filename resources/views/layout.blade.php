@@ -101,18 +101,18 @@
             </div>
             <div class="bg-menu">
                 <ul class="l-menu">
-                    <li class="dropdown-item-1"><a class="nav-about" href="{{ URL::to('/about-us') }}">About</a></li>
-                    <li class="dropdown-item-2"><a class="nav-product" href="{{ URL::to('/product-listing') }}">Product Listing</a></li>
-                    <li class="dropdown-item-3">
+                    <li class="dropdown-item-1"><a class="nav-about" href="{{ URL::to('/about-us') }}">About Us</a></li>
+                    <li class="dropdown-item-2"><a class="nav-product" href="{{ URL::to('/product-listing') }}">Stocklist</a></li>
+                    <!--<li class="dropdown-item-3">
                         <a class="nav-regulation" href="{{ URL::to('/regulation-details') }}">
                             <div>Destination Country</div>
                             <div>Regulation Details</div>
                         </a>
                     </li>
+                    -->
                     <li class="dropdown-item-4">
                         <a class="nav-procurement" href="{{ URL::to('/procurement-flow') }}">
-                            <div>General Procurement</div>
-                            <div>Flow</div>
+                            <div>Export Procedure</div>
                         </a>
                     </li>
                     <li class="dropdown-item-5"><a class="nav-faq" href="{{ URL::to('/faq') }}">FAQ</a></li>
@@ -157,13 +157,15 @@
         </div>
         <div class="l-menu">
             <ul>
-                <li><a class="nav-about" href="{{ URL::to('/about-us') }}">About</a></li>
-                <li><a class="nav-product" href="{{ URL::to('/product-listing') }}">Product Listing</a></li>
+                <li><a class="nav-about" href="{{ URL::to('/about-us') }}">About Us</a></li>
+                <li><a class="nav-product" href="{{ URL::to('/product-listing') }}">Stocklist</a></li>
+                <!--
                 <li>
                     <a class="nav-regulation" href="{{ URL::to('/regulation-details') }}">Destination Country Regulation Details</a>
                 </li>
+                -->
                 <li>
-                    <a class="nav-procurement" href="{{ URL::to('/procurement-flow') }}">General Procurement Flow</a>
+                    <a class="nav-procurement" href="{{ URL::to('/procurement-flow') }}">Export Procedure</a>
                 </li>
                 <li><a class="nav-faq" href="{{ URL::to('/faq') }}">FAQ</a></li>
                 <li><a class="nav-contact" href="{{ URL::to('/contact-us') }}">Contact Us</a></li>
@@ -442,7 +444,7 @@
                 <a href="https://wa.me/123456789" target="_blank" rel="noreferrer noopener"> 
                     <ul class="l-bdy">
                         <li><i class="fab fa-whatsapp"></i></li>
-                        <li class="text">GT Export</li>
+                        <li class="text">GT EXPORT</li>
                     </ul>
                 </a>
             </div>

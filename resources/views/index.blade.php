@@ -14,7 +14,7 @@
                     </div>
                     <div class="search">
                         <form action="{{ URL::to('/product-listing') }}">
-                            <input class="form-control" type="text" name="search" placeholder="Looking for something?" />
+                            <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
                             <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
                         </form>
                     </div>
