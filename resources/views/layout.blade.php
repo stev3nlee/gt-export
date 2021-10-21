@@ -41,11 +41,13 @@
                             <img src="{{ asset('images/logo.svg') }}" alt="" title=""/>
                         </a>
                     </div>
+                    <!--
                     <div class="menu menu-desktop">
                         <a class="menu-dropdown-toggle">
                             <img src="{{ asset('images/menu.png') }}" alt="" title=""/>
                         </a>
                     </div>
+                    -->
                     <div class="menu menu-mobile">
                         <a class="menu-resp-dropdown-toggle">
                             <img src="{{ asset('images/menu.png') }}" alt="" title=""/>
@@ -565,9 +567,10 @@
             $('.modal').removeClass('scroll');
         });
 
-        $('.menu-dropdown-toggle').click(function(event) {
-            $('.bg-menu').toggleClass('open');
-        });
+
+        //$('.menu-dropdown-toggle').click(function(event) {
+        //    $('.bg-menu').toggleClass('open');
+        //});
 
         $('.dont-have-account').click(function() {
             $('#button-login').hide();

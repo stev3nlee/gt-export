@@ -16719,18 +16719,15 @@ header .bg-menu {
   border-radius: 1px;
   padding: 20px 50px;
   margin-bottom: 20px;
-  opacity: 0;
   width: calc(100% - 30px);
   position: absolute;
   top: 100%;
-  transition: all 0.3s;
-}
-header .bg-menu.open {
   opacity: 1;
   top: calc(100% + 5px);
   z-index: 9999;
+  transition: all 0.3s;
 }
-header .bg-menu.open ul.l-menu li {
+header .bg-menu ul.l-menu li {
   display: inline-block;
 }
 header .bg-menu ul.l-menu {
