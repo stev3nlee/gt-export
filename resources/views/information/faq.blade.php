@@ -10,23 +10,26 @@
                 </div>
                 <div class="controls">
                     <div class="row">
-                        <!--
-                        <div class="col-6 col-md-3">
+                        
+                        <!-- <div class="col-6 col-md-3">
                             <button type="button" class="control" data-filter="all">All</button>
-                        </div>
-                        -->
+                        </div> -->
+                        
+                        <?php $b=0; ?>
                         @foreach($faq_category as $faq_cat)
                         <div class="col-6 col-md-3">
-                            <button type="button" class="control" data-filter=".{{ $faq_cat->slug }}">{{ $faq_cat->name }}</button>
+                            <button type="button" class="control {{ $b }}" data-filter=".{{ $faq_cat->slug }}">{{ $faq_cat->name }}</button>
                         </div>
+                        <?php $b++; ?>
                         @endforeach
                     </div>
                 </div>
 
                 <div class="box-store">
+                    <?php $a=0; ?>
                     @foreach($faq_category as $faq_cat)
                         @foreach($faq_cat->faq as $faq)
-                        <div class="mix {{ $faq_cat->slug }}">
+                        <div class="mix {{ $faq_cat->slug }}" @if($a != 0) style="display: none;" @endif>
                             <div class="box-accordion">
                                 <div class="pad-accordion">
                                     <div class="pos-rel">
@@ -41,6 +44,7 @@
                             </div>
                         </div>
                         @endforeach
+                        <?php $a++; ?>
                     @endforeach
                 </div>
             </div>
@@ -67,6 +71,8 @@
         $('.control').click(function(event) {
             $('.pad-accordion').removeClass('active');
         });
+
+        $('.0').toggleClass('mixitup-control-active');
 	});
 </script>
 @endsection
