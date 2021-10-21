@@ -391,16 +391,11 @@ header {
         //opacity: 0;
         width: calc(100% - 30px);
         position: absolute;
-        top: 100%;
+        // top: 100%;
         opacity: 1;
         top: calc(100% + 5px);
         z-index: 9999;
         @include transition(all 0.3s);
-        ul.l-menu {
-            li {
-                display: inline-block;
-            }
-        }
         //&.open {
         //    opacity: 1;
         //    top: calc(100% + 5px);
@@ -417,7 +412,7 @@ header {
             text-align: center;
             li {
                 @include transition(all 0.3s);
-                display: none;
+                display: inline-block;
                 opacity: 0;
                 &.dropdown-item-1 {
                     transform-origin: top center;

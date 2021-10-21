@@ -16721,14 +16721,10 @@ header .bg-menu {
   margin-bottom: 20px;
   width: calc(100% - 30px);
   position: absolute;
-  top: 100%;
   opacity: 1;
   top: calc(100% + 5px);
   z-index: 9999;
   transition: all 0.3s;
-}
-header .bg-menu ul.l-menu li {
-  display: inline-block;
 }
 header .bg-menu ul.l-menu {
   margin: 0;
@@ -16737,7 +16733,7 @@ header .bg-menu ul.l-menu {
 }
 header .bg-menu ul.l-menu li {
   transition: all 0.3s;
-  display: none;
+  display: inline-block;
   opacity: 0;
   margin-right: 80px;
   vertical-align: middle;
