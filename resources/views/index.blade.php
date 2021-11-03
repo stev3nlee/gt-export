@@ -29,6 +29,19 @@
                     <div class="row">
                         <div class="col-6 col-md-3">
                             <div class="form-group">
+                                <label for="brand">Product Category Type:</label>
+                                <div class="css-select">
+                                    <select name="brand" class="form-control" id="brand" required="">
+                                        <option selected="" disabled="">All Types</option>
+                                        <option value="opt1">All Cars</option>
+                                        <option value="opt1">Newly Added</option>
+                                        <option value="opt1">Clearance Section</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="form-group">
                                 <label for="brand">Select Brand:</label>
                                 <div class="css-select">
                                     <select name="brand" class="form-control" id="brand" required="">
@@ -68,7 +81,9 @@
                         </div>
                         <input type="hidden" name="range_min" id="range-min">
                         <input type="hidden" name="range_max" id="range-max">
-                        <div class="col-6 col-md-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 offset-md-4">
                             <div class="form-group">
                                 <label>&nbsp;</label>
                                 <button type="submit" class="hvr-button full100">Search Inventory</button>
@@ -133,7 +148,7 @@
                     <div class="col-md-8 col-lg-9"  id="car-list">
                         <div class="row row-15">
                             @foreach($products as $product)
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-3 col-lg-3">
                                 <div class="item">
                                     <div class="pos-rel">                                        
                                         <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>

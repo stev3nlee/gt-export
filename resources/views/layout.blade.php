@@ -112,13 +112,10 @@
                         </a>
                     </li>
                     -->
-                    <li class="dropdown-item-4">
-                        <a class="nav-procurement" href="{{ URL::to('/procurement-flow') }}">
-                            <div>Export Procedure</div>
-                        </a>
-                    </li>
-                    <li class="dropdown-item-5"><a class="nav-faq" href="{{ URL::to('/faq') }}">FAQ</a></li>
-                    <li class="dropdown-item-6"><a class="nav-contact" href="{{ URL::to('/contact-us') }}">Contact Us</a></li>
+                    <li class="dropdown-item-4"><a class="nav-procurement" href="{{ URL::to('/procurement-flow') }}"><div>Export Procedure</div></a></li>
+                    <li class="dropdown-item-6"><a class="nav-payment" href="{{ URL::to('/payment') }}">Payment</a></li>
+                    <li class="dropdown-item-7"><a class="nav-faq" href="{{ URL::to('/faq') }}">FAQ</a></li>
+                    <li class="dropdown-item-8"><a class="nav-contact" href="{{ URL::to('/contact-us') }}">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -166,9 +163,8 @@
                     <a class="nav-regulation" href="{{ URL::to('/regulation-details') }}">Destination Country Regulation Details</a>
                 </li>
                 -->
-                <li>
-                    <a class="nav-procurement" href="{{ URL::to('/procurement-flow') }}">Export Procedure</a>
-                </li>
+                <li><a class="nav-procurement" href="{{ URL::to('/procurement-flow') }}">Export Procedure</a></li>
+                <li><a class="nav-payment" href="{{ URL::to('/payment') }}">Payment</a></li>
                 <li><a class="nav-faq" href="{{ URL::to('/faq') }}">FAQ</a></li>
                 <li><a class="nav-contact" href="{{ URL::to('/contact-us') }}">Contact Us</a></li>
             </ul>

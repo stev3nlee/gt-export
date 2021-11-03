@@ -16768,6 +16768,16 @@ header .bg-menu ul.l-menu li.dropdown-item-6 {
   -webkit-animation: rotateZ 300ms 360ms ease-in-out forwards;
           animation: rotateZ 300ms 360ms ease-in-out forwards;
 }
+header .bg-menu ul.l-menu li.dropdown-item-7 {
+  transform-origin: top center;
+  -webkit-animation: rotateZ 300ms 360ms ease-in-out forwards;
+          animation: rotateZ 300ms 360ms ease-in-out forwards;
+}
+header .bg-menu ul.l-menu li.dropdown-item-8 {
+  transform-origin: top center;
+  -webkit-animation: rotateZ 300ms 360ms ease-in-out forwards;
+          animation: rotateZ 300ms 360ms ease-in-out forwards;
+}
 header .bg-menu ul.l-menu li:last-child {
   margin-right: 0;
 }
@@ -18216,6 +18226,45 @@ footer .cp {
   font-size: 15px;
   line-height: 20px;
   margin-bottom: 0;
+}
+#main .css-payment .title {
+  margin-bottom: 10px;
+  font-size: 35px;
+  line-height: 45px;
+  font-family: "Quicksand-Bold";
+}
+#main .css-payment .bdy {
+  margin-bottom: 60px;
+}
+#main .css-payment .bdy p {
+  font-size: 15px;
+  line-height: 20px;
+  margin-bottom: 0;
+}
+#main .css-payment .box-payment {
+  padding: 30px 0;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+}
+#main .css-payment .box-payment-title {
+  color: #0B3EF1;
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 15px;
+}
+#main .css-payment .box-payment-top {
+  padding: 20px 30px 30px 30px;
+  background-color: #E1E1E1;
+  margin-bottom: 40px;
+}
+#main .css-payment .box-payment-top img {
+  width: 100%;
+}
+#main .css-payment .payment-mode {
+  font-size: 15px;
+  line-height: 20px;
+  margin-top: 20px;
+  text-align: center;
 }
 #main .css-regulation .title {
   margin-bottom: 10px;
