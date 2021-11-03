@@ -9,25 +9,25 @@
                     <p>Please choose one of the following payment methods</p>
                 </div>
                 <div class="row">
-                    <div class="col-xs-6 col-md-6 col-lg-3">
+                    <div class="col-6 col-lg-3">
                         <div class="box-payment-top">
                             <div><img src="{{ asset('images/paypal.png') }}" alt="" title=""/></div>
                             <div class="payment-mode">PayPal</div>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-6 col-lg-3">
+                    <div class="col-6 col-lg-3">
                         <div class="box-payment-top">
                             <div><img src="{{ asset('images/tt.png') }}" alt="" title=""/></div>
                             <div class="payment-mode">Telegraphic Transfer</div>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-6 col-lg-3">
+                    <div class="col-6 col-lg-3">
                         <div class="box-payment-top">
                             <div><img src="{{ asset('images/visa.png') }}" alt="" title=""/></div>
                             <div class="payment-mode">Credit Card</div>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-6 col-lg-3">
+                    <div class="col-6 col-lg-3">
                         <div class="box-payment-top">
                             <div><img src="{{ asset('images/loc.png') }}" alt="" title=""/></div>
                             <div class="payment-mode">Letter of Credit</div>
