@@ -16,6 +16,8 @@ use App\Models\Regulation;
 use App\Models\Faq;
 use App\Models\Faq_category;
 use App\Models\Enquiry;
+//use App\Models\Procurement_flow;
+//use App\Models\Procurement_flow_title;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -78,11 +80,19 @@ class PageController extends BaseController
     }
 
     public function procurement(){
+       // $data['procurement_flow_title'] = Procurement_flow_title::first();
+        //$data['procurement_flows'] = Procurement_flow::where('status',1)->orderby('sort','asc')->get();
+       // return view('information/procurement-flow', $data);  
         return view('information/procurement-flow');  
     }
 
     public function contactUs(){
         return view('information/contact-us');  
+    }
+
+    public function payment(){
+        $data['terms'] = Terms::first();
+        return view('information/payment', $data);  
     }
 
     public function submitContact(Request $request){

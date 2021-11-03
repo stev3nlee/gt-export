@@ -35,6 +35,7 @@ Route::get('/privacy', 'PageController@privacyPolicy');
 Route::get('/disclaimers', 'PageController@disclaimers');
 Route::get('/regulation-details', 'PageController@regulation');
 Route::get('/procurement-flow', 'PageController@procurement');
+Route::get('/payment', 'PageController@payment');
 
 /* AUTH */
 Route::get('/guest', function () {
@@ -317,6 +318,29 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::post('shipment_document/insert', 'Admin\ShipmentDocumentController@insert');
         Route::post('shipment_document/update', 'Admin\ShipmentDocumentController@update');
         Route::get('shipment_document/delete/{id}', 'Admin\ShipmentDocumentController@delete');
+
+        Route::get('procurement_flow', 'Admin\ProcurementFlowController@view')
+            ->name('procurement_flow_view');
+        Route::get('procurement_flow/create', 'Admin\ProcurementFlowController@create');
+        Route::get('procurement_flow/edit/{id}', 'Admin\ProcurementFlowController@edit');
+        Route::post('procurement_flow/insert', 'Admin\ProcurementFlowController@insert');
+        Route::post('procurement_flow/update', 'Admin\ProcurementFlowController@update');
+        Route::get('procurement_flow/delete/{id}', 'Admin\ProcurementFlowController@delete');
+        Route::get('procurement_flow/status/{id}/{status}', 'Admin\ProcurementFlowController@status');
+        Route::post('procurement_flow/update_sort', 'Admin\ProcurementFlowController@update_sort');
+        Route::get('procurement_flow/title', 'Admin\ProcurementFlowController@title')
+            ->name('procurement_flow_title');
+        Route::post('procurement_flow/update_title', 'Admin\ProcurementFlowController@update_title');
+
+        Route::get('payment', 'Admin\PaymentController@view')
+            ->name('payment_view');
+        Route::get('payment/create', 'Admin\PaymentController@create');
+        Route::get('payment/edit/{id}', 'Admin\PaymentController@edit');
+        Route::post('payment/insert', 'Admin\PaymentController@insert');
+        Route::post('payment/update', 'Admin\PaymentController@update');
+        Route::get('payment/delete/{id}', 'Admin\PaymentController@delete');
+        Route::get('payment/status/{id}/{status}', 'Admin\PaymentController@status');
+        Route::post('payment/update_sort', 'Admin\PaymentController@update_sort');
     });
 });
         Route::group(['prefix' => 'laravel-filemanager'], function () {
