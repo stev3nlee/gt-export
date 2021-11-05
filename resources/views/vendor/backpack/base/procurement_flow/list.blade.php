@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
       <h1>
-        Banner
+        Procurement Flow
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">Banner</li>
+        <li class="active">Procurement Flow</li>
       </ol>
     </section>
 @endsection
@@ -35,7 +35,7 @@
 
                 <div class="box-header with-border">
                     @include('vendor.backpack.base.inc.alert')
-                    <!-- <div class="box-title"><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/banner/create') }}" class="btn btn-success">Create Banner</a></div> -->
+                    <!-- <div class="box-title"><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/procurement_flow/create') }}" class="btn btn-success">Create Procurement Flow</a></div> -->
                 </div>
 
                 <div class="box-body">
@@ -44,8 +44,7 @@
                             <thead>
                                 <tr class="nosortable">
                                     <th class="table-actions">Actions</th>
-                                    <th width="200">Name</th>
-                                    <!-- <th>Link</th> -->
+                                    <th width="200">Title</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th width="150">Created Date</th>
@@ -56,16 +55,15 @@
                                 <tr data-element-id='{{ $content->id }}' data-sort='{{ $content->sort }}'>
                                     <td>
                                        <div class="table-actions-hover">
-                                            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/banner/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
-                                            <!-- <a onclick="return confirm('Are you sure ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/banner/delete/'.$content->id) }}"><i class="fa fa-trash fa-fw"></i></a> -->
+                                            <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/procurement_flow/edit/'.$content->id) }}"><i class="fa fa-pencil fa-fw"></i></a>
+                                            <!-- <a onclick="return confirm('Are you sure ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/procurement_flow/delete/'.$content->id) }}"><i class="fa fa-trash fa-fw"></i></a> -->
                                         </div>
                                     </td>
-                                    <td>{!! $content->name !!}</td>
-                                    <!-- <td>{{ $content->link }}</td> -->
+                                    <td>{{ $content->title }}</td>
                                     <td>
-                                        <img src="{{ asset('/upload/banner/'.$content->image) }}" width="40%"/>
+                                        <img src="{{ asset('/upload/procurement_flow/'.$content->image) }}" width="40%"/>
                                     </td>
-                                    <td><?php if($content->status == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/banner/status/'.$content->id.'/1') }}"><span class="badge bg-red">Inactive</span></a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/banner/status/'.$content->id.'/0') }}"><span class="badge bg-green">Active</span></a><?php } ?></td>
+                                    <td><?php if($content->status == 0){ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/procurement_flow/status/'.$content->id.'/1') }}"><span class="badge bg-red">Inactive</span></a><?php  }else{ ?><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/procurement_flow/status/'.$content->id.'/0') }}"><span class="badge bg-green">Active</span></a><?php } ?></td>
                                     <td>{{ date('d/m/Y H:i:s', strtotime($content->created_at)) }}</td>
                                 </tr> 
                               @endforeach
@@ -99,7 +97,7 @@
                 var token = '{{ csrf_token() }}';
                 $.ajax({
                     type: 'POST',
-                    url: "{{ url(config('backpack.base.route_prefix').'/banner/update_sort') }}",
+                    url: "{{ url(config('backpack.base.route_prefix').'/procurement_flow/update_sort') }}",
                     data: '&maincontent_id='+maincontent_id+
                             '&oldsort='+oldsort+
                             '&newsort='+sortOrder+

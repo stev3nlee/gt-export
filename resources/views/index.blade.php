@@ -3,28 +3,30 @@
 @section('content')
 
     <div class="css-home">
-        @foreach($banners as $banner)
-        <div class="banner-home" style="background: url('upload/banner/{{ $banner->image }}') no-repeat center;">
+        @if($banners)
+        <div class="banner-home" style="background: url('upload/banner/{{ $banners->image }}') no-repeat center;">
             <div class="container pos-rel">
                 <div class="abs-banner">
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-xl-6">
-                            <div class="t-banner">{{ $banner->name }}</div>
+                            <div class="t-banner">{!! $banners->name !!}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
+        @endif
         <div class="container">
             <div class="bg-find">
+                @if(!$banners)
                 <div class="abs-banner">
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-xl-6">
-                            <div class="t-banner">Singapore's Leading Car <br /> Exporter</div>
+                            <div class="t-banner">{!! $banner_title->name !!}</div>
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="t-find">Find Your Vehicle</div>
                 <div class="search">
                     <form action="{{ URL::to('/product-listing') }}">
@@ -164,6 +166,9 @@
                                         @elseif($product->reserve == 2)
                                             <div class="abs">Sold</div>
                                         @endif
+                                        @if($product->new_arrival_expired_date != null)
+                                            <div class="new">New Arrival</div>
+                                        @endif
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
                                         @if(session()->has('email'))
@@ -183,7 +188,13 @@
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
+                                                    @if($product->discount_price != 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
+                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
+                                                    @else
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>
@@ -198,7 +209,7 @@
                 </div>
             </div>
         </div>
-        <?php /* ?>
+
         <div class="bg-inventory">
             <div class="container">
                 <div class="row">
@@ -223,6 +234,9 @@
                                         @elseif($product->reserve == 2)
                                             <div class="abs">Sold</div>
                                         @endif
+                                        @if($product->new_arrival_expired_date != null)
+                                            <div class="new">New Arrival</div>
+                                        @endif
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
                                         @if(session()->has('email'))
@@ -242,7 +256,13 @@
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
+                                                    @if($product->discount_price != 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
+                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
+                                                    @else
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>
@@ -291,6 +311,9 @@
                                         @elseif($product->new_arrival_expired_date != null)
                                             <div class="abs">New Arrival</div>
                                         @endif
+                                        @if($product->new_arrival_expired_date != null)
+                                            <div class="new">New Arrival</div>
+                                        @endif
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
                                         @if(session()->has('email'))
@@ -310,7 +333,13 @@
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
+                                                    @if($product->discount_price != 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
+                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
+                                                    @else
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>
@@ -376,7 +405,13 @@
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
+                                                    @if($product->discount_price != 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
+                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
+                                                    @else
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>
@@ -391,7 +426,6 @@
                 </div>
             </div>
         </div>
-        <?php */ ?>
         
         <div class="bg-about">
             <div class="row">

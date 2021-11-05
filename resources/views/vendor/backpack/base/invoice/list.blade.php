@@ -129,6 +129,7 @@
                                     <th>Date</th>
                                     <th>Total Invoice</th>
                                     <th>Payment Status</th>
+                                    <th>Partially Paid</th>
                                     <th class="table-actions">Action</th>
 
                                     <!-- <th>Request New Pickup</th> -->
@@ -144,16 +145,37 @@
                                         <td>{{ $content->contact_no }}</td>
                                         <td>{{ date('d/m/Y', strtotime($content->date)) }}</td>
                                         <td>USD {{ number_format($content->total ,0,",",".") }}</td>
-                                        
-                                        
                                         <td>@if($content->status == 'draft')
-                                            <a class="btn btn-info" onclick="return confirm('Are you want to set this quotation to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Confirm Payment</a>
+                                            <div class="btn-group">
+                                              <button type="button" class="btn btn-xs btn-info">Confirm Payment</button>
+                                              <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                              </button>
+                                              <ul class="dropdown-menu" role="menu">
+                                                <li><a  onclick="return confirm('Are you want to set this invoice to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Full</a></li>
+                                                <li class="divider"></li>
+                                                <li><a  onclick="return confirm('Are you want to set this quotation to partial paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/partial/'.$content->id) }}">Partial</a></li>
+                                              </ul>
+                                            </div>
                                             @elseif($content->status == 'paid')
                                             <span class="badge bg-green">Paid</span>
                                             @elseif($content->status == 'expired')
                                             <span class="badge bg-red">Expired</span>
+                                            @elseif($content->status == 'partial')
+                                            <div class="btn-group">
+                                              <button type="button" class="btn btn-xs btn-success">Partially Paid</button>
+                                              <button type="button" class="btn btn-xs btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                              </button>
+                                              <ul class="dropdown-menu" role="menu">
+                                                <li><a  onclick="return confirm('Are you want to set this invoice to paid ?');" href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/paid/'.$content->id) }}">Full</a></li>
+                                              </ul>
+                                            </div>
                                             @endif
                                         </td>
+                                        <td>USD {{ number_format($content->payment_received ,0,",",".") }}</td>
                                         <td>
                                         <div class="table-actions-hover">
                                                 <a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice/detail/'.$content->id) }}">Detail</a>

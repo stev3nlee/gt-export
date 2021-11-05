@@ -45,6 +45,21 @@
                   <li class="treeview">
                     <a href="#">
                       <i class="fa fa-question-circle"></i>
+                      <span>Procurement Flow</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu" >
+                      <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/procurement_flow/title') }}"><i class="fa fa-reorder"></i> <span>Title</span></a></li>
+                      <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/procurement_flow') }}"><i class="fa fa-info-circle"></i> <span>Procurement Flow</span></a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/payment') }}"><i class="fa fa-paypal"></i> <span>Payment</span></a></li>
+
+                  <li class="treeview">
+                    <a href="#">
+                      <i class="fa fa-question-circle"></i>
                       <span>FAQ</span>
                       <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>

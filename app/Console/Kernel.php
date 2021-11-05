@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\expiredReserve::class,
+        Commands\expiredNewArrival::class,
     ];
 
     /**
@@ -25,6 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('expired:reserve')
+                 ->everyMinute();
+        $schedule->command('expired:new')
                  ->everyMinute();
 
     }

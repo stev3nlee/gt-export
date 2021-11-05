@@ -342,7 +342,7 @@ class InvoiceController extends Controller
 
 
     function paidinvoice($id){
-	    $invoice = invoice::where('id',$id)->where('status','!=','paid')->first();
+	    $invoice = Invoice::where('id',$id)->where('status','!=','paid')->first();
 	    if(!$invoice){
 	    	echo "Invoice already paid";exit;		
 	    }
@@ -406,6 +406,36 @@ class InvoiceController extends Controller
         //dispatch(new SendEmail($data_member));
 
 		return back();
+    }
+
+    function partialInvoice($id){
+        $invoice = Invoice::where('id',$id)->where('status','!=','paid')->first();
+        if(!$invoice){
+            echo "Invoice already paid";exit;       
+        }
+        //$invoice->paid_date = date('Y-m-d H:i:s');
+        $invoice->status = 'partial';
+        $invoice->save();
+
+        $payment_detail = new Invoice_billing_detail;
+        $payment_detail->invoice_id = $invoice->id; 
+        $payment_detail->billing_status = 'partial';
+        $payment_detail->message = 'Partial Paid';
+        $payment_detail->save();
+
+        // $quot = Quotation::find($invoice->quotation_id);
+        // $quot->status = 2;
+        // $quot->save();
+
+        foreach ($invoice->invoice_details as $detail) {
+            if($detail->product_id){
+                $product = Product::find($detail->product_id);
+                $product->reserve = 2;
+                $product->save();
+            }
+        }
+
+        return back();
     }
 
     function sendInvoice(Request $request, $id){

@@ -38,7 +38,8 @@ class HomeController extends BaseController
         $brands = Brand::where('status',1)->orderby('sort','asc')->get();
         $models = Models::where('status',1)->orderby('sort','asc')->get();
         $transmissions = Transmission::where('status',1)->orderby('sort','asc')->get();
-        $banners = Banner::where('status',1)->orderby('sort','asc')->get();
+        $banners = Banner::where('status',1)->first();
+        $banner_title = Banner::first();
 
         if(isset($brands[0])){
             $first_brand = $brands[0];
@@ -46,9 +47,9 @@ class HomeController extends BaseController
             $products = Product::where('status',1)->whereHas('brand', function($q) use($first_brand) {
                 $q->where('brand.id', '=', $first_brand->id); 
             });
-            $products = $products->orderby('id','desc')->limit(6)->get();
+            $products = $products->orderby('id','desc')->limit(8)->get();
         }else{
-            $products = Product::where('status',1)->orderby('id','desc')->limit(6)->get();
+            $products = Product::where('status',1)->orderby('id','desc')->limit(8)->get();
             $brand_id = null;
         }
 
@@ -59,10 +60,19 @@ class HomeController extends BaseController
                 $products = $brand_detail->product;
             }
         }
+
+        $recently_views = Product::where('status',1)->whereNotNull('last_view')->orderby('last_view','desc')->limit(8)->get();
+        $new_arrivals = Product::where('status',1)->where('new_arrival_expired_date','>', date('Y-m-d H:i:s'))->orderby('id','desc')->limit(8)->get();
+        $discounts = Product::where('status',1)->where('discount_price', '>', 0)->orderby('id','desc')->limit(8)->get();
+
         $data['banners'] = $banners;
         $data['brands'] = $brands;
         $data['models'] = $models;
+        $data['banner_title'] = $banner_title;
         $data['products'] = $products;
+        $data['recently_views'] = $recently_views;
+        $data['new_arrivals'] = $new_arrivals;
+        $data['discounts'] = $discounts;
         $data['transmissions'] = $transmissions;
         $data['brand_id'] = $brand_id;
         return view('/index', $data);  

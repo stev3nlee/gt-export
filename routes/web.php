@@ -284,6 +284,7 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::post('invoice/id/{id}/export/invoice', 'Admin\InvoiceController@exportInvoice');
         Route::get('invoice/delete/{id}', 'Admin\InvoiceController@delete');
         Route::get('invoice/paid/{id}', 'Admin\InvoiceController@paidinvoice');
+        Route::get('invoice/partial/{id}', 'Admin\InvoiceController@partialInvoice');
         Route::get('invoice/send/{id}', 'Admin\InvoiceController@sendInvoice');
 
         Route::get('change-password', 'Admin\AuthController@changePassword')->name('change_password_view');

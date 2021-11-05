@@ -23,7 +23,6 @@
                         <div class="pad-range">
                             <div id="slider-range"></div>
                         </div>
-                        <?php /* ?>
                         <div class="form-group">
                             <label for="brand">Product Category Type:</label>
                             <div class="css-select">
@@ -35,7 +34,6 @@
                                 </select>
                             </div>
                         </div>
-                        <?php */ ?>
                         <div class="form-group">
                             <label for="brand">Select Brand:</label>
                             <div class="css-select">
@@ -105,11 +103,10 @@
                                         <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
-                                            <div class="new">New Arrival</div>
                                         @elseif($product->reserve == 2)
                                             <div class="abs">Sold</div>
-                                            <div class="new">New Arrival</div>
-                                        @elseif($product->new_arrival_expired_date != null)
+                                        @endif
+                                        @if($product->new_arrival_expired_date != null)
                                             <div class="new">New Arrival</div>
                                         @endif
                                         @if($product->reserve == 0)
@@ -131,9 +128,14 @@
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
+                                                    @if($product->discount_price != 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
-                                                    <div class="price-disc">$ {{ number_format($product->price, 2, ',', '.') }}</div>
-                                                    <div class="save-disc">You save 20%</div>
+                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
+                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
+                                                    @else
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
+                                                    
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>

@@ -265,6 +265,15 @@
                                 @if($errors->has('price')) <span class="help-block">{{ $errors->first('price') }}</span>  @endif
                               </div>
                             </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Discount Price</label>
+                              <div class="input-group">
+                                <span class="input-group-addon">USD</span>
+                                <input type="number" min=0 step=".01" name="discount_price" required class="form-control" id="discount_price" value="{{ isset($data) ? $data->discount_price : old('discount_price') }}">
+                                @if($errors->has('discount_price')) <span class="help-block">{{ $errors->first('discount_price') }}</span>  @endif
+                              </div>
+                            </div>
                           </div>
                         </div>
                        <!--  <div class="form-group">
@@ -281,6 +290,10 @@
                             <div class="form-group">
                               <label for="exampleInputEmail1">Description</label>
                               <textarea name="description" class="form-control my-editor">{{ isset($data) ? $data->description : old('description') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">New Arrival Days </label>
+                              <input type="number" name="new_arrival_days" class="form-control" @if(!isset($data)) required @endif  value="{{ isset($data) ? $data->new_arrival_days : old('new_arrival_days') }}">
                             </div>
                           </div>
                         </div>

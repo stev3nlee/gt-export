@@ -28,7 +28,7 @@ class CreateInvoiceTable extends Migration
             $table->float('sub_total',12,2)->nullable();
             $table->float('shipping_cost',12,2)->nullable();
             $table->float('total',12,2)->nullable();
-            $table->enum('status',['draft', 'paid', 'cancel']);
+            $table->enum('status',['draft', 'paid', 'cancel', 'partial', 'expired']);
             $table->text('remarks')->nullable();
             $table->integer('view')->default(0);
             $table->integer('download')->default(0);

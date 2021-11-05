@@ -16,8 +16,9 @@ use App\Models\Regulation;
 use App\Models\Faq;
 use App\Models\Faq_category;
 use App\Models\Enquiry;
-//use App\Models\Procurement_flow;
-//use App\Models\Procurement_flow_title;
+use App\Models\Procurement_flow;
+use App\Models\Procurement_flow_title;
+use App\Models\Payment;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -80,10 +81,9 @@ class PageController extends BaseController
     }
 
     public function procurement(){
-       // $data['procurement_flow_title'] = Procurement_flow_title::first();
-        //$data['procurement_flows'] = Procurement_flow::where('status',1)->orderby('sort','asc')->get();
-       // return view('information/procurement-flow', $data);  
-        return view('information/procurement-flow');  
+        $data['procurement_flow_title'] = Procurement_flow_title::first();
+        $data['procurement_flows'] = Procurement_flow::where('status',1)->orderby('sort','asc')->get();
+        return view('information/procurement-flow', $data);  
     }
 
     public function contactUs(){
@@ -91,7 +91,7 @@ class PageController extends BaseController
     }
 
     public function payment(){
-        $data['terms'] = Terms::first();
+        $data['payments'] = Payment::where('status',1)->orderby('sort','asc')->get();
         return view('information/payment', $data);  
     }
 

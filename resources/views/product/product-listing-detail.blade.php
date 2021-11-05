@@ -41,9 +41,13 @@
                         <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                         <div class="buy">Buy it at</div>
                         @if($product->reserve == 0)
-                        <div class="price">$ {{ number_format($product->price, 2, ',', '.') }}</div>
-                        <div class="buy-disc">Discount Price</div>
-                        <div class="price-disc">$ {{ number_format($product->price, 2, ',', '.') }} <span class="save-price"> You save 20% </span> </div>
+                            @if($product->discount_price != 0)
+                                <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                <div class="buy-disc">Discount Price</div>
+                                <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }} <span class="save-price"> You save {{ $product->discount_percent }}% </span> </div>
+                            @else
+                                <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                            @endif
                         @endif
                         @if($product->reserve == 0)
                         <div class="add">

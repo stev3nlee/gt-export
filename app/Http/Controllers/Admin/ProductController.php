@@ -72,8 +72,10 @@ class ProductController extends Controller
             'number_of_doors' => 'required',
             'seats' => 'required',
             'price' => 'required',
+            'new_arrival_days' => 'required',
         ]);
         DB::transaction(function () use($request) {
+            $percent = 0;
             $brand = (null !== $request->input('brand')) ? $request->input('brand') : [];
             $model = (null !== $request->input('model')) ? $request->input('model') : [];
             $transmission = (null !== $request->input('transmission')) ? $request->input('transmission') : [];
@@ -85,6 +87,12 @@ class ProductController extends Controller
             $product->name = $request->input('name');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
+            $product->discount_price = $request->input('discount_price');
+            if($request->input('discount_price') > 0){
+                $discount = $request->input('price') - $request->input('discount_price');
+                $percent = ($discount/$request->input('price')) * 100;
+            }
+            $product->discount_percent = $percent;
             $product->chassis_no = $request->input('chassis_no');
             $product->model_code = $request->input('model_code');
             $product->product_type = $request->input('product_type');
@@ -109,6 +117,11 @@ class ProductController extends Controller
             $product->remarks = $request->input('remarks');
             $product->thumbnail = $request->input('thumbnail');
             $product->stock = rand(10000000,99999999);
+            $product->save();
+
+            $product->new_arrival_days = $request->input('new_arrival_days');
+            $expired_date = date('Y-m-d H:i:s', strtotime($product->created_at. ' + '.$request->input('new_arrival_days').' days'));
+            $product->new_arrival_expired_date = $expired_date;
             $product->save();
 
             $product->brand()->sync($brand);
@@ -165,6 +178,12 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->discount_price = $request->input('discount_price');
+        if($request->input('discount_price') > 0){
+            $discount = $request->input('price') - $request->input('discount_price');
+            $percent = ($discount/$request->input('price')) * 100;
+        }
+        $product->discount_percent = $percent;
         $product->chassis_no = $request->input('chassis_no');
         $product->model_code = $request->input('model_code');
         $product->product_type = $request->input('product_type');
@@ -190,6 +209,11 @@ class ProductController extends Controller
         if($request->thumbnail){
         $product->thumbnail = $request->input('thumbnail');
         }        
+        $product->new_arrival_days = $request->input('new_arrival_days');
+        if($request->input('new_arrival_days') > 0){
+            $expired_date = date('Y-m-d H:i:s', strtotime($product->created_at. ' + '.$request->input('new_arrival_days').' days'));
+            $product->new_arrival_expired_date = $expired_date;
+        }
         $product->save();
 
         $product->brand()->sync($brand);

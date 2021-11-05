@@ -74,6 +74,15 @@ class ProductController extends BaseController
             $products = $products->whereBetween('price', [$range_min, $range_max]);
         }
 
+        if($request->category_type){
+            if($request->category_type == 'clearance'){
+                $products = $products->where('discount_price', '>', 0);
+            }else if($request->category_type == 'newly'){
+                $products = $products->where('new_arrival_expired_date','>', date('Y-m-d H:i:s'));
+            }
+
+        }
+
         $products = $products->orderby('id','desc')->paginate(12)->withQueryString();
        // dd($products);
 
@@ -84,6 +93,7 @@ class ProductController extends BaseController
         $data['brand_select'] = $request->brand;
         $data['model_select'] = $request->model;
         $data['transmission_select'] = $request->transmission;
+        $data['category_type'] = $request->category_type;
         $data['range_min'] = $range_min;
         $data['range_max'] = $range_max;
         $data['search'] = $request->search;
@@ -96,6 +106,10 @@ class ProductController extends BaseController
             return redirect('product');
         }
 
+        $product->last_view = date('Y-m-d H:i:s');
+        $product->increment('total_view', 1);
+        $product->save();
+        
         $data['product'] = $product;
         $data['accessories'] = Accessories::get();
         return view('/product/product-listing-detail', $data);  
