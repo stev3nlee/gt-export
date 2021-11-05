@@ -169,7 +169,7 @@
                                                     <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
                                                     <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                                     @else
-                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div>
                                                     @endif
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
@@ -334,7 +334,7 @@
                                                     <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
                                                     <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                                     @else
-                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div>
                                                     @endif
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
@@ -409,7 +409,7 @@
                                                     <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
                                                     <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                                     @else
-                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div>
                                                     @endif
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
