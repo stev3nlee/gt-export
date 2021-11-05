@@ -122,98 +122,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6 my-auto">
-                        <div class="t">Our Inventory</div>
-                    </div>
-                    <div class="col-6 my-auto text-right">
-                        <div class="view">
-                            <a href="{{ URL::to('/product-listing') }}">
-                                <button type="button" class="hvr-button">View All</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="css-product">
-                <div class="row">
-                    <div class="col-md-4 col-lg-3 xs20">
-                        <div class="t-brand">Our Brands</div>
-                        <div class="clearfix">
-                            <ul class="l-brand">
-                                <?php $i=1 ?>
-                                @foreach($brands as $brand)
-                                <li>
-                                    <a href="{{ url('/?brand='.$brand->slug) }}" @if($brand_id == $brand->id) class="active" @endif>
-                                        <div>{{ $brand->name }}</div>
-                                        <div class="img"><img src="{{ asset('images/arrow-brand.png') }}" alt="" title=""/></div>
-                                    </a>
-                                </li>
-                                <?php $i++; ?>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-lg-9"  id="car-list">
-                        <div class="row row-15">
-                            @foreach($products as $product)
-                            <div class="col-md-3 col-lg-3">
-                                <div class="item">
-                                    <div class="pos-rel">                                        
-                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
-                                        @if($product->reserve == 1)
-                                            <div class="abs">Reserved</div>
-                                        @elseif($product->reserve == 2)
-                                            <div class="abs">Sold</div>
-                                        @endif
-                                        @if($product->new_arrival_expired_date != null)
-                                            <div class="new">New Arrival</div>
-                                        @endif
-                                        @if($product->reserve == 0)
-                                        <div class="abs-get">
-                                        @if(session()->has('email'))
-                                            <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
-                                        @else
-                                            <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
-                                        @endif
-                                        </div>
-                                        @endif
-                                    </div>
-                                    <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
-                                        <div class="pad">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="year">{{ $product->registration_year }}</div>
-                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    @if($product->price && $product->reserve == 0)
-                                                    @if($product->discount_price != 0)
-                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
-                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
-                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
-                                                    @else
-                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
-                                                    @endif
-                                                    @endif
-                                                    <div class="stock">Stock # {{ $product->stock }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-inventory">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 my-auto">
                         <div class="t">Recently viewed </div>
                     </div>
                 </div>
@@ -371,6 +279,22 @@
                 </div>
             </div>
         </div>
+        <div class="bg-inventory">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 my-auto">
+                        <div class="t">Our Inventory</div>
+                    </div>
+                    <div class="col-6 my-auto text-right">
+                        <div class="view">
+                            <a href="{{ URL::to('/product-listing') }}">
+                                <button type="button" class="hvr-button">View All</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="css-product">
                 <div class="row">
@@ -426,7 +350,81 @@
                 </div>
             </div>
         </div>
-        
+        <div class="container">
+            <div class="css-product">
+                <div class="row">
+                    <div class="col-md-4 col-lg-3 xs20">
+                        <div class="t-brand">Our Brands</div>
+                        <div class="clearfix">
+                            <ul class="l-brand">
+                                <?php $i=1 ?>
+                                @foreach($brands as $brand)
+                                <li>
+                                    <a href="{{ url('/?brand='.$brand->slug) }}" @if($brand_id == $brand->id) class="active" @endif>
+                                        <div>{{ $brand->name }}</div>
+                                        <div class="img"><img src="{{ asset('images/arrow-brand.png') }}" alt="" title=""/></div>
+                                    </a>
+                                </li>
+                                <?php $i++; ?>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-lg-9"  id="car-list">
+                        <div class="row row-15">
+                            @foreach($products as $product)
+                            <div class="col-md-3 col-lg-3">
+                                <div class="item">
+                                    <div class="pos-rel">                                        
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        @if($product->reserve == 1)
+                                            <div class="abs">Reserved</div>
+                                        @elseif($product->reserve == 2)
+                                            <div class="abs">Sold</div>
+                                        @endif
+                                        @if($product->new_arrival_expired_date != null)
+                                            <div class="new">New Arrival</div>
+                                        @endif
+                                        @if($product->reserve == 0)
+                                        <div class="abs-get">
+                                        @if(session()->has('email'))
+                                            <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @else
+                                            <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @endif
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
+                                        <div class="pad">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="year">{{ $product->registration_year }}</div>
+                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    @if($product->price && $product->reserve == 0)
+                                                    @if($product->discount_price != 0)
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
+                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
+                                                    @else
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
+                                                    @endif
+                                                    <div class="stock">Stock # {{ $product->stock }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="bg-about">
             <div class="row">
                 <div class="col-md-6 blue order-2 order-md-1">
