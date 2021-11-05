@@ -17654,6 +17654,12 @@ footer .cp {
   font-size: 18px;
   line-height: 24px;
 }
+#main .css-product .item a .pad .price-wo-disc {
+  color: #212121;
+  font-family: "Quicksand-Bold";
+  font-size: 18px;
+  line-height: 24px;
+}
 #main .css-product .item a .pad .save-disc {
   color: blue;
   font-family: "Quicksand-Bold";
