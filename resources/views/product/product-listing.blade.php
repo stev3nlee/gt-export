@@ -97,7 +97,7 @@
                         @if(count($products)>0)
                         <div class="row row-15">
                             @foreach($products as $product)
-                            <div class="col-md-3 col-lg-3">
+                            <div class="col-6 col-lg-3">
                                 <div class="item">
                                     <div class="pos-rel">                                        
                                         <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
