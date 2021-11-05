@@ -12,12 +12,14 @@
                             <div class="t-banner">{{ $banner->name }}</div>
                         </div>
                     </div>
+                    <!--
                     <div class="search">
                         <form action="{{ URL::to('/product-listing') }}">
                             <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
                             <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
                         </form>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
@@ -26,11 +28,11 @@
             <div class="bg-find">
                 <div class="t-find">Find Your Vehicle</div>
                 <div class="search">
-                        <form action="{{ URL::to('/product-listing') }}">
-                            <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
-                            <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
-                        </form>
-                    </div>
+                    <form action="{{ URL::to('/product-listing') }}">
+                        <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
+                        <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
+                    </form>
+                </div>
                 <form action="{{ url('product-listing') }}">
                     <div class="row">
                         <div class="col-6 col-md-3">

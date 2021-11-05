@@ -659,6 +659,48 @@ footer {
         }
         .bg-find {
             padding: 45px 0 20px;
+            .search {
+                position: relative;
+                width: 470px;
+                margin: 0 auto 20px auto;
+                background: #A0AEB3;
+                color: black;
+                button {
+                    @include transition(all 0.3s);
+                    background: transparent;
+                    position: absolute;
+                    border: 0;
+                    right: 20px;
+                    top: 50%;
+                    @include transform(translateY(-50%));
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+                input {
+                    padding: 18px 60px 18px 25px;
+                    border: 1px solid white;
+                    background: transparent;
+                    color: black;
+                    font-size: 16px;
+                    line-height: 20px;
+                    &::placeholder {
+                        color: black;
+                    }
+
+                    &:-ms-input-placeholder {
+                        color: black;
+                    }
+
+                    &::-ms-input-placeholder {
+                        color: black;
+                    }
+                    &:focus {
+                        color: black;
+                        background: transparent;
+                    }
+                }
+            }
             .t-find {
                 font-family: 'Quicksand-Bold';
                 text-align: center;
