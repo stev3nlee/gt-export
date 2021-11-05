@@ -70,7 +70,11 @@ class QuoteController extends BaseController
             $quote->phone = $member->phone;
             $quote->dob = $member->dob;
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
-            $quote->price = $product->price;
+            if($product->discount_price > 0){
+                $quote->price = $product->discount_price;
+            }else{
+                $quote->price = $product->price;       
+            }
             $quote->ip_address = $ip_address;
             $quote->country = $position->countryName;
             $quote->country_code = $position->countryCode;
@@ -137,7 +141,11 @@ class QuoteController extends BaseController
             $quote->last_name = $request->lname;
             $quote->email = $request->email;
             $quote->phone = $request->phone;
-            $quote->price = $product->price;
+            if($product->discount_price > 0){
+                $quote->price = $product->discount_price;
+            }else{
+                $quote->price = $product->price;       
+            }
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->dob = date('Y-m-d', strtotime($request->dob_guest));
             $quote->ip_address = $ip_address;
