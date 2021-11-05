@@ -42,8 +42,8 @@
                         <div class="buy">Buy it at</div>
                         @if($product->reserve == 0)
                         <div class="price">$ {{ number_format($product->price, 2, ',', '.') }}</div>
-                        <div class="buy">Discount Price</div>
-                        <div class="price">$ {{ number_format($product->price, 2, ',', '.') }} You save 20%</div>
+                        <div class="buy-disc">Discount Price</div>
+                        <div class="price-disc">$ {{ number_format($product->price, 2, ',', '.') }} <span class="save-price"> You save 20% </span> </div>
                         @endif
                         @if($product->reserve == 0)
                         <div class="add">

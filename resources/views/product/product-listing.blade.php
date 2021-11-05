@@ -105,12 +105,12 @@
                                         <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
-                                            <div class="abs">New Arrival</div>
+                                            <div class="new">New Arrival</div>
                                         @elseif($product->reserve == 2)
                                             <div class="abs">Sold</div>
-                                            <div class="abs">New Arrival</div>
+                                            <div class="new">New Arrival</div>
                                         @elseif($product->new_arrival_expired_date != null)
-                                            <div class="abs">New Arrival</div>
+                                            <div class="new">New Arrival</div>
                                         @endif
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
@@ -132,7 +132,8 @@
                                                 <div class="col-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
-                                                    <div class="price">$ {{ number_format($product->price, 2, ',', '.') }} You save 20%</div>
+                                                    <div class="price-disc">$ {{ number_format($product->price, 2, ',', '.') }}</div>
+                                                    <div class="save-disc">You save 20%</div>
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>

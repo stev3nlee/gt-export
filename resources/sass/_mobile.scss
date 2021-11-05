@@ -176,6 +176,20 @@
 	        }
 	        .bg-find {
 	            padding: 25px 0;
+				.search {
+					width: 220px;
+					button {
+						right: 5px;
+						img {
+							width: 14px;
+						}
+					}
+					input {
+						padding: 8px 30px 8px 10px;
+						font-size: 12px;
+						line-height: 15px;
+					}
+				}
 	            .form-group {
 	            	margin-bottom: 20px;
 	            	label {
@@ -303,7 +317,12 @@
 	            margin: 5px 0 15px;
 	        }
 	        .price {
-	            margin: 5px 0 20px;
+	            margin: 5px 0 10px;
+	            font-size: 18px;
+	            line-height: 24px;
+	        }
+			.price-disc {
+	            margin: 5px 0 10px;
 	            font-size: 18px;
 	            line-height: 24px;
 	        }
@@ -456,7 +475,16 @@
 	        }
 	    }
 	    .css-product {
-	        .title {
+			.item {
+				a {
+				.pad {
+					.price {
+						margin-bottom: 0px !important;
+					}
+				}
+				}
+			}
+			.title {
 	            margin-bottom: 20px;
 	            font-size: 18px;
 	            line-height: 24px;

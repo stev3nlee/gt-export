@@ -16923,7 +16923,7 @@ footer .cp {
   overflow-x: hidden !important;
   position: absolute;
   left: 0;
-  top: 200px;
+  top: 250px;
   width: 100%;
   z-index: 10;
 }
@@ -16982,11 +16982,24 @@ footer .cp {
 #main .css-home .bg-find {
   padding: 45px 0 20px;
 }
+#main .css-home .bg-find .abs-banner {
+  overflow-x: hidden !important;
+  margin-bottom: 20px;
+  width: 100%;
+}
+#main .css-home .bg-find .abs-banner .t-banner {
+  color: black;
+  text-align: center;
+  font-size: 35px;
+  line-height: 45px;
+  font-family: "Quicksand-Bold";
+  margin-bottom: 20px;
+}
 #main .css-home .bg-find .search {
   position: relative;
   width: 470px;
   margin: 0 auto 20px auto;
-  background: #A0AEB3;
+  border: 1px solid #000;
   color: black;
 }
 #main .css-home .bg-find .search button {
@@ -17246,9 +17259,25 @@ footer .cp {
   line-height: 20px;
 }
 #main .css-detail .price {
+  margin: 10px 0 20px;
+  font-size: 24px;
+  line-height: 30px;
+  text-decoration: line-through;
+}
+#main .css-detail .buy-disc {
+  font-size: 15px;
+  line-height: 20px;
+  color: red;
+}
+#main .css-detail .price-disc {
   margin: 10px 0 40px;
   font-size: 24px;
   line-height: 30px;
+  color: red;
+}
+#main .css-detail .save-price {
+  color: blue;
+  font-size: 12px;
 }
 #main .css-detail .box-desc {
   border-top: 1px solid #ECECEC;
@@ -17547,6 +17576,17 @@ footer .cp {
   right: 5px;
   font-size: 11px;
 }
+#main .css-product .item .new {
+  background: red;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  font-size: 11px;
+}
 #main .css-product .item .abs-get {
   position: absolute;
   bottom: -100%;
@@ -17606,7 +17646,19 @@ footer .cp {
   font-family: "Quicksand-Bold";
   font-size: 18px;
   line-height: 24px;
-  margin-bottom: 25px;
+  text-decoration: line-through;
+}
+#main .css-product .item a .pad .price-disc {
+  color: #dc3545;
+  font-family: "Quicksand-Bold";
+  font-size: 18px;
+  line-height: 24px;
+}
+#main .css-product .item a .pad .save-disc {
+  color: blue;
+  font-family: "Quicksand-Bold";
+  font-size: 11px;
+  line-height: 24px;
 }
 #main .css-product .item a .pad .stock {
   font-size: 12px;
@@ -19826,6 +19878,20 @@ input[type=file] {
   #main .css-home .bg-find {
     padding: 25px 0;
   }
+  #main .css-home .bg-find .search {
+    width: 220px;
+  }
+  #main .css-home .bg-find .search button {
+    right: 5px;
+  }
+  #main .css-home .bg-find .search button img {
+    width: 14px;
+  }
+  #main .css-home .bg-find .search input {
+    padding: 8px 30px 8px 10px;
+    font-size: 12px;
+    line-height: 15px;
+  }
   #main .css-home .bg-find .form-group {
     margin-bottom: 20px;
   }
@@ -19942,7 +20008,12 @@ input[type=file] {
     margin: 5px 0 15px;
   }
   #main .css-detail .price {
-    margin: 5px 0 20px;
+    margin: 5px 0 10px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  #main .css-detail .price-disc {
+    margin: 5px 0 10px;
     font-size: 18px;
     line-height: 24px;
   }
@@ -20075,6 +20146,9 @@ input[type=file] {
   }
   #main .css-faq .bdy p {
     font-size: 14px;
+  }
+  #main .css-product .item a .pad .price {
+    margin-bottom: 0px !important;
   }
   #main .css-product .title {
     margin-bottom: 20px;

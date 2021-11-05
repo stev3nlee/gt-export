@@ -12,25 +12,24 @@
                             <div class="t-banner">{{ $banner->name }}</div>
                         </div>
                     </div>
-                    <!--
-                    <div class="search">
-                        <form action="{{ URL::to('/product-listing') }}">
-                            <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
-                            <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
-                        </form>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>
         @endforeach
         <div class="container">
             <div class="bg-find">
+                <div class="abs-banner">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-xl-6">
+                            <div class="t-banner">Singapore's Leading Car <br /> Exporter</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="t-find">Find Your Vehicle</div>
                 <div class="search">
                     <form action="{{ URL::to('/product-listing') }}">
                         <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
-                        <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
+                        <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
                     </form>
                 </div>
                 <form action="{{ url('product-listing') }}">
