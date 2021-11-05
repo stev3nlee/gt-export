@@ -23,6 +23,19 @@
                         <div class="pad-range">
                             <div id="slider-range"></div>
                         </div>
+                        <?php /* ?>
+                        <div class="form-group">
+                            <label for="brand">Product Category Type:</label>
+                            <div class="css-select">
+                                <select name="category_type" class="form-control" id="category_type" required="">
+                                    <option selected="" disabled="">All Types</option>
+                                    <option value="all" @if($category_type == 'all') selected @endif >All Cars</option>
+                                    <option value="newly" @if($category_type == 'newly') selected @endif >Newly Added</option>
+                                    <option value="clearance" @if($category_type == 'clearance') selected @endif >Clearance Section</option>
+                                </select>
+                            </div>
+                        </div>
+                        <?php */ ?>
                         <div class="form-group">
                             <label for="brand">Select Brand:</label>
                             <div class="css-select">
@@ -92,8 +105,12 @@
                                         <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
+                                            <div class="abs">New Arrival</div>
                                         @elseif($product->reserve == 2)
                                             <div class="abs">Sold</div>
+                                            <div class="abs">New Arrival</div>
+                                        @elseif($product->new_arrival_expired_date != null)
+                                            <div class="abs">New Arrival</div>
                                         @endif
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
@@ -115,6 +132,7 @@
                                                 <div class="col-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price">$ {{ number_format($product->price, 2, ',', '.') }} You save 20%</div>
                                                     @endif
                                                     <div class="stock">Stock # {{ $product->stock }}</div>
                                                 </div>

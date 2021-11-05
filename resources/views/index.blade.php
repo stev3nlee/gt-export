@@ -25,17 +25,23 @@
         <div class="container">
             <div class="bg-find">
                 <div class="t-find">Find Your Vehicle</div>
+                <div class="search">
+                        <form action="{{ URL::to('/product-listing') }}">
+                            <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
+                            <button type="submit"><img src="{{ asset('images/search.png') }}" alt="" title=""/></button>
+                        </form>
+                    </div>
                 <form action="{{ url('product-listing') }}">
                     <div class="row">
                         <div class="col-6 col-md-3">
                             <div class="form-group">
                                 <label for="brand">Product Category Type:</label>
                                 <div class="css-select">
-                                    <select name="brand" class="form-control" id="brand" required="">
+                                    <select name="category_type" class="form-control" id="category_type" required="">
                                         <option selected="" disabled="">All Types</option>
-                                        <option value="opt1">All Cars</option>
-                                        <option value="opt1">Newly Added</option>
-                                        <option value="opt1">Clearance Section</option>
+                                        <option value="all">All Cars</option>
+                                        <option value="newly">Newly Added</option>
+                                        <option value="clearance">Clearance Section</option>
                                     </select>
                                 </div>
                             </div>
@@ -191,6 +197,201 @@
                 </div>
             </div>
         </div>
+        <?php /* ?>
+        <div class="bg-inventory">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 my-auto">
+                        <div class="t">Recently viewed </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="css-product">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12"  id="car-list">
+                        <div class="row row-15">
+                            @foreach($recently_views as $product)
+                            <div class="col-md-3 col-lg-3">
+                                <div class="item">
+                                    <div class="pos-rel">                                        
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        @if($product->reserve == 1)
+                                            <div class="abs">Reserved</div>
+                                        @elseif($product->reserve == 2)
+                                            <div class="abs">Sold</div>
+                                        @endif
+                                        @if($product->reserve == 0)
+                                        <div class="abs-get">
+                                        @if(session()->has('email'))
+                                            <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @else
+                                            <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @endif
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
+                                        <div class="pad">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="year">{{ $product->registration_year }}</div>
+                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    @if($product->price && $product->reserve == 0)
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
+                                                    <div class="stock">Stock # {{ $product->stock }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-inventory">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 my-auto">
+                        <div class="t">Newly Added</div>
+                    </div>
+                    <div class="col-6 my-auto text-right">
+                        <div class="view">
+                            <a href="{{ URL::to('/product-listing?category_type=newly') }}">
+                                <button type="button" class="hvr-button">View All</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="css-product">
+                <div class="row">
+                    <div class="col-md-8 col-lg-9"  id="car-list">
+                        <div class="row row-15">
+                            @foreach($new_arrivals as $product)
+                            <div class="col-md-3 col-lg-3">
+                                <div class="item">
+                                    <div class="pos-rel">                                        
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        @if($product->reserve == 1)
+                                            <div class="abs">Reserved</div>
+                                        @elseif($product->reserve == 2)
+                                            <div class="abs">Sold</div>
+                                        @elseif($product->new_arrival_expired_date != null)
+                                            <div class="abs">New Arrival</div>
+                                        @endif
+                                        @if($product->reserve == 0)
+                                        <div class="abs-get">
+                                        @if(session()->has('email'))
+                                            <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @else
+                                            <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @endif
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
+                                        <div class="pad">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="year">{{ $product->registration_year }}</div>
+                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    @if($product->price && $product->reserve == 0)
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
+                                                    <div class="stock">Stock # {{ $product->stock }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-inventory">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 my-auto">
+                        <div class="t">Clearance Selection</div>
+                    </div>
+                    <div class="col-6 my-auto text-right">
+                        <div class="view">
+                            <a href="{{ URL::to('/product-listing?category_type=clearance') }}">
+                                <button type="button" class="hvr-button">View All</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="css-product">
+                <div class="row">
+                    <div class="col-md-8 col-lg-9"  id="car-list">
+                        <div class="row row-15">
+                            @foreach($discounts as $product)
+                            <div class="col-md-3 col-lg-3">
+                                <div class="item">
+                                    <div class="pos-rel">                                        
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        @if($product->reserve == 1)
+                                            <div class="abs">Reserved</div>
+                                        @elseif($product->reserve == 2)
+                                            <div class="abs">Sold</div>
+                                        @endif
+                                        @if($product->reserve == 0)
+                                        <div class="abs-get">
+                                        @if(session()->has('email'))
+                                            <a style="cursor: pointer;" class="click-submit-quote" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @else
+                                            <a style="cursor: pointer;" class="click-submit-quote-guest" data-product="{{ $product->slug }}">Get Quote</a>
+                                        @endif
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
+                                        <div class="pad">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="year">{{ $product->registration_year }}</div>
+                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> <div class="merk">Class {{ $product->product_type }}</div>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    @if($product->price && $product->reserve == 0)
+                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    @endif
+                                                    <div class="stock">Stock # {{ $product->stock }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php */ ?>
+        
         <div class="bg-about">
             <div class="row">
                 <div class="col-md-6 blue order-2 order-md-1">
