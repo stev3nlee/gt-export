@@ -477,11 +477,35 @@
 	    .css-product {
 			.item {
 				a {
-				.pad {
-					.price {
-						margin-bottom: 0px !important;
-					}
-				}
+					.pad {
+						padding: 10px;
+						.nm {
+							font-size: 12px;
+							line-height: 17px;
+							margin-bottom: 5px;
+						}
+						.text-right {
+							text-align: left !important;
+							margin-top: 5px;
+						}
+						.price {
+							font-size: 12px;
+							line-height: 17px;
+							margin-bottom: 0px !important;
+						}
+						.price-disc {
+	                        font-size: 12px;
+	                        line-height: 17px;
+	                    }
+	                    .price-wo-disc {
+	                        font-size: 12px;
+	                        line-height: 17px;
+	                    }
+	                    .stock {
+	                    	font-size: 12px;
+	                    	line-height: 17px;
+	                    }
+	                }
 				}
 			}
 			.title {

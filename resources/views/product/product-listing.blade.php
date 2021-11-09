@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="title">Find Your Vehicle</div>
                 <div class="row">
-                    <div class="col-md-4 col-lg-3 xs30">
+                    <div class="col-md-3 xs30">
                     <form>
                         <div class="t3">Price Range</div>
                         <div class="row">
@@ -75,7 +75,7 @@
                         </div>
                         </form>
                     </div>
-                    <div class="col-md-8 col-lg-9">
+                    <div class="col-md-9">
                         <div class="box-search">
                             <div class="row">
                                 <div class="col-md-6 col-lg-7">
@@ -97,9 +97,9 @@
                         @if(count($products)>0)
                         <div class="row row-15">
                             @foreach($products as $product)
-                            <div class="col-6 col-lg-3">
+                            <div class="col-6 col-md-4 col-xl-3">
                                 <div class="item">
-                                    <div class="pos-rel">                                        
+                                    <div class="pos-rel">                   
                                         <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
@@ -122,13 +122,13 @@
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="year">{{ $product->registration_year }}</div>
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> 
                                                     <div class="merk">Model ({{ $product->model_code }})</div>
                                                     <div class="merk">Class ({{ $product->product_type }})</div>
                                                 </div>
-                                                <div class="col-6 text-right">
+                                                <div class="col-md-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
                                                     @if($product->discount_price != 0)
                                                     <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
@@ -139,7 +139,7 @@
                                                     @endif
                                                     
                                                     @endif
-                                                    <div class="stock">Stock # {{ $product->stock }}</div>
+                                                    <!--<div class="stock">Stock # {{ $product->stock }}</div>-->
                                                 </div>
                                             </div>
                                         </div>

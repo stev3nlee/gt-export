@@ -17626,14 +17626,14 @@ footer .cp {
 #main .css-product .item a .pad .year {
   color: #212121;
   font-family: "Quicksand-Bold";
-  font-size: 15px;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 15px;
 }
 #main .css-product .item a .pad .nm {
   color: #212121;
   font-family: "Quicksand-Bold";
-  font-size: 15px;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 15px;
   margin-bottom: 15px;
 }
 #main .css-product .item a .pad .merk {
@@ -17644,21 +17644,21 @@ footer .cp {
 #main .css-product .item a .pad .price {
   color: #212121;
   font-family: "Quicksand-Bold";
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 12px;
+  line-height: 15px;
   text-decoration: line-through;
 }
 #main .css-product .item a .pad .price-disc {
   color: #dc3545;
   font-family: "Quicksand-Bold";
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 12px;
+  line-height: 15px;
 }
 #main .css-product .item a .pad .price-wo-disc {
   color: #212121;
   font-family: "Quicksand-Bold";
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 12px;
+  line-height: 15px;
 }
 #main .css-product .item a .pad .save-disc {
   color: blue;
@@ -19350,13 +19350,21 @@ input[type=file] {
   #main .css-product .item a .pad {
     padding: 15px 10px;
   }
-  #main .css-product .item a .pad .year {
-    font-size: 13px;
-    line-height: 15px;
+  #main .css-product .item a .pad .price {
+    font-size: 11px;
+    line-height: 14px;
+  }
+  #main .css-product .item a .pad .price-disc {
+    font-size: 11px;
+    line-height: 14px;
+  }
+  #main .css-product .item a .pad .price-wo-disc {
+    font-size: 11px;
+    line-height: 14px;
   }
   #main .css-product .item a .pad .nm {
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 11px;
+    line-height: 14px;
     margin-bottom: 10px;
   }
   #main .css-product .item a .pad .merk {
@@ -19364,8 +19372,6 @@ input[type=file] {
     line-height: 13px;
   }
   #main .css-product .item a .pad .price {
-    font-size: 15px;
-    line-height: 20px;
     margin-bottom: 20px;
   }
   #main .css-product .item a .pad .stock {
@@ -20153,8 +20159,34 @@ input[type=file] {
   #main .css-faq .bdy p {
     font-size: 14px;
   }
+  #main .css-product .item a .pad {
+    padding: 10px;
+  }
+  #main .css-product .item a .pad .nm {
+    font-size: 12px;
+    line-height: 17px;
+    margin-bottom: 5px;
+  }
+  #main .css-product .item a .pad .text-right {
+    text-align: left !important;
+    margin-top: 5px;
+  }
   #main .css-product .item a .pad .price {
+    font-size: 12px;
+    line-height: 17px;
     margin-bottom: 0px !important;
+  }
+  #main .css-product .item a .pad .price-disc {
+    font-size: 12px;
+    line-height: 17px;
+  }
+  #main .css-product .item a .pad .price-wo-disc {
+    font-size: 12px;
+    line-height: 17px;
+  }
+  #main .css-product .item a .pad .stock {
+    font-size: 12px;
+    line-height: 17px;
   }
   #main .css-product .title {
     margin-bottom: 20px;

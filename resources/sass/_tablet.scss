@@ -394,13 +394,21 @@
 	            a {
 	                .pad {
 	                    padding: 15px 10px;
-	                    .year {
-	                        font-size: 13px;
-	                        line-height: 15px;
+	                    .price {
+	                        font-size: 11px;
+	                        line-height: 14px;
+	                    }
+	                    .price-disc {
+	                        font-size: 11px;
+	                        line-height: 14px;
+	                    }
+	                    .price-wo-disc {
+	                        font-size: 11px;
+	                        line-height: 14px;
 	                    }
 	                    .nm {
-	                        font-size: 12px;
-	                        line-height: 15px;
+	                        font-size: 11px;
+	                        line-height: 14px;
 	                        margin-bottom: 10px;
 	                    }
 	                    .merk {
@@ -408,8 +416,6 @@
 	                        line-height: 13px;
 	                    }
 	                    .price {
-	                        font-size: 15px;
-	                        line-height: 20px;
 	                        margin-bottom: 20px;
 	                    }
 	                    .stock {
