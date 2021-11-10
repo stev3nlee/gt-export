@@ -307,7 +307,7 @@
                     <tr>
                       <td>{{ $val->quotation_number }}</td>
                       <td>{{ ucwords(strtolower($val->first_name)) . ' ' . ucwords(strtolower($val->last_name)) }}</td>
-                      <td>{{ $val->product->name }}</td>
+                      <td>@if(isset($val->product_name)){{ $val->product_name }}@endif</td>
                       <td>$ {{ number_format($val->price, 2, '.', ',')  }}</td>
                     </tr>
                     @endforeach

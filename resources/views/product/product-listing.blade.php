@@ -125,17 +125,16 @@
                                                 <div class="col-md-6">
                                                     <div class="year">{{ $product->registration_year }}</div>
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> 
-                                                    <div class="merk">Model ({{ $product->model_code }})</div>
-                                                    <div class="merk">Class ({{ $product->product_type }})</div>
+                                                    <div class="merk">({{ $product->model_code }} and {{ $product->product_type }})</div>
                                                 </div>
                                                 <div class="col-md-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
                                                     @if($product->discount_price != 0)
-                                                    <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
-                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }}</div>
+                                                    <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
+                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
                                                     <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                                     @else
-                                                    <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                                    <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
                                                     @endif
                                                     
                                                     @endif
