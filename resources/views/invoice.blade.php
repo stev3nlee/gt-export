@@ -13,7 +13,7 @@
     <table style="border-collapse: collapse; width: 100%; margin-bottom: 10px;">
         <tbody>
             <tr>
-                <td width="400" style="vertical-align:top;"> <img src="http://167.71.212.250/images/logo.svg" alt="Logo" style="height: 30px; margin-top: 10px;"> </td>
+                <td width="400" style="vertical-align:top;"> <img src="{{ asset('images/logo.svg') }}" alt="Logo" style="height: 30px; margin-top: 10px;"> </td>
                 <td style="vertical-align:top; text-align: right; font-size: 8pt; line-height: 26px; color: #494949; font-family: 'Quicksand-Bold';">Proforma Invoice</td>
             </tr>
         </tbody>
@@ -213,13 +213,14 @@
         </tbody>
     </table>
 
-    <table style="border-collapse: collapse; width: 100%; margin-top: 120px; font-size: 7pt; line-height: 14px;">
+    <table style="border-collapse: collapse; width: 100%; margin-top: 110px; font-size: 7pt; line-height: 14px;">
         <tbody>
             <tr>
-                <td width="50%" style="vertical-align:top; text-align: center; padding: 0 50px;">
+                <td width="50%" style="vertical-align:bottom; text-align: center; padding: 0 50px;">
                     <div style="border-top: 1px solid #000; padding-top: 5px; color: #000;">Customer Signature</div>
                 </td>
-                <td width="50%" style="vertical-align:top; text-align: center; padding: 0 50px;">
+                <td width="50%" style="vertical-align:bottom; text-align: center; padding: 0 50px;">
+                    <div><img style="width: 40%; margin: 0 auto 10px;" src="{{ asset('images/signature.png') }}"/></div>
                     <div style="border-top: 1px solid #000; padding-top: 5px; color: #000;">GT Export Pte Ltd</div>
                 </td>
             </tr>
