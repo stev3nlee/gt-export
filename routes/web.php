@@ -61,7 +61,9 @@ Route::post('/submit-recovery', 'LoginController@submitRecovery');
 
 Route::get('/logout', 'LoginController@logout');
 Route::post('/submit-quote-guest', 'QuoteController@submitQuoteGuest');
-
+Route::get('/invoice', function () {
+    return view('invoice');
+});
 /* MEMBER AREA */
 Route::group(['middleware' => ['membersession']], function () {
     Route::get('/personal-info', 'MemberController@index');
@@ -78,10 +80,6 @@ Route::group(['middleware' => ['membersession']], function () {
     Route::get('/view-shipment-document/{id}', 'MemberController@viewShipment');
     Route::get('/download-shipment-document/{id}', 'MemberController@downloadShipment');
     Route::get('/link-account', 'MemberController@linkGoogle');
-
-    Route::get('/invoice', function () {
-        return view('invoice');
-    });
 });
 
 Route::group(['prefix' => 'gtexport-admin'], function () {

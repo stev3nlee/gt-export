@@ -217,14 +217,14 @@
         </tbody>
     </table>
 
-    <table style="border-collapse: collapse; width: 100%; margin-top: 120px; font-size: 7pt; line-height: 14px;">
+    <table style="border-collapse: collapse; width: 100%; margin-top: 50px; font-size: 7pt; line-height: 14px;">
         <tbody>
             <tr>
-                <td width="50%" style="vertical-align:top; text-align: center; padding: 0 50px;">
-                    <div style="border-top: 1px solid #000; padding-top: 5px; color: #000;">Customer Signature</div>
+                <td width="50%" style="vertical-align:bottom; text-align: center; padding: 0 50px;">
+                    <div><img style="width: 80%;" src="{{ asset('images/img-left.png') }}"/></div>
                 </td>
-                <td width="50%" style="vertical-align:top; text-align: center; padding: 0 50px;">
-                    <div style="border-top: 1px solid #000; padding-top: 5px; color: #000;">GT Export Pte Ltd</div>
+                <td width="50%" style="vertical-align:bottom; text-align: center; padding: 0 50px;">
+                    <div><img style="width: 80%;" src="{{ asset('images/img-right.png') }}"/></div>
                 </td>
             </tr>
         </tbody>

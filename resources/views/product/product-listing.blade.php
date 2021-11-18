@@ -125,7 +125,8 @@
                                                 <div class="col-md-6">
                                                     <div class="year">{{ $product->registration_year }}</div>
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> 
-                                                    <div class="merk">({{ $product->model_code }} and {{ $product->product_type }})</div>
+                                                    <div class="merk">{{ $product->model_code }}</div>
+                                                    <div class="merk">{{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-md-6 text-right">
                                                     @if($product->price && $product->reserve == 0)
