@@ -88,6 +88,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-6 col-md-3">
+                            <div class="form-group">
+                                <label for="brand">Select Car Type:</label>
+                                <div class="css-select">
+                                    <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                    <select name="car_type" class="form-control" id="car_type" required="">
+                                        <option selected="" disabled="">All Car Type</option>
+                                        @foreach($types as $type)
+                                        <option value="{{ $type }}">{{ $type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <input type="hidden" name="range_min" id="range-min">
                         <input type="hidden" name="range_max" id="range-max">
                     </div>
@@ -479,10 +493,10 @@
 
         $( "#slider-range" ).slider({
             range: true,
-            min: 30000,
-            max: 200000,
-            step: 10000,
-            values: [ 30000, 100000 ],
+            min: 0,
+            max: {{ $highest_price }},
+            step: 1,
+            values: [ 0, {{ $highest_price }} ],
             slide: function( event, ui ) {
                 $( "#amount-1" ).val( "$ " + numberThousand(ui.values[ 0 ]));
                 $( "#amount-2" ).val( "$ " + numberThousand(ui.values[ 1 ]));

@@ -83,8 +83,8 @@
                     <div class="l-detail-t2">Year</div>
                 </li>
                 <li>
-                    <div class="l-detail-t1">{{ number_format($product->engine_capacity, 2, ',', '.') }}cc</div>
-                    <div class="l-detail-t2">Engine</div>
+                    <div class="l-detail-t1">{{ number_format($product->engine_capacity, 0, '.', ',') }}cc</div>
+                    <div class="l-detail-t2">Engine Capacity</div>
                 </li>
                 <li>
                     <div class="l-detail-t1">@if(isset($product->transmission[0])) {{ $product->transmission[0]->name }} @endif</div>

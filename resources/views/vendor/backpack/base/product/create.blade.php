@@ -118,8 +118,8 @@
                                     </select>
                                   </div>
                                   <div class="col-md-6">
-                                    <select class="form-control" name="manufacture_month" required="required" id="manufacture_month" data-placeholder="Select Manufacture Month" style="width: 100%;">
-                                      <option>Select Manufacture Month</option>
+                                    <select class="form-control" name="manufacture_month" id="manufacture_month" data-placeholder="Select Manufacture Month" style="width: 100%;">
+                                      <option value="">Select Manufacture Month</option>
                                       <?php for($i=1; $i<=12; $i++){ $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
                                           <option value="{{ $month }}" @if(isset($data)) @if($data->manufacture_month == $month) selected @endif @else @if(old('manufacture_month') == $month) selected @endif @endif>{{ $month }}</option>
                                       <?php } ?>
@@ -159,7 +159,7 @@
                             <div class="form-group">
                               <label for="exampleInputEmail1">Fuel <span style="color: red">*</span></label>
                               <select class="form-control" name="fuel" required="required" id="fuel" data-placeholder="Select Fuel" style="width: 100%;">
-                                <?php $fuels = array('CNG','Diesel','Electric','Hybrid (Diesel)','Hybrid (Petrol)','LPG','Other Petro') ?>
+                                <?php $fuels = array('CNG','Diesel','Electric','Hybrid (Diesel)','Hybrid (Petrol)','LPG','Other','Petrol') ?>
                                 <option value="">Select Fuel</option>
                                 @foreach($fuels as $fuel)
                                 <option value="{{ $fuel }}" @if(isset($data)) @if($data->fuel == $fuel) selected @endif @else @if(old('fuel') == $fuel) selected @endif @endif>{{ $fuel }}</option>
@@ -242,6 +242,25 @@
                               <label for="exampleInputEmail1">Total Weight (kg)</label>
                               <input type="number" step="0.01" name="total_weight" class="form-control" value="{{ isset($data) ? $data->total_weight : old('total_weight') }}">
                               @if($errors->has('total_weight')) <span class="help-block">{{ $errors->first('total_weight') }}</span>  @endif
+                            </div>
+
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Dimensions</label><br>
+                              <table class="table">
+                                <tr>
+                                  <th>Size (cm)</th>
+                                  <th>Length (cm)</th>
+                                  <th>Width (cm)</th>
+                                  <th>Height (cm)</th>
+                                </tr>
+                                <tr>
+                                  <td>M3 <span id="dimensions">{{ isset($data) ? $data->dimension : old('dimension') }}</span><input type="hidden" id="dimension_value"  name="dimension" class="form-control" value="{{ isset($data) ? $data->dimension : old('dimension') }}"></td>
+                                  <td><input type="number" id="length" step="0.01" name="length" class="form-control" value="{{ isset($data) ? $data->length : old('length') }}"></td>
+                                  <td><input type="number" id="width" step="0.01" name="width" class="form-control" value="{{ isset($data) ? $data->width : old('width') }}"></td>
+                                  <td><input type="number" id="height" step="0.01" name="height" class="form-control" value="{{ isset($data) ? $data->height : old('height') }}"></td>
+                                </tr>
+                              </table>
                             </div>
 
                           </div>
@@ -373,6 +392,17 @@
 @section('after_scripts')
  <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
+$( "#length, #width, #height" ).keyup(function() {
+      length = $('#length').val();
+      width = $('#width').val();
+      height = $('#height').val();
+
+      if(length && width && height){
+      dimension = (parseInt(length) * parseInt(width) * parseInt(height)) / 1000000;
+      $('#dimensions').html(dimension.toFixed(2));
+      $('#dimension_value').val(dimension.toFixed(2));
+      }
+});
 <?php /* ?>
 var lfm = function(id, type, options) {
   let button = document.getElementById(id);

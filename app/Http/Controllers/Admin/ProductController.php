@@ -116,6 +116,10 @@ class ProductController extends Controller
             $product->total_weight = $request->input('total_weight');
             $product->remarks = $request->input('remarks');
             $product->thumbnail = $request->input('thumbnail');
+            $product->dimension = $request->input('dimension');
+            $product->length = $request->input('length');
+            $product->width = $request->input('width');
+            $product->height = $request->input('height');
             $product->stock = rand(10000000,99999999);
             $product->save();
 
@@ -206,6 +210,10 @@ class ProductController extends Controller
         $product->weight = $request->input('weight');
         $product->total_weight = $request->input('total_weight');
         $product->remarks = $request->input('remarks');
+        $product->dimension = $request->input('dimension');
+        $product->length = $request->input('length');
+        $product->width = $request->input('width');
+        $product->height = $request->input('height');
         if($request->thumbnail){
         $product->thumbnail = $request->input('thumbnail');
         }        
