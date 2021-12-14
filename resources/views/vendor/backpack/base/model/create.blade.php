@@ -29,6 +29,16 @@
                         @if($errors->has('name')) <span class="help-block">{{ $errors->first('name') }}</span>  @endif
                       </div>
 
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Brand</label>
+                        <select name="brand_id" class="form-control" required>
+                          <option value="">Select Brand</option>
+                          @foreach($brands as $brand)
+                          <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+
                       <div class="form-group @if($errors->has('description')) has-error @endif">
                         <label for="exampleInputEmail1">Description</label>
                         <textarea name="description" class="form-control"></textarea>

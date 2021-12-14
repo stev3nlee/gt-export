@@ -124,6 +124,7 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::post('brand/update', 'Admin\BrandController@update');
         Route::get('brand/delete/{id}', 'Admin\BrandController@delete');
         Route::get('brand/status/{id}/{status}', 'Admin\BrandController@status');
+        Route::get('brand/getModel/{id}', 'Admin\ModelController@getModel');
         Route::post('brand/update_sort', 'Admin\BrandController@update_sort');
 
         Route::get('model', 'Admin\ModelController@view')

@@ -45,7 +45,7 @@
                                 <tr class="nosortable">
                                     <th class="table-actions">Actions</th>
                                     <th>Name</th>
-                                    <th>Description</th>
+                                    <th>Brand</th>
                                     <th>Status</th>
                                     <th>Created Date</th>
                                 </tr>
@@ -60,7 +60,7 @@
                                         </div>
                                     </td>
                                     <td>{{ $content->name }}</td>
-                                    <td>{!! $content->description !!}</td>
+                                    <td>@if($content->brand){{ $content->brand->name }}@endif</td>
                                    <!--  <td>
                                         <img src="{{ asset('/upload/'.$content->image) }}" width="40%"  />
                                     </td> -->

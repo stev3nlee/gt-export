@@ -51,7 +51,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         $data = Product::find($id);
-        $models = Models::where('status',1)->get();
+        if($data->brand){
+            $models = Models::where('status',1)->where('brand_id',$data->brand[0]->id)->get();
+        }else{
+            $models = Models::where('status',1)->get();
+        }
         $brands = Brand::where('status',1)->get();
         $accessorie = Accessories::get();
         $accessories = array_chunk($accessorie->toArray(),3);
@@ -73,6 +77,7 @@ class ProductController extends Controller
             'seats' => 'required',
             'price' => 'required',
             'new_arrival_days' => 'required',
+            'location' => 'required',
         ]);
         DB::transaction(function () use($request) {
             $percent = 0;
@@ -102,6 +107,7 @@ class ProductController extends Controller
             $product->manufacture_month = $request->input('manufacture_month');
             $product->mileage = $request->input('mileage');
             $product->mileage_km = $request->input('mileage_km');
+            $product->location = $request->input('location');
             $product->engine_capacity = $request->input('engine_capacity');
             $product->engine_no = $request->input('engine_no');
             $product->steering = $request->input('steering');
@@ -168,6 +174,7 @@ class ProductController extends Controller
             'number_of_doors' => 'required',
             'seats' => 'required',
             'price' => 'required',
+            'location' => 'required',
         ]);
         DB::transaction(function () use($request) {
         $brand = (null !== $request->input('brand')) ? $request->input('brand') : [];
@@ -200,6 +207,7 @@ class ProductController extends Controller
         $product->engine_capacity = $request->input('engine_capacity');
         $product->engine_no = $request->input('engine_no');
         $product->steering = $request->input('steering');
+        $product->location = $request->input('location');
         $product->fuel = $request->input('fuel');
         $product->drive_type = $request->input('drive_type');
         $product->color = $request->input('color');

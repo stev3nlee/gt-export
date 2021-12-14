@@ -14,10 +14,11 @@ class AddSizeToProductTable extends Migration
     public function up()
     {
         Schema::table('product', function (Blueprint $table) {
+            $table->string('location')->nullable();
             $table->float('length', 15,2)->default(0);
             $table->float('width', 15,2)->default(0);
             $table->float('height', 15,2)->default(0);
-            $table->float('dimension', 15,2)->default(0);
+            $table->float('dimension', 15,3)->default(0);
 
         });
     }
@@ -30,6 +31,7 @@ class AddSizeToProductTable extends Migration
     public function down()
     {
         Schema::table('product', function (Blueprint $table) {
+            $table->dropColumn('location');
             $table->dropColumn('length');
             $table->dropColumn('height');
             $table->dropColumn('width');

@@ -37,7 +37,7 @@
                         </div>
                          <div class="form-group">
                               <label for="exampleInputEmail1">Brand <span style="color: red">*</span></label>
-                              <select class="form-control" name="brand[]" required="required" id="brand" data-placeholder="Select Brand" style="width: 100%;">
+                              <select class="form-control" name="brand[]" required="required" id="select-brand" data-placeholder="Select Brand" style="width: 100%;">
                                 <option>Select Brand</option>
                                 @foreach($brands as $brand)
                                   <option value="{{$brand->id}}" @if(isset($data)) @if($data->brand[0]->id == $brand->id) selected @endif @else @if(old('brand') == $brand->id) selected @endif @endif>{{ $brand->name }}</option>
@@ -49,9 +49,11 @@
                               <label for="exampleInputEmail1">Model  <span style="color: red">*</span></label>
                               <select class="form-control" name="model[]" required="required" id="model" data-placeholder="Select Model" style="width: 100%;">
                                 <option>Select Model</option>
+                                @if($data)
                                 @foreach($models as $model)
                                   <option value="{{$model->id}}" @if(isset($data)) @if($data->model[0]->id == $model->id) selected @endif @else @if(old('model') == $model->id) selected @endif @endif>{{ $model->name }}</option>
                                 @endforeach
+                                @endif
                               </select>
                               @if($errors->has('model')) <span class="help-block">{{ $errors->first('model') }}</span>  @endif
                         </div>
@@ -143,6 +145,12 @@
                                     @if($errors->has('mileage_km')) <span class="help-block">{{ $errors->first('mileage_km') }}</span>  @endif
                                   </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Location <span style="color: red">*</span></label>
+                              <input type="text"  name="location" required class="form-control" value="{{ isset($data) ? $data->location : old('location') }}">
+                              @if($errors->has('location')) <span class="help-block">{{ $errors->first('location') }}</span>  @endif
                             </div>
 
                             <div class="form-group">
@@ -255,7 +263,7 @@
                                   <th>Height (cm)</th>
                                 </tr>
                                 <tr>
-                                  <td>M3 <span id="dimensions">{{ isset($data) ? $data->dimension : old('dimension') }}</span><input type="hidden" id="dimension_value"  name="dimension" class="form-control" value="{{ isset($data) ? $data->dimension : old('dimension') }}"></td>
+                                  <td style="font-weight: bold;">M3 <span id="dimensions">{{ isset($data) ? $data->dimension : old('dimension') }}</span><input type="hidden" id="dimension_value"  name="dimension" class="form-control" value="{{ isset($data) ? $data->dimension : old('dimension') }}"></td>
                                   <td><input type="number" id="length" step="0.01" name="length" class="form-control" value="{{ isset($data) ? $data->length : old('length') }}"></td>
                                   <td><input type="number" id="width" step="0.01" name="width" class="form-control" value="{{ isset($data) ? $data->width : old('width') }}"></td>
                                   <td><input type="number" id="height" step="0.01" name="height" class="form-control" value="{{ isset($data) ? $data->height : old('height') }}"></td>
@@ -399,10 +407,30 @@ $( "#length, #width, #height" ).keyup(function() {
 
       if(length && width && height){
       dimension = (parseInt(length) * parseInt(width) * parseInt(height)) / 1000000;
-      $('#dimensions').html(dimension.toFixed(2));
-      $('#dimension_value').val(dimension.toFixed(2));
+      $('#dimensions').html(dimension.toFixed(3));
+      $('#dimension_value').val(dimension.toFixed(3));
       }
 });
+
+ $('#select-brand').on('change', function() {
+                var brandID = $(this).val();
+                if(brandID) {
+                    $.ajax({
+                        url: '{{ url(config("backpack.base.route_prefix")."/brand/getModel") }}/'+brandID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            $('#model').empty();
+                            $('#model').append('<option value="">Select Model</option>');
+                            $.each(data, function(key, value) {
+                                $('#model').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('#model').empty();
+                }
+        });
 <?php /* ?>
 var lfm = function(id, type, options) {
   let button = document.getElementById(id);
