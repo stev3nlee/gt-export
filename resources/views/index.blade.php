@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label for="brand">Select Brand:</label>
                                 <div class="css-select">
-                                    <select name="brand" class="form-control" id="brand" required="">
+                                    <select name="brand" class="form-control" id="select-brand" required="">
                                         <option selected="" disabled="">All Brands</option>
                                         @foreach($brands as $brand)
                                         <option value="{{ $brand->slug }}">{{ $brand->name }}</option>
@@ -64,13 +64,11 @@
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="form-group">
-                                <label for="brand">Select Model:</label>
+                                <label for="model">Select Model:</label>
                                 <div class="css-select">
-                                    <select name="model" class="form-control" id="brand" required="">
+                                    <select name="model" class="form-control" id="model" required="">
                                         <option selected="" disabled="">All Models</option>
-                                        @foreach($models as $model)
-                                        <option value="{{ $model->slug }}">{{ $model->name }}</option>
-                                        @endforeach
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -150,7 +148,7 @@
                             <div class="col-6 col-md-4 col-lg-2">
                                 <div class="item">
                                     <div class="pos-rel">                                        
-                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @elseif($product->reserve == 2)
@@ -227,7 +225,7 @@
                             <div class="col-6 col-md-4 col-lg-2">
                                 <div class="item">
                                     <div class="pos-rel">                                        
-                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @elseif($product->reserve == 2)
@@ -304,7 +302,7 @@
                             <div class="col-6 col-md-4 col-lg-2">
                                 <div class="item">
                                     <div class="pos-rel">                                        
-                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @elseif($product->reserve == 2)
@@ -397,7 +395,7 @@
                             <div class="col-6 col-md-4 col-xl-3">
                                 <div class="item">
                                     <div class="pos-rel">                 
-                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @elseif($product->reserve == 2)
@@ -524,6 +522,26 @@
             $('html,body').animate({
                 scrollTop: $('#car-list').offset().top -30
             });
+
+         $('#select-brand').on('change', function() {
+                var brandID = $(this).val();
+                if(brandID) {
+                    $.ajax({
+                        url: '{{ url("brand/getModelSlug") }}/'+brandID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            $('#model').empty();
+                            $('#model').append('<option value="">All Models</option>');
+                            $.each(data, function(key, value) {
+                                $('#model').append('<option value="'+ value.slug +'">'+ value.name +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('#model').empty();
+                }
+        });
 	});
 </script>
 @endsection

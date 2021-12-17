@@ -42,7 +42,7 @@ class Product extends Model
 
     public function product_image()
     {
-        return $this->hasMany('App\Models\Product_image');
+        return $this->hasMany('App\Models\Product_image')->orderby('sort');
     }
 
     public function accessories()

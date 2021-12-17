@@ -117,6 +117,14 @@ class QuoteController extends BaseController
 
     public function submitQuoteGuest(Request $request){
         return DB::transaction(function () use($request) {
+             $validatedData = $request->validate([
+                'g-recaptcha-response-1' => 'required|recaptcha'
+            ],
+            [
+                'g-recaptcha-response-1.required' => 'Recaptcha is required!',
+                'g-recaptcha-response-1.recaptcha' => 'Please ensure that you are a human!'
+            ]);
+
             $shipping_cost = 0;
             $ip_address = request()->ip();
             $position = Location::get($ip_address);

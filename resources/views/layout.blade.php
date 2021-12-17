@@ -25,6 +25,7 @@
         color: #dd4b39;
       }
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -173,7 +174,7 @@
 
     <div id="modal-submit-quote" class="modal fade modal-global" role="dialog">
         <div class="modal-dialog">
-            <form action="{{ url('submit-quote') }}" method="post">
+            <form action="{{ url('submit-quote') }}" method="post" id="submit-quote-member">
             @csrf
             <div class="modal-content">
                 <div class="close-pop" data-dismiss="modal">
@@ -198,6 +199,9 @@
                         <li class="active"><a>Yes</a></li>
                         <li class="click-quote-no"><a>No</a></li>
                     </ul>
+                    <center>
+                        <div class="g-recaptcha" data-sitekey="6LfKdqodAAAAAFi57MDeRi_YckjKphEz9ggJ7FgC"></div><br>
+                    </center>
                     <input type="hidden" name="product" id="product-quote">
                     <div class="btn-pop">
                         <button class="hvr-button" type="submit">Submit Quote</button>
@@ -379,6 +383,10 @@
                                     <input class="form-control" id="email" name="email" type="email" required="" />
                                 </div>     
                             </div>
+                            <center>
+                                <div class="g-recaptcha" data-sitekey="6LfKdqodAAAAAFi57MDeRi_YckjKphEz9ggJ7FgC"></div>
+                            @if($errors->has('g-recaptcha-response-1')) <div class="alert alert-danger alert-block">{{ $errors->first('g-recaptcha-response') }}</div>  @endif<br>
+                            </center>
                             <input type="hidden" name="product" id="product-quote-guest">
                         </div>
                         <div class="btn-pop mt30">
@@ -683,6 +691,29 @@
   @if(Session::has('quotation_success'))
   $('#modal-success').modal('show');
   @endif
+
+  $('#submit-quote-member').submit(function () {
+        let recaptcha = $("#g-recaptcha-response").val();
+        if (recaptcha === "") {
+            event.preventDefault();
+            alert('Please fill recaptchaaaa');
+             return false;
+        }else{
+            this.submit();
+        }
+  });
+
+  $('#submit-quote-guest').submit(function () {
+        let recaptcha = $("#g-recaptcha-response-1").val();
+        if (recaptcha === "") {
+            event.preventDefault();
+            alert('Please fill recaptcha');
+             return false;
+        }else{
+            this.submit();
+        }
+  });
+
 </script>
 
 </body>

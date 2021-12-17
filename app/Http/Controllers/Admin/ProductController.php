@@ -121,7 +121,7 @@ class ProductController extends Controller
             $product->weight = $request->input('weight');
             $product->total_weight = $request->input('total_weight');
             $product->remarks = $request->input('remarks');
-            $product->thumbnail = $request->input('thumbnail');
+            //$product->thumbnail = $request->input('thumbnail');
             $product->dimension = $request->input('dimension');
             $product->length = $request->input('length');
             $product->width = $request->input('width');
@@ -139,11 +139,14 @@ class ProductController extends Controller
             $product->transmission()->sync($transmission);
             $product->accessories()->sync($accessories);
 
+            $sort = 1;
             foreach ($image_array as $key => $value) {
                 $product_image = new Product_image;
                 $product_image->product_id = $product->id;
                 $product_image->image = $value;
+                $product_image->sort = $sort;
                 $product_image->save();
+                $sort++;
             }
             // $detail = Product::where('id',$product->id)->first();
             // if ($request->hasFile('image')) {
@@ -222,9 +225,9 @@ class ProductController extends Controller
         $product->length = $request->input('length');
         $product->width = $request->input('width');
         $product->height = $request->input('height');
-        if($request->thumbnail){
-        $product->thumbnail = $request->input('thumbnail');
-        }        
+        // if($request->thumbnail){
+        // $product->thumbnail = $request->input('thumbnail');
+        // }        
         $product->new_arrival_days = $request->input('new_arrival_days');
         if($request->input('new_arrival_days') > 0){
             $expired_date = date('Y-m-d H:i:s', strtotime($product->created_at. ' + '.$request->input('new_arrival_days').' days'));
@@ -238,12 +241,15 @@ class ProductController extends Controller
         $product->accessories()->sync($accessories);
 
         if($request->image){
+            $sort = 1;
             Product_image::where('product_id',$product->id)->delete();
             foreach ($image_array as $key => $value) {
                 $product_image = new Product_image;
                 $product_image->product_id = $product->id;
                 $product_image->image = $value;
+                $product_image->sort = $sort;
                 $product_image->save();
+                $sort++;
             }
         }   
         
@@ -297,4 +303,21 @@ class ProductController extends Controller
 
         return back();
     }
+
+    public function update_sort(Request $request){
+        $maincontent_id = $request->input('maincontent_id');
+        $oldsort = $request->input('oldsort');
+        $newsort = $request->input('newsort');
+        $product_id = $request->input('product_id');
+
+        $product = Product::find($product_id);
+        if($product){
+            $getTable = $product->product_image()->where('id',$maincontent_id)->where('sort',$oldsort)->first();
+            $getTable->sort = $newsort;
+            $getTable->save();
+        }
+
+        $status=array('status'=>'1','message'=>'Success');
+        return response()->json($status);
+    }  
 }

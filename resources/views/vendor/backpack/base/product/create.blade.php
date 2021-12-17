@@ -10,6 +10,23 @@
         <li class="active">Products</li>
       </ol>
     </section>
+    <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 600px; }
+  #sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
+  .grabbable {
+      cursor: move; /* fallback if grab cursor is unsupported */
+      cursor: grab;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+  }
+
+   /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+  .grabbable:active {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
+  }
+  </style>
 @endsection
 
 @section('content')
@@ -49,7 +66,7 @@
                               <label for="exampleInputEmail1">Model  <span style="color: red">*</span></label>
                               <select class="form-control" name="model[]" required="required" id="model" data-placeholder="Select Model" style="width: 100%;">
                                 <option>Select Model</option>
-                                @if($data)
+                                @if(isset($data))
                                 @foreach($models as $model)
                                   <option value="{{$model->id}}" @if(isset($data)) @if($data->model[0]->id == $model->id) selected @endif @else @if(old('model') == $model->id) selected @endif @endif>{{ $model->name }}</option>
                                 @endforeach
@@ -326,7 +343,7 @@
                         </div>
                         <div class="box">
                           <div class="box-body">
-                            <label for="exampleInputEmail1">Thumbnail</label>
+                            <!-- <label for="exampleInputEmail1">Thumbnail</label>
                              <div class="input-group">
                                <span class="input-group-btn">
                                  <a id="lfm-thumbnail" data-input="thumbnail_image" data-preview="holder_thumbnail" class="btn btn-primary">
@@ -342,7 +359,7 @@
                                  @endif
                                 @endif
                              </div>
-                             <br>
+                             <br> -->
 
                             <label for="exampleInputEmail1">Image</label>
                              <div class="input-group">
@@ -356,9 +373,9 @@
                              <div id="holder" style="margin-top:15px;max-height:300px;">
                               @if(isset($data))
                                @if(count($data->product_image)>0)
-                                @foreach($data->product_image as $image)
-                                <img style="height: 10rem" src="{{ $image->image }}">
-                                @endforeach
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-image">
+                                  Reorder Image
+                                </button>
                                @endif
                               @endif
                              </div>
@@ -396,8 +413,38 @@
         </div>
       </form>
     </div>
+
+    <div class="modal fade" id="modal-image">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reorder Image</h4>
+              </div>
+              <div class="modal-body" style="overflow-y: auto;">
+              <div class="row">
+              @if(isset($data))
+                <ul id="sortable" >
+                    @foreach($data->product_image as $im)
+                      <li class="ui-state-default grabbable" data-element-id='{{ $im->id }}' data-sort='{{ $im->sort }}'><img width="100%" src="{{ asset($im->image) }}"></li>
+                    @endforeach
+                </ul>
+              @endif
+              </div>
+              </div>
+              <br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 @endsection
 @section('after_scripts')
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
  <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
 $( "#length, #width, #height" ).keyup(function() {
@@ -416,7 +463,7 @@ $( "#length, #width, #height" ).keyup(function() {
                 var brandID = $(this).val();
                 if(brandID) {
                     $.ajax({
-                        url: '{{ url(config("backpack.base.route_prefix")."/brand/getModel") }}/'+brandID,
+                        url: '{{ url("brand/getModel") }}/'+brandID,
                         type: "GET",
                         dataType: "json",
                         success:function(data) {
@@ -431,6 +478,41 @@ $( "#length, #width, #height" ).keyup(function() {
                     $('#model').empty();
                 }
         });
+
+ $('#sortable').sortable({
+
+        stop: function( event, ui ) {
+            var sortOrder = 1;
+            
+            $('#sortable > li').each(function(){
+                thiselem = $(this);
+                oldsort = thiselem.data('sort');
+                maincontent_id = thiselem.data('element-id');
+                var token = '{{ csrf_token() }}';
+                var product_id = @if(isset($data)) {{ $data->id }} @else null @endif;
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ url(config('backpack.base.route_prefix').'/product/update_sort') }}",
+                    data: '&maincontent_id='+maincontent_id+
+                            '&oldsort='+oldsort+
+                            '&newsort='+sortOrder+
+                            '&product_id='+product_id+
+                            '&_token= '+token,
+                    cache : false,
+                    success: function(msg){
+                    },
+                    error: function(msg){
+                        console.log(msg);
+                    }
+                });
+                thiselem.data('sort', sortOrder);
+                
+                sortOrder++;
+            });
+            
+        }
+        
+    });
 <?php /* ?>
 var lfm = function(id, type, options) {
   let button = document.getElementById(id);

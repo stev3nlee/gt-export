@@ -48,7 +48,7 @@ return [
     'folder_categories'        => [
         'file'  => [
             'folder_name'  => 'files',
-            'startup_view' => 'list',
+            'startup_view' => 'grid',
             'max_size'     => 50000, // size in KB
             'valid_mime'   => [
                 'image/jpeg',
@@ -82,7 +82,7 @@ return [
      */
 
     'paginator' => [
-        'perPage' => 30,
+        'perPage' => 100,
     ],
 
     /*

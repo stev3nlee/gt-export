@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label for="brand">Select Brand:</label>
                             <div class="css-select">
-                                <select name="brand" class="form-control" id="brand" required="">
+                                <select name="brand" class="form-control" id="select-brand" required="">
                                     <option selected="" disabled="">All Brands</option>
                                     @foreach($brands as $brand)
                                         <option value="{{ $brand->slug }}" @if($brand_select == $brand->slug) selected @endif>{{ $brand->name }}</option>
@@ -46,9 +46,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="brand">Select Model:</label>
+                            <label for="model">Select Model:</label>
                             <div class="css-select">
-                                <select name="model" class="form-control" id="brand" required="">
+                                <select name="model" class="form-control" id="model" required="">
                                     <option selected="" disabled="">All Models</option>
                                     @foreach($models as $model)
                                         <option value="{{ $model->slug }}" @if($model_select == $model->slug) selected @endif>{{ $model->name }}</option>
@@ -112,7 +112,7 @@
                             <div class="col-6 col-md-4 col-xl-3">
                                 <div class="item">
                                     <div class="pos-rel">                   
-                                        <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->thumbnail) }}" alt="" title=""/>@endif</div>
+                                        <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>
                                         @elseif($product->reserve == 2)
@@ -121,6 +121,7 @@
                                         @if($product->new_arrival_expired_date != null)
                                             <div class="new">New Arrival</div>
                                         @endif
+                                        <?php /* ?>
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
                                         @if(session()->has('email'))
@@ -130,6 +131,7 @@
                                         @endif
                                         </div>
                                         @endif
+                                        <?php */ ?>
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
@@ -253,6 +255,26 @@
                 return this.defaultSelected;
             });
             window.location = "{{ url('product-listing') }}";
+        });
+
+        $('#select-brand').on('change', function() {
+                var brandID = $(this).val();
+                if(brandID) {
+                    $.ajax({
+                        url: '{{ url("brand/getModelSlug") }}/'+brandID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            $('#model').empty();
+                            $('#model').append('<option value="">All Models</option>');
+                            $.each(data, function(key, value) {
+                                $('#model').append('<option value="'+ value.slug +'">'+ value.name +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('#model').empty();
+                }
         });
 	});
 </script>

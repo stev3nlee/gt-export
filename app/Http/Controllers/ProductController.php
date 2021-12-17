@@ -37,11 +37,11 @@ class ProductController extends BaseController
 
     public function product(Request $request){
         $brands = Brand::where('status',1)->orderby('sort','asc')->get();
-        $models = Models::where('status',1)->orderby('sort','asc')->get();
         $transmissions = Transmission::where('status',1)->orderby('sort','asc')->get();
         $highest_price = Product::where('status',1)->orderby('price','desc')->first();
         $range_min = 0;
         $range_max = $highest_price->price;
+        $models = array();
 // dd($request->range_max);
         if($request->range_min){
             $range_min = $request->range_min;
@@ -52,6 +52,10 @@ class ProductController extends BaseController
         $products = Product::where('status',1);
 
         if($request->brand){
+            $brand = Brand::where('slug',$request->brand)->where('status',1)->first();
+            if($brand){
+                $models = Models::where('brand_id',$brand->id)->where('status',1)->orderby('sort','asc')->get();
+            }
             $products = $products->whereHas('brand', function($q) use($request) {
                 $q->where('brand.slug', '=', $request->brand); 
             });

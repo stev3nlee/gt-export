@@ -10,11 +10,11 @@
                     <div class="col-md-7 col-lg-8">
                         <div class="pr40">
                             <div class="slider-product">
-                                <div class="item">
+                                <!-- <div class="item">
                                     <a href="{{ asset($product->thumbnail) }}" data-fancybox="fancy-product">
                                         <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
                                     </a>
-                                </div>
+                                </div> -->
                                 @foreach($product->product_image as $image)
                                 <div class="item">
                                     <a href="{{ asset($image->image) }}" data-fancybox="fancy-product">
@@ -24,9 +24,9 @@
                                 @endforeach
                             </div>
                             <div class="slider-thumb">
-                                <div class="item">
+                                <!-- <div class="item">
                                     <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
-                                </div>
+                                </div> -->
                                 @foreach($product->product_image as $image)
                                 <div class="item">
                                     <img src="{{ asset($image->image) }}" alt="" title=""/>

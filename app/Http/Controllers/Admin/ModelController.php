@@ -126,7 +126,18 @@ class ModelController extends Controller
 
     public function getModel($brand)
     {
-        $data = Models::where('brand_id',$brand)->get(['id','name']);
+        $data = Models::where('brand_id',$brand)->where('status',1)->get(['id','name','slug']);
+
+        return json_encode($data);
+    }
+
+    public function getModelSlug($slug)
+    {
+    	$data = null;
+    	$brand = Brand::where('slug',$slug)->where('status',1)->first();
+    	if($brand){
+        	$data = Models::where('brand_id',$brand->id)->where('status',1)->get(['id','name','slug']);
+    	}
 
         return json_encode($data);
     }
