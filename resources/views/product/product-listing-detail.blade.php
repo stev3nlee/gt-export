@@ -9,19 +9,22 @@
                 <div class="row">
                     <div class="col-md-7 col-lg-8">
                         <div class="pr40">
-                            <div class="slider-product">
-                                <div class="item">
-                                    <a href="{{ asset($product->thumbnail) }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
-                                    </a>
+                            <div class="pos-rel">
+                                <div class="pagingInfo"></div>
+                                <div class="slider-product">
+                                    <div class="item">
+                                        <a href="{{ asset($product->thumbnail) }}" data-fancybox="fancy-product">
+                                            <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
+                                        </a>
+                                    </div>
+                                    @foreach($product->product_image as $image)
+                                    <div class="item">
+                                        <a href="{{ asset($image->image) }}" data-fancybox="fancy-product">
+                                            <img src="{{ asset($image->image) }}" alt="" title=""/>
+                                        </a>
+                                    </div>
+                                    @endforeach
                                 </div>
-                                @foreach($product->product_image as $image)
-                                <div class="item">
-                                    <a href="{{ asset($image->image) }}" data-fancybox="fancy-product">
-                                        <img src="{{ asset($image->image) }}" alt="" title=""/>
-                                    </a>
-                                </div>
-                                @endforeach
                             </div>
                             <div class="slider-thumb">
                                 <div class="item">
@@ -281,14 +284,23 @@
 @endsection
 
 @section('js')
+<script type="text/javascript" src="{{ asset('js/fancybox/jquery.fancybox.min.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		 $('.slider-product').slick({
+        var $status = $('.pagingInfo');
+
+        $('.slider-product').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide) {
+            var i = (currentSlide ? currentSlide : 0) + 1;
+            $status.text(i + '/' + slick.slideCount);
+        });
+
+        $('.slider-product').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: false,
+            arrows: true,
             fade: false,
-            asNavFor: '.slider-thumb'
+            asNavFor: '.slider-thumb',
+            infinite: false
         });
 
         $('.slider-thumb').slick({
@@ -298,12 +310,20 @@
             dots: false,
             arrows: false,
             centerMode: false,
-            focusOnSelect: true
+            focusOnSelect: true,
+            infinite: false
         });
 
         $('.nav-product').addClass('active');
 
-        $('.fancybox').fancybox();
-	});
+        $("[data-fancybox]").fancybox({
+            // infobar : false,
+            buttons : [
+                'close',
+            ],
+            loop: false,
+            idleTime: false,
+        });
+    });
 </script>
 @endsection

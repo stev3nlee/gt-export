@@ -109,6 +109,7 @@
                                         @if($product->new_arrival_expired_date != null)
                                             <div class="new">New Arrival</div>
                                         @endif
+                                        <!--
                                         @if($product->reserve == 0)
                                         <div class="abs-get">
                                         @if(session()->has('email'))
@@ -118,6 +119,7 @@
                                         @endif
                                         </div>
                                         @endif
+                                        -->
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
