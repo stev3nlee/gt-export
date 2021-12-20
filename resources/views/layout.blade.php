@@ -383,13 +383,14 @@
                                     <input class="form-control" id="email" name="email" type="email" required="" />
                                 </div>     
                             </div>
-                            <center>
-                                <div class="g-recaptcha" data-sitekey="6LfKdqodAAAAAFi57MDeRi_YckjKphEz9ggJ7FgC"></div>
-                            @if($errors->has('g-recaptcha-response-1')) <div class="alert alert-danger alert-block">{{ $errors->first('g-recaptcha-response') }}</div>  @endif<br>
-                            </center>
+                            
                             <input type="hidden" name="product" id="product-quote-guest">
                         </div>
                         <div class="btn-pop mt30">
+                            <center>
+                                <div class="g-recaptcha" data-sitekey="6LfKdqodAAAAAFi57MDeRi_YckjKphEz9ggJ7FgC"></div>
+                                @if($errors->has('g-recaptcha-response-1')) <div class="alert alert-danger alert-block">{{ $errors->first('g-recaptcha-response-1') }}</div>  @endif<br>
+                            </center>
                             <button class="hvr-button" type="submit">Proceed as guest</button>
                         </div>
                     </form>                    

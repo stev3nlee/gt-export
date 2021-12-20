@@ -15,6 +15,7 @@ use App\Models\Transmission;
 use App\Models\Member;
 use App\Models\Reservation_time;
 use App\Models\Shipping_cost;
+use App\Models\Port;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -117,13 +118,14 @@ class QuoteController extends BaseController
 
     public function submitQuoteGuest(Request $request){
         return DB::transaction(function () use($request) {
-             $validatedData = $request->validate([
-                'g-recaptcha-response-1' => 'required|recaptcha'
-            ],
-            [
-                'g-recaptcha-response-1.required' => 'Recaptcha is required!',
-                'g-recaptcha-response-1.recaptcha' => 'Please ensure that you are a human!'
-            ]);
+            // $validatedData = $request->validate([
+            //     'email' => 'required|email',
+            //     'g-recaptcha-response' => 'required|recaptcha'
+            // ],
+            // [
+            //     'g-recaptcha-response.required' => 'Recaptcha is required!',
+            //     'g-recaptcha-response.recaptcha' => 'Please ensure that you are a human!'
+            // ]);
 
             $shipping_cost = 0;
             $ip_address = request()->ip();
@@ -195,6 +197,35 @@ class QuoteController extends BaseController
             return back();
         });
 
+    }
+
+    public function getModel($brand)
+    {
+        $data = Models::where('brand_id',$brand)->where('status',1)->get(['id','name','slug']);
+
+        return json_encode($data);
+    }
+
+    public function getModelSlug($slug)
+    {
+        $data = null;
+        $brand = Brand::where('slug',$slug)->where('status',1)->first();
+        if($brand){
+            $data = Models::where('brand_id',$brand->id)->where('status',1)->get(['id','name','slug']);
+        }
+
+        return json_encode($data);
+    }
+
+    public function getPort($id)
+    {
+        $data = null;
+        $country = Shipping_cost::where('id',$id)->where('status',1)->first();
+        if($country){
+            $data = Port::where('country_id',$country->id)->where('status',1)->get(['id','port']);
+        }
+
+        return json_encode($data);
     }
 
 }

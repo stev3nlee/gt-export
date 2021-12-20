@@ -41,8 +41,9 @@ Route::get('/payment', 'PageController@payment');
 Route::get('/guest', function () {
     return view('auth/guest');
 });
-Route::get('brand/getModel/{id}', 'Admin\ModelController@getModel');
-Route::get('brand/getModelSlug/{id}', 'Admin\ModelController@getModelSlug');
+Route::get('brand/getModel/{id}', 'QuoteController@getModel');
+Route::get('brand/getModelSlug/{id}', 'QuoteController@getModelSlug');
+Route::get('getPort/{country}', 'QuoteController@getPort');
 Route::get('/login', 'LoginController@getViewLogin');
 Route::get('/register', 'LoginController@getViewRegister');
 Route::get('/facebook-login', 'LoginController@facebookLogin');
