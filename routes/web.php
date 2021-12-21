@@ -340,6 +340,9 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('payment/delete/{id}', 'Admin\PaymentController@delete');
         Route::get('payment/status/{id}/{status}', 'Admin\PaymentController@status');
         Route::post('payment/update_sort', 'Admin\PaymentController@update_sort');
+
+        Route::get('datatable', 'Admin\DatatableController@view');
+        Route::get('datatable/getData', 'Admin\DatatableController@getData');
     });
 });
         Route::group(['prefix' => 'laravel-filemanager'], function () {

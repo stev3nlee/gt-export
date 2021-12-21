@@ -7,18 +7,28 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use DB;
-use App\Models\Category;
-use App\Models\Category_language;
+use App\Models\Brand;
 use Yajra\Datatables\Datatables;
 
 class DatatableController extends Controller
 {
     function view(){
-    	$data = Category::orderby('sort','asc')->get();
-    	return view('vendor.backpack.base.category.list', ['data' => $data]);
+    	//$data = Category::orderby('sort','asc')->get();
+    	return view('vendor.backpack.base.datatable.list');
     }
-    function create(){
-    	return view('vendor.backpack.base.category.create');
+    function getData(Request $request){
+    	if ($request->ajax()) {
+            $data = Brand::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
     function edit($id){
 		$data = Category::find($id);
