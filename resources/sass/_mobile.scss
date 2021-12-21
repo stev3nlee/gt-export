@@ -301,6 +301,25 @@
 	        padding: 20px 0 50px;
 	    }
 	    .css-detail {
+	    	.pagingInfo {
+	            font-size: 11px;
+	            line-height: 13px;
+	            padding: 3px 8px;
+	        }
+	    	.slider-product {
+	    		.slick-prev {
+	                left: 10px;
+	                &:before {
+	                    font-size: 20px;
+	                }
+	            }
+	            .slick-next {
+	                right: 10px;
+	                &:before {
+	                    font-size: 20px;
+	                }
+	            }
+	    	}
 	        .slider-thumb {
 	        	margin-bottom: 30px;
 	        }

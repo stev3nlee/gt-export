@@ -184,6 +184,28 @@
 	        padding: 40px 0 70px;
 	    }
 	    .css-detail {
+	    	.pagingInfo {
+	            bottom: 10px;
+	            left: 10px;
+	            z-index: 10;
+	            font-size: 13px;
+	            line-height: 15px;
+	            padding: 5px 10px;
+	        }
+	    	.slider-product {
+	    		.slick-prev {
+	                left: 15px;
+	                &:before {
+	                    font-size: 25px;
+	                }
+	            }
+	            .slick-next {
+	                right: 15px;
+	                &:before {
+	                    font-size: 25px;
+	                }
+	            }
+	    	}
 	        .pr40 {
 	            padding-right: 0;
 	        }
