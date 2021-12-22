@@ -123,7 +123,7 @@ class PageController extends BaseController
                         'email' => 'cs.gtexport@gmail.com',
                         'phone' => $phone,
                         'subject' => 'GT Export - Contact Us',
-                        'email_to' => $email,
+                        'email_to' => 'cs.gtexport@gmail.com',
                         'email_view' => 'email.email_contact_us',
                         'url'=>url('/'),
                     );

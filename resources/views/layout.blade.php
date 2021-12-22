@@ -201,6 +201,27 @@
                         <li class="click-quote-no"><a>No</a></li>
                     </ul>
                     <center>
+                    <div class="col-md-6">
+                                <div class="form-group">
+                                    <label id="country">Country:</label>
+                                    <select class="form-control" id="select-country-member" name="country" required >
+                                        <option value="">Select Country</option>
+                                        @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->country }}</option>
+                                        @endforeach
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>     
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" id="div-port-member" style="display: none;">
+                                    <label id="country">Port:</label>
+                                    <select class="form-control" id="select-port-member" name="port">
+                                        <option value="">Select Port</option>
+                                    </select>
+                                </div>     
+                            </div>
                         <div class="g-recaptcha" data-sitekey="6LfKdqodAAAAAFi57MDeRi_YckjKphEz9ggJ7FgC"></div><br>
                     </center>
                     <input type="hidden" name="product" id="product-quote">
@@ -382,6 +403,28 @@
                                 <div class="form-group">
                                     <label id="email">Email:</label>
                                     <input class="form-control" id="email" name="email" type="email" required="" />
+                                </div>     
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label id="country">Country:</label>
+                                    <select class="form-control" id="select-country" name="country" required >
+                                        <option value="">Select Country</option>
+                                        @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->country }}</option>
+                                        @endforeach
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>     
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" id="div-port" style="display: none;">
+                                    <label id="country">Port:</label>
+                                    <select class="form-control" id="select-port" name="port">
+                                        <option value="">Select Port</option>
+                                    </select>
                                 </div>     
                             </div>
                             
@@ -698,7 +741,7 @@
         let recaptcha = $("#g-recaptcha-response").val();
         if (recaptcha === "") {
             event.preventDefault();
-            alert('Please fill recaptchaaaa');
+            alert('Please fill recaptcha');
              return false;
         }else{
             this.submit();
@@ -715,6 +758,52 @@
             this.submit();
         }
   });
+
+  $('#select-country').on('change', function() {
+                var countryID = $(this).val();
+                if(countryID != 'other') {
+                    $.ajax({
+                        url: '{{ url("getPort") }}/'+countryID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            $('#div-port').show();
+                            $('#select-port').attr('required', 'required');
+                            $('#select-port').empty();
+                            $('#select-port').append('<option value="">Select Port</option>');
+                            $.each(data, function(key, value) {
+                                $('#select-port').append('<option value="'+ value.id +'">'+ value.port +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('#select-port').removeAttr('required');
+                    $('#div-port').hide();
+                }
+        });
+
+    $('#select-country-member').on('change', function() {
+                var countryID = $(this).val();
+                if(countryID != 'other') {
+                    $.ajax({
+                        url: '{{ url("getPort") }}/'+countryID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            $('#div-port-member').show();
+                            $('#select-port-member').attr('required', 'required');
+                            $('#select-port-member').empty();
+                            $('#select-port-member').append('<option value="">Select Port</option>');
+                            $.each(data, function(key, value) {
+                                $('#select-port-member').append('<option value="'+ value.id +'">'+ value.port +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('#select-port-member').removeAttr('required');
+                    $('#div-port-member').hide();
+                }
+        });
 
 </script>
 
