@@ -31,6 +31,7 @@
 
 @section('content')
     <div class="row">
+
       @if(isset($data))
       <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/product/update') }}" enctype="multipart/form-data">
       @else
@@ -41,6 +42,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h4>Product Information</h4>
+                     @include('vendor.backpack.base.inc.alert')
                 </div>
                 
                 <div class="box-body">
@@ -422,12 +424,16 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Reorder Image</h4>
               </div>
+              <form action="{{ url(config('backpack.base.route_prefix').'/product/update_sort') }}" method="POST">
+              @csrf
               <div class="modal-body" style="overflow-y: auto;">
               <div class="row">
               @if(isset($data))
+              <input type="hidden" name="product_id" value="{{$data->id}}">
                 <ul id="sortable" >
                     @foreach($data->product_image as $im)
-                      <li class="ui-state-default grabbable" data-element-id='{{ $im->id }}' data-sort='{{ $im->sort }}'><img width="100%" src="{{ asset($im->image) }}"></li>
+                      <li class="ui-state-default grabbable" data-element-id='{{ $im->id }}' data-sort='{{ $im->sort }}'><img width="100%" src="{{ asset($im->image) }}"><input type="hidden" id="sort-value-{{ $im->id }}" name="sort[{{ $im->id }}]" value="{{ $im->sort }}"></li>
+                      
                     @endforeach
                 </ul>
               @endif
@@ -436,7 +442,9 @@
               <br>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Save</button>
               </div>
+              </form>
             </div>
             <!-- /.modal-content -->
           </div>
@@ -488,24 +496,25 @@ $( "#length, #width, #height" ).keyup(function() {
                 thiselem = $(this);
                 oldsort = thiselem.data('sort');
                 maincontent_id = thiselem.data('element-id');
-                var token = '{{ csrf_token() }}';
-                var product_id = @if(isset($data)) {{ $data->id }} @else null @endif;
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ url(config('backpack.base.route_prefix').'/product/update_sort') }}",
-                    data: '&maincontent_id='+maincontent_id+
-                            '&oldsort='+oldsort+
-                            '&newsort='+sortOrder+
-                            '&product_id='+product_id+
-                            '&_token= '+token,
-                    cache : false,
-                    success: function(msg){
-                    },
-                    error: function(msg){
-                        console.log(msg);
-                    }
-                });
+                // var token = '{{ csrf_token() }}';
+                // var product_id = @if(isset($data)) {{ $data->id }} @else null @endif;
+                // $.ajax({
+                //     type: 'POST',
+                //     url: "{{ url(config('backpack.base.route_prefix').'/product/update_sort') }}",
+                //     data: '&maincontent_id='+maincontent_id+
+                //             '&oldsort='+oldsort+
+                //             '&newsort='+sortOrder+
+                //             '&product_id='+product_id+
+                //             '&_token= '+token,
+                //     cache : false,
+                //     success: function(msg){
+                //     },
+                //     error: function(msg){
+                //         console.log(msg);
+                //     }
+                // });
                 thiselem.data('sort', sortOrder);
+                $('#sort-value-'+maincontent_id).val(sortOrder);
                 
                 sortOrder++;
             });

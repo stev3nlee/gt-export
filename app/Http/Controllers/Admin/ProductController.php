@@ -305,19 +305,33 @@ class ProductController extends Controller
     }
 
     public function update_sort(Request $request){
-        $maincontent_id = $request->input('maincontent_id');
-        $oldsort = $request->input('oldsort');
-        $newsort = $request->input('newsort');
-        $product_id = $request->input('product_id');
 
-        $product = Product::find($product_id);
-        if($product){
-            $getTable = $product->product_image()->where('id',$maincontent_id)->where('sort',$oldsort)->first();
-            $getTable->sort = $newsort;
+        $product = Product::find($request->product_id);
+        foreach($request->sort as $key=>$value){
+            $getTable = $product->product_image()->where('id',$key)->first();
+            $getTable->sort = $value;
             $getTable->save();
         }
+        // if($product){
+        //     $getTable = $product->product_image()->where('id',$maincontent_id)->where('sort',$oldsort)->first();
+        //     $getTable->sort = $newsort;
+        //     $getTable->save();
+        // }
 
-        $status=array('status'=>'1','message'=>'Success');
-        return response()->json($status);
+        // $maincontent_id = $request->input('maincontent_id');
+        // $oldsort = $request->input('oldsort');
+        // $newsort = $request->input('newsort');
+        // $product_id = $request->input('product_id');
+
+        // $product = Product::find($product_id);
+        // if($product){
+        //     $getTable = $product->product_image()->where('id',$maincontent_id)->where('sort',$oldsort)->first();
+        //     $getTable->sort = $newsort;
+        //     $getTable->save();
+        // }
+        $request->session()->flash('update', 'Success');
+        return back();
+        // $status=array('status'=>'1','message'=>'Success');
+        // return response()->json($status);
     }  
 }
