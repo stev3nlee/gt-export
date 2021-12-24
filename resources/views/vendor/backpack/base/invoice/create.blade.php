@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="lname">Port of Destination <span class="required">*</span></label>
-                                    <input name="port_of_destination" type="text" class="form-control" value="{{ isset($data) ? $data->port_of_destination : old('port_of_destination') }}"/>
+                                    <input name="port_of_destination" id="port_of_destination" type="text" class="form-control" value="{{ isset($data) ? $data->port_of_destination : old('port_of_destination') }}"/>
                                     @if($errors->has('port_of_destination')) <span class="help-block">{{ $errors->first('port_of_destination') }}</span>  @endif
                                 </div>
                             </div>
@@ -275,6 +275,7 @@
               $('#contact-no').val(data.phone);
               $('#input_shipping').val(data.shipping_fee);
               $('#email').val(data.email);
+              $('#port_of_destination').val(data.port);
               $('#detail-table').find('tbody').html('');
                 //for (var key in data.product) {
                     addRow(u)

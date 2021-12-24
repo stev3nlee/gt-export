@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Models;
+use App\Models\Brand;
 
 class ModelController extends Controller
 {
@@ -17,11 +18,13 @@ class ModelController extends Controller
     	return view('vendor.backpack.base.model.list', ['data' => $data]);
     }
     function create(){
-    	return view('vendor.backpack.base.model.create');
+    	$brands = Brand::where('status', 1)->get();
+    	return view('vendor.backpack.base.model.create', ['brands' => $brands]);
     }
     function edit($id){
 		$data = Models::find($id);
-    	return view('vendor.backpack.base.model.edit', ['data' => $data]);
+    	$brands = Brand::where('status', 1)->get();
+    	return view('vendor.backpack.base.model.edit', ['data' => $data, 'brands' => $brands]);
     }
     function insert(Request $request){
 			$validatedData = $request->validate([
@@ -37,6 +40,7 @@ class ModelController extends Controller
 
 	        $table = new Models;
 	        $table->name = $request->input('name');
+	        $table->brand_id = $request->input('brand_id');
 	        $table->image = $imageName;
 	        $table->description = $request->input('description');
 	        $table->sort = $sort;
@@ -64,6 +68,7 @@ class ModelController extends Controller
 
 	        $table = Models::find($request->input('id'));
 	        $table->name = $request->input('name');
+	        $table->brand_id = $request->input('brand_id');
 	        $table->image = $imageName;
 	        $table->description = $request->input('description');
 	        $table->save();
@@ -118,5 +123,23 @@ class ModelController extends Controller
         $status=array('status'=>'1','message'=>'Success');
         return response()->json($status);
     }  
+
+    public function getModel($brand)
+    {
+        $data = Models::where('brand_id',$brand)->where('status',1)->get(['id','name','slug']);
+
+        return json_encode($data);
+    }
+
+    public function getModelSlug($slug)
+    {
+    	$data = null;
+    	$brand = Brand::where('slug',$slug)->where('status',1)->first();
+    	if($brand){
+        	$data = Models::where('brand_id',$brand->id)->where('status',1)->get(['id','name','slug']);
+    	}
+
+        return json_encode($data);
+    }
 
 }

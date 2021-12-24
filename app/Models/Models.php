@@ -24,4 +24,9 @@ class Models extends Model
             ->saveSlugsTo('slug');
             //->doNotGenerateSlugsOnUpdate();
     }
+
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand');
+    }
 }

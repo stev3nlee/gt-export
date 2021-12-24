@@ -41,7 +41,9 @@ Route::get('/payment', 'PageController@payment');
 Route::get('/guest', function () {
     return view('auth/guest');
 });
-
+Route::get('brand/getModel/{id}', 'QuoteController@getModel');
+Route::get('brand/getModelSlug/{id}', 'QuoteController@getModelSlug');
+Route::get('getPort/{country}', 'QuoteController@getPort');
 Route::get('/login', 'LoginController@getViewLogin');
 Route::get('/register', 'LoginController@getViewRegister');
 Route::get('/facebook-login', 'LoginController@facebookLogin');
@@ -191,6 +193,7 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('product/delete/{id}', 'Admin\ProductController@delete');
         Route::get('product/status/{id}/{status}', 'Admin\ProductController@status');
         Route::get('product/reserve/{id}/{status}', 'Admin\ProductController@reserve');
+        Route::post('product/update_sort', 'Admin\ProductController@update_sort');
 
         Route::get('blog', 'Admin\BlogController@view')
             ->name('blog_view');
@@ -244,13 +247,13 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('contact/detail/{id}', 'Admin\DashboardController@enquiryDetail');
         Route::get('contact/delete/{id}', 'Admin\DashboardController@enquiryDelete');
 
-        Route::get('shipping_cost', 'Admin\ShippingController@view')
-            ->name('shipping_cost_view');
-        Route::get('shipping_cost/create', 'Admin\ShippingController@create');
-        Route::post('shipping_cost/insert', 'Admin\ShippingController@insert');
-        Route::get('shipping_cost/edit/{id}', 'Admin\ShippingController@edit');
-        Route::post('shipping_cost/update', 'Admin\ShippingController@update');
-        Route::get('shipping_cost/delete/{id}', 'Admin\ShippingController@delete');
+        Route::get('country', 'Admin\ShippingController@view')
+            ->name('country_view');
+        Route::get('country/create', 'Admin\ShippingController@create');
+        Route::post('country/insert', 'Admin\ShippingController@insert');
+        Route::get('country/edit/{id}', 'Admin\ShippingController@edit');
+        Route::post('country/update', 'Admin\ShippingController@update');
+        Route::get('country/delete/{id}', 'Admin\ShippingController@delete');
 
         Route::get('member', 'Admin\MemberController@view')
         ->name('member_view');
@@ -340,6 +343,14 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('payment/delete/{id}', 'Admin\PaymentController@delete');
         Route::get('payment/status/{id}/{status}', 'Admin\PaymentController@status');
         Route::post('payment/update_sort', 'Admin\PaymentController@update_sort');
+
+        Route::get('port', 'Admin\PortController@view')
+            ->name('port_view');
+        Route::get('port/create', 'Admin\PortController@create');
+        Route::post('port/insert', 'Admin\PortController@insert');
+        Route::get('port/edit/{id}', 'Admin\PortController@edit');
+        Route::post('port/update', 'Admin\PortController@update');
+        Route::get('port/delete/{id}', 'Admin\PortController@delete');
     });
 });
         Route::group(['prefix' => 'laravel-filemanager'], function () {

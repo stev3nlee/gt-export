@@ -72,11 +72,14 @@
                         <div style="width: 10px; float: left;"> : </div>
                         <div>{{ $data->country }}</div>
                       </div>
+                      @if($data->port_id)
+                      
                       <div class="form-group clearfix">
                         <div style="width: 200px; float: left;"><label for="exampleInputEmail1">City</label></div>
                         <div style="width: 10px; float: left;"> : </div>
-                        <div>{{ $data->city }}</div>
+                        <div>{{ $data->port }}</div>
                       </div>
+                      @endif
                       <br>
                       
                   </div>

@@ -64,6 +64,7 @@ class HomeController extends BaseController
         $recently_views = Product::where('status',1)->whereNotNull('last_view')->orderby('last_view','desc')->limit(8)->get();
         $new_arrivals = Product::where('status',1)->where('new_arrival_expired_date','>', date('Y-m-d H:i:s'))->orderby('id','desc')->limit(8)->get();
         $discounts = Product::where('status',1)->where('discount_price', '>', 0)->orderby('id','desc')->limit(8)->get();
+        $highest_price = Product::where('status',1)->orderby('price','desc')->first();
 
         $data['banners'] = $banners;
         $data['brands'] = $brands;
@@ -75,6 +76,7 @@ class HomeController extends BaseController
         $data['discounts'] = $discounts;
         $data['transmissions'] = $transmissions;
         $data['brand_id'] = $brand_id;
+        $data['highest_price'] = $highest_price->price;
         return view('/index', $data);  
     }
 }

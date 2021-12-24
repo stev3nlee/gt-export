@@ -12,11 +12,6 @@
                             <div class="pos-rel">
                                 <div class="pagingInfo"></div>
                                 <div class="slider-product">
-                                    <div class="item">
-                                        <a href="{{ asset($product->thumbnail) }}" data-fancybox="fancy-product">
-                                            <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
-                                        </a>
-                                    </div>
                                     @foreach($product->product_image as $image)
                                     <div class="item">
                                         <a href="{{ asset($image->image) }}" data-fancybox="fancy-product">
@@ -27,9 +22,6 @@
                                 </div>
                             </div>
                             <div class="slider-thumb">
-                                <div class="item">
-                                    <img src="{{ asset($product->thumbnail) }}" alt="" title=""/>
-                                </div>
                                 @foreach($product->product_image as $image)
                                 <div class="item">
                                     <img src="{{ asset($image->image) }}" alt="" title=""/>
@@ -86,8 +78,8 @@
                     <div class="l-detail-t2">Year</div>
                 </li>
                 <li>
-                    <div class="l-detail-t1">{{ number_format($product->engine_capacity, 2, ',', '.') }}cc</div>
-                    <div class="l-detail-t2">Engine</div>
+                    <div class="l-detail-t1">{{ number_format($product->engine_capacity, 0, '.', ',') }}cc</div>
+                    <div class="l-detail-t2">Engine Capacity</div>
                 </li>
                 <li>
                     <div class="l-detail-t1">@if(isset($product->transmission[0])) {{ $product->transmission[0]->name }} @endif</div>
@@ -111,16 +103,8 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Model</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->model[0]->name  ?? '-'}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Transmission</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->transmission[0]->name  ?? '-'}}</div>
+                                <div class="col-5 col-xl-4 my-auto left">Mileage</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{ number_format($product->mileage, 0, '.', ',') }} {{ $product->mileage_km }}</div>
                             </div>
                         </div>
                     </div>
@@ -135,40 +119,17 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Engine Code</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->engine_code  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
                                 <div class="col-5 col-xl-4 my-auto left">Model Code</div>
                                 <div class="col-7 col-xl-8 my-auto right">{{$product->model_code  ?? '-'}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Product Type</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->product_type  ?? '-'}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Registration Year/Month</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->registration_year  ?? '-'}}/{{$product->registration_month  ?? '-'}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Manufacture Year/Month</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->manufacture_year  ?? '-'}}/{{$product->manufacture_month  ?? '-'}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text1-col">
-                        <div class="text1-bdr">
-                            <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Engine No</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->engine_no  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
@@ -183,15 +144,15 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Drive Type</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->drive_type  ?? '-'}}</div>
+                                <div class="col-5 col-xl-4 my-auto left">Engine Size</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{ number_format($product->engine_capacity, 0, '.', ',') }}cc</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Color</div>
+                                <div class="col-5 col-xl-4 my-auto left">Ext. Color</div>
                                 <div class="col-7 col-xl-8 my-auto right">{{$product->color  ?? '-'}}</div>
                             </div>
                         </div>
@@ -199,16 +160,24 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Engine Code</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->engine_code  ?? '-'}}</div>
+                                <div class="col-5 col-xl-4 my-auto left">Location</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->location  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Number of Doors</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->number_of_doors  ?? '-'}}</div>
+                                <div class="col-5 col-xl-4 my-auto left">Fuel</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->fuel  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Version/Class</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->product_type  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
@@ -223,8 +192,56 @@
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
-                                <div class="col-5 col-xl-4 my-auto left">Total Seats</div>
-                                <div class="col-7 col-xl-8 my-auto right">{{$product->total_seats  ?? '-'}}</div>
+                                <div class="col-5 col-xl-4 my-auto left">Drive</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->drive_type  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Doors</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->number_of_doors  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Transmission</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->transmission[0]->name  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">M3</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->dimension  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Registration Year/Month</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->registration_year  ?? '-'}}/{{$product->registration_month  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Dimension</div>
+                                <div class="col-7 col-xl-8 my-auto right">@if($product->length && $product->width && $product->height) {{$product->length}} x {{$product->width}} x {{$product->height}} @else - @endif</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Manufacture Year/Month</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->manufacture_year  ?? '-'}}/{{$product->manufacture_month  ?? '-'}}</div>
                             </div>
                         </div>
                     </div>
@@ -236,6 +253,45 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Max Cap</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->total_seats  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Engine No</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->engine_no  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Sub Ref No</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->total_seats  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    
+                    
+                    
+                    <!-- <div class="text1-col">
+                        <div class="text1-bdr">
+                            <div class="row">
+                                <div class="col-5 col-xl-4 my-auto left">Model</div>
+                                <div class="col-7 col-xl-8 my-auto right">{{$product->model[0]->name  ?? '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                     <div class="text1-col">
                         <div class="text1-bdr">
                             <div class="row">
@@ -243,7 +299,7 @@
                                 <div class="col-7 col-xl-8 my-auto right">{{$product->total_weight  ?? '-'}}</div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="bdr"></div>

@@ -10,10 +10,28 @@
         <li class="active">Products</li>
       </ol>
     </section>
+    <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 600px; }
+  #sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
+  .grabbable {
+      cursor: move; /* fallback if grab cursor is unsupported */
+      cursor: grab;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+  }
+
+   /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+  .grabbable:active {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
+  }
+  </style>
 @endsection
 
 @section('content')
     <div class="row">
+
       @if(isset($data))
       <form role="form" method="POST" action="{{ url(config('backpack.base.route_prefix').'/product/update') }}" enctype="multipart/form-data">
       @else
@@ -24,6 +42,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h4>Product Information</h4>
+                     @include('vendor.backpack.base.inc.alert')
                 </div>
                 
                 <div class="box-body">
@@ -37,7 +56,7 @@
                         </div>
                          <div class="form-group">
                               <label for="exampleInputEmail1">Brand <span style="color: red">*</span></label>
-                              <select class="form-control" name="brand[]" required="required" id="brand" data-placeholder="Select Brand" style="width: 100%;">
+                              <select class="form-control" name="brand[]" required="required" id="select-brand" data-placeholder="Select Brand" style="width: 100%;">
                                 <option>Select Brand</option>
                                 @foreach($brands as $brand)
                                   <option value="{{$brand->id}}" @if(isset($data)) @if($data->brand[0]->id == $brand->id) selected @endif @else @if(old('brand') == $brand->id) selected @endif @endif>{{ $brand->name }}</option>
@@ -49,9 +68,11 @@
                               <label for="exampleInputEmail1">Model  <span style="color: red">*</span></label>
                               <select class="form-control" name="model[]" required="required" id="model" data-placeholder="Select Model" style="width: 100%;">
                                 <option>Select Model</option>
+                                @if(isset($data))
                                 @foreach($models as $model)
                                   <option value="{{$model->id}}" @if(isset($data)) @if($data->model[0]->id == $model->id) selected @endif @else @if(old('model') == $model->id) selected @endif @endif>{{ $model->name }}</option>
                                 @endforeach
+                                @endif
                               </select>
                               @if($errors->has('model')) <span class="help-block">{{ $errors->first('model') }}</span>  @endif
                         </div>
@@ -118,8 +139,8 @@
                                     </select>
                                   </div>
                                   <div class="col-md-6">
-                                    <select class="form-control" name="manufacture_month" required="required" id="manufacture_month" data-placeholder="Select Manufacture Month" style="width: 100%;">
-                                      <option>Select Manufacture Month</option>
+                                    <select class="form-control" name="manufacture_month" id="manufacture_month" data-placeholder="Select Manufacture Month" style="width: 100%;">
+                                      <option value="">Select Manufacture Month</option>
                                       <?php for($i=1; $i<=12; $i++){ $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
                                           <option value="{{ $month }}" @if(isset($data)) @if($data->manufacture_month == $month) selected @endif @else @if(old('manufacture_month') == $month) selected @endif @endif>{{ $month }}</option>
                                       <?php } ?>
@@ -146,6 +167,12 @@
                             </div>
 
                             <div class="form-group">
+                              <label for="exampleInputEmail1">Location <span style="color: red">*</span></label>
+                              <input type="text"  name="location" required class="form-control" value="{{ isset($data) ? $data->location : old('location') }}">
+                              @if($errors->has('location')) <span class="help-block">{{ $errors->first('location') }}</span>  @endif
+                            </div>
+
+                            <div class="form-group">
                               <label for="exampleInputEmail1">Engine Capacity (cc) <span style="color: red">*</span></label>
                               <input type="number" step="0.01" name="engine_capacity" required class="form-control" value="{{ isset($data) ? $data->engine_capacity : old('engine_capacity') }}">
                               @if($errors->has('engine_capacity')) <span class="help-block">{{ $errors->first('engine_capacity') }}</span>  @endif
@@ -159,7 +186,7 @@
                             <div class="form-group">
                               <label for="exampleInputEmail1">Fuel <span style="color: red">*</span></label>
                               <select class="form-control" name="fuel" required="required" id="fuel" data-placeholder="Select Fuel" style="width: 100%;">
-                                <?php $fuels = array('CNG','Diesel','Electric','Hybrid (Diesel)','Hybrid (Petrol)','LPG','Other Petro') ?>
+                                <?php $fuels = array('CNG','Diesel','Electric','Hybrid (Diesel)','Hybrid (Petrol)','LPG','Other','Petrol') ?>
                                 <option value="">Select Fuel</option>
                                 @foreach($fuels as $fuel)
                                 <option value="{{ $fuel }}" @if(isset($data)) @if($data->fuel == $fuel) selected @endif @else @if(old('fuel') == $fuel) selected @endif @endif>{{ $fuel }}</option>
@@ -244,6 +271,25 @@
                               @if($errors->has('total_weight')) <span class="help-block">{{ $errors->first('total_weight') }}</span>  @endif
                             </div>
 
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Dimensions</label><br>
+                              <table class="table">
+                                <tr>
+                                  <th>Size (cm)</th>
+                                  <th>Length (cm)</th>
+                                  <th>Width (cm)</th>
+                                  <th>Height (cm)</th>
+                                </tr>
+                                <tr>
+                                  <td style="font-weight: bold;">M3 <span id="dimensions">{{ isset($data) ? $data->dimension : old('dimension') }}</span><input type="hidden" id="dimension_value"  name="dimension" class="form-control" value="{{ isset($data) ? $data->dimension : old('dimension') }}"></td>
+                                  <td><input type="number" id="length" step="0.01" name="length" class="form-control" value="{{ isset($data) ? $data->length : old('length') }}"></td>
+                                  <td><input type="number" id="width" step="0.01" name="width" class="form-control" value="{{ isset($data) ? $data->width : old('width') }}"></td>
+                                  <td><input type="number" id="height" step="0.01" name="height" class="form-control" value="{{ isset($data) ? $data->height : old('height') }}"></td>
+                                </tr>
+                              </table>
+                            </div>
+
                           </div>
                         </div>
 
@@ -299,7 +345,7 @@
                         </div>
                         <div class="box">
                           <div class="box-body">
-                            <label for="exampleInputEmail1">Thumbnail</label>
+                            <!-- <label for="exampleInputEmail1">Thumbnail</label>
                              <div class="input-group">
                                <span class="input-group-btn">
                                  <a id="lfm-thumbnail" data-input="thumbnail_image" data-preview="holder_thumbnail" class="btn btn-primary">
@@ -315,7 +361,7 @@
                                  @endif
                                 @endif
                              </div>
-                             <br>
+                             <br> -->
 
                             <label for="exampleInputEmail1">Image</label>
                              <div class="input-group">
@@ -329,9 +375,9 @@
                              <div id="holder" style="margin-top:15px;max-height:300px;">
                               @if(isset($data))
                                @if(count($data->product_image)>0)
-                                @foreach($data->product_image as $image)
-                                <img style="height: 10rem" src="{{ $image->image }}">
-                                @endforeach
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-image">
+                                  Reorder Image
+                                </button>
                                @endif
                               @endif
                              </div>
@@ -369,10 +415,113 @@
         </div>
       </form>
     </div>
+
+    <div class="modal fade" id="modal-image">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reorder Image</h4>
+              </div>
+              <form action="{{ url(config('backpack.base.route_prefix').'/product/update_sort') }}" method="POST">
+              @csrf
+              <div class="modal-body" style="overflow-y: auto;">
+              <div class="row">
+              @if(isset($data))
+              <input type="hidden" name="product_id" value="{{$data->id}}">
+                <ul id="sortable" >
+                    @foreach($data->product_image as $im)
+                      <li class="ui-state-default grabbable" data-element-id='{{ $im->id }}' data-sort='{{ $im->sort }}'><img width="100%" src="{{ asset($im->image) }}"><input type="hidden" id="sort-value-{{ $im->id }}" name="sort[{{ $im->id }}]" value="{{ $im->sort }}"></li>
+                      
+                    @endforeach
+                </ul>
+              @endif
+              </div>
+              </div>
+              <br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Save</button>
+              </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 @endsection
 @section('after_scripts')
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
  <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
+$( "#length, #width, #height" ).keyup(function() {
+      length = $('#length').val();
+      width = $('#width').val();
+      height = $('#height').val();
+
+      if(length && width && height){
+      dimension = (parseInt(length) * parseInt(width) * parseInt(height)) / 1000000;
+      $('#dimensions').html(dimension.toFixed(3));
+      $('#dimension_value').val(dimension.toFixed(3));
+      }
+});
+
+ $('#select-brand').on('change', function() {
+                var brandID = $(this).val();
+                if(brandID) {
+                    $.ajax({
+                        url: '{{ url("brand/getModel") }}/'+brandID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            $('#model').empty();
+                            $('#model').append('<option value="">Select Model</option>');
+                            $.each(data, function(key, value) {
+                                $('#model').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('#model').empty();
+                }
+        });
+
+ $('#sortable').sortable({
+
+        stop: function( event, ui ) {
+            var sortOrder = 1;
+            
+            $('#sortable > li').each(function(){
+                thiselem = $(this);
+                oldsort = thiselem.data('sort');
+                maincontent_id = thiselem.data('element-id');
+                // var token = '{{ csrf_token() }}';
+                // var product_id = @if(isset($data)) {{ $data->id }} @else null @endif;
+                // $.ajax({
+                //     type: 'POST',
+                //     url: "{{ url(config('backpack.base.route_prefix').'/product/update_sort') }}",
+                //     data: '&maincontent_id='+maincontent_id+
+                //             '&oldsort='+oldsort+
+                //             '&newsort='+sortOrder+
+                //             '&product_id='+product_id+
+                //             '&_token= '+token,
+                //     cache : false,
+                //     success: function(msg){
+                //     },
+                //     error: function(msg){
+                //         console.log(msg);
+                //     }
+                // });
+                thiselem.data('sort', sortOrder);
+                $('#sort-value-'+maincontent_id).val(sortOrder);
+                
+                sortOrder++;
+            });
+            
+        }
+        
+    });
 <?php /* ?>
 var lfm = function(id, type, options) {
   let button = document.getElementById(id);

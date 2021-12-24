@@ -15,6 +15,7 @@ use App\Models\Transmission;
 use App\Models\Member;
 use App\Models\Reservation_time;
 use App\Models\Shipping_cost;
+use App\Models\Port;
 use View;
 use App\Helper\HelperFunction;
 use App\Jobs\SendEmail;
@@ -44,11 +45,15 @@ class QuoteController extends BaseController
             $ip_address = request()->ip();
             $position = Location::get($ip_address);
             $country = $position->countryCode;
+            $country_detail = null;
+            $port_name = null;
 
-            if($country){
-                $shipping_detail = Shipping_cost::where('country_code',$country)->first();
+            if($request->port && $request->country != 'other'){
+                $country_detail = Shipping_cost::where('id',$request->country)->first();
+                $shipping_detail = Port::where('id',$request->port)->first();
                 if($shipping_detail){
                     $shipping_cost = $shipping_detail->shipping_cost;
+                    $port_name = $shipping_detail->port;
                 }
             }
 
@@ -76,11 +81,18 @@ class QuoteController extends BaseController
                 $quote->price = $product->price;       
             }
             $quote->ip_address = $ip_address;
-            $quote->country = $position->countryName;
-            $quote->country_code = $position->countryCode;
-            $quote->region = $position->regionName;
-            $quote->city = $position->cityName;
+            if($request->port){
+                $quote->country = $country_detail->country;
+                $quote->country_code = $country_detail->country_code;
+            }else{
+                $quote->country = 'other';
+                $quote->country_code = 'other';
+            }
+            //$quote->region = $position->regionName;
+            //$quote->city = $position->cityName;
             $quote->shipping_fee = $shipping_cost;
+            $quote->port = $port_name;
+            $quote->port_id = $request->port;
             $quote->payload = json_encode($position);
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
@@ -117,15 +129,28 @@ class QuoteController extends BaseController
 
     public function submitQuoteGuest(Request $request){
         return DB::transaction(function () use($request) {
+            // $validatedData = $request->validate([
+            //     'email' => 'required|email',
+            //     'g-recaptcha-response' => 'required|recaptcha'
+            // ],
+            // [
+            //     'g-recaptcha-response.required' => 'Recaptcha is required!',
+            //     'g-recaptcha-response.recaptcha' => 'Please ensure that you are a human!'
+            // ]);
+
             $shipping_cost = 0;
             $ip_address = request()->ip();
             $position = Location::get($ip_address);
             $country = $position->countryCode;
+            $country_detail = null;
+            $port_name = null;
 
-            if($country){
-                $shipping_detail = Shipping_cost::where('country_code',$country)->first();
+            if($request->port && $request->country != 'other'){
+                $country_detail = Shipping_cost::where('id',$request->country)->first();
+                $shipping_detail = Port::where('id',$request->port)->first();
                 if($shipping_detail){
                     $shipping_cost = $shipping_detail->shipping_cost;
+                    $port_name = $shipping_detail->port;
                 }
             }
             $reservation_time = Reservation_time::first();
@@ -149,11 +174,18 @@ class QuoteController extends BaseController
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->dob = date('Y-m-d', strtotime($request->dob_guest));
             $quote->ip_address = $ip_address;
-            $quote->country = $position->countryName;
-            $quote->country_code = $position->countryCode;
-            $quote->region = $position->regionName;
-            $quote->city = $position->cityName;
+            if($request->port){
+                $quote->country = $country_detail->country;
+                $quote->country_code = $country_detail->country_code;
+            }else{
+                $quote->country = 'other';
+                $quote->country_code = 'other';
+            }
+            //$quote->region = $position->regionName;
+            //$quote->city = $position->cityName;
             $quote->shipping_fee = $shipping_cost;
+            $quote->port = $port_name;
+            $quote->port_id = $request->port;
             $quote->payload = json_encode($position);
             $quote->expired_date = date('Y-m-d H:i:s', strtotime($reservation_time->hours.' hour'));
             $quote->save();
@@ -171,6 +203,7 @@ class QuoteController extends BaseController
             );
 
             $data_member = array(
+                'name' => $quote->first_name.' '.$quote->last_name,
                 'quotation' => $quote,
                 'status'=>'confirmation',
                 'email'=> $quote->email,
@@ -187,6 +220,35 @@ class QuoteController extends BaseController
             return back();
         });
 
+    }
+
+    public function getModel($brand)
+    {
+        $data = Models::where('brand_id',$brand)->where('status',1)->get(['id','name','slug']);
+
+        return json_encode($data);
+    }
+
+    public function getModelSlug($slug)
+    {
+        $data = null;
+        $brand = Brand::where('slug',$slug)->where('status',1)->first();
+        if($brand){
+            $data = Models::where('brand_id',$brand->id)->where('status',1)->get(['id','name','slug']);
+        }
+
+        return json_encode($data);
+    }
+
+    public function getPort($id)
+    {
+        $data = null;
+        $country = Shipping_cost::where('id',$id)->where('status',1)->first();
+        if($country){
+            $data = Port::where('country_id',$country->id)->where('status',1)->get(['id','port']);
+        }
+
+        return json_encode($data);
     }
 
 }

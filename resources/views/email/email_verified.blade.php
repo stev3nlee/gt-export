@@ -12,7 +12,7 @@
 			</a>
 		</div>
 		<div style="margin-bottom: 20px;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
-			<p>Dear {{ $email }},</p>
+			<p>Dear {{ $name }},</p>
 		</div>
 		<div style="margin-bottom: 10px;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">
 			<p>Thank you for creating an account with us.</p>
@@ -27,6 +27,7 @@
 		<div>
 			<p style="margin-bottom: 10px;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica, Arial, sans-serif; font-weight: 300; font-size: 14px; color: #333333; line-height: 22px; text-align: center; mso-margin-top-alt:1px; word-break:break-word;">If you have any questions, you may visit our <a href="{{ $url }}/faq">FAQ page</a>, or contact us at <a href="mailto:cs.gtexport@gmail.com">cs.gtexport@gmail.com</a>.
 			</p>
+			<p><a href="tel:+6596178716"><img width="5%" src="{{ asset('images/whatsapp-icon.png') }}"></a></p>
 		</div>
 	</div>
 </body>

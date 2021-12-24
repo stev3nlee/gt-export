@@ -30,12 +30,12 @@ class ShippingController extends Controller
 			$imageName = "";
 
 	        $table = new Shipping_cost;
-	        $table->shipping_cost = $request->input('shipping_cost');
+	        $table->shipping_cost = 0;
             $table->country = $request->input('country');
 	        $table->country_code = $request->input('country_code');
 	        $table->save();
 			$request->session()->flash('insert', 'Success');
-			return redirect()->route('shipping_cost_view');
+			return redirect()->route('country_view');
 		}
     function update(Request $request){
 			$validatedData = $request->validate([
@@ -43,20 +43,20 @@ class ShippingController extends Controller
 			]);
 
 	        $table = Shipping_cost::find($request->input('id'));
-	        $table->shipping_cost = $request->input('shipping_cost');
+	        $table->shipping_cost = 0;
             $table->country_code = $request->input('country_code');
 	        $table->country = $request->input('country');
 	        $table->save();
 
 	    	$request->session()->flash('update', 'Success');
-			return redirect()->route('shipping_cost_view');
+			return redirect()->route('country_view');
 		}
 	function delete($id, Request $request){
     	$table = Shipping_cost::find($id);
     	$table->delete();
 
     	$request->session()->flash('delete', 'Success');
-		return redirect()->route('shipping_cost_view');
+		return redirect()->route('country_view');
     }
 
     public function status($id,$status){
@@ -64,7 +64,7 @@ class ShippingController extends Controller
         $table->status = $status;
         $table->Save();
 
-        return redirect()->route('shipping_cost_view');
+        return redirect()->route('country_view');
     }
 
      public function update_sort(Request $request){

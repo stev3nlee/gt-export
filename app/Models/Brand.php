@@ -29,4 +29,9 @@ class Brand extends Model
     {
         return $this->belongsToMany('App\Models\Product', 'product_brand', 'brand_id', 'product_id')->where('status',1);
     }
+
+    public function models()
+    {
+        return $this->hasMany('App\Models\Models')->where('status',1);
+    }
 }

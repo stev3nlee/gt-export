@@ -37,11 +37,12 @@ class ProductController extends BaseController
 
     public function product(Request $request){
         $brands = Brand::where('status',1)->orderby('sort','asc')->get();
-        $models = Models::where('status',1)->orderby('sort','asc')->get();
         $transmissions = Transmission::where('status',1)->orderby('sort','asc')->get();
-        $range_min = 30000;
-        $range_max = 100000;
-
+        $highest_price = Product::where('status',1)->orderby('price','desc')->first();
+        $range_min = 0;
+        $range_max = $highest_price->price;
+        $models = array();
+// dd($request->range_max);
         if($request->range_min){
             $range_min = $request->range_min;
         }
@@ -51,6 +52,10 @@ class ProductController extends BaseController
         $products = Product::where('status',1);
 
         if($request->brand){
+            $brand = Brand::where('slug',$request->brand)->where('status',1)->first();
+            if($brand){
+                $models = Models::where('brand_id',$brand->id)->where('status',1)->orderby('sort','asc')->get();
+            }
             $products = $products->whereHas('brand', function($q) use($request) {
                 $q->where('brand.slug', '=', $request->brand); 
             });
@@ -70,6 +75,10 @@ class ProductController extends BaseController
             $products = $products->where('name', 'like', '%'.$request->search.'%');
         }
 
+        if($request->car_type){
+            $products = $products->where('product_type', $request->car_type);
+        }
+
         if($request->range_max && $request->range_min){
             $products = $products->whereBetween('price', [$range_min, $range_max]);
         }
@@ -85,7 +94,7 @@ class ProductController extends BaseController
 
         $products = $products->orderby('id','desc')->paginate(12)->withQueryString();
        // dd($products);
-
+// dd($range_max);
         $data['brands'] = $brands;
         $data['models'] = $models;
         $data['products'] = $products;
@@ -97,6 +106,8 @@ class ProductController extends BaseController
         $data['range_min'] = $range_min;
         $data['range_max'] = $range_max;
         $data['search'] = $request->search;
+        $data['car_type'] = $request->car_type;
+        $data['highest_price'] = $highest_price->price;
         return view('/product/product-listing', $data);  
     }
 
