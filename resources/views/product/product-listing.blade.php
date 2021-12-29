@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="model">Select Model:</label>
                             <div class="css-select">
-                                <select name="model" class="form-control" id="model" required="">
+                                <select name="model" class="form-control" id="model">
                                     <option selected="" disabled="">All Models</option>
                                     @foreach($models as $model)
                                         <option value="{{ $model->slug }}" @if($model_select == $model->slug) selected @endif>{{ $model->name }}</option>

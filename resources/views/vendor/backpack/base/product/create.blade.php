@@ -27,6 +27,7 @@
       cursor: -webkit-grabbing;
   }
   </style>
+  <link href="{{ asset('css/colorbox.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -362,7 +363,7 @@
                                 @endif
                              </div>
                              <br> -->
-
+                             <?php /* ?>
                             <label for="exampleInputEmail1">Image</label>
                              <div class="input-group">
                                <span class="input-group-btn">
@@ -371,6 +372,27 @@
                                  </a>
                                </span>
                                <input id="thumbnail" class="form-control" type="text" name="image">
+                             </div>
+                             <div id="holder" style="margin-top:15px;max-height:300px;">
+                              @if(isset($data))
+                               @if(count($data->product_image)>0)
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-image">
+                                  Reorder Image
+                                </button>
+                               @endif
+                              @endif
+                             </div>
+                             <br>
+                             <?php */ ?>
+
+                             <label for="exampleInputEmail1">Image</label>
+                             <div class="input-group">
+                               <span class="input-group-btn">
+                                 <a href="" data-inputid="image" class="btn btn-primary popup_selector">
+                                   <i class="fa fa-picture-o"></i> Choose
+                                 </a>
+                               </span>
+                               <input id="image" class="form-control " type="text" name="image">
                              </div>
                              <div id="holder" style="margin-top:15px;max-height:300px;">
                               @if(isset($data))
@@ -452,6 +474,8 @@
         </div>
 @endsection
 @section('after_scripts')
+<script type="text/javascript" src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('packages/barryvdh/elfinder/js/standalonepopup.min.js') }}"></script>
 <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
  <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>

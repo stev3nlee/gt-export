@@ -17,6 +17,7 @@ use App\Models\Member;
 use App\Models\Member_verification;
 use App\Models\Member_forgot_password;
 use App\Models\Newsletter;
+use App\Models\Product;
 use App\Jobs\SendEmail;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
@@ -125,7 +126,18 @@ class LoginController extends BaseController
                         'id' => $member->id,
                     ]
                 );
-                return redirect('/personal-info');
+
+                if (session()->has('product_slug_login')){
+                    $product = Product::where('slug',session()->get('product_slug_login'))->where('status',1)->first();
+                    if($product){
+                        \Session::flash('product_login', 'Show Quote');
+
+                        return redirect('product-listing-detail/'.$product->slug);
+                    }
+                }else{
+                    return redirect('/personal-info');
+                }
+
             
             } catch (\Exception $e) {
                 //dd($e);
@@ -484,6 +496,17 @@ class LoginController extends BaseController
         }
 
                 
+    }
+
+    public function proceedLogin(Request $request){
+        if($request->product_login){
+            session(
+                    [
+                        'product_slug_login' => $request->product_login,
+                    ]
+            );
+        }
+        return redirect('login');
     }
 
 }

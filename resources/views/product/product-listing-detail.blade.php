@@ -380,6 +380,12 @@
             loop: false,
             idleTime: false,
         });
+
+        @if(Session::has('product_login'))
+        jQuery(function(){
+           jQuery('.click-submit-quote').click();
+        });
+        @endif
     });
 </script>
 @endsection
