@@ -291,6 +291,22 @@
                               </table>
                             </div>
 
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Features</label>
+                              <div class="row">
+                                <table class="table table-bordered">
+                                  @foreach($accessories as $acc)
+                                  <tr>
+                                    @foreach($acc as $abc)
+                                    <td><input type="checkbox" name="accessories[]" value="{{ $abc['id'] }}" @if(isset($data)) @foreach($data->accessories as $access) @if($access->id == $abc['id']) checked @endif @endforeach @else @endif> {{ $abc['name'] }}</td>
+                                    @endforeach
+                                  </tr>
+                                  @endforeach
+                                </table>
+                               
+                              </div>
+                            </div>
+
                           </div>
                         </div>
 
@@ -406,21 +422,7 @@
                              <br>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Features</label>
-                          <div class="row">
-                            <table class="table table-bordered">
-                              @foreach($accessories as $acc)
-                              <tr>
-                                @foreach($acc as $abc)
-                                <td><input type="checkbox" name="accessories[]" value="{{ $abc['id'] }}" @if(isset($data)) @foreach($data->accessories as $access) @if($access->id == $abc['id']) checked @endif @endforeach @else @endif> {{ $abc['name'] }}</td>
-                                @endforeach
-                              </tr>
-                              @endforeach
-                            </table>
-                           
-                          </div>
-                        </div>
+                        
                         @if(isset($data))
                         <input type="hidden" name="id" value="{{ $data->id }}">
                         @endif

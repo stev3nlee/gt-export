@@ -496,7 +496,7 @@
         <div class="pad-wa">
             <div class="t1">The team typically replies in a few minutes.</div>
             <div class="link-wa">
-                <a href="https://wa.me/123456789" target="_blank" rel="noreferrer noopener"> 
+                <a href="https://wa.me/6596754433" target="_blank" rel="noreferrer noopener"> 
                     <ul class="l-bdy">
                         <li><i class="fab fa-whatsapp"></i></li>
                         <li class="text">GT EXPORT</li>

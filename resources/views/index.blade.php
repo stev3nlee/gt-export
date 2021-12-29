@@ -175,7 +175,7 @@
                                                 <div class="col-6">
                                                     <div class="year">{{ $product->registration_year }}</div>
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
-                                                    <div class="merk">{{ $product->model_code }}</div>
+                                                    <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                                                     <div class="merk">{{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-6 text-right">
@@ -254,7 +254,7 @@
                                                 <div class="col-6">
                                                     <div class="year">{{ $product->registration_year }}</div>
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
-                                                    <div class="merk">{{ $product->model_code }}</div>
+                                                    <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                                                     <div class="merk">{{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-6 text-right">
@@ -333,7 +333,7 @@
                                                 <div class="col-6">
                                                     <div class="year">{{ $product->registration_year }}</div>
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
-                                                    <div class="merk">{{ $product->model_code }}</div>
+                                                    <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                                                     <div class="merk">{{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-6 text-right">
@@ -428,7 +428,7 @@
                                                 <div class="col-md-6">
                                                     <div class="year">{{ $product->registration_year }}</div>
                                                     <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
-                                                    <div class="merk">{{ $product->model_code }}</div>
+                                                    <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                                                     <div class="merk">{{ $product->product_type }}</div>
                                                 </div>
                                                 <div class="col-md-6 text-right">
