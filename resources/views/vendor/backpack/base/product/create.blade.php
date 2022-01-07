@@ -333,7 +333,7 @@
                               <label for="exampleInputEmail1">Discount Price</label>
                               <div class="input-group">
                                 <span class="input-group-addon">USD</span>
-                                <input type="number" min=0 step=".01" name="discount_price" required class="form-control" id="discount_price" value="{{ isset($data) ? $data->discount_price : old('discount_price') }}">
+                                <input type="number" min=0 step=".01" name="discount_price" class="form-control" id="discount_price" value="{{ isset($data) ? $data->discount_price : old('discount_price') }}">
                                 @if($errors->has('discount_price')) <span class="help-block">{{ $errors->first('discount_price') }}</span>  @endif
                               </div>
                             </div>
