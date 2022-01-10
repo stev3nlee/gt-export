@@ -177,7 +177,7 @@
                                             <div class="merk">@if(isset($product->model[0])) {{ $product->model_code }} @endif</div>
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
-                                            @if($product->discount_price != 0)
+                                            @if($product->discount_percent > 0)
                                             <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
                                             <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
@@ -251,7 +251,7 @@
                                             <div class="merk">@if(isset($product->model[0])) {{ $product->model_code }} @endif</div>
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
-                                            @if($product->discount_price != 0)
+                                            @if($product->discount_percent != 0)
                                             <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
                                             <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
@@ -325,7 +325,7 @@
                                             <div class="merk">{{ $product->product_type }}</div>
                                             <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                                             @if($product->price && $product->reserve == 0)
-                                            @if($product->discount_price != 0)
+                                            @if($product->discount_percent != 0)
                                             <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
                                             <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
@@ -414,7 +414,7 @@
                                             <div class="merk">@if(isset($product->model[0])) {{ $product->model_code }} @endif</div>
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
-                                            @if($product->discount_price != 0)
+                                            @if($product->discount_percent != 0)
                                             <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
                                             <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>

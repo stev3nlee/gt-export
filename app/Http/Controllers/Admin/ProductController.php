@@ -187,7 +187,7 @@ class ProductController extends Controller
         $transmission = (null !== $request->input('transmission')) ? $request->input('transmission') : [];
         $accessories = (null !== $request->input('accessories')) ? $request->input('accessories') : [];
         $discount_price = (null !== $request->input('discount_price')) ? $request->input('discount_price') : 0;
-
+        $percent = 0;
         $imageName = "";
         $image_array = explode(',', $request->image);
 
