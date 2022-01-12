@@ -21,12 +21,24 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="slider-thumb">
-                                @foreach($product->product_image as $image)
-                                <div class="item">
-                                    <img src="{{ asset($image->image) }}" alt="" title=""/>
-                                </div>
-                                @endforeach
+                            <div class="video-product">
+                                <iframe src="https://www.youtube.com/embed/fIMyGAs7bRc?controls=1&amp;mute=0&amp;enablejsapi=1&amp;rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div>
+                                <ul class="clearfix slider-thumb">
+                                    <?php $i = 1; ?>
+                                    @foreach($product->product_image as $image)
+                                    <li class="item" data-slick="{{$i}}">
+                                        <img src="{{ asset($image->image) }}" alt="" title=""/>
+                                    </li>
+                                    <?php $i++; ?>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="click-show">Show thumbnails</div>
+                            <div class="click-hide">Hide thumbnails</div>
+                            <div class="link-upload">
+                                <a href="#"><i class="fas fa-upload"></i> Download all images</a>
                             </div>
                         </div>
                     </div>
@@ -41,7 +53,8 @@
                                 <div class="buy-disc">Discount Price</div>
                                 <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }} <span class="save-price"> You save {{ $product->discount_percent }}% </span> </div>
                             @else
-                                <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                <!-- <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div> -->
                             @endif
                         @endif
                         @if($product->reserve == 0)
@@ -367,7 +380,50 @@
             arrows: false,
             centerMode: false,
             focusOnSelect: true,
-            infinite: false
+            infinite: false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4,
+                    }
+                }
+            ]
+        });
+
+        $('.click-show').click(function() {
+            $('.slider-thumb').slick('unslick');
+            $(this).hide();
+            $('.click-hide').show();
+
+            $('.slider-thumb .item').click(function() {
+                var getSlick = $(this).attr('data-slick');
+                $('.slider-product').slick('slickGoTo', getSlick-1);
+            });
+        });
+
+
+        $('.click-hide').click(function() {
+            $('.slider-thumb').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                asNavFor: '.slider-product',
+                dots: false,
+                arrows: false,
+                centerMode: false,
+                focusOnSelect: true,
+                infinite: false,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 4,
+                        }
+                    }
+                ]
+            });
+            $(this).hide();
+            $('.click-show').show();
         });
 
         $('.nav-product').addClass('active');

@@ -206,6 +206,29 @@
 	                }
 	            }
 	    	}
+	    	.slider-thumb {
+	            margin-left: -5px;
+	            margin-right: -5px;
+	            li {
+	                margin-bottom: 10px;
+	                padding-left: 5px;
+	                padding-right: 5px;
+	            }
+	        }
+	    	.click-show, .click-hide {
+	    		font-size: 14px;
+	    	}
+	    	.link-upload {
+	    		margin-top: 5px;
+	    		a {
+	    			font-size: 14px;
+	    		}
+	    	}
+	    	.video-product {
+	            iframe {
+	                height: 270px;
+	            }
+	        }
 	        .pr40 {
 	            padding-right: 0;
 	        }

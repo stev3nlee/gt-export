@@ -17265,6 +17265,28 @@ footer .cp {
 #main .css-detail .slider-product .item a img {
   width: 100%;
 }
+#main .css-detail .video-product {
+  margin: 20px 0;
+}
+#main .css-detail .video-product iframe {
+  width: 100%;
+  height: 320px;
+}
+#main .css-detail .slider-thumb {
+  display: block;
+  margin: 0;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 0;
+}
+#main .css-detail .slider-thumb li {
+  float: left;
+  width: 20%;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  list-style: none;
+}
 #main .css-detail .slider-thumb .slick-current {
   opacity: 0.5;
 }
@@ -17277,6 +17299,34 @@ footer .cp {
 }
 #main .css-detail .slider-thumb .item img {
   width: 100%;
+}
+#main .css-detail .link-upload {
+  margin-top: 10px;
+  text-align: right;
+}
+#main .css-detail .link-upload a {
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #212121;
+}
+#main .css-detail .link-upload a i {
+  font-size: 13px;
+  margin-right: 3px;
+}
+#main .css-detail .link-upload a:hover {
+  opacity: 0.7;
+}
+#main .css-detail .click-show, #main .css-detail .click-hide {
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#main .css-detail .click-show:hover, #main .css-detail .click-hide:hover {
+  opacity: 0.7;
+}
+#main .css-detail .click-hide {
+  display: none;
 }
 #main .css-detail .mb70 {
   margin-bottom: 70px;
@@ -19219,6 +19269,27 @@ input[type=file] {
   #main .css-detail .slider-product .slick-next:before {
     font-size: 25px;
   }
+  #main .css-detail .slider-thumb {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  #main .css-detail .slider-thumb li {
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #main .css-detail .click-show, #main .css-detail .click-hide {
+    font-size: 14px;
+  }
+  #main .css-detail .link-upload {
+    margin-top: 5px;
+  }
+  #main .css-detail .link-upload a {
+    font-size: 14px;
+  }
+  #main .css-detail .video-product iframe {
+    height: 270px;
+  }
   #main .css-detail .pr40 {
     padding-right: 0;
   }
@@ -20068,6 +20139,9 @@ input[type=file] {
     line-height: 13px;
     padding: 3px 8px;
   }
+  #main .css-detail .slider-thumb li {
+    width: 25%;
+  }
   #main .css-detail .slider-product .slick-prev {
     left: 10px;
   }
@@ -20080,8 +20154,23 @@ input[type=file] {
   #main .css-detail .slider-product .slick-next:before {
     font-size: 20px;
   }
-  #main .css-detail .slider-thumb {
+  #main .css-detail .link-upload {
     margin-bottom: 30px;
+  }
+  #main .css-detail .link-upload a {
+    font-size: 12px;
+  }
+  #main .css-detail .link-upload a i {
+    font-size: 10px;
+  }
+  #main .css-detail .video-product {
+    margin: 10px 0;
+  }
+  #main .css-detail .video-product iframe {
+    height: 200px;
+  }
+  #main .css-detail .click-show, #main .css-detail .click-hide {
+    font-size: 12px;
   }
   #main .css-detail .mb70 {
     margin-bottom: 40px;

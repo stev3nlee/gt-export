@@ -306,6 +306,11 @@
 	            line-height: 13px;
 	            padding: 3px 8px;
 	        }
+	        .slider-thumb {
+	            li {
+	            	width: 25%;
+	            }
+	        }
 	    	.slider-product {
 	    		.slick-prev {
 	                left: 10px;
@@ -320,9 +325,24 @@
 	                }
 	            }
 	    	}
-	        .slider-thumb {
-	        	margin-bottom: 30px;
-	        }
+	    	.link-upload {
+	    		margin-bottom: 30px;
+	    		a {
+	    			font-size: 12px;
+	    			i {
+	    				font-size: 10px;
+	    			}
+	    		}
+	    	}
+	    	.video-product {
+	    		margin: 10px 0;
+	    		iframe {
+	    			height: 200px;
+	    		}
+	    	}
+	        .click-show, .click-hide {
+	    		font-size: 12px;
+	    	}
 	        .mb70 {
 	            margin-bottom: 40px;
 	        }
