@@ -260,11 +260,15 @@
                         <li class="dont-have-account"><a>I do not have an account</a></li>
                         <li class="click-register"><a>Continue as a guest</a></li>
                     </ul>
+                    <form action="{{ URL::to('/proceedLogin') }}" method="POST">
+                    @csrf
                     <div class="btn-pop" id="button-login">
-                        <a href="{{ URL::to('/login') }}">
-                            <button class="hvr-button" type="button">Proceed to Login</button>
-                        </a>
+                         <input type="hidden" name="product_login" id="product-quote-login">
+
+                            <button class="hvr-button" type="submit">Proceed to Login</button>
+
                     </div>
+                    </form>
                     <div class="btn-pop" id="button-register" style="display: none;">
                         <a href="{{ URL::to('/register') }}">
                             <button class="hvr-button" type="button">Proceed to Register</button>
@@ -492,7 +496,7 @@
         <div class="pad-wa">
             <div class="t1">The team typically replies in a few minutes.</div>
             <div class="link-wa">
-                <a href="https://wa.me/123456789" target="_blank" rel="noreferrer noopener"> 
+                <a href="https://wa.me/6596178716" target="_blank" rel="noreferrer noopener"> 
                     <ul class="l-bdy">
                         <li><i class="fab fa-whatsapp"></i></li>
                         <li class="text">GT EXPORT</li>
@@ -609,6 +613,7 @@
             $('body').addClass('scroll');
             $('.modal').addClass('scroll');
             $('#product-quote-guest').val(product_quote);
+            $('#product-quote-login').val(product_quote);
         });
 
         $('.close-pop').click(function(event) {

@@ -27,6 +27,7 @@
       cursor: -webkit-grabbing;
   }
   </style>
+  <link href="{{ asset('css/colorbox.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -290,6 +291,22 @@
                               </table>
                             </div>
 
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Features</label>
+                              <div class="row">
+                                <table class="table table-bordered">
+                                  @foreach($accessories as $acc)
+                                  <tr>
+                                    @foreach($acc as $abc)
+                                    <td><input type="checkbox" name="accessories[]" value="{{ $abc['id'] }}" @if(isset($data)) @foreach($data->accessories as $access) @if($access->id == $abc['id']) checked @endif @endforeach @else @endif> {{ $abc['name'] }}</td>
+                                    @endforeach
+                                  </tr>
+                                  @endforeach
+                                </table>
+                               
+                              </div>
+                            </div>
+
                           </div>
                         </div>
 
@@ -316,7 +333,7 @@
                               <label for="exampleInputEmail1">Discount Price</label>
                               <div class="input-group">
                                 <span class="input-group-addon">USD</span>
-                                <input type="number" min=0 step=".01" name="discount_price" required class="form-control" id="discount_price" value="{{ isset($data) ? $data->discount_price : old('discount_price') }}">
+                                <input type="number" min=0 step=".01" name="discount_price" class="form-control" id="discount_price" value="{{ isset($data) ? $data->discount_price : old('discount_price') }}">
                                 @if($errors->has('discount_price')) <span class="help-block">{{ $errors->first('discount_price') }}</span>  @endif
                               </div>
                             </div>
@@ -362,7 +379,7 @@
                                 @endif
                              </div>
                              <br> -->
-
+                             <?php /* ?>
                             <label for="exampleInputEmail1">Image</label>
                              <div class="input-group">
                                <span class="input-group-btn">
@@ -382,23 +399,30 @@
                               @endif
                              </div>
                              <br>
+                             <?php */ ?>
+
+                             <label for="exampleInputEmail1">Image</label>
+                             <div class="input-group">
+                               <span class="input-group-btn">
+                                 <a href="" data-inputid="image" class="btn btn-primary popup_selector">
+                                   <i class="fa fa-picture-o"></i> Choose
+                                 </a>
+                               </span>
+                               <input id="image" class="form-control " type="text" name="image">
+                             </div>
+                             <div id="holder" style="margin-top:15px;max-height:300px;">
+                              @if(isset($data))
+                               @if(count($data->product_image)>0)
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-image">
+                                  Reorder Image
+                                </button>
+                               @endif
+                              @endif
+                             </div>
+                             <br>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Features</label>
-                          <div class="row">
-                            <table class="table table-bordered">
-                              @foreach($accessories as $acc)
-                              <tr>
-                                @foreach($acc as $abc)
-                                <td><input type="checkbox" name="accessories[]" value="{{ $abc['id'] }}" @if(isset($data)) @foreach($data->accessories as $access) @if($access->id == $abc['id']) checked @endif @endforeach @else @endif> {{ $abc['name'] }}</td>
-                                @endforeach
-                              </tr>
-                              @endforeach
-                            </table>
-                           
-                          </div>
-                        </div>
+                        
                         @if(isset($data))
                         <input type="hidden" name="id" value="{{ $data->id }}">
                         @endif
@@ -452,6 +476,8 @@
         </div>
 @endsection
 @section('after_scripts')
+<script type="text/javascript" src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('packages/barryvdh/elfinder/js/standalonepopup.min.js') }}"></script>
 <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
  <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>

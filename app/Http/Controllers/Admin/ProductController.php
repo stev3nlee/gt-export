@@ -84,7 +84,9 @@ class ProductController extends Controller
             $brand = (null !== $request->input('brand')) ? $request->input('brand') : [];
             $model = (null !== $request->input('model')) ? $request->input('model') : [];
             $transmission = (null !== $request->input('transmission')) ? $request->input('transmission') : [];
+            $brand = (null !== $request->input('brand')) ? $request->input('brand') : [];
             $accessories = (null !== $request->input('accessories')) ? $request->input('accessories') : [];
+            $discount_price = (null !== $request->input('discount_price')) ? $request->input('discount_price') : 0;
 
             $imageName = "";
             $image_array = explode(',', $request->image);
@@ -92,9 +94,9 @@ class ProductController extends Controller
             $product->name = $request->input('name');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
-            $product->discount_price = $request->input('discount_price');
-            if($request->input('discount_price') > 0){
-                $discount = $request->input('price') - $request->input('discount_price');
+            $product->discount_price = $discount_price;
+            if($discount_price > 0){
+                $discount = $request->input('price') - $discount_price;
                 $percent = ($discount/$request->input('price')) * 100;
             }
             $product->discount_percent = $percent;
@@ -184,7 +186,8 @@ class ProductController extends Controller
         $model = (null !== $request->input('model')) ? $request->input('model') : [];
         $transmission = (null !== $request->input('transmission')) ? $request->input('transmission') : [];
         $accessories = (null !== $request->input('accessories')) ? $request->input('accessories') : [];
-
+        $discount_price = (null !== $request->input('discount_price')) ? $request->input('discount_price') : 0;
+        $percent = 0;
         $imageName = "";
         $image_array = explode(',', $request->image);
 
@@ -192,9 +195,9 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
-        $product->discount_price = $request->input('discount_price');
-        if($request->input('discount_price') > 0){
-            $discount = $request->input('price') - $request->input('discount_price');
+        $product->discount_price = $discount_price;
+        if($discount_price > 0){
+            $discount = $request->input('price') - $discount_price;
             $percent = ($discount/$request->input('price')) * 100;
         }
         $product->discount_percent = $percent;

@@ -81,7 +81,7 @@ class QuoteController extends BaseController
                 $quote->price = $product->price;       
             }
             $quote->ip_address = $ip_address;
-            if($request->port){
+            if($request->port  && $request->country != 'other'){
                 $quote->country = $country_detail->country;
                 $quote->country_code = $country_detail->country_code;
             }else{
@@ -174,7 +174,7 @@ class QuoteController extends BaseController
             $quote->product_name = $product->brand[0]->name.' '.$product->model[0]->name.' '.$product->registeration_year.' '.$product->chassis_no;
             $quote->dob = date('Y-m-d', strtotime($request->dob_guest));
             $quote->ip_address = $ip_address;
-            if($request->port){
+            if($request->port  && $request->country != 'other'){
                 $quote->country = $country_detail->country;
                 $quote->country_code = $country_detail->country_code;
             }else{

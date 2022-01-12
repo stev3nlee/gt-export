@@ -66,6 +66,7 @@ Route::post('/submit-quote-guest', 'QuoteController@submitQuoteGuest');
 Route::get('/invoice', function () {
     return view('invoice');
 });
+Route::post('/proceedLogin', 'LoginController@proceedLogin');
 /* MEMBER AREA */
 Route::group(['middleware' => ['membersession']], function () {
     Route::get('/personal-info', 'MemberController@index');
@@ -359,5 +360,6 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::group(['prefix' => 'filemanager'], function () {
             \UniSharp\LaravelFilemanager\Lfm::routes();
         });
+        //Barryvdh\Elfinder\ElfinderController@showPopup
 
 

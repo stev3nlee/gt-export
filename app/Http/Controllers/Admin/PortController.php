@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Port;
-use App\Models\shipping_cost;
+use App\Models\Shipping_cost;
 
 class PortController extends Controller
 {
@@ -18,12 +18,12 @@ class PortController extends Controller
     	return view('vendor.backpack.base.port.list', ['data' => $data]);
     }
     function create(){
-        $countries = shipping_cost::get();
+        $countries = Shipping_cost::get();
     	return view('vendor.backpack.base.port.create', ['countries' => $countries]);
     }
     function edit($id){
 		$data = Port::find($id);
-        $countries = shipping_cost::get();
+        $countries = Shipping_cost::get();
     	return view('vendor.backpack.base.port.edit', ['data' => $data, 'countries' => $countries]);
     }
     function insert(Request $request){

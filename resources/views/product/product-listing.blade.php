@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="model">Select Model:</label>
                             <div class="css-select">
-                                <select name="model" class="form-control" id="model" required="">
+                                <select name="model" class="form-control" id="model">
                                     <option selected="" disabled="">All Models</option>
                                     @foreach($models as $model)
                                         <option value="{{ $model->slug }}" @if($model_select == $model->slug) selected @endif>{{ $model->name }}</option>
@@ -135,27 +135,21 @@
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="year">{{ $product->registration_year }}</div>
-                                                    <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> 
-                                                    <div class="merk">{{ $product->model_code }}</div>
-                                                    <div class="merk">{{ $product->product_type }}</div>
-                                                </div>
-                                                <div class="col-md-6 text-right">
-                                                    @if($product->price && $product->reserve == 0)
-                                                    @if($product->discount_price != 0)
-                                                    <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
-                                                    <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
-                                                    <div class="save-disc">You save {{ $product->discount_percent }}%</div>
-                                                    @else
-                                                    <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
-                                                    @endif
-                                                    
-                                                    @endif
-                                                    <!--<div class="stock">Stock # {{ $product->stock }}</div>-->
-                                                </div>
-                                            </div>
+                                            <div class="year">{{ $product->registration_year }}</div>
+                                            <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> 
+                                            <div class="merk">@if(isset($product->model[0])) {{ $product->model_code }} @endif</div>
+                                            <div class="merk">{{ $product->product_type }}</div>
+                                            @if($product->price && $product->reserve == 0)
+                                            @if($product->discount_percent != 0)
+                                            <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
+                                            <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
+                                            <div class="save-disc">You save {{ $product->discount_percent }}%</div>
+                                            @else
+                                            <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
+                                            @endif
+                                            
+                                            @endif
+                                            <!--<div class="stock">Stock # {{ $product->stock }}</div>-->
                                         </div>
                                     </a>
                                 </div>
