@@ -345,6 +345,7 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('payment/status/{id}/{status}', 'Admin\PaymentController@status');
         Route::post('payment/update_sort', 'Admin\PaymentController@update_sort');
 
+
         Route::get('port', 'Admin\PortController@view')
             ->name('port_view');
         Route::get('port/create', 'Admin\PortController@create');
@@ -352,6 +353,9 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('port/edit/{id}', 'Admin\PortController@edit');
         Route::post('port/update', 'Admin\PortController@update');
         Route::get('port/delete/{id}', 'Admin\PortController@delete');
+
+        Route::get('datatable', 'Admin\DatatableController@view');
+        Route::get('datatable/getData', 'Admin\DatatableController@getData');
     });
 });
         Route::group(['prefix' => 'laravel-filemanager'], function () {
