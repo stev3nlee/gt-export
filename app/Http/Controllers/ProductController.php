@@ -23,6 +23,9 @@ use Status;
 use Mail;
 use DB;
 use App;
+use ZipArchive;
+use File;
+use Storage;
 
 class ProductController extends BaseController
 {
@@ -71,10 +74,6 @@ class ProductController extends BaseController
             });
         }
 
-        if($request->search){
-            $products = $products->where('name', 'like', '%'.$request->search.'%');
-        }
-
         if($request->car_type){
             $products = $products->where('product_type', $request->car_type);
         }
@@ -90,6 +89,16 @@ class ProductController extends BaseController
                 $products = $products->where('new_arrival_expired_date','>', date('Y-m-d H:i:s'));
             }
 
+        }
+
+
+        if($request->search){
+            $products = $products->where(function($query) use ($request){
+                            $query->orWhere('model_code', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhere('description', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhere('registration_year', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhere('registration_month', 'LIKE', '%'.$request->search.'%');
+                        });
         }
 
         $products = $products->orderby('id','desc')->paginate(12)->withQueryString();
@@ -124,5 +133,58 @@ class ProductController extends BaseController
         $data['product'] = $product;
         $data['accessories'] = Accessories::get();
         return view('/product/product-listing-detail', $data);  
+    }
+
+    public function downloadImage($slug){
+        $product = Product::where('slug',$slug)->where('status',1)->first();
+        if(!$product){
+            return redirect('product');
+        }
+        $zip      = new ZipArchive;
+        $fileName = 'attachment.zip';
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE) {
+            //$files = File::files(public_path('upload'));
+            // dd(Storage::allFiles('public'));
+            // dd($files);
+            foreach ($product->product_image as $value) {
+                //dd($value->image);
+                $url = parse_url($value->image, PHP_URL_PATH);
+                dd($url);
+
+            $relativeName = basename($value->image);
+            $path = public_path('storage/files/shares/' . $relativeName);
+                if (!File::exists($path)) {
+            abort(404);
+        }
+        $file = File::get($path);
+            //dd(File::name($path));
+            $a = storage_path('files/shares/'.$relativeName);
+            // dd($a);
+                $zip->addFile($path, $relativeName);
+                //dd($zip);
+            //     $a = Storage::disk('public')->get($relativeName);
+            // //$image_fiel =
+            // dd($a); 
+                //$files = File::files(public_path($relativeName));
+           // dd($files);
+            //$zip->addFile($value, $relativeName);
+            }
+            $zip->close();
+        }
+        return response()->download(public_path($fileName));
+
+//         $files = array('readme.txt', 'test.html', 'image.gif');
+//         $zipname = 'file.zip';
+//         $zip = new ZipArchive;
+//         $zip->open($zipname, ZipArchive::CREATE);
+//         foreach ($files as $file) {
+//           $zip->addFile($file);
+//         }
+//         $zip->close(); 
+//         dd($zip);
+//         header('Content-Type: application/zip');
+// header('Content-disposition: attachment; filename='.$zipname);
+// header('Content-Length: ' . filesize($zipname));
+// readfile($zipname);
     }
 }

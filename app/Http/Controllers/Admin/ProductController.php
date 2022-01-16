@@ -9,7 +9,9 @@ use App\Models\Models;
 use App\Models\Brand;
 use App\Models\Transmission;
 use App\Models\Accessories;
+use App\Exports\ProductExport;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use DB;
 use Image;
 
@@ -17,27 +19,159 @@ class ProductController extends Controller
 {
     public function view(Request $request)
     {
-        $data = Product::
-        when($request->keyword, function ($query) use ($request) {
-            $query->where([
-                    ['chassis_no', 'like', "%{$request->keyword}%"]
-                ]);
-        })
-        ->when($request->brand, function ($query) use ($request) {
-            $query->whereHas('brand', function($q) use($request) {
-                    $q->where('brand.id', '=', $request->brand); });
-        })->when($request->model, function ($query) use ($request) {
-            $query->whereHas('model', function($q) use($request) {
-                    $q->where('model.id', '=', $request->model); });
-        })->when($request->transmission, function ($query) use ($request) {
-            $query->whereHas('transmission', function($q) use($request) {
-                    $q->where('transmission.id', '=', $request->transmission); });
-        })->orderby('id','desc')->paginate(10)->withQueryString();
+        // $data = Product::
+        // when($request->keyword, function ($query) use ($request) {
+        //     $query->where([
+        //             ['chassis_no', 'like', "%{$request->keyword}%"]
+        //         ]);
+        // })
+        // ->when($request->brand, function ($query) use ($request) {
+        //     $query->whereHas('brand', function($q) use($request) {
+        //             $q->where('brand.id', '=', $request->brand); });
+        // })->when($request->model, function ($query) use ($request) {
+        //     $query->whereHas('model', function($q) use($request) {
+        //             $q->where('model.id', '=', $request->model); });
+        // })->when($request->transmission, function ($query) use ($request) {
+        //     $query->whereHas('transmission', function($q) use($request) {
+        //             $q->where('transmission.id', '=', $request->transmission); });
+        // })->orderby('id','desc')->paginate(10)->withQueryString();
         $models = Models::where('status',1)->get();
         $brands = Brand::where('status',1)->get();
         $transmissions = Transmission::where('status',1)->get();
-        return view('vendor.backpack.base.product.list', ['data' => $data, 'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
+        //return view('vendor.backpack.base.product.list', ['data' => $data, 'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
+        return view('vendor.backpack.base.product.list', ['models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
     }
+
+    function getData(Request $request){
+        if ($request->ajax()) {
+            if($request->type == 'active'){
+                $data = Product::where('status', 1);
+            }else if($request->type == 'inactive'){
+                $data = Product::where('status', 0);
+            }else if($request->type == 'reserved'){
+                $data = Product::where('reserve', 1);
+            }else if($request->type == 'non_reserved'){
+                $data = Product::where('reserve', 0);
+            }else if($request->type == 'sold'){
+                $data = Product::where('reserve', '>', 1);
+            }
+            $data->when($request->brand, function ($query) use ($request) {
+                    $query->whereHas('brand', function($q) use($request) {
+                            $q->where('brand.id', '=', $request->brand); });
+                })->when($request->model, function ($query) use ($request) {
+                    $query->whereHas('model', function($q) use($request) {
+                            $q->where('model.id', '=', $request->model); });
+                })->when($request->transmission, function ($query) use ($request) {
+                    $query->whereHas('transmission', function($q) use($request) {
+                            $q->where('transmission.id', '=', $request->transmission); });
+                })->orderby('id','desc')->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                // ->addColumn('action', function($row){
+                //     $actionBtn = '<a href="'.url(config('backpack.base.route_prefix', 'admin').'/product/edit/'.$row->id).'"><i class="fa fa-pencil fa-fw"></i></a>
+                //         <a onclick="return confirm("Are you sure ?");" href="'.url(config('backpack.base.route_prefix', 'admin').'/product/delete/'.$row->id).'"><i class="fa fa-trash fa-fw"></i></a>';
+                //     return $actionBtn;
+                // })
+                ->addColumn('model', function($row){
+                    $model_name = '';
+                    if($row->model){ 
+                        $model_name = $row->model[0]->name; 
+                    }
+                    return $model_name;
+                })
+                ->addColumn('brand', function($row){
+                    $brand_name = '';
+                    if($row->brand){ 
+                        $brand_name = $row->brand[0]->name; 
+                    }
+                    return $brand_name;
+                })
+                ->addColumn('image', function($row){
+                    $image = '';
+                    if(isset($row->product_image[0])){ 
+                        $image = '<img src="'.$row->product_image[0]->image.'" width="100%" />'; 
+                    }
+                    return $image;
+                })
+                ->addColumn('reserve', function($row){
+                    if($row->reserve == 0){ 
+                        $reserve = '<a href="'.url(config('backpack.base.route_prefix', 'admin').'/product/reserve/'.$row->id.'/1').'"><span class="badge bg-yellow">Not Reserve</span></a>'; 
+                    }else if($row->reserve == 1){
+                        $reserve = '<a href="'.url(config('backpack.base.route_prefix', 'admin').'/product/reserve/'.$row->id.'/0').'"><span class="badge bg-blue">Reserved</span></a>'; 
+                    }else{
+                        $reserve = '<span class="badge bg-green">Paid</span>';
+                    }
+                    return $reserve;
+                })
+                ->addColumn('status', function($row){
+                    if($row->status == 0){ 
+                        $status = '<a href="'.url(config('backpack.base.route_prefix', 'admin').'/product/status/'.$row->id.'/1').'"><span class="badge bg-red">Inactive</span></a>'; 
+                    }else{
+                        $status = '<a href="'.url(config('backpack.base.route_prefix', 'admin').'/product/status/'.$row->id.'/0').'"><span class="badge bg-green">Active</span></a>'; 
+                    }
+                    return $status;
+                })
+                ->editColumn('created_at', function($row){ 
+                    $formatedDate = date('d/m/Y H:i:s', strtotime($row->created_at)); 
+                    return $formatedDate; 
+                })
+                ->editColumn('price', function($row){ 
+                    $price = '-';
+                    if($row->price){
+                        $price = '$ '.number_format($row->price, 2, '.', ','); 
+                    }
+                    return $price; 
+                })
+                ->editColumn('discount_price', function($row){ 
+                    $discount_price = '-';
+                    if($row->discount_price){
+                        $discount_price = '$ '.number_format($row->discount_price, 2, '.', ',');  
+                    }
+                    return $discount_price; 
+                })
+                ->editColumn('mileage', function($row){ 
+                    $mileage = '';
+                    if($row->mileage){
+                        $mileage = $row->mileage.' '.$row->mileage_km; 
+                    }
+                    return $mileage; 
+                })
+                ->addColumn('brand_model', function($row){ 
+                    $model_name = '';
+                    if($row->model){ 
+                        $model_name = $row->model[0]->name; 
+                    }
+                    $brand_name = '';
+                    if($row->brand){ 
+                        $brand_name = $row->brand[0]->name; 
+                    }
+                    $model_code = '';
+                    if($row->model_code){ 
+                        $model_code = $row->model_code; 
+                    }
+                    return $brand_name.'/'.$model_name.'/'.$model_code; 
+                })
+                ->addColumn('actions', '&nbsp;')
+                ->editColumn('actions', function ($row) {
+                    $viewGate      = 'product_show';
+                    $editGate      = 'product_edit';
+                    $deleteGate    = 'product_delete';
+                    $crudRoutePart = 'banners';
+
+                    return view('vendor.backpack.base.inc.datatablesActions', compact(
+                        'viewGate',
+                        'editGate',
+                        'deleteGate',
+                        'crudRoutePart',
+                        'row'
+                    ));
+                })
+                ->rawColumns(['action','image','reserve','status','actions'])
+                ->make(true);
+        }
+    }
+
     public function create()
     {
         $models = Models::where('status',1)->get();
@@ -123,6 +257,7 @@ class ProductController extends Controller
             $product->weight = $request->input('weight');
             $product->total_weight = $request->input('total_weight');
             $product->remarks = $request->input('remarks');
+            $product->youtube = $request->input('youtube');
             //$product->thumbnail = $request->input('thumbnail');
             $product->dimension = $request->input('dimension');
             $product->length = $request->input('length');
@@ -228,6 +363,7 @@ class ProductController extends Controller
         $product->length = $request->input('length');
         $product->width = $request->input('width');
         $product->height = $request->input('height');
+        $product->youtube = $request->input('youtube');
         // if($request->thumbnail){
         // $product->thumbnail = $request->input('thumbnail');
         // }        
@@ -288,7 +424,7 @@ class ProductController extends Controller
         $table->delete();
 
         $request->session()->flash('delete', 'Success');
-        return redirect()->route('product_view');
+        return back();
     }
 
     public function status($id,$status){
@@ -337,4 +473,19 @@ class ProductController extends Controller
         // $status=array('status'=>'1','message'=>'Success');
         // return response()->json($status);
     }  
+
+    function export(Request $request)
+    {
+        $product_export = new ProductExport();
+        $file_name = 'Online list Customers';
+        // if ($request->input('start_date') && $request->input('end_date')) {
+        //     $member_export->setDuration($request->input('start_date'), $request->input('end_date'));
+
+        //     $start_date = new \DateTime($request->input('start_date'), new \DateTimeZone('Singapore'));
+        //     $end_date = new \DateTime($request->input('end_date'), new \DateTimeZone('Singapore'));
+        //     $file_name = $file_name . ' from ' . $start_date->format('Y F d') . ' to ' . $end_date->format('Y F d');
+        // }
+
+        return Excel::download($product_export, $file_name . '.xlsx');
+    }
 }

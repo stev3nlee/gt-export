@@ -358,6 +358,10 @@
                               <label for="exampleInputEmail1">New Arrival Days </label>
                               <input type="number" name="new_arrival_days" class="form-control" @if(!isset($data)) required @endif  value="{{ isset($data) ? $data->new_arrival_days : old('new_arrival_days') }}">
                             </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Youtube Link </label>
+                              <input type="text" name="youtube" class="form-control" value="{{ isset($data) ? $data->youtube : old('youtube') }}">
+                            </div>
                           </div>
                         </div>
                         <div class="box">
