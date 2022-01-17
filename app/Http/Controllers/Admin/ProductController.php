@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use DB;
 use Image;
+use Excel;
 
 class ProductController extends Controller
 {
@@ -477,7 +478,7 @@ class ProductController extends Controller
     function export(Request $request)
     {
         $product_export = new ProductExport();
-        $file_name = 'Online list Customers';
+        $file_name = 'Product List';
         // if ($request->input('start_date') && $request->input('end_date')) {
         //     $member_export->setDuration($request->input('start_date'), $request->input('end_date'));
 

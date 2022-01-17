@@ -141,50 +141,20 @@ class ProductController extends BaseController
             return redirect('product');
         }
         $zip      = new ZipArchive;
-        $fileName = 'attachment.zip';
+        $fileName = $product->brand[0]->name.'-'.$product->model[0]->name.'-'.$product->model_code.'.zip';
         if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE) {
-            //$files = File::files(public_path('upload'));
-            // dd(Storage::allFiles('public'));
-            // dd($files);
             foreach ($product->product_image as $value) {
-                //dd($value->image);
                 $url = parse_url($value->image, PHP_URL_PATH);
-                dd($url);
 
-            $relativeName = basename($value->image);
-            $path = public_path('storage/files/shares/' . $relativeName);
+                $relativeName = basename($value->image);
+                $path = public_path($url);
                 if (!File::exists($path)) {
-            abort(404);
-        }
-        $file = File::get($path);
-            //dd(File::name($path));
-            $a = storage_path('files/shares/'.$relativeName);
-            // dd($a);
+                    return back();
+                }
                 $zip->addFile($path, $relativeName);
-                //dd($zip);
-            //     $a = Storage::disk('public')->get($relativeName);
-            // //$image_fiel =
-            // dd($a); 
-                //$files = File::files(public_path($relativeName));
-           // dd($files);
-            //$zip->addFile($value, $relativeName);
             }
             $zip->close();
         }
-        return response()->download(public_path($fileName));
-
-//         $files = array('readme.txt', 'test.html', 'image.gif');
-//         $zipname = 'file.zip';
-//         $zip = new ZipArchive;
-//         $zip->open($zipname, ZipArchive::CREATE);
-//         foreach ($files as $file) {
-//           $zip->addFile($file);
-//         }
-//         $zip->close(); 
-//         dd($zip);
-//         header('Content-Type: application/zip');
-// header('Content-disposition: attachment; filename='.$zipname);
-// header('Content-Length: ' . filesize($zipname));
-// readfile($zipname);
+        return response()->download(public_path($fileName))->deleteFileAfterSend(true);
     }
 }

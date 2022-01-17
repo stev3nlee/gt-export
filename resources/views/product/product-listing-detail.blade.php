@@ -21,9 +21,11 @@
                                     @endforeach
                                 </div>
                             </div>
+                            @if($product->youtube)
                             <div class="video-product">
-                                <iframe src="https://www.youtube.com/embed/fIMyGAs7bRc?controls=1&amp;mute=0&amp;enablejsapi=1&amp;rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe src="{{ $product->youtube }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
+                            @endif
                             <div>
                                 <ul class="clearfix slider-thumb">
                                     <?php $i = 1; ?>
@@ -38,7 +40,7 @@
                             <div class="click-show">Show thumbnails</div>
                             <div class="click-hide">Hide thumbnails</div>
                             <div class="link-upload">
-                                <a href="#"><i class="fas fa-upload"></i> Download all images</a>
+                                <a href="{{ url('product/product-listing/download'.$product->slug) }}"><i class="fas fa-upload"></i> Download all images</a>
                             </div>
                         </div>
                     </div>

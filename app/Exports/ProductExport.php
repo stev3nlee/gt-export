@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ProductExport implements FromArray
+class ProductExport implements FromArray, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -106,7 +107,7 @@ class ProductExport implements FromArray
 
             $accessories = '';
             foreach ($current_product->accessories as $acc) {
-                $accessories .= $acc->name.', ';=
+                $accessories .= $acc->name.', ';
             }
 
             $mileage_km = '';
@@ -133,22 +134,37 @@ class ProductExport implements FromArray
                 $reserve = 'Paid';
             }
 
+            $manufacture_year = '-'; $manufacture_month = '-';
+            if($current_product->manufacture_year){
+                $manufacture_year = $current_product->manufacture_year;
+            }
+            if($current_product->manufacture_month){
+                $manufacture_month = $current_product->manufacture_month;
+            }
+            $registration_year = '-'; $registration_month = '-';
+            if($current_product->registration_year){
+                $registration_year = $current_product->registration_year;
+            }
+            if($current_product->registration_month){
+                $registration_month = $current_product->registration_month;
+            }
+
 			array_push($data, [
-                'BF Ref No.' => $current_product->dob,
+                'BF Ref No.' => $current_product->id,
                 'Product ID' => $current_product->id,
-                'Chassis No' => $current_product->dob,
+                'Chassis No' => $current_product->chassis_no,
                 'Maker' => $current_product->brand[0]->name,
                 'Model' => $current_product->model[0]->name,
                 'Model Code' => $current_product->model_code,
-                //'Grade' => $current_product->dob,
+                'Grade' => '',
                 'Product Type' => $current_product->product_type,
-                //'Product Sub Type' => $current_product->dob,
-                'Registration Year' => $current_product->registration_year.'/'.$current_product->registration_month,
-                'Manufacture Year' => $current_product->manufacture_year ? $current_product->manufacture_year : '-' .'/'.$current_product->manufacture_month ? $current_product->manufacture_month : '-',
+                'Product Sub Type' => '',
+                'Registration Year' => $registration_year.'/'.$registration_month,
+                'Manufacture Year' => $manufacture_year.'/'.$manufacture_month,
                 'Currency' => 'USD',
                 'Trade Price' => $current_product->price,
-                //'Commission Deducted Price' => $current_product->price,
-                //'FOB Price' => $current_product->price,
+                'Commission Deducted Price' => '',
+                'FOB Price' => '',
                 'Mileage(km)' => $mileage_km,
                 'Mileage(mile)' => $mileage_miles,
                 'Engine Capacity(cc)' => $current_product->engine_capacity,
@@ -168,9 +184,9 @@ class ProductExport implements FromArray
                 'width' => $current_product->width,
                 'height' => $current_product->height,
                 'm3' => $current_product->dimension,
-                'Remarks (car conditions)' => $current_product->remarks,
+                'Remarks (car conditions)' => strip_tags($current_product->remarks),
                 'Video Link' => $current_product->youtube,
-                'Accessary' =>  => substr($accessories, 0, -2),
+                'Accessary' => substr($accessories, 0, -2),
                 'Product Group' => 'GT Export Pte Ltd',
                 'User Company' => 'GT Export Pte Ltd',
                 'User Name' => 'ONG JUN YONG DARREN',
@@ -193,11 +209,11 @@ class ProductExport implements FromArray
                 'Receipt Status' => '',
                 'Receipt Date' => '',
                 'BF Publish Start Date' => date('d/m/Y', strtotime($current_product->created_at)),
-                'PV Total',
-                'PV Weekly',
+                'PV Total' => '',
+                'PV Weekly' => '',
                 'Created' => date('d/m/Y H:i:s', strtotime($current_product->created_at)),
                 'Last Updated' => date('d/m/Y H:i:s', strtotime($current_product->updated_at)),
-                'Vendor Memo',
+                'Vendor Memo' => '',
                 'Original Trade Price' => $current_product->price,
                 'Latest PI issued by' => '',
 			]);

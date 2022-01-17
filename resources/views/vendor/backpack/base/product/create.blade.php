@@ -103,7 +103,7 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                     <select class="form-control" name="registration_year" required="required" id="registration_year" data-placeholder="Select Registration Year" style="width: 100%;">
-                                      <option>Select Registration Year</option>   
+                                      <option value="">Select Registration Year</option>   
                                       {{ $last= date('Y')-20 }}
                                       {{ $now = date('Y') }}
 
@@ -115,7 +115,7 @@
                                   </div>
                                   <div class="col-md-6">
                                     <select class="form-control" name="registration_month" required="required" id="registration_month" data-placeholder="Select Registration Month" style="width: 100%;">
-                                      <option>Select Registration Month</option>
+                                      <option value="">Select Registration Month</option>
                                       <?php for($i=1; $i<=12; $i++){ $month = date('F', mktime(0, 0, 0, $i, 10)); ?>
                                           <option value="{{ $month }}"  @if(isset($data)) @if($data->registration_month == $month) selected @endif @else @if(old('registration_month') == $month) selected @endif @endif>{{ $month }}</option>
                                       <?php } ?>
@@ -130,7 +130,7 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                     <select class="form-control" name="manufacture_year" required="required" id="manufacture_year" data-placeholder="Select Manufacture Year" style="width: 100%;">
-                                      <option>Select Manufacture Year</option>     
+                                      <option value="">Select Manufacture Year</option>     
                                       {{ $last= date('Y')-20 }}
                                       {{ $now = date('Y') }}
 
