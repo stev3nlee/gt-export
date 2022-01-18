@@ -68,7 +68,7 @@ return array(
                 array(
                 'driver' => 'LocalFileSystem',
                 'path' =>  '../public/storage/files/',
-                'URL' => url('/storage/files/')
+                'URL' => 'https://beta.gtexport.sg/'
                 )
                 ),
 
@@ -82,7 +82,34 @@ return array(
     |
     */
 
-    'options' => array(),
+    'options' => array('debug' => true,
+        'bind' => array(
+                'upload.presave' => array(
+                    'Plugin.Watermark.onUpLoadPreSave'
+                )
+            ),
+            // global configure (optional)
+            'plugin' => array(
+                'Watermark' => array(
+                    'enable'         => true,       // For control by volume driver
+                    'source'         => 'images/logo.png', // Path to Water mark image
+                     'position' => 'RM',       // Position L(eft)/C(enter)/R(ight) and T(op)/M(edium)/B(ottom)
+                    //'marginX' => 5,          // Margin horizontal pixel
+                    //'marginY' => 5,          // Margin vertical pixel
+                    'marginRight'    => 5,          // Margin right pixel
+                    'marginBottom'   => 5,          // Margin bottom pixel
+                    //'position'       => 'CB',       // Position L(eft)/C(enter)/R(ight) and T(op)/M(edium)/B(ottom)
+                    'quality'        => 95,         // JPEG image save quality
+                    'transparency'   => 70,         // Water mark image transparency ( other than PNG )
+                    'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
+                    'targetMinPixel' => 200,        // Target image minimum pixel size
+                    'interlace'      => IMG_GIF|IMG_JPG, // Set interlacebit image formats ( bit-field )
+                    'offDropWith'    => null        // To disable it if it is dropped with pressing the meta key
+                                                    // Alt: 8, Ctrl: 4, Meta: 2, Shift: 1 - sum of each value
+                                                    // In case of using any key, specify it as an array
+                )
+            ),
+    ),
     
     /*
     |--------------------------------------------------------------------------

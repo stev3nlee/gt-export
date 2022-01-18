@@ -129,8 +129,20 @@ class ProductController extends BaseController
         $product->last_view = date('Y-m-d H:i:s');
         $product->increment('total_view', 1);
         $product->save();
+
+        $related_products = array();
+        if($product->model){
+            $model = $product->model[0]->id;
+            $product_type = $product->product_type;
+
+            $related_products = Product::where('status',1)->where('product_type',$product_type)->where('id', '!=', $product->id)->whereHas('model', function($q) use($model) {
+                    $q->where('model.id', '=', $model); 
+                });
+            $related_products = $related_products->orderby('registration_year','desc')->limit(10)->get();
+        }
         
         $data['product'] = $product;
+        $data['related_products'] = $related_products;
         $data['accessories'] = Accessories::get();
         return view('/product/product-listing-detail', $data);  
     }
