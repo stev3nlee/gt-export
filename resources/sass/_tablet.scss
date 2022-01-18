@@ -252,6 +252,11 @@
 	            font-size: 22px;
 	            line-height: 28px;
 	        }
+	        .price-wo-disc {
+	            margin: 10px 0 30px;
+	            font-size: 22px;
+	            line-height: 28px;
+	        }
 	        .box-desc {
 	            padding: 15px 0;
 	            margin-top: 30px;
@@ -271,7 +276,7 @@
 	            font-size: 22px;
 	            line-height: 30px;
 	            padding-bottom: 15px;
-	            margin-bottom: 30px;
+	            margin-bottom: 20px;
 	        }
 	        .t2 {
 	            font-size: 17px;
@@ -287,26 +292,45 @@
 	        ul.l-detail {
 	            margin: 0 0 30px;
 	            li {
-	                padding-right: 20px;
-	                margin-right: 20px;
+	                // padding-right: 20px;
+	                // margin-right: 20px;
 	                .l-detail-t1 {
-	                    font-size: 23px;
-	                    margin-bottom: 15px;
-	                    line-height: 30px;
+	                    font-size: 8px;
+	                    // margin-bottom: 15px;
+	                    // line-height: 30px;
 	                }
 	                .l-detail-t2 {
-	                    font-size: 14px;
-	                    line-height: 19px;
+	                    font-size: 9px;
+	                    line-height: 14px;
 	                }
 	            }
+	        }
+	        .text1 {
+	        	.text1-row {
+	        		margin-bottom: 40px;
+	        		.text1-col {
+	        			.text1-bdr {
+	        				.left {
+	        					line-height: 14px;
+	        					font-size: 8px;
+	        				}
+	        				.right {
+	        					line-height: 14px;
+	        					font-size: 9px;
+	        				}
+	        			}
+	        		}
+	        	}
 	        }
 	        .text2 {
 	            .text2-row {
 	                .text2-col {
+	                	flex: 0 0 25%;
+					    max-width: 25%;
 	                    .text2-bdr {
-	                        padding: 10px;
-	                        font-size: 14px;
-	                        line-height: 19px;
+	                        padding: 7px;
+	                        font-size: 12px;
+	                        line-height: 15px;
 	                    }
 	                }
 	            }

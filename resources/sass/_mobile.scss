@@ -312,6 +312,7 @@
 	            }
 	        }
 	    	.slider-product {
+	    		margin-bottom: 15px;
 	    		.slick-prev {
 	                left: 10px;
 	                &:before {
@@ -335,7 +336,7 @@
 	    		}
 	    	}
 	    	.video-product {
-	    		margin: 10px 0;
+	    		margin-bottom: 10px;
 	    		iframe {
 	    			height: 200px;
 	    		}
@@ -359,6 +360,11 @@
 	            margin: 5px 0 10px;
 	            font-size: 18px;
 	            line-height: 24px;
+	        }
+	        .price-wo-disc {
+	        	margin: 5px 0 10px;
+	            font-size: 18px;
+	            line-height: 24px;	
 	        }
 			.price-disc {
 	            margin: 5px 0 10px;
@@ -396,15 +402,15 @@
 	            li {
 	                padding-right: 15px;
 	                margin-right: 15px;
-	                .l-detail-t1 {
-	                    font-size: 17px;
-	                    margin-bottom: 10px;
-	                    line-height: 25px;
-	                }
-	                .l-detail-t2 {
-	                    font-size: 13px;
-	                    line-height: 17px;
-	                }
+	                // .l-detail-t1 {
+	                //     font-size: 17px;
+	                //     margin-bottom: 10px;
+	                //     line-height: 25px;
+	                // }
+	                // .l-detail-t2 {
+	                //     font-size: 13px;
+	                //     line-height: 17px;
+	                // }
 	            }
 	        }
 	        .text1 {
@@ -417,9 +423,11 @@
 	                        font-size: 12px;
 	                        line-height: 15px;
 	                        .left {
+	                        	font-size: 12px;
 	                            padding: 10px;
 	                        }
 	                        .right {
+	                        	font-size: 12px;
 	                            padding: 10px;
 	                        }
 	                    }

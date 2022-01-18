@@ -145,7 +145,7 @@
                     <div class="col-md-12 col-lg-12"  id="car-list">
                         <div class="row row-15">
                             @foreach($recently_views as $product)
-                            <div class="col-6 col-md-4 col-lg-2">
+                            <div class="col-6 col-md-4 col-lg-2 mb15">
                                 <div class="item">
                                     <div class="pos-rel">                                        
                                         <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
@@ -219,7 +219,7 @@
                     <div class="col-md-12 col-lg-12"  id="car-list">
                         <div class="row row-15">
                             @foreach($new_arrivals as $product)
-                            <div class="col-6 col-md-4 col-lg-2">
+                            <div class="col-6 col-md-4 col-lg-2 mb15">
                                 <div class="item">
                                     <div class="pos-rel">                                        
                                         <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
@@ -293,9 +293,9 @@
                     <div class="col-md-12 col-lg-12"  id="car-list">
                         <div class="row row-15">
                             @foreach($discounts as $product)
-                            <div class="col-6 col-md-4 col-lg-2">
+                            <div class="col-6 col-md-4 col-lg-2 mb15">
                                 <div class="item">
-                                    <div class="pos-rel">                                        
+                                    <div class="pos-rel">                                    
                                         <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
                                         @if($product->reserve == 1)
                                             <div class="abs">Reserved</div>

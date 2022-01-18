@@ -17228,7 +17228,7 @@ footer .cp {
 }
 #main .css-detail .slider-product {
   line-height: 0;
-  margin-bottom: 0;
+  margin-bottom: 25px;
 }
 #main .css-detail .slider-product .slick-prev {
   left: 20px;
@@ -17266,7 +17266,7 @@ footer .cp {
   width: 100%;
 }
 #main .css-detail .video-product {
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 #main .css-detail .video-product iframe {
   width: 100%;
@@ -17332,6 +17332,7 @@ footer .cp {
   margin-bottom: 70px;
 }
 #main .css-detail .merk {
+  margin-bottom: 5px;
   text-transform: uppercase;
   font-size: 15px;
   line-height: 20px;
@@ -17368,10 +17369,14 @@ footer .cp {
   color: blue;
   font-size: 12px;
 }
+#main .css-detail .price-wo-disc {
+  margin: 10px 0 20px;
+  font-size: 24px;
+  line-height: 30px;
+}
 #main .css-detail .box-desc {
   border-top: 1px solid #ECECEC;
-  border-bottom: 1px solid #ECECEC;
-  padding: 20px 0;
+  padding: 20px 0 0;
   margin-top: 40px;
 }
 #main .css-detail .t-desc {
@@ -17390,8 +17395,6 @@ footer .cp {
   font-size: 28px;
   line-height: 35px;
   font-family: "Quicksand-Bold";
-  border-bottom: 1px solid #ECECEC;
-  padding-bottom: 20px;
   margin-bottom: 40px;
 }
 #main .css-detail .t2 {
@@ -17417,8 +17420,8 @@ footer .cp {
 #main .css-detail ul.l-detail li {
   display: inline-block;
   border-right: 1px solid #bababa;
-  padding-right: 40px;
-  margin-right: 40px;
+  padding-right: 10px;
+  margin-right: 10px;
 }
 #main .css-detail ul.l-detail li:last-child {
   border-right: 0;
@@ -17427,9 +17430,9 @@ footer .cp {
 }
 #main .css-detail ul.l-detail li .l-detail-t1 {
   color: #000000;
-  font-size: 32px;
-  margin-bottom: 25px;
-  line-height: 37px;
+  font-size: 13px;
+  margin-bottom: 0;
+  line-height: 20px;
 }
 #main .css-detail ul.l-detail li .l-detail-t2 {
   color: #000000;
@@ -17462,15 +17465,17 @@ footer .cp {
 }
 #main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
   height: 100%;
+  font-size: 12px;
   border-right: 1px solid #adadad;
-  padding: 10px 20px;
+  padding: 5px 8px;
   font-family: "Quicksand-Bold";
   background-color: #f5f5f5;
 }
 #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
+  font-size: 12px;
   height: 100%;
   border-right: 1px solid #ADADAD;
-  padding: 10px 20px;
+  padding: 5px 8px;
 }
 #main .css-detail .text2 .text2-row {
   display: flex;
@@ -17483,19 +17488,20 @@ footer .cp {
   padding-right: 5px;
   padding-left: 5px;
   margin-bottom: 10px;
-  flex: 0 0 16.6666666667%;
-  max-width: 16.6666666667%;
+  flex: 0 0 20%;
+  max-width: 20%;
 }
 #main .css-detail .text2 .text2-row .text2-col .text2-bdr {
   color: #8a8a8a;
-  padding: 15px 15px;
+  padding: 12px 12px;
   border: 1px solid #ADADAD;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   height: 100%;
-  line-height: 22px;
+  line-height: 19px;
 }
 #main .css-detail .text2 .text2-row .text2-col .text2-bdr.active {
+  color: white;
   background: #003F5A;
   filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
 }
@@ -17633,6 +17639,9 @@ footer .cp {
 #main .css-product .form-group label {
   font-family: "Quicksand-Bold";
 }
+#main .css-product .mb15 {
+  margin-bottom: 15px;
+}
 #main .css-product .row.row-15 {
   margin-left: -7px;
   margin-right: -7px;
@@ -17642,7 +17651,7 @@ footer .cp {
   padding-right: 7px;
 }
 #main .css-product .item {
-  margin-bottom: 15px;
+  height: 100%;
   border: 1px solid #DADADA;
 }
 #main .css-product .item .pos-rel {
@@ -17731,6 +17740,7 @@ footer .cp {
   line-height: 15px;
 }
 #main .css-product .item a .pad .price {
+  margin-bottom: 0;
   color: #212121;
   font-family: "Quicksand-Bold";
   font-size: 12px;
@@ -17738,6 +17748,7 @@ footer .cp {
   text-decoration: line-through;
 }
 #main .css-product .item a .pad .price-disc {
+  margin-bottom: 0;
   color: #dc3545;
   font-family: "Quicksand-Bold";
   font-size: 12px;
@@ -19313,6 +19324,11 @@ input[type=file] {
     font-size: 22px;
     line-height: 28px;
   }
+  #main .css-detail .price-wo-disc {
+    margin: 10px 0 30px;
+    font-size: 22px;
+    line-height: 28px;
+  }
   #main .css-detail .box-desc {
     padding: 15px 0;
     margin-top: 30px;
@@ -19330,7 +19346,7 @@ input[type=file] {
     font-size: 22px;
     line-height: 30px;
     padding-bottom: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   #main .css-detail .t2 {
     font-size: 17px;
@@ -19346,23 +19362,32 @@ input[type=file] {
   #main .css-detail ul.l-detail {
     margin: 0 0 30px;
   }
-  #main .css-detail ul.l-detail li {
-    padding-right: 20px;
-    margin-right: 20px;
-  }
   #main .css-detail ul.l-detail li .l-detail-t1 {
-    font-size: 23px;
-    margin-bottom: 15px;
-    line-height: 30px;
+    font-size: 8px;
   }
   #main .css-detail ul.l-detail li .l-detail-t2 {
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 9px;
+    line-height: 14px;
+  }
+  #main .css-detail .text1 .text1-row {
+    margin-bottom: 40px;
+  }
+  #main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
+    line-height: 14px;
+    font-size: 8px;
+  }
+  #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
+    line-height: 14px;
+    font-size: 8px;
+  }
+  #main .css-detail .text2 .text2-row .text2-col {
+    flex: 0 0 25%;
+    max-width: 25%;
   }
   #main .css-detail .text2 .text2-row .text2-col .text2-bdr {
-    padding: 10px;
-    font-size: 14px;
-    line-height: 19px;
+    padding: 7px;
+    font-size: 12px;
+    line-height: 15px;
   }
   #main .css-detail .text3 {
     font-size: 15px;
@@ -20142,6 +20167,9 @@ input[type=file] {
   #main .css-detail .slider-thumb li {
     width: 25%;
   }
+  #main .css-detail .slider-product {
+    margin-bottom: 15px;
+  }
   #main .css-detail .slider-product .slick-prev {
     left: 10px;
   }
@@ -20164,7 +20192,7 @@ input[type=file] {
     font-size: 10px;
   }
   #main .css-detail .video-product {
-    margin: 10px 0;
+    margin-bottom: 10px;
   }
   #main .css-detail .video-product iframe {
     height: 200px;
@@ -20185,6 +20213,11 @@ input[type=file] {
     margin: 5px 0 15px;
   }
   #main .css-detail .price {
+    margin: 5px 0 10px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  #main .css-detail .price-wo-disc {
     margin: 5px 0 10px;
     font-size: 18px;
     line-height: 24px;
@@ -20223,15 +20256,6 @@ input[type=file] {
     padding-right: 15px;
     margin-right: 15px;
   }
-  #main .css-detail ul.l-detail li .l-detail-t1 {
-    font-size: 17px;
-    margin-bottom: 10px;
-    line-height: 25px;
-  }
-  #main .css-detail ul.l-detail li .l-detail-t2 {
-    font-size: 13px;
-    line-height: 17px;
-  }
   #main .css-detail .text1 .text1-row {
     margin-bottom: 30px;
   }
@@ -20244,9 +20268,11 @@ input[type=file] {
     line-height: 15px;
   }
   #main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
+    font-size: 12px;
     padding: 10px;
   }
   #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
+    font-size: 12px;
     padding: 10px;
   }
   #main .css-detail .text2 .text2-row .text2-col {
