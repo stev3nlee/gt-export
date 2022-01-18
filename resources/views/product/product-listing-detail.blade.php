@@ -21,9 +21,11 @@
                                     @endforeach
                                 </div>
                             </div>
+                            @if($product->youtube)
                             <div class="video-product">
-                                <iframe src="https://www.youtube.com/embed/fIMyGAs7bRc?controls=1&amp;mute=0&amp;enablejsapi=1&amp;rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe src="{{ $product->youtube }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
+                            @endif
                             <div>
                                 <ul class="clearfix slider-thumb">
                                     <?php $i = 1; ?>
@@ -38,7 +40,7 @@
                             <div class="click-show">Show thumbnails</div>
                             <div class="click-hide">Hide thumbnails</div>
                             <div class="link-upload">
-                                <a href="#"><i class="fas fa-upload"></i> Download all images</a>
+                                <a href="{{ url('product-listing/download/'.$product->slug) }}"><i class="fas fa-upload"></i> Download all images</a>
                             </div>
                         </div>
                     </div>
@@ -49,9 +51,9 @@
                         <div class="buy">Buy it at</div>
                         @if($product->reserve == 0)
                             @if($product->discount_percent != 0)
-                                <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
+                                <div class="price">USD {{ number_format($product->price, 2, '.', ',') }}</div>
                                 <div class="buy-disc">Discount Price</div>
-                                <div class="price-disc">$ {{ number_format($product->discount_price, 2, '.', ',') }} <span class="save-price"> You save {{ $product->discount_percent }}% </span> </div>
+                                <div class="price-disc">USD {{ number_format($product->discount_price, 2, '.', ',') }} <span class="save-price"> You save {{ $product->discount_percent }}% </span> </div>
                             @else
                                 <div class="price">${{ number_format($product->price, 2, '.', ',') }}</div>
                                 <!-- <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div> -->
@@ -328,6 +330,63 @@
             <div class="t2">Technical</div>
             <div class="text3">{!! $product->remarks !!}</div>
             <div class="bdr"></div>
+
+            @if(count($related_products) > 0)
+            <div class="bg-inventory">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 my-auto">
+                            <div class="t">Similar and Related Products </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="css-product">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12"  id="car-list">
+                            <div class="row row-15">
+                                @foreach($related_products as $related)
+                                <div class="col-6 col-md-4 col-lg-2">
+                                    <div class="item">
+                                        <div class="pos-rel">                                        
+                                            <div class="img"> @if(isset($related->product_image[0]))<img src="{{ asset($related->product_image[0]->image) }}" alt="" title=""/>@endif</div>
+                                            @if($related->reserve == 1)
+                                                <div class="abs">Reserved</div>
+                                            @elseif($related->reserve == 2)
+                                                <div class="abs">Sold</div>
+                                            @endif
+                                            @if($related->new_arrival_expired_date != null)
+                                                <div class="new">New Arrival</div>
+                                            @endif
+                                        </div>
+                                        <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
+                                            <div class="pad">
+                                                <div class="year">{{ $related->registration_year }}</div>
+                                                <div class="nm">@if(isset($related->brand[0])) {{ $related->brand[0]->name }} @endif</div>
+                                                <div class="merk">@if(isset($related->model[0])) {{ $related->model[0]->name }} @endif</div>
+                                                <div class="merk">@if(isset($related->model[0])) {{ $related->model_code }} @endif</div>
+                                                <div class="merk">{{ $related->product_type }}</div>
+                                                @if($related->price && $related->reserve == 0)
+                                                @if($related->discount_percent > 0)
+                                                <div class="price">${{ number_format($related->price, 0, '.', ',') }}</div>
+                                                <div class="price-disc">$ {{ number_format($related->discount_price, 0, '.', ',') }}</div>
+                                                <div class="save-disc">You save {{ $related->discount_percent }}%</div>
+                                                @else
+                                                <div class="price-wo-disc">${{ number_format($related->price, 0, '.', ',') }}</div>
+                                                @endif
+                                                @endif
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
         @if($product->reserve == 0)
         <div class="banner" style="background: url('{{ asset('images/banner-detail.jpg') }}') no-repeat center;">

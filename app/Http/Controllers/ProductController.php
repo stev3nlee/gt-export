@@ -23,6 +23,9 @@ use Status;
 use Mail;
 use DB;
 use App;
+use ZipArchive;
+use File;
+use Storage;
 
 class ProductController extends BaseController
 {
@@ -71,10 +74,6 @@ class ProductController extends BaseController
             });
         }
 
-        if($request->search){
-            $products = $products->where('name', 'like', '%'.$request->search.'%');
-        }
-
         if($request->car_type){
             $products = $products->where('product_type', $request->car_type);
         }
@@ -90,6 +89,16 @@ class ProductController extends BaseController
                 $products = $products->where('new_arrival_expired_date','>', date('Y-m-d H:i:s'));
             }
 
+        }
+
+
+        if($request->search){
+            $products = $products->where(function($query) use ($request){
+                            $query->orWhere('model_code', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhere('description', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhere('registration_year', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhere('registration_month', 'LIKE', '%'.$request->search.'%');
+                        });
         }
 
         $products = $products->orderby('id','desc')->paginate(12)->withQueryString();
@@ -120,9 +129,44 @@ class ProductController extends BaseController
         $product->last_view = date('Y-m-d H:i:s');
         $product->increment('total_view', 1);
         $product->save();
+
+        $related_products = array();
+        if($product->model){
+            $model = $product->model[0]->id;
+            $product_type = $product->product_type;
+
+            $related_products = Product::where('status',1)->where('product_type',$product_type)->where('id', '!=', $product->id)->whereHas('model', function($q) use($model) {
+                    $q->where('model.id', '=', $model); 
+                });
+            $related_products = $related_products->orderby('registration_year','desc')->limit(10)->get();
+        }
         
         $data['product'] = $product;
+        $data['related_products'] = $related_products;
         $data['accessories'] = Accessories::get();
         return view('/product/product-listing-detail', $data);  
+    }
+
+    public function downloadImage($slug){
+        $product = Product::where('slug',$slug)->where('status',1)->first();
+        if(!$product){
+            return redirect('product');
+        }
+        $zip      = new ZipArchive;
+        $fileName = $product->brand[0]->name.'-'.$product->model[0]->name.'-'.$product->model_code.'.zip';
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE) {
+            foreach ($product->product_image as $value) {
+                $url = parse_url($value->image, PHP_URL_PATH);
+
+                $relativeName = basename($value->image);
+                $path = public_path($url);
+                if (!File::exists($path)) {
+                    return back();
+                }
+                $zip->addFile($path, $relativeName);
+            }
+            $zip->close();
+        }
+        return response()->download(public_path($fileName))->deleteFileAfterSend(true);
     }
 }

@@ -12,7 +12,7 @@ class Product extends Model
     use SoftDeletes;
     public $timestamps = true;
     protected $table = 'product';
-    protected $fillable = ['name','slug','image','price','description','status','image','reserve','description','stock'];
+    protected $fillable = ['name','slug','image','price','description','status','image','reserve','description','stock','youtube'];
     protected $attributes = [
         'status' => 1,
     ];
@@ -48,6 +48,11 @@ class Product extends Model
     public function accessories()
     {
         return $this->belongsToMany('App\Models\Accessories', 'product_accessories', 'product_id', 'accessories_id');
+    }
+
+    public function quotations()
+    {
+        return $this->hasMany('App\Models\Quotation');
     }
 
 }

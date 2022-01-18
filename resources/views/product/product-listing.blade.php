@@ -79,6 +79,7 @@
                                     </select>
                             </div>
                         </div>
+                        <input type="hidden" name="search" value="{{ $search }}">
                         <div class="mb10">
                             <button type="submit" class="hvr-button full100">Search Inventory</button>
                         </div>
@@ -99,6 +100,13 @@
                                 <div class="col-md-6 col-lg-5">
                                     <div class="search">
                                         <form action="{{ url('product-listing') }}">
+                                            <input name="range_min" type="hidden" value="{{ $range_min }}" />
+                                            <input name="range_max" type="hidden" value="{{ $range_max }}" />
+                                            <input name="category_type" type="hidden" value="{{ $category_type }}" />
+                                            <input name="brand" type="hidden" value="{{ $brand_select }}" />
+                                            <input name="model" type="hidden" value="{{ $model_select }}" />
+                                            <input name="transmission" type="hidden" value="{{ $transmission_select }}" />
+                                            <input name="car_type" type="hidden" value="{{ $car_type }}" />
                                             <input class="form-control" name="search" type="text" placeholder="Looking for something?" />
                                             <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
                                         </form>
@@ -137,6 +145,7 @@
                                         <div class="pad">
                                             <div class="year">{{ $product->registration_year }}</div>
                                             <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div> 
+                                            <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
                                             <div class="merk">@if(isset($product->model[0])) {{ $product->model_code }} @endif</div>
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)

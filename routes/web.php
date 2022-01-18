@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@home');
 /* PRODUCT */
 Route::get('/product-listing', 'ProductController@product');
 Route::get('/product-listing-detail/{slug}', 'ProductController@productDetail');
+Route::get('/product-listing/download/{slug}', 'ProductController@downloadImage');
 
 // Route::get('/search', function () {
 //     return view('product/search');
@@ -195,6 +196,8 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::get('product/status/{id}/{status}', 'Admin\ProductController@status');
         Route::get('product/reserve/{id}/{status}', 'Admin\ProductController@reserve');
         Route::post('product/update_sort', 'Admin\ProductController@update_sort');
+        Route::get('product/getData', 'Admin\ProductController@getData');
+        Route::get('product/export', 'Admin\ProductController@export');
 
         Route::get('blog', 'Admin\BlogController@view')
             ->name('blog_view');

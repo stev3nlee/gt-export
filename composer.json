@@ -22,7 +22,8 @@
         "spatie/laravel-sluggable": "^2.6",
         "stevebauman/location": "^6.2",
         "stripe/stripe-php": "^7.67",
-        "unisharp/laravel-filemanager": "^2.2"
+        "unisharp/laravel-filemanager": "^2.2",
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
