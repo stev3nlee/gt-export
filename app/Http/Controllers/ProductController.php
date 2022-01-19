@@ -138,7 +138,7 @@ class ProductController extends BaseController
             $related_products = Product::where('status',1)->where('product_type',$product_type)->where('id', '!=', $product->id)->whereHas('model', function($q) use($model) {
                     $q->where('model.id', '=', $model); 
                 });
-            $related_products = $related_products->orderby('registration_year','desc')->limit(10)->get();
+            $related_products = $related_products->orderby('registration_year','desc')->limit(12)->get();
         }
         
         $data['product'] = $product;
@@ -157,9 +157,11 @@ class ProductController extends BaseController
         if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE) {
             foreach ($product->product_image as $value) {
                 $url = parse_url($value->image, PHP_URL_PATH);
-
+                $real_url = urldecode($url);
                 $relativeName = basename($value->image);
-                $path = public_path($url);
+
+                $path = public_path($real_url);
+
                 if (!File::exists($path)) {
                     return back();
                 }

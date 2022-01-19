@@ -487,6 +487,6 @@ class ProductController extends Controller
         //     $file_name = $file_name . ' from ' . $start_date->format('Y F d') . ' to ' . $end_date->format('Y F d');
         // }
 
-        return Excel::download($product_export, $file_name . '.xlsx');
+        return Excel::download($product_export, $file_name . '.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 }
