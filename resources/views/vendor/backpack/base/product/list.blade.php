@@ -31,11 +31,11 @@
                 <div class="box-body">
                     <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                      <li class="active"><a href="#Active" data-toggle="tab"><b>Active Units</b></a></li>
-                      <li><a href="#Inactive" data-toggle="tab"><b>Inactive Units</b></a></li>
-                      <li><a href="#Reserved" data-toggle="tab"><b>Reserved Units</b></a></li>
-                      <li><a href="#Non-Reserved" data-toggle="tab"><b>Non-Reserved Units</b></a></li>
-                      <li><a href="#Sold" data-toggle="tab"><b>Sold Units</b></a></li>
+                      <li class="active"><a href="#Active" data-toggle="tab"><b>Active Units ({{ $count_active }})</b></a></li>
+                      <li><a href="#Inactive" data-toggle="tab"><b>Inactive Units ({{ $count_inactive }})</b></a></li>
+                      <li><a href="#Reserved" data-toggle="tab"><b>Reserved Units ({{ $count_reserved }})</b></a></li>
+                      <li><a href="#Non-Reserved" data-toggle="tab"><b>Non-Reserved Units ({{ $count_non_reserved }})</b></a></li>
+                      <li><a href="#Sold" data-toggle="tab"><b>Sold Units ({{ $count_sold }})</b></a></li>
                     </ul>
                     <div class="tab-content">
                       <div class="tab-pane active" id="Active">

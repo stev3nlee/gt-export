@@ -97,7 +97,17 @@ class ProductController extends BaseController
                             $query->orWhere('model_code', 'LIKE', '%'.$request->search.'%')
                                   ->orWhere('description', 'LIKE', '%'.$request->search.'%')
                                   ->orWhere('registration_year', 'LIKE', '%'.$request->search.'%')
-                                  ->orWhere('registration_month', 'LIKE', '%'.$request->search.'%');
+                                  ->orWhere('registration_month', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhere('product_type', 'LIKE', '%'.$request->search.'%')
+                                  ->orWhereHas('model', function($q) use ($request) { 
+                                    $q->where('model.name', 'like', '%'.$request->search.'%');
+                                  })
+                                  ->orWhereHas('brand', function($q) use ($request) { 
+                                    $q->where('brand.name', 'like', '%'.$request->search.'%');
+                                  })
+                                  ->orWhereHas('transmission', function($q) use ($request) { 
+                                    $q->where('transmission.name', 'like', '%'.$request->search.'%');
+                                  });
                         });
         }
 

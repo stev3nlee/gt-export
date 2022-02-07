@@ -39,8 +39,15 @@ class ProductController extends Controller
         $models = Models::where('status',1)->get();
         $brands = Brand::where('status',1)->get();
         $transmissions = Transmission::where('status',1)->get();
+
+        $count_active = Product::where('status', 1)->count('id');
+        $count_inactive = Product::where('status', 0)->count('id');
+        $count_reserved = Product::where('reserve', 1)->count('id');
+        $count_non_reserved = Product::where('reserve', 0)->count('id');
+        $count_sold = Product::where('reserve', '>', 1)->count('id');
+
         //return view('vendor.backpack.base.product.list', ['data' => $data, 'models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
-        return view('vendor.backpack.base.product.list', ['models' => $models, 'brands' => $brands, 'transmissions' => $transmissions]);
+        return view('vendor.backpack.base.product.list', ['models' => $models, 'brands' => $brands, 'transmissions' => $transmissions, 'count_active' => $count_active, 'count_inactive' => $count_inactive, 'count_reserved' => $count_reserved, 'count_non_reserved' => $count_non_reserved, 'count_sold' => $count_sold]);
     }
 
     function getData(Request $request){

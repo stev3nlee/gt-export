@@ -360,6 +360,7 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleInputEmail1">Youtube Link </label>
+                              <p>ex: https://www.youtube.com/embed/ngiJNK2qhlk</p>
                               <input type="text" name="youtube" class="form-control" value="{{ isset($data) ? $data->youtube : old('youtube') }}">
                             </div>
                           </div>
