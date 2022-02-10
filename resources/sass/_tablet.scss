@@ -73,6 +73,31 @@
 	    }
 	}
 	#main {
+		.popup-product {
+	        padding: 100px 0;
+	        .abs-popup {
+	        	position: absolute;
+	        	top: 50%;
+	        	left: 0;
+	        	width: 100%;
+	        	@include transform(translateY(-50%));
+	        }
+	        .slider-popup-product {
+	            .slick-prev {
+	                left: 20px;
+	            }
+	            .slick-next {
+	                right: 20px;
+	            }
+	            .item {
+	                a {
+	                    img {
+	                        height: 50vh;
+	                    }
+	                }
+	            }
+	        }
+	    }
 		.css-home {
 			.banner-home {
 				height: 500px;
@@ -316,7 +341,7 @@
 	        				}
 	        				.right {
 	        					line-height: 14px;
-	        					font-size: 9px;
+	        					font-size: 8px;
 	        				}
 	        			}
 	        		}

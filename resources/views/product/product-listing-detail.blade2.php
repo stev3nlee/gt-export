@@ -14,7 +14,7 @@
                                 <div class="slider-product">
                                     @foreach($product->product_image as $image)
                                     <div class="item">
-                                        <a class="click-popup">
+                                        <a href="{{ asset($image->image) }}" data-fancybox="fancy-parent">
                                             <img src="{{ asset($image->image) }}" alt="" title=""/>
                                         </a>
                                     </div>
@@ -379,32 +379,10 @@
     </div>
 </div>
 
-<div class="popup-product">
-    <div class="popup-close"><i class="fas fa-times"></i></div>
-    <div class="pagingInfo"></div>
-    <div class="abs-popup">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-xl-7">
-                <div class="slider-popup-product">
-                    @foreach($product->product_image as $image)
-                    <div class="item">
-                        <a>
-                            <img src="{{ asset($image->image) }}" alt="" title=""/>
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 @section('js')
-<script type="text/javascript" src="{{ asset('js/jquery.zoom.min.js') }}"></script>
-<!-- <script type="text/javascript" src="{{ asset('js/fancybox/jquery.fancybox.min.js') }}"></script> -->
-
+<script type="text/javascript" src="{{ asset('js/fancybox/jquery.fancybox.min.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
         var $status = $('.pagingInfo');
@@ -419,14 +397,14 @@
             slidesToScroll: 1,
             arrows: true,
             fade: false,
-            asNavFor: '.slider-thumb,.slider-popup-product',
+            asNavFor: '.slider-thumb',
             infinite: false
         });
 
         $('.slider-thumb').slick({
             slidesToShow: 5,
             slidesToScroll: 1,
-            asNavFor: '.slider-product,.slider-popup-product',
+            asNavFor: '.slider-product',
             dots: false,
             arrows: false,
             centerMode: false,
@@ -442,30 +420,6 @@
             ]
         });
 
-        $('.slider-popup-product').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: true,
-            dots: false,
-            swipe: false,
-            fade: false,
-            asNavFor: '.slider-product,.slider-thumb',
-            infinite: false
-        });
-
-        $('.click-popup').click(function(event) {
-            $('.popup-product').show();
-            $('body').addClass('no-scroll-popup');
-            $('.slider-popup-product').slick('setPosition');
-        });
-
-        $('.slider-popup-product .item').zoom({ on:'grab' });
-
-        $('.popup-close').click(function(event) {
-            $('.popup-product').hide();
-            $('body').removeClass('no-scroll-popup');
-        });
-
         $('.click-show').click(function() {
             $('.slider-thumb').slick('unslick');
             $(this).hide();
@@ -477,10 +431,6 @@
             });
         });
 
-        $('.popup-close').click(function(event) {
-            $('.popup-product').hide();
-            $('body').removeClass('no-scroll-popup');
-        });
 
         $('.click-hide').click(function() {
             $('.slider-thumb').slick({
@@ -507,14 +457,14 @@
 
         $('.nav-product').addClass('active');
 
-        // $("[data-fancybox]").fancybox({
-        //     infobar : false,
-        //     buttons : [
-        //         'close',
-        //     ],
-        //     loop: false,
-        //     idleTime: false,
-        // });
+        $("[data-fancybox]").fancybox({
+            // infobar : false,
+            buttons : [
+                'close',
+            ],
+            loop: false,
+            idleTime: false,
+        });
 
         @if(Session::has('product_login'))
         jQuery(function(){

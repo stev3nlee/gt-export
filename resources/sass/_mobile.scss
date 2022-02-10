@@ -148,6 +148,37 @@
 	    }
 	}
 	#main {
+		.popup-product {
+	        .popup-close {
+	            padding: 5px 10px;
+	            i {
+	                font-size: 16px;
+	            }
+	        }
+	        .slider-popup-product {
+	            .slick-prev {
+	                left: 15px;
+	                padding: 7px 10px;
+	                &:before {
+	                    font-size: 16px;
+	                }
+	            }
+	            .slick-next {
+	                right: 15px;
+	                padding: 5px 10px;
+	                &:before {
+	                    font-size: 16px;
+	                }
+	            }
+	            .item {
+	                a {
+	                    img {
+	                        height: 40vh;
+	                    }
+	                }
+	            }
+	        }
+	    }
 		.css-home {
 			.banner-home {
 				height: 270px;

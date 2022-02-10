@@ -35,7 +35,7 @@ html, body {
     }
 }
 body {
-    &.no-scroll {
+    &.no-scroll, &.no-scroll-popup {
         overflow: hidden;
     }
 }
@@ -540,6 +540,87 @@ footer {
 #main {
     max-width: 2560px;
     margin: 0 auto;
+    .popup-product {
+        display: none;
+        background: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 10000;
+        padding: 50px 0;
+        .pagingInfo {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            z-index: 10;
+            font-size: 16px;
+            line-height: 20px;
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 7px 13px;
+        }
+        .popup-close {
+            cursor: pointer;
+            padding: 10px 15px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: $black;
+            i {
+                color: white;
+                font-size: 20px;
+            }
+        }
+        .slider-popup-product {
+            .slick-prev {
+                left: -70px;
+                width: auto;
+                height: auto;
+                z-index: 10;
+                padding: 10px 15px;
+                background-color: $black;
+                &:before {
+                    color: black;
+                    @include transition(all 0.3s);
+                    content: "\f053";
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    font-size: 25px;
+                    color: white;
+                }
+            }
+            .slick-next {
+                right: -70px;
+                width: auto;
+                height: auto;
+                z-index: 10;
+                background-color: $black;
+                padding: 10px 15px;
+                &:before {
+                    color: black;
+                    @include transition(all 0.3s);
+                    content: "\f054";
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    font-size: 25px;
+                    color: white;
+                }
+            }
+            .item {
+                cursor: zoom-in;
+                a {
+                    display: block;
+                    img {
+                        height: calc(100vh - 100px);
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
     .bdr-range {
         width: 100%;
         margin-bottom: 10px;
@@ -1330,6 +1411,9 @@ footer {
                 font-family: 'Quicksand-Bold';
             }
         }
+        .mb15 {
+            margin-bottom: 15px;
+        }
         .row {
             &.row-15 {
                 margin-left: -7px;
@@ -1341,7 +1425,8 @@ footer {
             }
         }
         .item {
-            margin-bottom: 15px;
+            height: 100%;
+            // margin-bottom: 15px;
             border: 1px solid #DADADA;
             .pos-rel {
                 overflow: hidden;
@@ -1431,6 +1516,7 @@ footer {
                         line-height: 15px;
                     }
                     .price {
+                        margin-bottom: 0;
                         color: $black;
                         font-family: 'Quicksand-Bold';
                         font-size: 12px;
@@ -1438,6 +1524,7 @@ footer {
                         text-decoration: line-through;
                     }
                     .price-disc {
+                        margin-bottom: 0;
                         color: $red;
                         font-family: 'Quicksand-Bold';
                         font-size: 12px;
