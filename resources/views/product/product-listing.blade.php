@@ -92,13 +92,29 @@
                         <div class="box-search">
                             <div class="row">
                                 <div class="col-md-6 col-lg-7">
-                                    <div class="t2">{{ $products->total() }} Matches</div>
+                                    <div class="t-match">{{ $products->total() }} Matches</div>
                                     @if($search)
                                     <div class="t-search">Search : <span class="bold">{{ $search }}</span></div>
                                     @endif
                                 </div>
                                 <div class="col-md-6 col-lg-5">
-                                    <div class="search">
+                                    <div class="css-select">
+                                        <select name="sort" class="form-control" id="sort">
+                                            <option selected="" disabled="">Sort By</option>
+                                            <option value="">Price High to Low</option>
+                                            <option value="">Price Low to High</option>
+                                            <option value="">Newly Added</option>
+                                            <option value="">Discount % High to Low</option>
+                                            <option value="">Discount % Low to High</option>
+                                            <option value="">Registration Year New to Old</option>
+                                            <option value="">Registration Year Old to New</option>
+                                            <option value="">Engine High to Low</option>
+                                            <option value="">Engine Low to High</option>
+                                            <option value="">Mileage High to Low</option>
+                                            <option value="">Mileage Low to High</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="search">
                                         <form action="{{ url('product-listing') }}">
                                             <input name="range_min" type="hidden" value="{{ $range_min }}" />
                                             <input name="range_max" type="hidden" value="{{ $range_max }}" />
@@ -110,14 +126,14 @@
                                             <input class="form-control" name="search" type="text" placeholder="Looking for something?" />
                                             <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
                                         </form>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         @if(count($products)>0)
                         <div class="row row-15">
                             @foreach($products as $product)
-                            <div class="col-6 col-md-4 col-xl-3">
+                            <div class="col-6 col-md-4 col-xl-3 mb15">
                                 <div class="item">
                                     <div class="pos-rel">                   
                                         <div class="img">@if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>

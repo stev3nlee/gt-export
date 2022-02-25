@@ -17,7 +17,7 @@
     <link href="{{ asset('js/fancybox/jquery.fancybox.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('js/jquery-ui/jquery-ui.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/front.css?v.1') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/front.css?v.16') }}" rel="stylesheet"/>
     <style>
       .help-block{
         color: #dd4b39;
@@ -35,9 +35,15 @@
     <div class="bg-dark-cart"></div>
     
     <header>
+        <div class="box-search">
+            <form action="{{ URL::to('/product-listing') }}">
+                <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
+                <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
+            </form>
+        </div>
         <div class="container pos-rel">
             <div class="row">
-                <div class="col-md-4 offset-md-4 text-center my-auto">
+                <div class="col-md-6 col-lg-4 offset-lg-4 text-center my-auto">
                     <div class="logo">
                         <a href="{{ URL::to('/') }}">
                             <img src="{{ asset('images/logo.svg') }}" alt="" title=""/>
@@ -55,6 +61,9 @@
                             <img src="{{ asset('images/menu.png') }}" alt="" title=""/>
                         </a>
                     </div>
+
+                    <div class="click-search"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></div>
+
                     <div class="login menu-login">
                         <a class="click-login">
                             <img src="{{ asset('images/new-login.svg') }}" alt="" title=""/>
@@ -66,7 +75,13 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4 my-auto text-right">
+                <div class="col-md-6 col-lg-4 my-auto text-right">
+                    <div class="search">
+                        <form action="{{ URL::to('/product-listing') }}">
+                            <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
+                            <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
+                        </form>
+                    </div>
                     <!-- NO ACCOUNT-->
                     @if(session()->has('email'))
                     <div class="link-account" class="link-account">
@@ -711,6 +726,18 @@
                 $('#modal-guest').modal('hide');
                 $('#modal-login').modal('hide');
                 $('#modal-register').modal('hide');
+            }
+        });
+
+        $('.click-search').click(function(event) {
+            $('.box-search').addClass('open');
+            $('#main-page').addClass('open');
+        });
+
+        $("html").click(function(a) {
+            if (!$(a.target).parents().is(".box-search") && !$(a.target).is(".close-menu") && !$(a.target).parents().is(".click-search")) {
+                $('.box-search').removeClass('open');
+                $('#main-page').removeClass('open');
             }
         });
     }); 

@@ -28,15 +28,9 @@
                 </div>
                 @endif
                 <div class="t-find">Find Your Vehicle</div>
-                <div class="search">
-                    <form action="{{ URL::to('/product-listing') }}">
-                        <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
-                        <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
-                    </form>
-                </div>
                 <form action="{{ url('product-listing') }}">
                     <div class="row">
-                        <div class="col-6 col-md-3">
+                        <!-- <div class="col-6 col-md-3">
                             <div class="form-group">
                                 <label for="brand">Product Category Type:</label>
                                 <div class="css-select">
@@ -48,7 +42,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-6 col-md-3">
                             <div class="form-group">
                                 <label for="brand">Select Brand:</label>
@@ -103,8 +97,24 @@
                         <input type="hidden" name="range_min" id="range-min">
                         <input type="hidden" name="range_max" id="range-max">
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 offset-md-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-5">
+                            <div class="t-price">Price Range</div>
+                            <div class="row">
+                                <div class="col-6 my-auto">
+                                    <input class="bdr-range" type="text" id="amount-1" readonly name="">
+                                </div>
+                                <div class="col-6 my-auto text-right">
+                                    <input class="bdr-range" type="text" id="amount-2" readonly name="">
+                                </div>
+                            </div>
+                            <div class="pad-range">
+                                <div id="slider-range"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>&nbsp;</label>
                                 <button type="submit" class="hvr-button full100">Search Inventory</button>
@@ -112,22 +122,6 @@
                         </div>
                     </div>
                 </form>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-5">
-                        <div class="t-price">Price Range</div>
-                        <div class="row">
-                            <div class="col-6 my-auto">
-                                <input class="bdr-range" type="text" id="amount-1" readonly name="">
-                            </div>
-                            <div class="col-6 my-auto text-right">
-                                <input class="bdr-range" type="text" id="amount-2" readonly name="">
-                            </div>
-                        </div>
-                        <div class="pad-range">
-                            <div id="slider-range"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="bg-inventory">

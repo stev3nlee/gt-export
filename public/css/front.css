@@ -16535,6 +16535,14 @@ a.inline-block {
   opacity: 0;
 }
 
+#main-page {
+  position: relative;
+  top: 0;
+}
+#main-page.open {
+  top: 40px;
+}
+
 .offcanvas-menu-open #main-page {
   transform: translate3d(-280px, 0, 0);
   position: fixed;
@@ -16607,6 +16615,64 @@ header {
   position: relative;
   padding: 13px 0;
 }
+header .box-search {
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  top: -200%;
+  transition: all 0.3s;
+  left: 0;
+  background: white;
+  z-index: 10000;
+  border: 1px solid #000;
+  color: black;
+}
+header .box-search.open {
+  top: -40px;
+}
+header .box-search button {
+  transition: all 0.3s;
+  background: transparent;
+  position: absolute;
+  border: 0;
+  right: 10px;
+  padding: 0;
+  top: 45%;
+  transform: translateY(-50%);
+}
+header .box-search button:hover {
+  opacity: 0.7;
+}
+header .box-search button img {
+  width: 15px;
+}
+header .box-search input {
+  padding: 11px 30px 12px 15px;
+  border: 1px solid white;
+  background: transparent;
+  color: black;
+  font-size: 12px;
+  line-height: 15px;
+}
+header .box-search input::-moz-placeholder {
+  color: black;
+}
+header .box-search input:-ms-input-placeholder {
+  color: black;
+}
+header .box-search input::placeholder {
+  color: black;
+}
+header .box-search input:-ms-input-placeholder {
+  color: black;
+}
+header .box-search input::-ms-input-placeholder {
+  color: black;
+}
+header .box-search input:focus {
+  color: black;
+  background: transparent;
+}
 header.abs {
   position: absolute;
   top: 0;
@@ -16617,7 +16683,7 @@ header.abs {
 header .logo {
   position: relative;
   top: -2px;
-  margin-right: 20px;
+  margin-right: 0;
   display: inline-block;
   vertical-align: middle;
 }
@@ -16626,6 +16692,58 @@ header .logo a {
 }
 header .logo a img {
   width: 250px;
+}
+header .search {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  margin-right: 10px;
+  width: 200px;
+  border: 1px solid #000;
+  color: black;
+}
+header .search button {
+  transition: all 0.3s;
+  background: transparent;
+  position: absolute;
+  border: 0;
+  right: 10px;
+  padding: 0;
+  top: 45%;
+  transform: translateY(-50%);
+}
+header .search button:hover {
+  opacity: 0.7;
+}
+header .search button img {
+  width: 15px;
+}
+header .search input {
+  padding: 8px 30px 8px 15px;
+  border: 1px solid white;
+  background: transparent;
+  color: black;
+  font-size: 12px;
+  line-height: 15px;
+}
+header .search input::-moz-placeholder {
+  color: black;
+}
+header .search input:-ms-input-placeholder {
+  color: black;
+}
+header .search input::placeholder {
+  color: black;
+}
+header .search input:-ms-input-placeholder {
+  color: black;
+}
+header .search input::-ms-input-placeholder {
+  color: black;
+}
+header .search input:focus {
+  color: black;
+  background: transparent;
 }
 header .menu {
   display: inline-block;
@@ -16644,8 +16762,15 @@ header .menu img {
 header .menu.menu-mobile {
   display: none;
 }
+header .click-search {
+  display: none;
+}
 header .login {
   display: none;
+}
+header .link {
+  vertical-align: middle;
+  display: inline-block;
 }
 header .link a {
   display: inline-block;
@@ -16653,14 +16778,19 @@ header .link a {
 header .link a button.hvr-button {
   font-size: 12px;
   line-height: 15px;
-  min-width: 140px;
+  min-width: 135px;
   padding: 10px 20px;
 }
 header.account .link {
   display: none;
 }
 header.account .link-account {
-  display: block;
+  vertical-align: middle;
+  display: inline-block;
+}
+header .link-account {
+  display: inline-block;
+  vertical-align: middle;
 }
 header .link-account a {
   display: inline-block;
@@ -16952,6 +17082,7 @@ footer .cp {
 }
 #main .pad-range {
   padding: 0 20px;
+  margin-bottom: 20px;
 }
 #main .text-right .bdr-range {
   text-align: right;
@@ -17072,52 +17203,6 @@ footer .cp {
   line-height: 45px;
   font-family: "Quicksand-Bold";
   margin-bottom: 20px;
-}
-#main .css-home .bg-find .search {
-  position: relative;
-  width: 470px;
-  margin: 0 auto 20px auto;
-  border: 1px solid #000;
-  color: black;
-}
-#main .css-home .bg-find .search button {
-  transition: all 0.3s;
-  background: transparent;
-  position: absolute;
-  border: 0;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-#main .css-home .bg-find .search button:hover {
-  opacity: 0.7;
-}
-#main .css-home .bg-find .search input {
-  padding: 18px 60px 18px 25px;
-  border: 1px solid white;
-  background: transparent;
-  color: black;
-  font-size: 16px;
-  line-height: 20px;
-}
-#main .css-home .bg-find .search input::-moz-placeholder {
-  color: black;
-}
-#main .css-home .bg-find .search input:-ms-input-placeholder {
-  color: black;
-}
-#main .css-home .bg-find .search input::placeholder {
-  color: black;
-}
-#main .css-home .bg-find .search input:-ms-input-placeholder {
-  color: black;
-}
-#main .css-home .bg-find .search input::-ms-input-placeholder {
-  color: black;
-}
-#main .css-home .bg-find .search input:focus {
-  color: black;
-  background: transparent;
 }
 #main .css-home .bg-find .t-find {
   font-family: "Quicksand-Bold";
@@ -19147,6 +19232,13 @@ input[type=file] {
     right: 45px;
   }
 
+  header .search {
+    width: 155px;
+  }
+  header .link a button.hvr-button {
+    min-width: 115px;
+    padding: 10px 15px;
+  }
   header .bg-menu ul.l-menu li {
     margin-right: 60px;
   }
@@ -19192,11 +19284,17 @@ input[type=file] {
     right: 35px;
   }
 
-  header .logo {
-    margin-right: 10px;
+  header .bg-menu {
+    top: calc(100% + 15px);
+  }
+  header .text-center {
+    text-align: left !important;
   }
   header .logo a img {
     width: 170px;
+  }
+  header .search {
+    width: 175px;
   }
   header .link-account a {
     padding: 4px 8px;
@@ -20036,7 +20134,11 @@ input[type=file] {
   }
 
   header {
+    padding: 10px 0;
     border-bottom: 1px solid #e0e0e0;
+  }
+  header .search {
+    display: none !important;
   }
   header.abs {
     border: 0;
@@ -20059,6 +20161,13 @@ input[type=file] {
   header .menu.menu-mobile {
     display: inline-block;
   }
+  header .click-search {
+    margin-left: 5px;
+    display: inline-block;
+  }
+  header .click-search img {
+    width: 18px;
+  }
   header .login {
     margin-left: 10px;
     display: inline-block;
@@ -20068,6 +20177,12 @@ input[type=file] {
   }
   header .login img {
     width: 18px;
+  }
+  header .logo {
+    margin-right: 30px;
+  }
+  header .logo a img {
+    width: 160px;
   }
 
   .css-select .form-control {

@@ -68,6 +68,10 @@
 	    }
 	}
 	header {
+		padding: 10px 0;
+		.search {
+			display: none !important;
+		}
 		&.abs {
 			border: 0;
 		}
@@ -96,6 +100,13 @@
         		display: inline-block;
         	}
         }
+        .click-search {
+        	margin-left: 5px;
+        	display: inline-block;
+        	img {
+        		width: 18px;
+        	}
+        }
         .login {
         	margin-left: 10px;
     		display: inline-block;
@@ -104,6 +115,14 @@
     		}
     		img {
     			width: 18px;
+    		}
+    	}
+    	.logo {
+    		margin-right: 30px;
+    		a {
+    			img {
+    				width: 160px;
+    			}
     		}
     	}
 	}

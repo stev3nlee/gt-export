@@ -8,6 +8,17 @@
 		}
 	}
 	header {
+		.search {
+			width: 155px;
+		}
+		.link {
+			a {
+				button.hvr-button {
+					min-width: 115px;
+					padding: 10px 15px;
+				}
+			}
+		}
 		.bg-menu {
             ul.l-menu {
                 li {
