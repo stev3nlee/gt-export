@@ -110,8 +110,33 @@ class ProductController extends BaseController
                                   });
                         });
         }
+        if($request->sort == 'high-low'){
+            $products = $products->orderby('price','desc');
+        }else if($request->sort == 'low-high'){
+            $products = $products->orderby('price','asc');
+        }else if($request->sort == 'new'){
+            $products = $products->orderby('id','desc');
+        }else if($request->sort == 'disc-high'){
+            $products = $products->where('discount_percent', '>', 0)->orderby('discount_percent','desc');
+        }else if($request->sort == 'disc-low'){
+            $products = $products->where('discount_percent', '>', 0)->orderby('discount_percent','asc');
+        }else if($request->sort == 'year-new'){
+            $products = $products->orderByRaw('CONVERT(registration_year, SIGNED) desc');
+        }else if($request->sort == 'year-old'){
+            $products = $products->orderByRaw('CONVERT(registration_year, SIGNED) asc');
+        }else if($request->sort == 'engine-high'){
+            $products = $products->orderByRaw('CONVERT(engine_capacity, SIGNED) desc');
+        }else if($request->sort == 'engine-low'){
+            $products = $products->orderByRaw('CONVERT(engine_capacity, SIGNED) asc');
+        }else if($request->sort == 'mileage-high'){
+            $products = $products->orderByRaw('CONVERT(mileage, SIGNED) desc');
+        }else if($request->sort == 'mileage-low'){
+            $products = $products->orderByRaw('CONVERT(mileage, SIGNED) asc');
+        }else{
+            $products = $products->orderby('id','desc');
+        }
 
-        $products = $products->orderby('id','desc')->paginate(12)->withQueryString();
+        $products = $products->paginate(12)->withQueryString();
        // dd($products);
 // dd($range_max);
         $data['brands'] = $brands;
@@ -126,6 +151,7 @@ class ProductController extends BaseController
         $data['range_max'] = $range_max;
         $data['search'] = $request->search;
         $data['car_type'] = $request->car_type;
+        $data['sort'] = $request->sort;
         $data['highest_price'] = $highest_price->price;
         return view('/product/product-listing', $data);  
     }

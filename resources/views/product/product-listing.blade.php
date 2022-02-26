@@ -26,8 +26,8 @@
                         <div class="form-group">
                             <label for="brand">Product Category Type:</label>
                             <div class="css-select">
-                                <select name="category_type" class="form-control" id="category_type" required="">
-                                    <option selected="" disabled="">All Types</option>
+                                <select name="category_type" class="form-control" id="category_type">
+                                    <option selected="" value="">All Types</option>
                                     <option value="all" @if($category_type == 'all') selected @endif >All Cars</option>
                                     <option value="newly" @if($category_type == 'newly') selected @endif >Newly Added</option>
                                     <option value="clearance" @if($category_type == 'clearance') selected @endif >Clearance Section</option>
@@ -37,8 +37,8 @@
                         <div class="form-group">
                             <label for="brand">Select Brand:</label>
                             <div class="css-select">
-                                <select name="brand" class="form-control" id="select-brand" required="">
-                                    <option selected="" disabled="">All Brands</option>
+                                <select name="brand" class="form-control" id="select-brand">
+                                    <option selected="" value="">All Brands</option>
                                     @foreach($brands as $brand)
                                         <option value="{{ $brand->slug }}" @if($brand_select == $brand->slug) selected @endif>{{ $brand->name }}</option>
                                     @endforeach
@@ -49,7 +49,7 @@
                             <label for="model">Select Model:</label>
                             <div class="css-select">
                                 <select name="model" class="form-control" id="model">
-                                    <option selected="" disabled="">All Models</option>
+                                    <option selected="" value="">All Models</option>
                                     @foreach($models as $model)
                                         <option value="{{ $model->slug }}" @if($model_select == $model->slug) selected @endif>{{ $model->name }}</option>
                                     @endforeach
@@ -59,8 +59,8 @@
                         <div class="form-group">
                             <label for="brand">Select Transmission Type:</label>
                             <div class="css-select">
-                                <select name="transmission" class="form-control" id="brand" required="">
-                                    <option selected="" disabled="">All Types</option>
+                                <select name="transmission" class="form-control" id="brand">
+                                    <option selected="" value="">All Types</option>
                                     @foreach($transmissions as $transmission)
                                         <option value="{{ $transmission->slug }}" @if($transmission_select == $transmission->slug) selected @endif>{{ $transmission->name }}</option>
                                     @endforeach
@@ -71,15 +71,16 @@
                             <label for="brand">Select Car Type:</label>
                             <div class="css-select">
                                 <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
-                                    <select name="car_type" class="form-control" id="car_type" required="">
-                                        <option selected="" disabled="">All Car Type</option>
+                                    <select name="car_type" class="form-control" id="car_type">
+                                        <option selected="" value="">All Car Type</option>
                                         @foreach($types as $type)
                                         <option value="{{ $type }}"  @if($car_type == $type) selected @endif>{{ $type }}</option>
                                         @endforeach
                                     </select>
                             </div>
                         </div>
-                        <input type="hidden" name="search" value="{{ $search }}">
+                        <input name="sort" type="hidden" value="{{ $sort }}" />
+                        <!-- <input type="hidden" name="search" value="{{ $search }}"> -->
                         <div class="mb10">
                             <button type="submit" class="hvr-button full100">Search Inventory</button>
                         </div>
@@ -99,20 +100,29 @@
                                 </div>
                                 <div class="col-md-6 col-lg-5">
                                     <div class="css-select">
-                                        <select name="sort" class="form-control" id="sort">
-                                            <option selected="" disabled="">Sort By</option>
-                                            <option value="">Price High to Low</option>
-                                            <option value="">Price Low to High</option>
-                                            <option value="">Newly Added</option>
-                                            <option value="">Discount % High to Low</option>
-                                            <option value="">Discount % Low to High</option>
-                                            <option value="">Registration Year New to Old</option>
-                                            <option value="">Registration Year Old to New</option>
-                                            <option value="">Engine High to Low</option>
-                                            <option value="">Engine Low to High</option>
-                                            <option value="">Mileage High to Low</option>
-                                            <option value="">Mileage Low to High</option>
+                                    <form action="{{ url()->current() }}">
+                                        <select onChange="this.form.submit()" name="sort" class="form-control" id="sort">
+                                            <option selected="" value="">Sort By</option>
+                                            <option value="high-low" @if($sort == 'high-low') selected @endif>Price High to Low</option>
+                                            <option value="low-high" @if($sort == 'low-high') selected @endif>Price Low to High</option>
+                                            <option value="new" @if($sort == 'new') selected @endif>Newly Added</option>
+                                            <option value="disc-high" @if($sort == 'disc-high') selected @endif>Discount % High to Low</option>
+                                            <option value="disc-low" @if($sort == 'disc-low') selected @endif>Discount % Low to High</option>
+                                            <option value="year-new" @if($sort == 'year-new') selected @endif>Registration Year New to Old</option>
+                                            <option value="year-old" @if($sort == 'year-old') selected @endif>Registration Year Old to New</option>
+                                            <option value="engine-high" @if($sort == 'engine-high') selected @endif>Engine High to Low</option>
+                                            <option value="engine-low" @if($sort == 'engine-low') selected @endif>Engine Low to High</option>
+                                            <option value="mileage-high" @if($sort == 'mileage-high') selected @endif>Mileage High to Low</option>
+                                            <option value="mileage-low" @if($sort == 'mileage-low') selected @endif>Mileage Low to High</option>
                                         </select>
+                                        <input name="range_min" type="hidden" value="{{ $range_min }}" />
+                                        <input name="range_max" type="hidden" value="{{ $range_max }}" />
+                                        <input name="category_type" type="hidden" value="{{ $category_type }}" />
+                                        <input name="brand" type="hidden" value="{{ $brand_select }}" />
+                                        <input name="model" type="hidden" value="{{ $model_select }}" />
+                                        <input name="transmission" type="hidden" value="{{ $transmission_select }}" />
+                                        <input name="car_type" type="hidden" value="{{ $car_type }}" />
+                                    </form>
                                     </div>
                                     <!-- <div class="search">
                                         <form action="{{ url('product-listing') }}">
