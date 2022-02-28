@@ -17122,71 +17122,8 @@ footer .cp {
 #main .pad-content.pb0 {
   padding-bottom: 0;
 }
-#main .css-home .banner-home {
-  margin-bottom: 0;
-  background-size: cover !important;
-  height: 100vh;
-  width: 100%;
-}
-#main .css-home .banner-home .abs-banner {
-  overflow-x: hidden !important;
-  position: absolute;
-  left: 0;
-  top: 250px;
-  width: 100%;
-  z-index: 10;
-}
-#main .css-home .banner-home .abs-banner .t-banner {
-  color: white;
-  text-align: center;
-  font-size: 35px;
-  line-height: 45px;
-  font-family: "Quicksand-Bold";
-  margin-bottom: 20px;
-}
-#main .css-home .banner-home .abs-banner .search {
-  position: relative;
-  width: 470px;
-  margin: 0 auto;
-}
-#main .css-home .banner-home .abs-banner .search button {
-  transition: all 0.3s;
-  background: transparent;
-  border: 0;
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-#main .css-home .banner-home .abs-banner .search button:hover {
-  opacity: 0.7;
-}
-#main .css-home .banner-home .abs-banner .search input {
-  padding: 18px 60px 18px 25px;
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  font-size: 16px;
-  line-height: 20px;
-}
-#main .css-home .banner-home .abs-banner .search input::-moz-placeholder {
-  color: white;
-}
-#main .css-home .banner-home .abs-banner .search input:-ms-input-placeholder {
-  color: white;
-}
-#main .css-home .banner-home .abs-banner .search input::placeholder {
-  color: white;
-}
-#main .css-home .banner-home .abs-banner .search input:-ms-input-placeholder {
-  color: white;
-}
-#main .css-home .banner-home .abs-banner .search input::-ms-input-placeholder {
-  color: white;
-}
-#main .css-home .banner-home .abs-banner .search input:focus {
-  color: white;
-  background: transparent;
+#main .css-home {
+  padding-top: 70px;
 }
 #main .css-home .bg-find {
   padding: 45px 0 20px;
@@ -20252,6 +20189,9 @@ input[type=file] {
   }
   #main .popup-product .slider-popup-product .item a img {
     height: 40vh;
+  }
+  #main .css-home {
+    padding-top: 0;
   }
   #main .css-home .banner-home {
     height: 270px;

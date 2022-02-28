@@ -1,12 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
-@import "bourbon/bourbon";
+@import "compass-mixins-template/lib/compass/css3";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import "~slick-carousel/slick/slick";
 @import "~slick-carousel/slick/slick-theme";
-// @import "@fancyapps/ui/dist/fancybox.css";
-// @import "@fancyapps/ui/dist/fancybox.css";
 
 $fa-font-path: "../webfonts";
 $blue: #003F5A;
@@ -796,68 +794,69 @@ footer {
         }
     }
     .css-home {
-        .banner-home {
-            margin-bottom: 0;
-            background-size: cover !important;
-            height: 100vh;
-            width: 100%;
-            .abs-banner {
-                overflow-x: hidden !important;
-                position: absolute;
-                left: 0;
-                top: 250px;
-                width: 100%;
-                z-index: 10;
-                .t-banner {
-                    color: white;
-                    text-align: center;
-                    font-size: 35px;
-                    line-height: 45px;
-                    font-family: 'Quicksand-Bold';
-                    margin-bottom: 20px;
-                }
-                .search {
-                    position: relative;
-                    width: 470px;
-                    margin: 0 auto;
-                    button {
-                        @include transition(all 0.3s);
-                        background: transparent;
-                        border: 0;
-                        position: absolute;
-                        right: 20px;
-                        top: 50%;
-                        @include transform(translateY(-50%));
-                        &:hover {
-                            opacity: 0.7;
-                        }
-                    }
-                    input {
-                        padding: 18px 60px 18px 25px;
-                        border: 1px solid white;
-                        background: transparent;
-                        color: white;
-                        font-size: 16px;
-                        line-height: 20px;
-                        &::placeholder {
-                            color: white;
-                        }
+        // .banner-home {
+        //     margin-bottom: 0;
+        //     background-size: cover !important;
+        //     height: 100vh;
+        //     width: 100%;
+        //     .abs-banner {
+        //         overflow-x: hidden !important;
+        //         position: absolute;
+        //         left: 0;
+        //         top: 250px;
+        //         width: 100%;
+        //         z-index: 10;
+        //         .t-banner {
+        //             color: white;
+        //             text-align: center;
+        //             font-size: 35px;
+        //             line-height: 45px;
+        //             font-family: 'Quicksand-Bold';
+        //             margin-bottom: 20px;
+        //         }
+        //         .search {
+        //             position: relative;
+        //             width: 470px;
+        //             margin: 0 auto;
+        //             button {
+        //                 @include transition(all 0.3s);
+        //                 background: transparent;
+        //                 border: 0;
+        //                 position: absolute;
+        //                 right: 20px;
+        //                 top: 50%;
+        //                 @include transform(translateY(-50%));
+        //                 &:hover {
+        //                     opacity: 0.7;
+        //                 }
+        //             }
+        //             input {
+        //                 padding: 18px 60px 18px 25px;
+        //                 border: 1px solid white;
+        //                 background: transparent;
+        //                 color: white;
+        //                 font-size: 16px;
+        //                 line-height: 20px;
+        //                 &::placeholder {
+        //                     color: white;
+        //                 }
 
-                        &:-ms-input-placeholder {
-                            color: white;
-                        }
+        //                 &:-ms-input-placeholder {
+        //                     color: white;
+        //                 }
 
-                        &::-ms-input-placeholder {
-                            color: white;
-                        }
-                        &:focus {
-                            color: white;
-                            background: transparent;
-                        }
-                    }
-                }
-            }
-        }
+        //                 &::-ms-input-placeholder {
+        //                     color: white;
+        //                 }
+        //                 &:focus {
+        //                     color: white;
+        //                     background: transparent;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        padding-top: 70px;
         .bg-find {
             padding: 45px 0 20px;
             .abs-banner {

@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="css-home">
+        {{--
         @if($banners)
         <div class="banner-home" style="background: url('upload/banner/{{ $banners->image }}') no-repeat center;">
             <div class="container pos-rel">
@@ -16,8 +17,10 @@
             </div>
         </div>
         @endif
+        --}}
         <div class="container">
             <div class="bg-find">
+                {{--
                 @if(!$banners)
                 <div class="abs-banner">
                     <div class="row justify-content-center">
@@ -27,7 +30,8 @@
                     </div>
                 </div>
                 @endif
-                <div class="t-find">Find Your Vehicle</div>
+                --}}
+                <div class="t-find" style="color: #003F5A">Singapore's Leading Car Exporter</div>
                 <form action="{{ url('product-listing') }}">
                     <div class="row">
                         <!-- <div class="col-6 col-md-3">
@@ -469,7 +473,7 @@
 @section('js')
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('header').addClass('abs');
+		// $('header').addClass('abs');
 
         $( "#slider-range" ).slider({
             range: true,
