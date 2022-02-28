@@ -52,7 +52,7 @@ class ProductController extends BaseController
         if($request->range_max){
             $range_max = $request->range_max;
         }
-        $products = Product::where('status',1);
+        $products = Product::where('status',1)->select(DB::raw('*, (CASE WHEN discount_price > 0 THEN discount_price ELSE price END) AS price_after_discount'));
 
         if($request->brand){
             $brand = Brand::where('slug',$request->brand)->where('status',1)->first();
@@ -111,9 +111,9 @@ class ProductController extends BaseController
                         });
         }
         if($request->sort == 'high-low'){
-            $products = $products->orderby('price','desc');
+            $products = $products->orderby('price_after_discount','desc');
         }else if($request->sort == 'low-high'){
-            $products = $products->orderby('price','asc');
+            $products = $products->orderby('price_after_discount','asc');
         }else if($request->sort == 'new'){
             $products = $products->orderby('id','desc');
         }else if($request->sort == 'disc-high'){
@@ -137,7 +137,7 @@ class ProductController extends BaseController
         }
 
         $products = $products->paginate(12)->withQueryString();
-       // dd($products);
+       //dd($products);
 // dd($range_max);
         $data['brands'] = $brands;
         $data['models'] = $models;
