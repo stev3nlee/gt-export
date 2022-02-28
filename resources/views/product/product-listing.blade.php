@@ -108,8 +108,8 @@
                                             <option value="new" @if($sort == 'new') selected @endif>Newly Added</option>
                                             <option value="disc-high" @if($sort == 'disc-high') selected @endif>Discount % High to Low</option>
                                             <option value="disc-low" @if($sort == 'disc-low') selected @endif>Discount % Low to High</option>
-                                            <option value="year-new" @if($sort == 'year-new') selected @endif>Year New to Old</option>
-                                            <option value="year-old" @if($sort == 'year-old') selected @endif>Year Old to New</option>
+                                            <option value="year-new" @if($sort == 'year-new') selected @endif>New to Old</option>
+                                            <option value="year-old" @if($sort == 'year-old') selected @endif>Old to New</option>
                                             <option value="engine-high" @if($sort == 'engine-high') selected @endif>Engine High to Low</option>
                                             <option value="engine-low" @if($sort == 'engine-low') selected @endif>Engine Low to High</option>
                                             <option value="mileage-high" @if($sort == 'mileage-high') selected @endif>Mileage High to Low</option>
