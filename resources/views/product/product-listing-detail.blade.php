@@ -330,7 +330,7 @@
                                             <div class="new">New Arrival</div>
                                         @endif
                                     </div>
-                                    <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
+                                    <a href="{{ URL::to('/product-listing-detail/'.$related->slug) }}">
                                         <div class="pad">
                                             <div class="year">{{ $related->registration_year }}</div>
                                             <div class="nm">@if(isset($related->brand[0])) {{ $related->brand[0]->name }} @endif</div>
