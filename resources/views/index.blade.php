@@ -128,6 +128,7 @@
                 </form>
             </div>
         </div>
+        @if(count($recently_views)>0)
         <div class="bg-inventory">
             <div class="container">
                 <div class="row">
@@ -194,7 +195,9 @@
                 </div>
             </div>
         </div>
+        @endif
 
+        @if(count($new_arrivals)>0)
         <div class="bg-inventory">
             <div class="container">
                 <div class="row">
@@ -268,7 +271,9 @@
                 </div>
             </div>
         </div>
+        @endif
 
+        @if(count($discounts)>0)
         <div class="bg-inventory">
             <div class="container">
                 <div class="row">
@@ -342,6 +347,8 @@
                 </div>
             </div>
         </div>
+        @endif
+        
         <div class="bg-inventory">
             <div class="container">
                 <div class="row">
@@ -379,6 +386,7 @@
                         </div>
                     </div>
                     <div class="col-md-9" id="car-list">
+                        @if(count($products)>0)
                         <div class="row row-15">
                             @foreach($products as $product)
                             <div class="col-6 col-md-4 col-xl-3 mb15">
@@ -428,6 +436,9 @@
                             </div>
                             @endforeach
                         </div>
+                        @else
+                        <p>There is no cars in this brand. Please search other brands.</p>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -68,7 +68,7 @@ return array(
                 array(
                 'driver' => 'LocalFileSystem',
                 'path' =>  '../public/storage/files/',
-                'URL' => 'https://beta.gtexport.sg/'
+                'URL' => 'https://www.gtexport.sg/'
                 )
                 ),
 
