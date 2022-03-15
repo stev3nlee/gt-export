@@ -16955,7 +16955,6 @@ footer ul.l-footer li:last-child {
   margin-right: 0;
 }
 footer ul.l-footer li a {
-  font-family: "Quicksand-Bold";
   color: white;
   font-size: 13px;
   line-height: 17px;
@@ -16965,8 +16964,8 @@ footer ul.l-footer li a:hover {
   opacity: 0.7;
 }
 footer ul.l-soc {
-  text-align: right;
-  margin: 0;
+  text-align: left;
+  margin: 10px 0;
   padding: 0;
 }
 footer ul.l-soc li {
@@ -19029,7 +19028,7 @@ input[type=file] {
 .box-wa {
   position: fixed;
   z-index: 9999;
-  bottom: 60px;
+  bottom: 30px;
   right: 70px;
 }
 .box-wa.active {
@@ -19216,7 +19215,7 @@ input[type=file] {
 @media (max-width: 991px) {
   .box-wa {
     right: 35px;
-    bottom: 50px;
+    bottom: 20px;
   }
 
   .box-wa2 {
@@ -20013,8 +20012,8 @@ input[type=file] {
 }
 @media (max-width: 767px) {
   .box-wa {
-    right: 10px;
-    bottom: 0;
+    right: 25px;
+    bottom: 20px;
   }
   .box-wa a ul.l-wa li.bg-chat {
     display: none;
@@ -20533,8 +20532,6 @@ input[type=file] {
   }
   #main .css-product .item .img img {
     height: auto;
-    -o-object-fit: none;
-       object-fit: none;
   }
   #main .css-product .item a .pad {
     padding: 10px;

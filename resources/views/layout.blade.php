@@ -153,8 +153,14 @@
             </ul>
             <div class="row">
                 <div class="col-sm-6 my-auto order-2 order-md-1">
+                    <ul class="l-soc">
+                        <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="{{ $company_data->facebook }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
+                        <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
                     <div class="cp">All Rights Reserved <?php echo date('Y'); ?></div>
                 </div>
+                <!--
                 <div class="col-sm-6 my-auto order-1 order-md-2">
                     <ul class="l-soc">
                         <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
@@ -162,6 +168,7 @@
                         <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
+                -->
             </div>
         </div>
     </footer>

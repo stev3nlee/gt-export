@@ -615,7 +615,6 @@ footer {
                 margin-right: 0;
             }
             a {
-                font-family: 'Quicksand-Bold';
                 color: white;
                 font-size: 13px;
                 line-height: 17px;
@@ -627,8 +626,8 @@ footer {
         }
     }
     ul.l-soc {
-        text-align: right;
-        margin: 0;
+        text-align: left;
+        margin: 10px 0;
         padding: 0;
         li {
             display: inline-block;
@@ -2918,7 +2917,7 @@ input[type="file"] {
 .box-wa {
     position: fixed;
     z-index: 9999;
-    bottom: 60px;
+    bottom: 30px;
     right: 70px;
     &.active {
         display: none !important;
