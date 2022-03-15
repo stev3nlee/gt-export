@@ -496,4 +496,15 @@ class ProductController extends Controller
 
         return Excel::download($product_export, $file_name . '.csv', \Maatwebsite\Excel\Excel::CSV);
     }
+
+    function replaceimage(Request $request)
+    {
+        $datas = Product_image::get();
+        foreach($datas as $data){
+            $new_image = str_replace('beta.gtexport.sg', 'gtexport.sg', $data->image);
+            $data->image = $new_image;
+            $data->save();
+        }
+        echo "sukses";
+    }
 }

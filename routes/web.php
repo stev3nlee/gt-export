@@ -198,6 +198,7 @@ Route::group(['prefix' => 'gtexport-admin'], function () {
         Route::post('product/update_sort', 'Admin\ProductController@update_sort');
         Route::get('product/getData', 'Admin\ProductController@getData');
         Route::get('product/export', 'Admin\ProductController@export');
+        Route::get('product/replace', 'Admin\ProductController@replaceimage');
 
         Route::get('blog', 'Admin\BlogController@view')
             ->name('blog_view');

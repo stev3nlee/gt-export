@@ -141,6 +141,7 @@
             <div class="css-product">
                 <div class="row">
                     <div class="col-md-12 col-lg-12"  id="car-list">
+                        @if(count($recently_views)>0)
                         <div class="row row-15">
                             @foreach($recently_views as $product)
                             <div class="col-6 col-md-4 col-lg-2 mb15">
@@ -190,6 +191,9 @@
                             </div>
                             @endforeach
                         </div>
+                        @else
+                        <p>There is no cars in this brand. Please search other brands.</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -215,6 +219,7 @@
             <div class="css-product">
                 <div class="row">
                     <div class="col-md-12 col-lg-12"  id="car-list">
+                        @if(count($new_arrivals)>0)
                         <div class="row row-15">
                             @foreach($new_arrivals as $product)
                             <div class="col-6 col-md-4 col-lg-2 mb15">
@@ -264,6 +269,9 @@
                             </div>
                             @endforeach
                         </div>
+                        @else
+                        <p>There is no cars in this brand. Please search other brands.</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -289,6 +297,7 @@
             <div class="css-product">
                 <div class="row">
                     <div class="col-md-12 col-lg-12"  id="car-list">
+                        @if(count($discounts)>0)
                         <div class="row row-15">
                             @foreach($discounts as $product)
                             <div class="col-6 col-md-4 col-lg-2 mb15">
@@ -338,6 +347,9 @@
                             </div>
                             @endforeach
                         </div>
+                        @else
+                        <p>There is no cars in this brand. Please search other brands.</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -379,6 +391,7 @@
                         </div>
                     </div>
                     <div class="col-md-9" id="car-list">
+                        @if(count($products)>0)
                         <div class="row row-15">
                             @foreach($products as $product)
                             <div class="col-6 col-md-4 col-xl-3 mb15">
@@ -428,6 +441,9 @@
                             </div>
                             @endforeach
                         </div>
+                        @else
+                        <p>There is no cars in this brand. Please search other brands.</p>
+                        @endif
                     </div>
                 </div>
             </div>
