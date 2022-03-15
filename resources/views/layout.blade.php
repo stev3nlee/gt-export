@@ -43,7 +43,7 @@
         </div>
         <div class="container pos-rel">
             <div class="row">
-                <div class="col-md-6 col-lg-4 offset-lg-4 text-center my-auto">
+                <div class="col-md-6 col-lg-4 offset-lg-4 text-center my-auto offset-4">
                     <div class="logo">
                         <a href="{{ URL::to('/') }}">
                             <img src="{{ asset('images/logo.svg') }}" alt="" title=""/>

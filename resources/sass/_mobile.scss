@@ -574,6 +574,12 @@
 	    }
 	    .css-product {
 			.item {
+				.img {
+					img {
+						height: auto;
+						object-fit: none;
+					}
+				}
 				a {
 					.pad {
 						padding: 10px;

@@ -381,7 +381,7 @@
                     <div class="col-md-9" id="car-list">
                         <div class="row row-15">
                             @foreach($products as $product)
-                            <div class="col-6 col-md-4 col-xl-3">
+                            <div class="col-6 col-md-4 col-xl-3 mb15">
                                 <div class="item">
                                     <div class="pos-rel">                 
                                         <div class="img"> @if(isset($product->product_image[0]))<img src="{{ asset($product->product_image[0]->image) }}" alt="" title=""/>@endif</div>
