@@ -16368,6 +16368,14 @@ html, body {
   position: relative;
 }
 
+strong, b {
+  font-family: "Quicksand-Bold";
+}
+
+.mb25 {
+  margin-bottom: 25px;
+}
+
 .modal.scroll {
   overflow-x: hidden;
   overflow-y: auto;
@@ -16617,6 +16625,9 @@ header {
   position: relative;
   padding: 13px 0;
 }
+header .show-md {
+  display: none;
+}
 header .box-search {
   position: absolute;
   width: 100%;
@@ -16747,6 +16758,44 @@ header .search input:focus {
   color: black;
   background: transparent;
 }
+header ul.right-menu {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+header ul.right-menu li {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+header ul.right-menu li:last-child {
+  margin-right: 0;
+}
+header ul.right-menu li .click-search img {
+  width: 22px;
+}
+header ul.right-menu li .login {
+  position: relative;
+  top: -1px;
+}
+header ul.right-menu li .login.menu-account {
+  display: none;
+}
+header ul.right-menu li .login img {
+  width: 22px;
+}
+header ul.right-menu li a {
+  display: block;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+header ul.right-menu li a.menu-resp-dropdown-toggle {
+  position: relative;
+  top: 2px;
+}
+header ul.right-menu li a:hover {
+  opacity: 0.7;
+}
 header .menu {
   display: inline-block;
   vertical-align: middle;
@@ -16760,15 +16809,6 @@ header .menu a.menu-dropdown-toggle:hover {
 }
 header .menu img {
   width: 25px;
-}
-header .menu.menu-mobile {
-  display: none;
-}
-header .click-search {
-  display: none;
-}
-header .login {
-  display: none;
 }
 header .link {
   vertical-align: middle;
@@ -16854,7 +16894,7 @@ header .bg-menu {
   position: absolute;
   opacity: 1;
   top: calc(100% + 5px);
-  z-index: 999;
+  z-index: 990;
   transition: all 0.3s;
 }
 header .bg-menu ul.l-menu {
@@ -16964,7 +17004,7 @@ footer ul.l-footer li a:hover {
   opacity: 0.7;
 }
 footer ul.l-soc {
-  text-align: left;
+  text-align: right;
   margin: 10px 0;
   padding: 0;
 }
@@ -17816,7 +17856,7 @@ footer .cp {
   opacity: 0.7;
 }
 #main .css-product .item a .pad {
-  padding: 15px 10px;
+  padding: 5px 5px 5px;
 }
 #main .css-product .item a .pad .row {
   margin-left: -5px;
@@ -17837,7 +17877,6 @@ footer .cp {
   font-family: "Quicksand-Bold";
   font-size: 12px;
   line-height: 15px;
-  margin-bottom: 15px;
 }
 #main .css-product .item a .pad .merk {
   color: #212121;
@@ -17869,7 +17908,7 @@ footer .cp {
   color: blue;
   font-family: "Quicksand-Bold";
   font-size: 11px;
-  line-height: 24px;
+  line-height: 15px;
 }
 #main .css-product .item a .pad .stock {
   font-size: 12px;
@@ -19030,6 +19069,7 @@ input[type=file] {
   z-index: 9999;
   bottom: 30px;
   right: 70px;
+  transition: all 0.3s;
 }
 .box-wa.active {
   display: none !important;
@@ -19225,11 +19265,14 @@ input[type=file] {
     right: 35px;
   }
 
+  header .show-md {
+    display: block;
+  }
+  header .hide-md {
+    display: none;
+  }
   header .bg-menu {
     top: calc(100% + 15px);
-  }
-  header .text-center {
-    text-align: left !important;
   }
   header .logo a img {
     width: 170px;
@@ -20078,11 +20121,39 @@ input[type=file] {
     padding: 10px 0;
     border-bottom: 1px solid #e0e0e0;
   }
-  header .search {
-    display: none !important;
+  header .show-md {
+    position: relative;
+    top: -3px;
+  }
+  header .row.row5 {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  header .row.row5 > div {
+    padding-left: 5px;
+    padding-right: 5px;
   }
   header.abs {
     border: 0;
+  }
+  header ul.right-menu li {
+    margin-right: 3px;
+  }
+  header ul.right-menu li .click-search img {
+    width: 14px;
+  }
+  header ul.right-menu li .login {
+    top: 0;
+  }
+  header ul.right-menu li .login img {
+    width: 14px;
+  }
+  header ul.right-menu li a.menu-resp-dropdown-toggle {
+    position: relative;
+    top: 2px;
+  }
+  header ul.right-menu li a.menu-resp-dropdown-toggle img {
+    width: 21px;
   }
   header.account .login.menu-account {
     display: inline-block;
@@ -20090,40 +20161,11 @@ input[type=file] {
   header.account .login.menu-login {
     display: none;
   }
-  header .link, header .link-account {
-    display: none !important;
-  }
   header .bg-menu {
     display: none;
   }
-  header .menu.menu-desktop {
-    display: none;
-  }
-  header .menu.menu-mobile {
-    display: inline-block;
-  }
-  header .click-search {
-    margin-left: 5px;
-    display: inline-block;
-  }
-  header .click-search img {
-    width: 18px;
-  }
-  header .login {
-    margin-left: 10px;
-    display: inline-block;
-  }
-  header .login.menu-account {
-    display: none;
-  }
-  header .login img {
-    width: 18px;
-  }
-  header .logo {
-    margin-right: 30px;
-  }
   header .logo a img {
-    width: 160px;
+    width: 130px;
   }
 
   .css-select .form-control {

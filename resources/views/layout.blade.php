@@ -8,6 +8,7 @@
     <meta name="keywords" content="">
     <title>GT EXPORT</title>
     <!--favicon-->
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('images/favicon.ico') }}"/>
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-icon-180x180.png?v.1') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png?v.1') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png?v.1') }}"> -->
@@ -42,80 +43,70 @@
             </form>
         </div>
         <div class="container pos-rel">
-            <div class="row">
-                <div class="col-md-6 col-lg-4 offset-lg-4 text-center my-auto offset-4">
+            <div class="row row5">
+                <div class="col-6 offset-3 col-md-4 offset-md-4 text-center my-auto">
                     <div class="logo">
                         <a href="{{ URL::to('/') }}">
                             <img src="{{ asset('images/logo.svg') }}" alt="" title=""/>
                         </a>
                     </div>
-                    <!--
-                    <div class="menu menu-desktop">
-                        <a class="menu-dropdown-toggle">
-                            <img src="{{ asset('images/menu.png') }}" alt="" title=""/>
-                        </a>
-                    </div>
-                    -->
-                    <div class="menu menu-mobile">
-                        <a class="menu-resp-dropdown-toggle">
-                            <img src="{{ asset('images/menu.png') }}" alt="" title=""/>
-                        </a>
-                    </div>
-
-                    <div class="click-search"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></div>
-
-                    <div class="login menu-login">
-                        <a class="click-login">
-                            <img src="{{ asset('images/new-login.svg') }}" alt="" title=""/>
-                        </a>
-                    </div>
-                    <div class="login menu-account">
-                        <a href="{{ URL::to('/personal-info') }}">
-                            <img src="{{ asset('images/new-account.svg') }}" alt="" title=""/>
-                        </a>
-                    </div>
                 </div>
-                <div class="col-md-6 col-lg-4 my-auto text-right">
-                    <div class="search">
-                        <form action="{{ URL::to('/product-listing') }}">
-                            <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
-                            <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
-                        </form>
-                    </div>
-                    <!-- NO ACCOUNT-->
-                    @if(session()->has('email'))
-                    <div class="link-account" class="link-account">
-                        <a href="{{ URL::to('/personal-info') }}">
-                            <div class="tbl">
-                                <div class="cell img">
-                                @if(isset($member_detail->image))
-                                    <img src="{{ asset('upload/profile/'.$member_detail->image) }}" alt="" title=""/>
-                                @else
-                                    <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>
-                                @endif
+                <div class="col-3 col-md-4 my-auto text-right">
+                    <div class="hide-md">
+                        <div class="search">
+                            <form action="{{ URL::to('/product-listing') }}">
+                                <input class="form-control" type="text" name="search" placeholder="Search for Used Car" />
+                                <button type="submit"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></button>
+                            </form>
+                        </div>
+                        <!-- NO ACCOUNT-->
+                        @if(session()->has('email'))
+                        <div class="link-account" class="link-account">
+                            <a href="{{ URL::to('/personal-info') }}">
+                                <div class="tbl">
+                                    <div class="cell img">
+                                    @if(isset($member_detail->image))
+                                        <img src="{{ asset('upload/profile/'.$member_detail->image) }}" alt="" title=""/>
+                                    @else
+                                        <img src="{{ asset('images/no-profile.png') }}" alt="" title=""/>
+                                    @endif
+                                    </div>
+                                    <div class="cell nm">{{ session()->get('first_name') }}</div>
                                 </div>
-                                <div class="cell nm">{{ session()->get('first_name') }}</div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        @else
+                        <div class="link">
+                            <a href="{{ url('login') }}" >
+                                <button class="hvr-button">Login / Sign Up</button>
+                            </a>
+                        </div>
+                        @endif
                     </div>
-                    @else
-                    <div class="link">
-                        <a href="{{ url('login') }}" >
-                            <button class="hvr-button">Login / Sign Up</button>
-                        </a>
+                    <div class="show-md">
+                        <ul class="right-menu">
+                            <li>
+                                <a class="menu-resp-dropdown-toggle">
+                                    <img src="{{ asset('images/menu.png') }}" alt="" title=""/>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="click-search"><img src="{{ asset('images/search2.png') }}" alt="" title=""/></div>
+                            </li>
+                            <li>
+                                <div class="login menu-login">
+                                    <a class="click-login">
+                                        <img src="{{ asset('images/new-login.svg') }}" alt="" title=""/>
+                                    </a>
+                                </div>
+                                <div class="login menu-account">
+                                    <a href="{{ URL::to('/personal-info') }}">
+                                        <img src="{{ asset('images/new-account.svg') }}" alt="" title=""/>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    @endif
-                    <!-- ACCOUNT -->
-                    <!--
-                    <div class="link-account">
-                        <a href="{{ URL::to('/personal-info') }}">
-                            <div class="tbl">
-                                <div class="cell img"><img src="{{ asset('images/profile.jpg') }}" alt="" title=""/></div>
-                                <div class="cell nm">Dennis</div>
-                            </div>
-                        </a>
-                    </div>
-                    -->
                 </div>
             </div>
             <div class="bg-menu">
@@ -142,7 +133,7 @@
         @yield('content')
     </div>
 
-    <footer>
+    <footer id="footer">
         <div class="container">
             <ul class="l-footer">
                 <li>
@@ -153,14 +144,8 @@
             </ul>
             <div class="row">
                 <div class="col-sm-6 my-auto order-2 order-md-1">
-                    <ul class="l-soc">
-                        <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="{{ $company_data->facebook }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
-                        <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
                     <div class="cp">All Rights Reserved <?php echo date('Y'); ?></div>
                 </div>
-                <!--
                 <div class="col-sm-6 my-auto order-1 order-md-2">
                     <ul class="l-soc">
                         <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
@@ -168,7 +153,6 @@
                         <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
-                -->
             </div>
         </div>
     </footer>
@@ -538,6 +522,20 @@
 <!-- JS -->
 @yield('js')
 <script type="text/javascript">
+    $(window).scroll(function () {
+        if (
+            $(window).scrollTop() + $(window).height() <
+            $(document).height() - $("#footer").height()
+        ) {
+            $(".box-wa").css("bottom", "30px");
+        }
+        if (
+            $(window).scrollTop() + $(window).height() >
+            $(document).height() - $("#footer").height()
+        ) {
+            $(".box-wa").css("bottom", "60px");
+        }
+    });
     function scrollAll() {
         a = $(window).scrollTop();
         if (a > 200) {

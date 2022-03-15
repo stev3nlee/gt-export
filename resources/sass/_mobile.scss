@@ -69,12 +69,51 @@
 	}
 	header {
 		padding: 10px 0;
-		.search {
-			display: none !important;
+		// .search {
+		// 	display: none !important;
+		// }
+		.show-md {
+			position: relative;
+			top: -3px;
+		}
+		.row {
+			&.row5 {
+				margin-left: -5px;
+				margin-right: -5px;
+				> div {
+					padding-left: 5px;
+					padding-right: 5px;
+				}
+			}
 		}
 		&.abs {
 			border: 0;
 		}
+		ul.right-menu {
+	        li {
+	            margin-right: 3px;
+	            .click-search {
+	                img {
+	                    width: 14px;
+	                }
+	            }
+	            .login {
+	                top: 0;
+	                img {
+	                    width: 14px;
+	                }
+	            }
+	            a {
+	                &.menu-resp-dropdown-toggle {
+	                    position: relative;
+	                    top: 2px;
+	                    img {
+	                    	width: 21px;
+	                    }
+	                }
+	            }
+	        }
+	    }
 		&.account {
 			.login {
 				&.menu-account {
@@ -86,42 +125,42 @@
 			}
 		}
 		border-bottom: 1px solid #e0e0e0;
-		.link, .link-account {
-			display: none !important;
-		}
+		// .link, .link-account {
+		// 	display: none !important;
+		// }
 		.bg-menu {
         	display: none;
         }
-        .menu {
-        	&.menu-desktop {
-        		display: none;
-        	}
-        	&.menu-mobile {
-        		display: inline-block;
-        	}
-        }
-        .click-search {
-        	margin-left: 5px;
-        	display: inline-block;
-        	img {
-        		width: 18px;
-        	}
-        }
-        .login {
-        	margin-left: 10px;
-    		display: inline-block;
-    		&.menu-account {
-    			display: none;
-    		}
-    		img {
-    			width: 18px;
-    		}
-    	}
+     //    .menu {
+     //    	&.menu-desktop {
+     //    		display: none;
+     //    	}
+     //    	&.menu-mobile {
+     //    		display: inline-block;
+     //    	}
+     //    }
+     //    .click-search {
+     //    	margin-left: 5px;
+     //    	display: inline-block;
+     //    	img {
+     //    		width: 18px;
+     //    	}
+     //    }
+     //    .login {
+     //    	margin-left: 10px;
+    	// 	display: inline-block;
+    	// 	&.menu-account {
+    	// 		display: none;
+    	// 	}
+    	// 	img {
+    	// 		width: 18px;
+    	// 	}
+    	// }
     	.logo {
-    		margin-right: 30px;
+    		// margin-right: 30px;
     		a {
     			img {
-    				width: 160px;
+    				width: 130px;
     			}
     		}
     	}

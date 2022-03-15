@@ -141,7 +141,7 @@
         <div class="container">
             <div class="css-product">
                 <div class="row">
-                    <div class="col-md-12 col-lg-12"  id="car-list">
+                    <div class="col-md-12 col-lg-12"  id="car-list1">
                         <div class="row row-15">
                             @foreach($recently_views as $product)
                             <div class="col-6 col-md-4 col-lg-2 mb15">
@@ -170,9 +170,9 @@
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$product->slug) }}">
                                         <div class="pad">
-                                            <div class="year">{{ $product->registration_year }}</div>
-                                            <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
-                                            <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
+                                            <!-- <div class="year"></div> -->
+                                            <div class="nm">{{ $product->registration_year }} @if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
+                                            <!-- <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div> -->
                                             <div class="merk">@if(isset($product->model[0])) {{ $product->model_code }} @endif</div>
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
@@ -217,7 +217,7 @@
         <div class="container">
             <div class="css-product">
                 <div class="row">
-                    <div class="col-md-12 col-lg-12"  id="car-list">
+                    <div class="col-md-12 col-lg-12"  id="car-list2">
                         <div class="row row-15">
                             @foreach($new_arrivals as $product)
                             <div class="col-6 col-md-4 col-lg-2 mb15">
@@ -293,7 +293,7 @@
         <div class="container">
             <div class="css-product">
                 <div class="row">
-                    <div class="col-md-12 col-lg-12"  id="car-list">
+                    <div class="col-md-12 col-lg-12"  id="car-list3">
                         <div class="row row-15">
                             @foreach($discounts as $product)
                             <div class="col-6 col-md-4 col-lg-2 mb15">

@@ -10,12 +10,18 @@
 		}
 	}
 	header {
+		.show-md {
+			display: block;
+		}
+		.hide-md {
+			display: none;
+		}
 		.bg-menu {
 			top: calc(100% + 15px);
 		}
-		.text-center {
-			text-align: left !important;
-		}
+		// .text-center {
+		// 	text-align: left !important;
+		// }
 		.logo {
 			// margin-right: 10px;
 			a {
