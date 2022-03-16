@@ -133,7 +133,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6 my-auto">
-                        <div class="t">Recently viewed </div>
+                        <div class="t">Recently Viewed </div>
                     </div>
                 </div>
             </div>
@@ -349,7 +349,7 @@
         </div>
         @endif
         
-        <div class="bg-inventory">
+        <div class="bg-inventory" id="car-list">
             <div class="container">
                 <div class="row">
                     <div class="col-6 my-auto">
@@ -385,7 +385,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-9" id="car-list">
+                    <div class="col-md-9">
                         @if(count($products)>0)
                         <div class="row row-15">
                             @foreach($products as $product)

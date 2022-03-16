@@ -40,7 +40,7 @@
                             <div class="click-show">Show thumbnails</div>
                             <div class="click-hide">Hide thumbnails</div>
                             <div class="link-upload">
-                                <a href="{{ url('product-listing/download/'.$product->slug) }}"><i class="fas fa-upload"></i> Download all images</a>
+                                <a href="{{ url('product-listing/download/'.$product->slug) }}"><i class="fas fa-download"></i> Download all images</a>
                             </div>
                         </div>
                     </div>

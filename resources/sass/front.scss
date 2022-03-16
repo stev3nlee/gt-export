@@ -984,7 +984,7 @@ footer {
             }
         }
         .bg-inventory {
-            margin: 60px 0 30px 0;
+            margin: 20px 0 30px 0;
             background-color: $blue;
             padding: 20px 0;
             .view {
@@ -1729,6 +1729,7 @@ footer {
                 margin-right: 3px;
                 a {
                     background-color: transparent;
+                    color: $blue;
                     padding: 4px 7px;
                     cursor: pointer;
                     font-family: 'Quicksand-Bold';

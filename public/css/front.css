@@ -17200,7 +17200,7 @@ footer .cp {
   margin: 40px 0 0;
 }
 #main .css-home .bg-inventory {
-  margin: 60px 0 30px 0;
+  margin: 20px 0 30px 0;
   background-color: #003F5A;
   padding: 20px 0;
 }
@@ -17926,6 +17926,7 @@ footer .cp {
 }
 #main .css-product ul.l-pagination li a {
   background-color: transparent;
+  color: #003F5A;
   padding: 4px 7px;
   cursor: pointer;
   font-family: "Quicksand-Bold";
