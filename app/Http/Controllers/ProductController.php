@@ -84,7 +84,7 @@ class ProductController extends BaseController
 
         if($request->category_type){
             if($request->category_type == 'clearance'){
-                $products = $products->where('discount_price', '>', 0);
+                $products = $products->where('discount_percent', '>', 0);
             }else if($request->category_type == 'newly'){
                 $products = $products->where('new_arrival_expired_date','>', date('Y-m-d H:i:s'));
             }
@@ -180,6 +180,7 @@ class ProductController extends BaseController
         $data['product'] = $product;
         $data['related_products'] = $related_products;
         $data['accessories'] = Accessories::get();
+        \RecentlyViewed\Facades\RecentlyViewed::add($product);
         return view('/product/product-listing-detail', $data);  
     }
 

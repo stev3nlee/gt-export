@@ -5,11 +5,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use RecentlyViewed\Models\Contracts\Viewable;
+use RecentlyViewed\Models\Traits\CanBeViewed;
 
-class Product extends Model
+class Product extends Model implements Viewable
 {
     use HasSlug;
     use SoftDeletes;
+    use CanBeViewed;
     public $timestamps = true;
     protected $table = 'product';
     protected $fillable = ['name','slug','image','price','description','status','image','reserve','description','stock','youtube'];

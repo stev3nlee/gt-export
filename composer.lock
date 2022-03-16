@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "523faa2be0fa5358fd03a6aef8d0d33f",
+    "content-hash": "fd2a8a0a76b3db040a79fa05852ecd9b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7493,6 +7493,71 @@
                 }
             ],
             "time": "2022-01-18T01:13:47+00:00"
+        },
+        {
+            "name": "yaroslawww/laravel-recently-viewed",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yaroslawww/laravel-recently-viewed.git",
+                "reference": "9c3580fcec5a5540717de0fe7975901db8a77c5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yaroslawww/laravel-recently-viewed/zipball/9c3580fcec5a5540717de0fe7975901db8a77c5a",
+                "reference": "9c3580fcec5a5540717de0fe7975901db8a77c5a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.4",
+                "orchestra/testbench": "^6.24",
+                "phpunit/phpunit": "^9.5",
+                "psalm/plugin-laravel": "^1.5",
+                "vimeo/psalm": "^4.20"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RecentlyViewed\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "RecentlyViewed": "RecentlyViewed\\Facades\\RecentlyViewed"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RecentlyViewed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yaroslav Georgitsa",
+                    "email": "yaroslav.georgitsa@gmail.com",
+                    "homepage": "https://github.com/yaroslawww",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Package to make quickly recently viewed functionality",
+            "homepage": "https://github.com/yaroslawww/laravel-recently-viewed",
+            "keywords": [
+                "laravel-recently-viewed",
+                "recently-viewed"
+            ],
+            "support": {
+                "issues": "https://github.com/yaroslawww/laravel-recently-viewed/issues",
+                "source": "https://github.com/yaroslawww/laravel-recently-viewed/tree/3.0.1"
+            },
+            "time": "2022-03-13T13:58:21+00:00"
         }
     ],
     "packages-dev": [
@@ -7949,6 +8014,66 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "laravel/sail",
+            "version": "v1.13.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "2092e1ce6e4ba534bff443de8c3a7bb280aba121"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/2092e1ce6e4ba534bff443de8c3a7bb280aba121",
+                "reference": "2092e1ce6e4ba534bff443de8c3a7bb280aba121",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^8.0|^9.0",
+                "illuminate/contracts": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "bin": [
+                "bin/sail"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Sail\\SailServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Sail\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Docker files for running a basic Laravel application.",
+            "keywords": [
+                "docker",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/sail/issues",
+                "source": "https://github.com/laravel/sail"
+            },
+            "time": "2022-03-11T14:11:15+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -9950,5 +10075,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
