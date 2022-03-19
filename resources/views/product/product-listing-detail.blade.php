@@ -7,7 +7,7 @@
         <div class="container">
             <div class="mb70">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5 col-lg-6">
                         <div class="pr40">
                             <div class="pos-rel">
                                 <div class="pagingInfo"></div>
@@ -37,38 +37,43 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="click-show">Show thumbnails</div>
-                            <div class="click-hide">Hide thumbnails</div>
+                            <div class="click-show"><div class="text-inside">Show thumbnails</div></div>
+                            <div class="click-hide"><div class="text-inside">Hide thumbnails</div></div>
                             <div class="link-upload">
-                                <a href="{{ url('product-listing/download/'.$product->slug) }}"><i class="fas fa-download"></i> Download all images</a>
+                                <div class="text-inside">
+                                    <a href="{{ url('product-listing/download/'.$product->slug) }}"><i class="fas fa-download"></i> Download all images</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="merk">{{ $product->registration_year }}</div>
-                        <div class="nm">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
-                        <div class="merk">{{ $product->model_code }}</div>
-                        <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
-                        <div class="buy">Buy it at</div>
-                        @if($product->reserve == 0)
-                            @if($product->discount_percent != 0)
-                                <div class="price">USD {{ number_format($product->price, 2, '.', ',') }}</div>
-                                <div class="buy-disc">Discount Price</div>
-                                <div class="price-disc">USD {{ number_format($product->discount_price, 2, '.', ',') }} <span class="save-price"> You save {{ $product->discount_percent }}% </span> </div>
-                            @else
-                                <div class="price-wo-disc">USD {{ number_format($product->price, 2, '.', ',') }}</div>
-                                <!-- <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div> -->
-                            @endif
-                        @endif
-                        @if($product->reserve == 0)
-                        <div class="add">
-                            <a>
-                                @if(session()->has('email'))
-                                    <button type="button" class="hvr-button full100 click-submit-quote" data-product="{{ $product->slug }}">Ask for Quote</button>
+                    <div class="col-md-7 col-lg-6">
+                        <div class="detail-box">
+                            <div class="buy">Buy it at</div>
+                            @if($product->reserve == 0)
+                                @if($product->discount_percent != 0)
+                                    <div class="price">USD {{ number_format($product->price, 2, '.', ',') }}</div>
+                                    <div class="buy-disc">Discount Price</div>
+                                    <div class="price-disc">USD {{ number_format($product->discount_price, 2, '.', ',') }} <span class="save-price"> You save {{ $product->discount_percent }}% </span> </div>
                                 @else
-                                    <button type="button" class="hvr-button full100 click-submit-quote-guest" data-product="{{ $product->slug }}">Ask for Quote</button>
+                                    <div class="price-wo-disc">USD {{ number_format($product->price, 2, '.', ',') }}</div>
+                                    <!-- <div class="price-wo-disc">${{ number_format($product->price, 2, '.', ',') }}</div> -->
                                 @endif
-                            </a>
+                            @endif
+                            <div class="box-detail-inside">
+                                <div class="merk mb15">{{ $product->registration_year }}<span class="merk">@if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</span></div>
+                                <div class="nm">{{ $product->model_code }}</div>
+                                <div class="nm">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div>
+                            </div>
+                            @if($product->reserve == 0)
+                            <div class="add">
+                                <a>
+                                    @if(session()->has('email'))
+                                        <button type="button" class="hvr-button full100 click-submit-quote" data-product="{{ $product->slug }}">Ask for Quote</button>
+                                    @else
+                                        <button type="button" class="hvr-button full100 click-submit-quote-guest" data-product="{{ $product->slug }}">Ask for Quote</button>
+                                    @endif
+                                </a>
+                            </div>
                         </div>
                         @endif
                         @if($product->description)
@@ -79,29 +84,28 @@
                             </div>
                         </div>
                         @endif
-                        <div class="bdr"></div>
                         <div class="t1">Car Details</div>
                         <div class="t2">Economy & Performance</div>
                         <ul class="l-detail">
                             <li>
-                                <div class="l-detail-t1">{{ number_format($product->mileage, 0, '.', ',') }} {{ $product->mileage_km }}</div>
                                 <div class="l-detail-t2">Mileage</div>
+                                <div class="l-detail-t1">{{ number_format($product->mileage, 0, '.', ',') }} {{ $product->mileage_km }}</div>
                             </li>
                             <li>
-                                <div class="l-detail-t1">{{ $product->registration_year }}</div>
                                 <div class="l-detail-t2">Year</div>
+                                <div class="l-detail-t1">{{ $product->registration_year }}</div>
                             </li>
                             <li>
-                                <div class="l-detail-t1">{{ number_format($product->engine_capacity, 0, '.', ',') }}cc</div>
                                 <div class="l-detail-t2">Engine Capacity</div>
+                                <div class="l-detail-t1">{{ number_format($product->engine_capacity, 0, '.', ',') }}cc</div>
                             </li>
                             <li>
-                                <div class="l-detail-t1">@if(isset($product->transmission[0])) {{ $product->transmission[0]->name }} @endif</div>
                                 <div class="l-detail-t2">Transmission</div>
+                                <div class="l-detail-t1">@if(isset($product->transmission[0])) {{ $product->transmission[0]->name }} @endif</div> 
                             </li>
                             <li>
-                                <div class="l-detail-t1">{{ $product->fuel }}</div>
                                 <div class="l-detail-t2">Fuel</div>
+                                <div class="l-detail-t1">{{ $product->fuel }}</div>                   
                             </li>
                         </ul>
                         <div class="text1">
@@ -332,20 +336,20 @@
                                     </div>
                                     <a href="{{ URL::to('/product-listing-detail/'.$related->slug) }}">
                                         <div class="pad">
-                                            <div class="year">{{ $related->registration_year }}</div>
-                                            <div class="nm">@if(isset($related->brand[0])) {{ $related->brand[0]->name }} @endif</div>
-                                            <div class="merk">@if(isset($related->model[0])) {{ $related->model[0]->name }} @endif</div>
-                                            <div class="merk">@if(isset($related->model[0])) {{ $related->model_code }} @endif</div>
-                                            <div class="merk">{{ $related->product_type }}</div>
-                                            @if($related->price && $related->reserve == 0)
-                                            @if($related->discount_percent > 0)
-                                            <div class="price">${{ number_format($related->price, 0, '.', ',') }}</div>
-                                            <div class="price-disc">$ {{ number_format($related->discount_price, 0, '.', ',') }}</div>
-                                            <div class="save-disc">You save {{ $related->discount_percent }}%</div>
+                                            <!-- <div class="year"></div> -->
+                                            <div class="nm">{{ $product->registration_year }} @if(isset($product->brand[0])) {{ $product->brand[0]->name }} @endif</div>
+                                            <!-- <div class="merk">@if(isset($product->model[0])) {{ $product->model[0]->name }} @endif</div> -->
+                                            <div class="merk">@if(isset($product->model[0])) {{ $product->model_code }} @endif</div>
+                                            <div class="merk">{{ $product->product_type }}</div>
+                                            @if($product->price && $product->reserve == 0)
+                                            @if($product->discount_percent != 0)
+                                            <div class="price"><span class="price-strike">${{ number_format($product->price, 0, '.', ',') }}</span><span class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</span></div>
+                                            <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                             @else
-                                            <div class="price-wo-disc">${{ number_format($related->price, 0, '.', ',') }}</div>
+                                            <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
                                             @endif
                                             @endif
+                                            <!--<div class="stock">Stock # {{ $product->stock }}</div>-->
                                         </div>
                                     </a>
                                 </div>

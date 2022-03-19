@@ -3,130 +3,195 @@
 @section('content')
 
     <div class="css-home">
-        {{--
-        @if($banners)
-        <div class="banner-home" style="background: url('upload/banner/{{ $banners->image }}') no-repeat center;">
-            <div class="container pos-rel">
-                <div class="abs-banner">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 col-xl-6">
-                            <div class="t-banner">{!! $banners->name !!}</div>
+        <div class="pos-rel">
+            @if($banners)
+            <div class="banner-home" style="background: url('upload/banner/{{ $banners->image }}') no-repeat center;">
+                <!-- <div class="container pos-rel">
+                    <div class="abs-banner">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 col-xl-6">
+                                <div class="t-banner">{!! $banners->name !!}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        @endif
-        --}}
-        <div class="container">
-            <div class="bg-find">
-                {{--
-                @if(!$banners)
-                <div class="abs-banner">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 col-xl-6">
-                            <div class="t-banner">{!! $banner_title->name !!}</div>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                --}}
-                <div class="t-find" style="color: #003F5A">Singapore's Leading Car Exporter</div>
-                <form action="{{ url('product-listing') }}">
-                    <div class="row">
-                        <!-- <div class="col-6 col-md-3">
-                            <div class="form-group">
-                                <label for="brand">Product Category Type:</label>
-                                <div class="css-select">
-                                    <select name="category_type" class="form-control" id="category_type" required="">
-                                        <option selected="" disabled="">All Types</option>
-                                        <option value="all">All Cars</option>
-                                        <option value="newly">Newly Added</option>
-                                        <option value="clearance">Clearance Section</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="col-6 col-md-3">
-                            <div class="form-group">
-                                <label for="brand">Select Brand:</label>
-                                <div class="css-select">
-                                    <select name="brand" class="form-control" id="select-brand" required="">
-                                        <option selected="" disabled="">All Brands</option>
-                                        @foreach($brands as $brand)
-                                        <option value="{{ $brand->slug }}">{{ $brand->name }}</option>
-                                        @endforeach
-                                    </select>
+                </div> -->
+                <div class="container">
+                    <div class="bg-find">
+                        @if(!$banners)
+                        <div class="abs-banner">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 col-xl-6">
+                                    <!--<div class="t-banner">{!! $banner_title->name !!}</div>-->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
-                            <div class="form-group">
-                                <label for="model">Select Model:</label>
-                                <div class="css-select">
-                                    <select name="model" class="form-control" id="model">
-                                        <option selected="" disabled="">All Models</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="form-group">
-                                <label for="brand">Select Transmission Type:</label>
-                                <div class="css-select">
-                                    <select name="transmission" class="form-control" id="brand" required="">
-                                        <option selected="" disabled="">All Types</option>
-                                        @foreach($transmissions as $transmission)
-                                        <option value="{{ $transmission->slug }}">{{ $transmission->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="form-group">
-                                <label for="brand">Select Car Type:</label>
-                                <div class="css-select">
-                                    <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
-                                    <select name="car_type" class="form-control" id="car_type" required="">
-                                        <option selected="" disabled="">All Car Type</option>
-                                        @foreach($types as $type)
-                                        <option value="{{ $type }}">{{ $type }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="range_min" id="range-min">
-                        <input type="hidden" name="range_max" id="range-max">
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 col-lg-5">
-                            <div class="t-price">Price Range</div>
+                        @endif
+                        <div class="t-find">Singapore's Leading Car Exporter</div>
+                        <form action="{{ url('product-listing') }}">
                             <div class="row">
-                                <div class="col-6 my-auto">
-                                    <input class="bdr-range" type="text" id="amount-1" readonly name="">
+                                <!-- <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="brand">Product Category Type:</label>
+                                        <div class="css-select">
+                                            <select name="category_type" class="form-control" id="category_type" required="">
+                                                <option selected="" disabled="">All Types</option>
+                                                <option value="all">All Cars</option>
+                                                <option value="newly">Newly Added</option>
+                                                <option value="clearance">Clearance Section</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="brand">Select Brand:</label>
+                                        <div class="css-select">
+                                            <select name="brand" class="form-control" id="select-brand" required="">
+                                                <option selected="" disabled="">All Brands</option>
+                                                @foreach($brands as $brand)
+                                                <option value="{{ $brand->slug }}">{{ $brand->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6 my-auto text-right">
-                                    <input class="bdr-range" type="text" id="amount-2" readonly name="">
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="model">Select Model:</label>
+                                        <div class="css-select">
+                                            <select name="model" class="form-control" id="model">
+                                                <option selected="" disabled="">All Models</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="brand">Select Transmission Type:</label>
+                                        <div class="css-select">
+                                            <select name="transmission" class="form-control" id="brand" required="">
+                                                <option selected="" disabled="">All Types</option>
+                                                @foreach($transmissions as $transmission)
+                                                <option value="{{ $transmission->slug }}">{{ $transmission->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="brand">Select Car Type:</label>
+                                        <div class="css-select">
+                                            <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                            <select name="car_type" class="form-control" id="car_type" required="">
+                                                <option selected="" disabled="">All Types</option>
+                                                @foreach($types as $type)
+                                                <option value="{{ $type }}">{{ $type }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="brand">Select Fuel Types:</label>
+                                        <div class="css-select">
+                                            <select name="brand" class="form-control" id="select-brand" required="">
+                                                <option selected="" disabled="">All Types</option>
+                                                @foreach($brands as $brand)
+                                                <option value="{{ $brand->slug }}">{{ $brand->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="model">Select Colour:</label>
+                                        <div class="css-select">
+                                            <select name="model" class="form-control" id="model">
+                                                <option selected="" disabled="">All Colours</option>    
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="brand">Select Drivetrain:</label>
+                                        <div class="css-select">
+                                            <select name="transmission" class="form-control" id="brand" required="">
+                                                <option selected="" disabled="">All Types</option>
+                                                @foreach($transmissions as $transmission)
+                                                <option value="{{ $transmission->slug }}">{{ $transmission->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="brand">Min. Year:</label>
+                                                <div class="css-select">
+                                                    <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                                    <select name="car_type" class="form-control" id="car_type" required="">
+                                                        <option selected="" disabled="">Select Year</option>
+                                                        @foreach($types as $type)
+                                                        <option value="{{ $type }}">{{ $type }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="brand">Max. Year:</label>
+                                                <div class="css-select">
+                                                    <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                                    <select name="car_type" class="form-control" id="car_type" required="">
+                                                        <option selected="" disabled="">Select Year</option>
+                                                        @foreach($types as $type)
+                                                        <option value="{{ $type }}">{{ $type }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="range_min" id="range-min">
+                                <input type="hidden" name="range_max" id="range-max">
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 col-lg-5">
+                                    <div class="t-price">Price Range</div>
+                                    <div class="row">
+                                        <div class="col-6 my-auto">
+                                            <input class="bdr-range" type="text" id="amount-1" readonly name="">
+                                        </div>
+                                        <div class="col-6 my-auto text-right">
+                                            <input class="bdr-range" type="text" id="amount-2" readonly name="">
+                                        </div>
+                                    </div>
+                                    <div class="pad-range">
+                                        <div id="slider-range"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="pad-range">
-                                <div id="slider-range"></div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    <div class="form-group text-center">
+                                        <label>&nbsp;</label>
+                                        <button type="submit" class="hvr-button">Search Inventory</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>&nbsp;</label>
-                                <button type="submit" class="hvr-button full100">Search Inventory</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
+            @endif
         </div>
         @if(count($recently_views)>0)
         <div class="bg-inventory">
@@ -177,8 +242,7 @@
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
                                             @if($product->discount_percent > 0)
-                                            <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
-                                            <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
+                                            <div class="price"><span class="price-strike">${{ number_format($product->price, 0, '.', ',') }}</span><span class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</span></div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                             @else
                                             <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
@@ -253,8 +317,7 @@
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
                                             @if($product->discount_percent != 0)
-                                            <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
-                                            <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
+                                            <div class="price"><span class="price-strike">${{ number_format($product->price, 0, '.', ',') }}</span><span class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</span></div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                             @else
                                             <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
@@ -329,8 +392,7 @@
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
                                             @if($product->discount_percent != 0)
-                                            <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
-                                            <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
+                                            <div class="price"><span class="price-strike">${{ number_format($product->price, 0, '.', ',') }}</span><span class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</span></div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                             @else
                                             <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
@@ -422,8 +484,7 @@
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
                                             @if($product->discount_percent != 0)
-                                            <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
-                                            <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
+                                            <div class="price"><span class="price-strike">${{ number_format($product->price, 0, '.', ',') }}</span><span class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</span></div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                             @else
                                             <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>

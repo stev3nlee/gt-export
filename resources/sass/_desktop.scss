@@ -35,6 +35,30 @@
 		}
 	}
 	#main {
+		.css-detail {
+			ul.l-detail {
+				li {
+					.l-detail-t2 {
+						font-size: 12px;
+						line-height: 17px;
+					}
+					.l-detail-t1 {
+						font-size: 16px;
+					}
+				}
+			}
+			.text1 {
+				.text1-row {
+					.text1-col {
+						.text1-bdr {
+							.right {
+								font-size: 11px;
+							}
+						}
+					}
+				}
+			}
+		}
 		.css-home {
 	        .bg-about {
 	            .abs {

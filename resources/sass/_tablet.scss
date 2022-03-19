@@ -115,7 +115,8 @@
 	    }
 		.css-home {
 			.banner-home {
-				height: 500px;
+				padding: 50px 0;
+				// height: 500px;
 	            .abs-banner {
 	                top: 160px;
 	                .t-banner {
@@ -138,7 +139,7 @@
 	            }
 	        }
 	        .bg-find {
-	            padding: 35px 0;
+	            // padding: 35px 0;
 	            .form-group {
 	            	label {
 	            		font-size: 13px;
@@ -158,13 +159,13 @@
 	            	}
 	            }
 	            .t-find {
-	                font-size: 24px;
-	                line-height: 30px;
-	                margin-bottom: 30px;
+	                font-size: 30px;
+	                line-height: 35px;
+	                margin-bottom: 40px;
 	            }
 	        }
 			.bg-inventory {
-	            margin: 40px 0;
+	            margin: 0 0 40px 0;
 	            padding: 15px 0;
 	            .t {
 	                font-size: 24px;
@@ -232,6 +233,9 @@
 	            line-height: 15px;
 	            padding: 5px 10px;
 	        }
+	        .detail-box {
+	        	width: 90%;
+	        }
 	    	.slider-product {
 	    		.slick-prev {
 	                left: 15px;
@@ -279,11 +283,11 @@
 	            font-size: 14px;
 	            line-height: 19px;
 	        }
-	        .nm {
-	            font-size: 20px;
-	            line-height: 26px;
-	            margin: 10px 0 20px;
-	        }
+	        // .nm {
+	        //     font-size: 20px;
+	        //     line-height: 26px;
+	        //     margin: 10px 0 20px;
+	        // }
 	        .buy {
 	            font-size: 14px;
 	        }
@@ -293,8 +297,8 @@
 	            line-height: 28px;
 	        }
 	        .price-wo-disc {
-	            margin: 10px 0 30px;
-	            font-size: 22px;
+	            margin: 10px 0 20px;
+	            font-size: 20px;
 	            line-height: 28px;
 	        }
 	        .box-desc {
@@ -313,9 +317,9 @@
 	            }
 	        }
 	        .t1 {
-	            font-size: 22px;
+	            font-size: 20px;
 	            line-height: 30px;
-	            padding-bottom: 15px;
+	            // padding-bottom: 15px;
 	            margin-bottom: 20px;
 	        }
 	        .t2 {
@@ -332,16 +336,13 @@
 	        ul.l-detail {
 	            margin: 0 0 30px;
 	            li {
-	                // padding-right: 20px;
-	                // margin-right: 20px;
+	            	margin-right: 10px;
+	            	padding-right: 10px;
 	                .l-detail-t1 {
-	                    font-size: 8px;
-	                    // margin-bottom: 15px;
-	                    // line-height: 30px;
+	                    font-size: 11px;
 	                }
 	                .l-detail-t2 {
-	                    font-size: 9px;
-	                    line-height: 14px;
+	                    font-size: 13px;
 	                }
 	            }
 	        }
@@ -356,7 +357,7 @@
 	        				}
 	        				.right {
 	        					line-height: 14px;
-	        					font-size: 8px;
+	        					font-size: 9px;
 	        				}
 	        			}
 	        		}
@@ -448,6 +449,41 @@
 	            margin-bottom: 40px;
 	            p {
 	                font-size: 14px;
+	            }
+	        }
+	    }
+	    .css-payment {
+	    	.bdy {
+	    		margin-bottom: 30px;
+	    	}
+	    	.title {
+	    		font-size: 30px;
+	    		line-height: 40px;
+	    	}
+	    	ul.l-payment {
+	            margin: 0 0 50px;
+	            li {
+	                a {
+	                    font-size: 15px;
+	                    line-height: 22px;
+	                    padding: 10px 30px;
+	                }
+	            }
+	        }
+	        .box-content-payment {
+	            padding-bottom: 30px;
+	            margin-bottom: 30px;
+	            .t1 {
+	                font-size: 16px;
+	                line-height: 24px;
+	                margin-bottom: 7px;
+	            }
+	            .desc {
+	                padding-left: 10px;
+	                p {
+	                    font-size: 14px;
+	                    line-height: 20px;
+	                }
 	            }
 	        }
 	    }
@@ -881,7 +917,7 @@
 	                line-height: 19px;
 	            }
 	        }
-	    }
+		}
 	    .css-regulation {
 	        .title {
 	            font-size: 30px;

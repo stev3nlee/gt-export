@@ -72,36 +72,100 @@
                             <div class="css-select">
                                 <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
                                     <select name="car_type" class="form-control" id="car_type">
-                                        <option selected="" value="">All Car Type</option>
+                                        <option selected="" value="">All Types</option>
                                         @foreach($types as $type)
                                         <option value="{{ $type }}"  @if($car_type == $type) selected @endif>{{ $type }}</option>
                                         @endforeach
                                     </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="brand">Select Fuel Type:</label>
+                            <div class="css-select">
+                                <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                    <select name="car_type" class="form-control" id="car_type">
+                                        <option selected="" value="">All Types</option>
+                                        @foreach($types as $type)
+                                        <option value="{{ $type }}"  @if($car_type == $type) selected @endif>{{ $type }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand">Select Colour:</label>
+                            <div class="css-select">
+                                <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                    <select name="car_type" class="form-control" id="car_type">
+                                        <option selected="" value="">All Colours</option>
+                                        @foreach($types as $type)
+                                        <option value="{{ $type }}"  @if($car_type == $type) selected @endif>{{ $type }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand">Select Drivetrain:</label>
+                            <div class="css-select">
+                                <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                    <select name="car_type" class="form-control" id="car_type">
+                                        <option selected="" value="">All Types</option>
+                                        @foreach($types as $type)
+                                        <option value="{{ $type }}"  @if($car_type == $type) selected @endif>{{ $type }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group mb15">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="brand">Min Year:</label>
+                                    <div class="css-select">
+                                        <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                            <select name="car_type" class="form-control" id="car_type">
+                                                <option selected="" value="">Select Year</option>
+                                                @foreach($types as $type)
+                                                <option value="{{ $type }}"  @if($car_type == $type) selected @endif>{{ $type }}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="brand">Max Year:</label>
+                                    <div class="css-select">
+                                        <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
+                                            <select name="car_type" class="form-control" id="car_type">
+                                                <option selected="" value="">Select Year</option>
+                                                @foreach($types as $type)
+                                                <option value="{{ $type }}"  @if($car_type == $type) selected @endif>{{ $type }}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <input name="sort" type="hidden" value="{{ $sort }}" />
                         <!-- <input type="hidden" name="search" value="{{ $search }}"> -->
+                        <div class="click-reset mb10">
+                            <button type="button" class="hvr-button full100">Clear Filters</button>
+                        </div>
                         <div class="mb10">
                             <button type="submit" class="hvr-button full100">Search Inventory</button>
-                        </div>
-                        <div class="click-reset">
-                            <button type="button" class="hvr-button full100">Clear Filters</button>
                         </div>
                         </form>
                     </div>
                     <div class="col-md-9">
                         <div class="box-search">
                             <div class="row">
-                                <div class="col-md-6 col-lg-7">
+                                <div class="col-md-6 col-lg-8">
                                     <div class="t-match">{{ $products->total() }} Matches</div>
                                     @if($search)
                                     <div class="t-search">Search : <span class="bold">{{ $search }}</span></div>
                                     @endif
                                 </div>
-                                <div class="col-md-6 col-lg-5">
+                                <div class="col-md-6 col-lg-4">
                                     <div class="css-select">
                                     <form action="{{ url()->current() }}">
-                                        <select onChange="this.form.submit()" name="sort" class="form-control" id="sort">
+                                        <select onChange="this.form.submit()" name="sort" class="form-control stocklist-select" id="sort">
                                             <option selected="" value="">Sort By</option>
                                             <option value="high-low" @if($sort == 'high-low') selected @endif>Price High to Low</option>
                                             <option value="low-high" @if($sort == 'low-high') selected @endif>Price Low to High</option>
@@ -176,13 +240,11 @@
                                             <div class="merk">{{ $product->product_type }}</div>
                                             @if($product->price && $product->reserve == 0)
                                             @if($product->discount_percent != 0)
-                                            <div class="price">${{ number_format($product->price, 0, '.', ',') }}</div>
-                                            <div class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</div>
+                                            <div class="price"><span class="price-strike">${{ number_format($product->price, 0, '.', ',') }}</span><span class="price-disc">$ {{ number_format($product->discount_price, 0, '.', ',') }}</span></div>
                                             <div class="save-disc">You save {{ $product->discount_percent }}%</div>
                                             @else
                                             <div class="price-wo-disc">${{ number_format($product->price, 0, '.', ',') }}</div>
                                             @endif
-                                            
                                             @endif
                                             <!--<div class="stock">Stock # {{ $product->stock }}</div>-->
                                         </div>

@@ -34,7 +34,6 @@
 <section id="main-page">
     <div class="bg-dark-menu"></div>
     <div class="bg-dark-cart"></div>
-    
     <header>
         <div class="box-search">
             <form action="{{ URL::to('/product-listing') }}">
@@ -109,7 +108,9 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-menu">
+        </div>
+        <div class="bg-menu">
+            <div class="container">
                 <ul class="l-menu">
                     <li class="dropdown-item-1"><a class="nav-about" href="{{ URL::to('/about-us') }}">About Us</a></li>
                     <li class="dropdown-item-2"><a class="nav-product" href="{{ URL::to('/product-listing') }}">Stocklist</a></li>

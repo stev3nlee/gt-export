@@ -3534,7 +3534,7 @@ input[type=button].btn-block {
   width: 1rem;
   height: 1rem;
   content: "";
-  background: 50%/50% 50% no-repeat;
+  background: 50% / 50% 50% no-repeat;
 }
 
 .custom-checkbox .custom-control-label::before {
@@ -16404,6 +16404,7 @@ a {
   line-height: 19px;
   font-family: "Quicksand-Bold";
   margin-bottom: 7px;
+  color: #fff;
 }
 
 .form-control:disabled, .form-control[readonly] {
@@ -16474,6 +16475,20 @@ textarea.form-control {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
+}
+.css-select .stocklist-select {
+  position: relative;
+  top: -10px;
+  text-align: center;
+}
+.css-select .stocklist-select.form-control {
+  background: white;
+  background-image: linear-gradient(45deg, transparent 50%, black 50%), linear-gradient(135deg, black 50%, transparent 50%);
+  background-position: calc(100% - 15px) calc(1em + 7px), calc(100% - 10px) calc(1em + 7px), 100% 0;
+  background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #212121;
+  border-radius: 0;
 }
 
 .tbl {
@@ -16623,7 +16638,7 @@ header {
   max-width: 2560px;
   margin: 0 auto;
   position: relative;
-  padding: 13px 0;
+  padding: 13px 0 0 0;
 }
 header .show-md {
   display: none;
@@ -16693,6 +16708,9 @@ header.abs {
   transform: translateX(-50%);
   width: 100%;
 }
+header.abs .bg-menu {
+  background: #003f5a;
+}
 header .logo {
   position: relative;
   top: -2px;
@@ -16733,7 +16751,7 @@ header .search button img {
 }
 header .search input {
   padding: 8px 30px 8px 15px;
-  border: 1px solid white;
+  border: 1px solid transparent;
   background: transparent;
   color: black;
   font-size: 12px;
@@ -16756,6 +16774,7 @@ header .search input::-ms-input-placeholder {
 }
 header .search input:focus {
   color: black;
+  border-color: transparent;
   background: transparent;
 }
 header ul.right-menu {
@@ -16886,15 +16905,12 @@ header .link-account a .tbl .cell.nm {
   }
 }
 header .bg-menu {
-  background: rgba(255, 255, 255, 0.9);
+  background: #003f5a;
   border-radius: 1px;
-  padding: 20px 50px;
-  margin-bottom: 20px;
-  width: calc(100% - 30px);
-  position: absolute;
+  padding: 15px 50px;
   opacity: 1;
-  top: calc(100% + 5px);
   z-index: 990;
+  margin-top: 15px;
   transition: all 0.3s;
 }
 header .bg-menu ul.l-menu {
@@ -16957,7 +16973,7 @@ header .bg-menu ul.l-menu li a {
   font-size: 13px;
   line-height: 17px;
   transition: all 0.3s;
-  color: #212121;
+  color: #FFF;
   font-family: "Quicksand-Bold";
   position: relative;
 }
@@ -16966,7 +16982,7 @@ header .bg-menu ul.l-menu li a:before {
   position: absolute;
   width: 0;
   height: 2px;
-  background: rgba(33, 33, 33, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   left: 50%;
   content: "";
   transition: all 0.3s;
@@ -17115,6 +17131,8 @@ footer .cp {
 }
 #main .bdr-range {
   width: 100%;
+  color: white;
+  background: transparent;
   margin-bottom: 10px;
   font-size: 12px;
   line-height: 15px;
@@ -17123,7 +17141,7 @@ footer .cp {
 }
 #main .pad-range {
   padding: 0 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 #main .text-right .bdr-range {
   text-align: right;
@@ -17131,6 +17149,7 @@ footer .cp {
 #main #slider-range.ui-widget.ui-widget-content {
   border-color: #A0AEB3;
   background-color: #A0AEB3;
+  border: 0;
 }
 #main #slider-range.ui-slider .ui-slider-handle {
   width: 15px;
@@ -17163,11 +17182,72 @@ footer .cp {
 #main .pad-content.pb0 {
   padding-bottom: 0;
 }
-#main .css-home {
-  padding-top: 70px;
+#main .css-home .banner-home {
+  margin-bottom: 0;
+  background-size: cover !important;
+  height: 100%;
+  padding: 70px 0;
+  width: 100%;
 }
-#main .css-home .bg-find {
-  padding: 45px 0 20px;
+#main .css-home .banner-home .abs-banner {
+  overflow-x: hidden !important;
+  position: absolute;
+  left: 0;
+  top: 250px;
+  width: 100%;
+  z-index: 10;
+}
+#main .css-home .banner-home .abs-banner .t-banner {
+  color: white;
+  text-align: center;
+  font-size: 35px;
+  line-height: 45px;
+  font-family: "Quicksand-Bold";
+  margin-bottom: 20px;
+}
+#main .css-home .banner-home .abs-banner .search {
+  position: relative;
+  width: 470px;
+  margin: 0 auto;
+}
+#main .css-home .banner-home .abs-banner .search button {
+  transition: all 0.3s;
+  background: transparent;
+  border: 0;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#main .css-home .banner-home .abs-banner .search button:hover {
+  opacity: 0.7;
+}
+#main .css-home .banner-home .abs-banner .search input {
+  padding: 18px 60px 18px 25px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  line-height: 20px;
+}
+#main .css-home .banner-home .abs-banner .search input::-moz-placeholder {
+  color: white;
+}
+#main .css-home .banner-home .abs-banner .search input:-ms-input-placeholder {
+  color: white;
+}
+#main .css-home .banner-home .abs-banner .search input::placeholder {
+  color: white;
+}
+#main .css-home .banner-home .abs-banner .search input:-ms-input-placeholder {
+  color: white;
+}
+#main .css-home .banner-home .abs-banner .search input::-ms-input-placeholder {
+  color: white;
+}
+#main .css-home .banner-home .abs-banner .search input:focus {
+  color: white;
+  background: transparent;
 }
 #main .css-home .bg-find .abs-banner {
   overflow-x: hidden !important;
@@ -17182,27 +17262,35 @@ footer .cp {
   font-family: "Quicksand-Bold";
   margin-bottom: 20px;
 }
+#main .css-home .bg-find .mb20 {
+  margin-bottom: 20px;
+}
 #main .css-home .bg-find .t-find {
   font-family: "Quicksand-Bold";
   text-align: center;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 40px;
+  font-size: 40px;
+  line-height: 45px;
+  margin-bottom: 50px;
+  color: #fff;
 }
 #main .css-home .bg-find .form-group {
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 #main .css-home .bg-find .t-price {
   font-family: "Quicksand-Bold";
   text-align: center;
   font-size: 15px;
   line-height: 18px;
-  margin: 40px 0 0;
+  margin: 40px 0 10px;
+  color: #fff;
+}
+#main .css-home .bg-find .hvr-button {
+  width: 260px;
 }
 #main .css-home .bg-inventory {
-  margin: 20px 0 30px 0;
+  margin-bottom: 30px;
   background-color: #003F5A;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 #main .css-home .bg-inventory .view a {
   display: inline-block;
@@ -17220,7 +17308,7 @@ footer .cp {
 }
 #main .css-home .bg-inventory .t {
   color: white;
-  font-size: 28px;
+  font-size: 22px;
   line-height: 35px;
   font-family: "Quicksand-Bold";
 }
@@ -17228,7 +17316,7 @@ footer .cp {
   border-bottom: 3px solid #A0AEB3;
   font-family: "Quicksand-Bold";
   font-size: 22px;
-  line-height: 30px;
+  line-height: 25px;
   margin-bottom: 8px;
 }
 #main .css-home ul.l-brand {
@@ -17447,10 +17535,15 @@ footer .cp {
   text-align: right;
 }
 #main .css-detail .link-upload a {
+  width: 180px;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #003F5A;
+  padding: 5px 10px;
   display: inline-block;
   cursor: pointer;
   transition: all 0.3s;
-  color: #212121;
+  color: #003F5A;
 }
 #main .css-detail .link-upload a i {
   font-size: 13px;
@@ -17461,10 +17554,19 @@ footer .cp {
 }
 #main .css-detail .click-show, #main .css-detail .click-hide {
   text-align: right;
+}
+#main .css-detail .click-show .text-inside, #main .css-detail .click-hide .text-inside {
+  width: 180px;
+  text-align: center;
   cursor: pointer;
   transition: all 0.3s;
+  color: #003F5A;
+  border: 1px solid #003F5A;
+  font-size: 14px;
+  padding: 5px 10px;
+  display: inline-block;
 }
-#main .css-detail .click-show:hover, #main .css-detail .click-hide:hover {
+#main .css-detail .click-show .text-inside:hover, #main .css-detail .click-hide .text-inside:hover {
   opacity: 0.7;
 }
 #main .css-detail .click-hide {
@@ -17473,18 +17575,27 @@ footer .cp {
 #main .css-detail .mb70 {
   margin-bottom: 70px;
 }
+#main .css-detail .detail-box {
+  box-shadow: -1px 4px 6px 0px rgba(186, 186, 186, 0.75);
+  -webkit-box-shadow: -1px 4px 6px 0px rgba(186, 186, 186, 0.75);
+  -moz-box-shadow: -1px 4px 6px 0px rgba(186, 186, 186, 0.75);
+  border-radius: 5px;
+  padding: 20px;
+  width: 80%;
+}
+#main .css-detail .box-detail-inside {
+  background-color: #A0AEB31A;
+  padding: 15px;
+  margin-bottom: 15px;
+}
 #main .css-detail .merk {
-  margin-bottom: 5px;
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 22px;
   line-height: 20px;
-  font-family: "Quicksand-Bold";
 }
 #main .css-detail .nm {
-  font-size: 22px;
+  font-size: 18px;
   line-height: 28px;
-  font-family: "Quicksand-Bold";
-  margin: 10px 0 30px;
 }
 #main .css-detail .buy {
   font-size: 15px;
@@ -17495,20 +17606,21 @@ footer .cp {
   font-size: 24px;
   line-height: 30px;
   text-decoration: line-through;
+  color: #003F5A;
 }
 #main .css-detail .buy-disc {
   font-size: 15px;
   line-height: 20px;
-  color: red;
+  color: #C9252D;
 }
 #main .css-detail .price-disc {
   margin: 10px 0 40px;
   font-size: 24px;
   line-height: 30px;
-  color: red;
+  color: #C9252D;
 }
 #main .css-detail .save-price {
-  color: blue;
+  color: #003F5A;
   font-size: 12px;
 }
 #main .css-detail .price-wo-disc {
@@ -17534,36 +17646,34 @@ footer .cp {
   line-height: 20px;
 }
 #main .css-detail .t1 {
-  font-size: 28px;
+  font-size: 24px;
   line-height: 35px;
-  font-family: "Quicksand-Bold";
-  margin-bottom: 40px;
+  margin: 20px 0;
 }
 #main .css-detail .t2 {
   font-size: 19px;
   line-height: 25px;
-  font-family: "Quicksand-Bold";
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 #main .css-detail .bdr {
   width: 100%;
   height: 1px;
   background: #ECECEC;
-  margin: 30px 0 40px;
+  margin: 40px 0 30px 0;
 }
 #main .css-detail .mb15 {
   margin-bottom: 15px;
 }
 #main .css-detail ul.l-detail {
-  margin: 0 0 40px;
+  margin: 0 0 20px;
   padding: 0;
   text-align: center;
 }
 #main .css-detail ul.l-detail li {
   display: inline-block;
   border-right: 1px solid #bababa;
-  padding-right: 10px;
-  margin-right: 10px;
+  padding-right: 13px;
+  margin-right: 13px;
 }
 #main .css-detail ul.l-detail li:last-child {
   border-right: 0;
@@ -17571,32 +17681,29 @@ footer .cp {
   margin-right: 0;
 }
 #main .css-detail ul.l-detail li .l-detail-t1 {
-  color: #000000;
-  font-size: 13px;
+  font-size: 20px;
   margin-bottom: 0;
   line-height: 20px;
 }
 #main .css-detail ul.l-detail li .l-detail-t2 {
-  color: #000000;
-  font-family: "Quicksand-Bold";
-  font-size: 15px;
+  font-size: 14px;
   line-height: 21px;
+  margin-bottom: 5px;
 }
 #main .css-detail .text1 .text1-row {
   border: 1px solid #ADADAD;
   border-right: 0;
   border-top: 0;
   display: flex;
-  margin-bottom: 50px;
   flex-wrap: wrap;
 }
 #main .css-detail .text1 .text1-row .text1-col {
-  border-top: 1px solid #ADADAD;
+  border-top: 1px solid #A0AEB3;
   flex: 0 0 50%;
   max-width: 50%;
 }
 #main .css-detail .text1 .text1-row .text1-col .text1-bdr {
-  color: #8a8a8a;
+  color: #000;
   padding: 0 15px;
   font-size: 14px;
   height: 100%;
@@ -17607,16 +17714,18 @@ footer .cp {
 }
 #main .css-detail .text1 .text1-row .text1-col .text1-bdr .left {
   height: 100%;
-  font-size: 12px;
-  border-right: 1px solid #adadad;
+  font-size: 10px;
+  border-right: 1px solid #A0AEB3;
   padding: 5px 8px;
   font-family: "Quicksand-Bold";
-  background-color: #f5f5f5;
+  background-color: rgba(160, 174, 179, 0.1);
+  color: #000;
+  letter-spacing: 1px;
 }
 #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
   font-size: 12px;
   height: 100%;
-  border-right: 1px solid #ADADAD;
+  border-right: 1px solid #A0AEB3;
   padding: 5px 8px;
 }
 #main .css-detail .text2 .text2-row {
@@ -17780,6 +17889,7 @@ footer .cp {
 }
 #main .css-product .form-group label {
   font-family: "Quicksand-Bold";
+  color: #212121;
 }
 #main .css-product .mb15 {
   margin-bottom: 15px;
@@ -17794,7 +17904,6 @@ footer .cp {
 }
 #main .css-product .item {
   height: 100%;
-  border: 1px solid #DADADA;
 }
 #main .css-product .item .pos-rel {
   overflow: hidden;
@@ -17857,7 +17966,7 @@ footer .cp {
 }
 #main .css-product .item a .pad {
   padding: 5px 5px 5px;
-  height: 90px;
+  height: auto;
 }
 #main .css-product .item a .pad .row {
   margin-left: -5px;
@@ -17876,25 +17985,28 @@ footer .cp {
 #main .css-product .item a .pad .nm {
   color: #212121;
   font-family: "Quicksand-Bold";
-  font-size: 12px;
+  font-size: 13px;
   line-height: 15px;
+  margin-bottom: 5px;
 }
 #main .css-product .item a .pad .merk {
   color: #212121;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 15px;
 }
 #main .css-product .item a .pad .price {
-  margin-bottom: 0;
-  color: #212121;
+  margin: 5px 0 0 0;
+  color: #003F5A;
   font-family: "Quicksand-Bold";
-  font-size: 12px;
+  font-size: 13px;
   line-height: 15px;
+}
+#main .css-product .item a .pad .price-strike {
   text-decoration: line-through;
 }
 #main .css-product .item a .pad .price-disc {
-  margin-bottom: 0;
-  color: #dc3545;
+  margin: 0 0 0 5px;
+  color: #C9252D;
   font-family: "Quicksand-Bold";
   font-size: 12px;
   line-height: 15px;
@@ -17904,9 +18016,10 @@ footer .cp {
   font-family: "Quicksand-Bold";
   font-size: 12px;
   line-height: 15px;
+  margin: 5px 0 0 0;
 }
 #main .css-product .item a .pad .save-disc {
-  color: blue;
+  color: #003F5A;
   font-family: "Quicksand-Bold";
   font-size: 11px;
   line-height: 15px;
@@ -18374,6 +18487,9 @@ footer .cp {
   line-height: 45px;
   font-family: "Quicksand-Bold";
 }
+#main .css-contact .form-group label {
+  color: #212121;
+}
 #main .css-contact .title2 {
   font-size: 27px;
   line-height: 35px;
@@ -18405,6 +18521,9 @@ footer .cp {
   margin-bottom: 0;
   font-size: 16px;
   line-height: 24px;
+}
+#main .css-contact .item .t2 b, #main .css-contact .item .t2 strong {
+  font-family: "Quicksand-Medium";
 }
 #main .css-contact .item .t2.lh20 p {
   line-height: 22px;
@@ -18472,12 +18591,32 @@ footer .cp {
   background: #15191F;
   content: "";
 }
+#main .css-about .img.img-cover img {
+  height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 #main .css-about .img img {
   width: 100%;
+}
+#main .css-about .desc b, #main .css-about .desc strong {
+  font-family: "Quicksand-Medium";
 }
 #main .css-about .desc p {
   margin-bottom: 0;
   font-size: 15px;
+  line-height: 25px;
+}
+#main .css-about .desc p.fz14 {
+  font-size: 14px;
+  line-height: 18px;
+}
+#main .css-about .desc ul, #main .css-about .desc ol {
+  margin: 0 0 0 -20px;
+  font-size: 15px;
+  line-height: 25px;
+}
+#main .css-about .desc ul.fz15, #main .css-about .desc ol.fz15 {
   line-height: 20px;
 }
 #main .css-faq .box-store {
@@ -18584,12 +18723,62 @@ footer .cp {
   font-family: "Quicksand-Bold";
 }
 #main .css-payment .bdy {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 #main .css-payment .bdy p {
   font-size: 15px;
   line-height: 20px;
   margin-bottom: 0;
+}
+#main .css-payment ul.l-payment {
+  margin: 0 0 70px;
+  padding: 0;
+  text-align: center;
+}
+#main .css-payment ul.l-payment li {
+  display: inline-block;
+  margin-right: 5px;
+}
+#main .css-payment ul.l-payment li:last-child {
+  margin-right: 0;
+}
+#main .css-payment ul.l-payment li a {
+  display: block;
+  cursor: pointer;
+  font-family: "Quicksand-Bold";
+  font-size: 16px;
+  line-height: 24px;
+  color: #212121;
+  padding: 12px 60px;
+  border-radius: 0;
+  border: 0;
+  transition: all 0.3s;
+}
+#main .css-payment ul.l-payment li a.active, #main .css-payment ul.l-payment li a:hover {
+  background: #003F5A;
+  color: white;
+}
+#main .css-payment .box-content-payment {
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+#main .css-payment .box-content-payment .t1 {
+  font-family: "Quicksand-Medium";
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+#main .css-payment .box-content-payment .img img {
+  width: 100%;
+}
+#main .css-payment .box-content-payment .desc {
+  padding-left: 30px;
+}
+#main .css-payment .box-content-payment .desc p {
+  margin-bottom: 0;
+  font-size: 15px;
+  line-height: 26px;
 }
 #main .css-payment .box-payment {
   padding: 30px 0;
@@ -19069,7 +19258,7 @@ input[type=file] {
 .box-wa {
   position: fixed;
   z-index: 9999;
-  bottom: 30px;
+  bottom: 60px;
   right: 70px;
   transition: all 0.3s;
 }
@@ -19229,6 +19418,16 @@ input[type=file] {
     width: 220px;
   }
 
+  #main .css-detail ul.l-detail li .l-detail-t2 {
+    font-size: 12px;
+    line-height: 17px;
+  }
+  #main .css-detail ul.l-detail li .l-detail-t1 {
+    font-size: 16px;
+  }
+  #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
+    font-size: 11px;
+  }
   #main .css-home .bg-about .abs {
     padding-right: 70px;
   }
@@ -19345,7 +19544,7 @@ input[type=file] {
     height: 50vh;
   }
   #main .css-home .banner-home {
-    height: 500px;
+    padding: 50px 0;
   }
   #main .css-home .banner-home .abs-banner {
     top: 160px;
@@ -19367,9 +19566,6 @@ input[type=file] {
     padding: 12px 45px 12px 15px;
     font-size: 15px;
   }
-  #main .css-home .bg-find {
-    padding: 35px 0;
-  }
   #main .css-home .bg-find .form-group label {
     font-size: 13px;
   }
@@ -19387,12 +19583,12 @@ input[type=file] {
     padding-right: 5px;
   }
   #main .css-home .bg-find .t-find {
-    font-size: 24px;
-    line-height: 30px;
-    margin-bottom: 30px;
+    font-size: 30px;
+    line-height: 35px;
+    margin-bottom: 40px;
   }
   #main .css-home .bg-inventory {
-    margin: 40px 0;
+    margin: 0 0 40px 0;
     padding: 15px 0;
   }
   #main .css-home .bg-inventory .t {
@@ -19450,6 +19646,9 @@ input[type=file] {
     line-height: 15px;
     padding: 5px 10px;
   }
+  #main .css-detail .detail-box {
+    width: 90%;
+  }
   #main .css-detail .slider-product .slick-prev {
     left: 15px;
   }
@@ -19493,11 +19692,6 @@ input[type=file] {
     font-size: 14px;
     line-height: 19px;
   }
-  #main .css-detail .nm {
-    font-size: 20px;
-    line-height: 26px;
-    margin: 10px 0 20px;
-  }
   #main .css-detail .buy {
     font-size: 14px;
   }
@@ -19507,8 +19701,8 @@ input[type=file] {
     line-height: 28px;
   }
   #main .css-detail .price-wo-disc {
-    margin: 10px 0 30px;
-    font-size: 22px;
+    margin: 10px 0 20px;
+    font-size: 20px;
     line-height: 28px;
   }
   #main .css-detail .box-desc {
@@ -19525,9 +19719,8 @@ input[type=file] {
     font-size: 14px;
   }
   #main .css-detail .t1 {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 30px;
-    padding-bottom: 15px;
     margin-bottom: 20px;
   }
   #main .css-detail .t2 {
@@ -19544,12 +19737,15 @@ input[type=file] {
   #main .css-detail ul.l-detail {
     margin: 0 0 30px;
   }
+  #main .css-detail ul.l-detail li {
+    margin-right: 10px;
+    padding-right: 10px;
+  }
   #main .css-detail ul.l-detail li .l-detail-t1 {
-    font-size: 8px;
+    font-size: 11px;
   }
   #main .css-detail ul.l-detail li .l-detail-t2 {
-    font-size: 9px;
-    line-height: 14px;
+    font-size: 13px;
   }
   #main .css-detail .text1 .text1-row {
     margin-bottom: 40px;
@@ -19560,7 +19756,7 @@ input[type=file] {
   }
   #main .css-detail .text1 .text1-row .text1-col .text1-bdr .right {
     line-height: 14px;
-    font-size: 8px;
+    font-size: 9px;
   }
   #main .css-detail .text2 .text2-row .text2-col {
     flex: 0 0 25%;
@@ -19638,6 +19834,37 @@ input[type=file] {
   }
   #main .css-faq .bdy p {
     font-size: 14px;
+  }
+  #main .css-payment .bdy {
+    margin-bottom: 30px;
+  }
+  #main .css-payment .title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+  #main .css-payment ul.l-payment {
+    margin: 0 0 50px;
+  }
+  #main .css-payment ul.l-payment li a {
+    font-size: 15px;
+    line-height: 22px;
+    padding: 10px 30px;
+  }
+  #main .css-payment .box-content-payment {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+  #main .css-payment .box-content-payment .t1 {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 7px;
+  }
+  #main .css-payment .box-content-payment .desc {
+    padding-left: 10px;
+  }
+  #main .css-payment .box-content-payment .desc p {
+    font-size: 14px;
+    line-height: 20px;
   }
   #main .css-product .title {
     margin-bottom: 40px;
@@ -20174,6 +20401,9 @@ input[type=file] {
     background-position: calc(100% - 10px) calc(1em + 2px), calc(100% - 5px) calc(1em + 2px), 100% 0;
     background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
   }
+  .css-select .stocklist-select {
+    top: 0;
+  }
 
   .form-group {
     margin-bottom: 25px;
@@ -20242,7 +20472,7 @@ input[type=file] {
     padding-top: 0;
   }
   #main .css-home .banner-home {
-    height: 270px;
+    padding: 30px 0;
   }
   #main .css-home .banner-home .abs-banner {
     top: 80px;
@@ -20266,9 +20496,6 @@ input[type=file] {
     font-size: 12px;
     line-height: 15px;
   }
-  #main .css-home .bg-find {
-    padding: 25px 0;
-  }
   #main .css-home .bg-find .search {
     width: 220px;
   }
@@ -20282,9 +20509,6 @@ input[type=file] {
     padding: 8px 30px 8px 10px;
     font-size: 12px;
     line-height: 15px;
-  }
-  #main .css-home .bg-find .form-group {
-    margin-bottom: 20px;
   }
   #main .css-home .bg-find .form-group label {
     font-size: 11px;
@@ -20309,7 +20533,7 @@ input[type=file] {
     padding: 0 10px;
   }
   #main .css-home .bg-inventory {
-    margin: 30px 0;
+    margin: 0 0 30px 0;
     padding: 10px 0;
   }
   #main .css-home .bg-inventory .t {
@@ -20383,6 +20607,9 @@ input[type=file] {
   #main .pad-content {
     padding: 20px 0 50px;
   }
+  #main .css-detail .detail-box {
+    width: 100%;
+  }
   #main .css-detail .pagingInfo {
     font-size: 11px;
     line-height: 13px;
@@ -20407,6 +20634,7 @@ input[type=file] {
     font-size: 20px;
   }
   #main .css-detail .link-upload {
+    text-align: center;
     margin-bottom: 30px;
   }
   #main .css-detail .link-upload a {
@@ -20423,6 +20651,7 @@ input[type=file] {
   }
   #main .css-detail .click-show, #main .css-detail .click-hide {
     font-size: 12px;
+    text-align: center;
   }
   #main .css-detail .mb70 {
     margin-bottom: 40px;
@@ -20465,7 +20694,6 @@ input[type=file] {
   #main .css-detail .t1 {
     font-size: 18px;
     line-height: 24px;
-    padding-bottom: 10px;
     margin-bottom: 20px;
   }
   #main .css-detail .t2 {
@@ -20573,6 +20801,49 @@ input[type=file] {
   }
   #main .css-faq .bdy p {
     font-size: 14px;
+  }
+  #main .css-payment .title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  #main .css-payment .bdy {
+    margin-bottom: 20px;
+  }
+  #main .css-payment .bdy p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #main .css-payment ul.l-payment {
+    margin: 0 0 30px;
+  }
+  #main .css-payment ul.l-payment li {
+    display: block;
+    margin-bottom: 5px;
+    margin-right: 0;
+  }
+  #main .css-payment ul.l-payment li:last-child {
+    margin-bottom: 0;
+  }
+  #main .css-payment ul.l-payment li a {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 7px 15px;
+  }
+  #main .css-payment .box-content-payment {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  #main .css-payment .box-content-payment .t1 {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  #main .css-payment .box-content-payment .desc {
+    margin-top: 10px;
+    padding-left: 0;
+  }
+  #main .css-payment .box-content-payment .desc p {
+    font-size: 14px;
+    line-height: 20px;
   }
   #main .css-product .item .img img {
     height: auto;
@@ -20930,6 +21201,9 @@ input[type=file] {
   #main .css-about .img.bg2:before {
     display: none;
   }
+  #main .css-about .img.img-cover img {
+    height: auto;
+  }
   #main .css-about .t1 {
     font-size: 15px;
     line-height: 20px;
@@ -20943,6 +21217,20 @@ input[type=file] {
   }
   #main .css-about .desc {
     margin-bottom: 40px;
+  }
+  #main .css-about .desc p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #main .css-about .desc p.fz14 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #main .css-about .desc ul li, #main .css-about .desc ol li {
+    font-size: 14px;
+  }
+  #main .css-about .desc ul.fz15, #main .css-about .desc ol.fz15 {
+    line-height: 25px;
   }
   #main .css-regulation .title {
     font-size: 18px;
