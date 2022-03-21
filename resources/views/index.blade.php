@@ -69,7 +69,7 @@
                                     <div class="form-group">
                                         <label for="brand">Select Transmission Type:</label>
                                         <div class="css-select">
-                                            <select name="transmission" class="form-control" id="brand" required="">
+                                            <select name="transmission" class="form-control" id="brand">
                                                 <option selected="" disabled="">All Types</option>
                                                 @foreach($transmissions as $transmission)
                                                 <option value="{{ $transmission->slug }}">{{ $transmission->name }}</option>
@@ -83,7 +83,7 @@
                                         <label for="brand">Select Car Type:</label>
                                         <div class="css-select">
                                             <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
-                                            <select name="car_type" class="form-control" id="car_type" required="">
+                                            <select name="car_type" class="form-control" id="car_type">
                                                 <option selected="" disabled="">All Types</option>
                                                 @foreach($types as $type)
                                                 <option value="{{ $type }}">{{ $type }}</option>
@@ -96,10 +96,11 @@
                                     <div class="form-group">
                                         <label for="brand">Select Fuel Types:</label>
                                         <div class="css-select">
-                                            <select name="brand" class="form-control" id="select-brand" required="">
-                                                <option selected="" disabled="">All Types</option>
-                                                @foreach($brands as $brand)
-                                                <option value="{{ $brand->slug }}">{{ $brand->name }}</option>
+                                        <?php $fuels = array('CNG','Diesel','Electric','Hybrid (Diesel)','Hybrid (Petrol)','LPG','Other','Petrol') ?>
+                                            <select name="fuel" class="form-control" id="select-brand">
+                                                <option selected="" disabled="">All Fuel Types</option>
+                                                @foreach($fuels as $fuel)
+                                                <option value="{{ $fuel }}">{{ $fuel }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -109,8 +110,12 @@
                                     <div class="form-group">
                                         <label for="model">Select Colour:</label>
                                         <div class="css-select">
-                                            <select name="model" class="form-control" id="model">
-                                                <option selected="" disabled="">All Colours</option>    
+                                            <?php $colors = array('Beige','Black','Blue','Bronze','Brown','Gold','Gray','Green','Maroon','Orange','Pearl','Pink','Purple','Red','Silver','White','Yellow','Other') ?>
+                                            <select name="colour" class="form-control" id="model">
+                                                <option selected="" disabled="">All Colours</option>   
+                                                @foreach($colors as $color)
+                                                <option value="{{$color}}">{{ $color }}</option>
+                                                @endforeach 
                                             </select>
                                         </div>
                                     </div>
@@ -119,11 +124,10 @@
                                     <div class="form-group">
                                         <label for="brand">Select Drivetrain:</label>
                                         <div class="css-select">
-                                            <select name="transmission" class="form-control" id="brand" required="">
-                                                <option selected="" disabled="">All Types</option>
-                                                @foreach($transmissions as $transmission)
-                                                <option value="{{ $transmission->slug }}">{{ $transmission->name }}</option>
-                                                @endforeach
+                                            <select name="drivetrain" class="form-control" id="brand">
+                                                <option selected="" disabled="">All Drivetrain</option>
+                                                <option value="2WD">2WD</option>
+                                                <option value="4WD">4WD</option>
                                             </select>
                                         </div>
                                     </div>
@@ -135,11 +139,13 @@
                                                 <label for="brand">Min. Year:</label>
                                                 <div class="css-select">
                                                     <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
-                                                    <select name="car_type" class="form-control" id="car_type" required="">
+                                                    <select name="min_year" class="form-control" id="car_type">
                                                         <option selected="" disabled="">Select Year</option>
-                                                        @foreach($types as $type)
-                                                        <option value="{{ $type }}">{{ $type }}</option>
-                                                        @endforeach
+                                                        {{ $last= date('Y')-16 }}
+                                                        {{ $now = date('Y') }}
+                                                        @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                        @endfor
                                                     </select>
                                                 </div>
                                             </div>
@@ -149,11 +155,13 @@
                                                 <label for="brand">Max. Year:</label>
                                                 <div class="css-select">
                                                     <?php $types = array('Bus','Bus 20 Seats','Convertible','Coupe','Hatchback','Mini Bus','Mini Van','Mini Vehicle','Pick Up','Sedan','SUV','Truck','Van','Wagon','Forklift','Machinery','Tractor') ?>
-                                                    <select name="car_type" class="form-control" id="car_type" required="">
+                                                    <select name="max_year" class="form-control" id="car_type">
                                                         <option selected="" disabled="">Select Year</option>
-                                                        @foreach($types as $type)
-                                                        <option value="{{ $type }}">{{ $type }}</option>
-                                                        @endforeach
+                                                        {{ $last= date('Y')-16 }}
+                                                        {{ $now = date('Y') }}
+                                                        @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                        @endfor
                                                     </select>
                                                 </div>
                                             </div>
@@ -437,7 +445,7 @@
                                 <?php $i=1 ?>
                                 @foreach($brands as $brand)
                                 <li>
-                                    <a href="{{ url('/?brand='.$brand->slug) }}" @if($brand_id == $brand->id) class="active" @endif>
+                                    <a href="{{ url('product-listing?brand='.$brand->slug) }}" @if($brand_id == $brand->id) class="active" @endif>
                                         <div>{{ $brand->name }}</div>
                                         <div class="img"><img src="{{ asset('images/arrow-brand.png') }}" alt="" title=""/></div>
                                     </a>
@@ -601,5 +609,14 @@
                 }
         });
 	});
+    window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || 
+                            ( typeof window.performance != "undefined" && 
+                                window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+        // Handle page restore.
+        window.location.reload();
+    }
+    });
 </script>
 @endsection

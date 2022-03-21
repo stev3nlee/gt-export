@@ -45,7 +45,7 @@ class ProductController extends BaseController
         $range_min = 0;
         $range_max = $highest_price->price;
         $models = array();
-// dd($request->range_max);
+
         if($request->range_min){
             $range_min = $request->range_min;
         }
@@ -76,6 +76,25 @@ class ProductController extends BaseController
 
         if($request->car_type){
             $products = $products->where('product_type', $request->car_type);
+        }
+        if($request->fuel){
+            $products = $products->where('fuel', $request->fuel);
+        }
+        if($request->colour){
+            $products = $products->where('color', $request->colour);
+        }
+        if($request->drivetrain){
+            $products = $products->where('drive_type', $request->drivetrain);
+        }
+        if($request->min_year && $request->max_year){
+            $products = $products->whereBetween('registration_year', [$request->min_year, $request->max_year]);
+        }else{
+            if($request->min_year){
+                $products->where('registration_year', '>=', $request->min_year);
+            }
+            if($request->max_year){
+                $products->where('registration_year', '<=', $request->max_year);
+            }
         }
 
         if($request->range_max && $request->range_min){
@@ -121,9 +140,9 @@ class ProductController extends BaseController
         }else if($request->sort == 'disc-low'){
             $products = $products->where('discount_percent', '>', 0)->orderby('discount_percent','asc');
         }else if($request->sort == 'year-new'){
-            $products = $products->orderByRaw('CONVERT(registration_year, SIGNED) desc');
+            $products = $products->orderByRaw('registration_year desc');
         }else if($request->sort == 'year-old'){
-            $products = $products->orderByRaw('CONVERT(registration_year, SIGNED) asc');
+            $products = $products->orderByRaw('registration_year asc');
         }else if($request->sort == 'engine-high'){
             $products = $products->orderByRaw('CONVERT(engine_capacity, SIGNED) desc');
         }else if($request->sort == 'engine-low'){
@@ -151,6 +170,11 @@ class ProductController extends BaseController
         $data['range_max'] = $range_max;
         $data['search'] = $request->search;
         $data['car_type'] = $request->car_type;
+        $data['fuel'] = $request->fuel;
+        $data['color'] = $request->colour;
+        $data['drivetrain'] = $request->drivetrain;
+        $data['min_year'] = $request->min_year;
+        $data['max_year'] = $request->max_year;
         $data['sort'] = $request->sort;
         $data['highest_price'] = $highest_price->price;
         return view('/product/product-listing', $data);  
