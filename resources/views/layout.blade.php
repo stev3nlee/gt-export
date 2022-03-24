@@ -18,7 +18,7 @@
     <link href="{{ asset('js/fancybox/jquery.fancybox.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('js/jquery-ui/jquery-ui.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/front.css?v.16') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/front.css?v.17') }}" rel="stylesheet"/>
     <style>
       .help-block{
         color: #dd4b39;

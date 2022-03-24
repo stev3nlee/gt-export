@@ -3534,7 +3534,7 @@ input[type=button].btn-block {
   width: 1rem;
   height: 1rem;
   content: "";
-  background: 50% / 50% 50% no-repeat;
+  background: 50%/50% 50% no-repeat;
 }
 
 .custom-checkbox .custom-control-label::before {
@@ -17811,6 +17811,9 @@ footer .cp {
   line-height: 24px;
   font-family: "Quicksand-Bold";
   margin-bottom: 50px;
+}
+#main .css-product .bdr-range {
+  color: #003F5A;
 }
 #main .css-product .box-search {
   margin-bottom: 50px;
