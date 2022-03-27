@@ -18,7 +18,7 @@
     <link href="{{ asset('js/fancybox/jquery.fancybox.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('js/jquery-ui/jquery-ui.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/front.css?v.17') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/front.css') }}" rel="stylesheet"/>
     <style>
       .help-block{
         color: #dd4b39;
@@ -143,18 +143,24 @@
                 <li><a href="{{ URL::to('/disclaimers') }}">Disclaimers</a></li>
                 <li><a href="{{ URL::to('/privacy') }}">Privacy</a></li>
             </ul>
+            <ul class="l-soc hide-desktop">
+                <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="{{ $company_data->facebook }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
             <div class="row">
                 <div class="col-sm-6 my-auto order-2 order-md-1">
                     <div class="cp">All Rights Reserved <?php echo date('Y'); ?></div>
                 </div>
                 <div class="col-sm-6 my-auto order-1 order-md-2">
-                    <ul class="l-soc">
+                    <ul class="l-soc hide-mobile">
                         <li><a href="{{ $company_data->instagram }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-instagram"></i></a></li>
                         <li><a href="{{ $company_data->facebook }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-facebook-square"></i></a></li>
                         <li><a href="{{ $company_data->linkedin }}" target="_blank" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
+            
         </div>
     </footer>
 </section>
@@ -534,7 +540,7 @@
             $(window).scrollTop() + $(window).height() >
             $(document).height() - $("#footer").height()
         ) {
-            $(".box-wa").css("bottom", "60px");
+            $(".box-wa").css("bottom", "44px");
         }
     });
     function scrollAll() {

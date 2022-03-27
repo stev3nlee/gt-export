@@ -1,7 +1,7 @@
 @media (max-width: 767px) {
 	.box-wa {
 	    right: 25px;
-	    bottom: 20px;
+	    bottom: 10px !important;
 	    a {
 	        ul.l-wa {
 	            li {
@@ -1144,6 +1144,19 @@
 	button.hvr-button {
 		&.btnfull {
 			width: 100%;
+		}
+	}
+	footer {
+		ul.l-soc {
+			&.hide-mobile {
+				display: none;
+			}
+			&.hide-desktop {
+				display: block;
+			}
+		}
+		.cp {
+			margin-top: 5px;
 		}
 	}
 	.modal {

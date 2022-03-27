@@ -3534,7 +3534,7 @@ input[type=button].btn-block {
   width: 1rem;
   height: 1rem;
   content: "";
-  background: 50%/50% 50% no-repeat;
+  background: 50% / 50% 50% no-repeat;
 }
 
 .custom-checkbox .custom-control-label::before {
@@ -16993,13 +16993,13 @@ header .bg-menu ul.l-menu li a:hover:before, header .bg-menu ul.l-menu li a.acti
 }
 
 footer {
+  padding: 25px 0;
   max-width: 2560px;
   margin: 0 auto;
   background: #003F5A;
-  padding: 25px 0;
 }
 footer ul.l-footer {
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   padding: 0;
 }
 footer ul.l-footer li {
@@ -17021,10 +17021,14 @@ footer ul.l-footer li a:hover {
 }
 footer ul.l-soc {
   text-align: right;
-  margin: 10px 0;
+  margin: 0;
   padding: 0;
 }
+footer ul.l-soc.hide-desktop {
+  display: none;
+}
 footer ul.l-soc li {
+  line-height: 1;
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
@@ -17064,14 +17068,14 @@ footer .cp {
 #main .popup-product .pagingInfo {
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  right: 15px;
   z-index: 10;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 20px;
   background: black;
   color: white;
   text-align: center;
-  padding: 7px 13px;
+  padding: 4px 14px;
 }
 #main .popup-product .popup-close {
   cursor: pointer;
@@ -17447,14 +17451,15 @@ footer .cp {
 #main .css-detail .pagingInfo {
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  right: 15px;
   z-index: 10;
-  font-size: 16px;
+  font-size: 11px;
   line-height: 20px;
   background: black;
   color: white;
   text-align: center;
-  padding: 7px 13px;
+  padding: 4px 14px;
+  letter-spacing: 1px;
 }
 #main .css-detail .slider-product {
   line-height: 0;
@@ -17932,7 +17937,7 @@ footer .cp {
   font-size: 11px;
 }
 #main .css-product .item .new {
-  background: red;
+  background: #003F5A;
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -17940,7 +17945,8 @@ footer .cp {
   position: absolute;
   top: 10px;
   left: 5px;
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 #main .css-product .item .abs-get {
   position: absolute;
@@ -19459,7 +19465,7 @@ input[type=file] {
 @media (max-width: 991px) {
   .box-wa {
     right: 35px;
-    bottom: 20px;
+    bottom: 75px;
   }
 
   .box-wa2 {
@@ -19514,9 +19520,6 @@ input[type=file] {
     height: 2px;
   }
 
-  footer {
-    padding: 20px 0;
-  }
   footer ul.l-footer li {
     margin-right: 40px;
   }
@@ -20288,7 +20291,7 @@ input[type=file] {
 @media (max-width: 767px) {
   .box-wa {
     right: 25px;
-    bottom: 20px;
+    bottom: 10px !important;
   }
   .box-wa a ul.l-wa li.bg-chat {
     display: none;
@@ -21254,6 +21257,16 @@ input[type=file] {
 
   button.hvr-button.btnfull {
     width: 100%;
+  }
+
+  footer ul.l-soc.hide-mobile {
+    display: none;
+  }
+  footer ul.l-soc.hide-desktop {
+    display: block;
+  }
+  footer .cp {
+    margin-top: 5px;
   }
 
   .modal.modal-global .close-pop {
